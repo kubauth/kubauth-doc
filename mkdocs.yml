@@ -1,16 +1,17 @@
 site_name: Kubauth
 
-# Groups
-# password grants
-# ldap connection
-
-
 nav:
   - Home: index.md
-  - "Installation": 100-installation.md
-  - "First logins": 110-first-logins.md
-  - "User groups": 120-user-groups.md
-  - "Password grant": 130-password-grant.md
+  - "Installation": installation.md
+  - "User guide":
+    - "Configuration": user-guide/110-configuration.md
+    - "Tokens and Claims": user-guide/120-tokens-and-claims.md
+    - "Audit": user-guide/130-audit.md
+    - "SSO": user-guide/140-sso.md
+    - "Users Groups": user-guide/150-users-groups.md
+    - "Password Grant": user-guide/160-password-grant.md
+    - "LDAP connector": user-guide/170-ldap-connector.md
+    - "Identity chaining": user-guide/180-identity-chaining.md
 
 theme:
   #  name: readthedocs
@@ -37,8 +38,8 @@ theme:
 #    - content.code.copy
 #    - content.code.select
 
-extra_css:
-  - assets/styles/extra.css
+#extra_css:
+#  - assets/styles/extra.css
 
 markdown_extensions:
   - pymdownx.highlight:

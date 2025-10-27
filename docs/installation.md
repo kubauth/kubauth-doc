@@ -14,7 +14,7 @@ Before you begin, make sure you meet the following prerequisites:
 - **Helm:** Helm must be installed locally on your system.
 
 !!! tip
-    If you don't have an appropriate Kubernetes cluster at your disposal, you can deploy a [Kind cluster](https://kind.sigs.k8s.io/) on your local workstation
+    If you don't have an appropriate Kubernetes cluster at your disposal, you can deploy a [Kind cluster](https://kind.sigs.k8s.io/){:target="_blank"} on your local workstation
 
 ## Kubauth Deployment
 
@@ -38,7 +38,6 @@ So, in your working folder, create a file like the following:
         certificateIssuer: cluster-odp
     ```
 
-
 Replace the values with your specific configuration:
 
 - **`kubauth.ingress.kubo6.mbp`**: Replace by the hostname used for accessing the `kubauth` service from outside the cluster.<br>
@@ -61,6 +60,11 @@ kubectl -n kubauth get pods
 NAME                       READY   STATUS    RESTARTS   AGE
 kubauth-5d4fdc6bc8-7rlb6   3/3     Running   0          55s
 ```
+
+!!! notes
+
+    This `values.yaml` file is the bare minimum configuration set. In subsequent chapters, more variables may be added. 
+
 
 ## `kc` CLI tool installation
 

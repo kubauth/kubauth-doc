@@ -1,6 +1,5 @@
 # Kubauth
 
-
 A Kubernetes-native OpenID Connect (OIDC) Identity Provider.
 
 ## Overview
@@ -15,7 +14,7 @@ Can be fully autonomous, hosting its own User database or acting as a relay for 
 
 - **OIDC Compliance**: Supports standard OIDC flows including Authorization Code, and Resource Owner Password Credentials (ROPC)
 - **PKCE Support**: Complete Proof Key for Code Exchange (PKCE) implementation with configurable enforcement
-- **Kubernetes-Native Storage**: All data stored as Kubernetes Custom Resources (CRDs)
+- **Kubernetes-Native Storage**: All data stored as Kubernetes Custom Resources (CRDs). NO DATABASE
 - **SSO Capabilities**: Cross-application Single Sign-On with persistent sessions
 - **User & Group Management**: Fine-grained user authentication and group-based authorization. 
     - Claims can be defined at users or group level.

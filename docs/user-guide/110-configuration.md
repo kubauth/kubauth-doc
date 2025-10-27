@@ -1,8 +1,16 @@
-# First usage
+# Configuration
+
+Basic Kubauth configuration is based on:
+
+- Helm chart variable
+- Users and Groups as Kubernetes Custom Resources
+- Client Application as Kubernetes Custom Resources.
+
+We suggest you apply the sample configuration described below as this will be used in subsequent chapters.
 
 ## User creation
 
-For Kubauth, as a first approach, users are defined as Kubernetes Custom Resources.
+With Kubauth users may be defined as Kubernetes Custom Resources.
 
 Here is a sample manifest which will create two users:
 
@@ -51,28 +59,28 @@ You can now list the newly created users
 ``` { .bash .copy }
 kubectl -n kubauth-users get users.kubauth.kubotal.io
 ```
-```bash
+```
 NAME   USERNAME   EMAILS                    UID   COMMENT   DISABLED   AGE
 jim                                                                    82m
 john   John DOE   ["johnd@mycompany.com"]                              67m
 ```
 
 !!! note
-    We better provide the fully qualified name of the resource, as `user` may refer to several Kind of CRD.<br>
-    For this reason, an alias has also be defined for kubauth's users:
+    We better provide the fully qualified name of the resource, as `user` may refer to several other Kind of CRD.<br>
+    For this reason, an alias (`kuser`) has also be defined for kubauth's users:
     ``` { .bash .copy }
     kubectl -n kubauth-users get kusers
     ```
 
 ### Password hash
 
-The `kc` cli tool provide a subcommand to generate the hash of a password:
+The `kc` CLI tool provide a subcommand to generate the hash of a password:
 
-``` { .bash .copy }
+``` { .copy }
 kc hash jim123
 ```
 
-```bash
+```
 Secret: jim123
 Hash: $2a$12$nSplFbbsGoI7LXdhJrKx0erRmIv.zkTftG82sQZA0.v3l1eCf.ey.
 
@@ -97,9 +105,27 @@ Example:
 
 Just cut/paste appropriate line in your user manifest.
 
-## Client creation
+### Namespace
 
-In OIDC terminology, a 'client' is an application referenced in an OIDC server.
+If, for any reason, you need to change the namespace storing users resources definition, this can be modified by setting a helm chart configuration value: 
+
+???+ abstract "values.yaml"
+
+    ``` { .yaml .copy }
+    oidc:
+      issuer: https://kubauth.ingress.kubo6.mbp
+      postLogoutURL: https://kubauth.ingress.kubo6.mbp/index
+      ....
+
+    ucrd:
+      namespace: kubauth-users
+      createNamespace: true
+
+    ```
+
+## OIDC Client creation
+
+In OIDC terminology, a 'client' is an application delegating user's authentication to an OIDC server. As such, it must be referenced in the server.
 
 With Kubauth, a client application is defined as a Kubernetes Custom resource.
 
@@ -129,74 +155,42 @@ Here is a first sample:
     ```
 
 - The resource name is the client ID.
-- The redirectURIs must be adjusted for each application. The value here is specific to the test client included in the `kc` cli. See below.
-- The grantTypes list define which authorization flow will be accepted by this client definition.
-- The responseTypes list define what kind of tokens or credentials the client can expects to receive from the authorization endpoint after the user authenticates.
-- The scopes list define which scope can be requested by the application. 
-- This client is defined as public. As such no client secret need to be provided. For non-public client, a secret in hashed form must be provided, as in the commented line. 
-  Use the `kc hash` command described above to generate.
-
-!!! warning
-
-    On the current version, claims are not filtered by scope. In other words, all claims of a user are provided in the OIDC token.
+- The `redirectURIs` list must be adjusted for each application. The value here is specific to the test client included in the `kc` cli. See below.
+- The `grantTypes` list define which authorization flow will be accepted by this client definition.
+- The `responseTypes` list define what kind of tokens or credentials the client can expects to receive from the authorization endpoint after the user authenticates.
+- The `scopes` list define which scope can be requested by the application. 
+- This client is defined as `public`. As such no client secret need to be provided.<br>For non-public client, a `secret` in hashed form must be provided, as in the commented line. 
+  Use the `kc hash` command described previously to generate it.
 
 Apply this manifest:
 
-``` { .yaml .copy }
+``` { .bash .copy }
 kubectl apply -f client-public.yaml
 ```
 
 You can list existing OIDC client:
 
-``` { .yaml .copy }
+``` { .bash .copy }
 kubectl -n kubauth-oidc get oidcclients
 ```
 
-```bash
+```
 NAME     PUB.   DISPLAY   DESCRIPTION                 LINK   AGE
 public   true             A test OIDC public client          25m
 ```
 
-## logins
+### Namespace
 
-The Kubauth companion CLI application provide an embedded OIDC client application. Beside being used as here for testing installation, 
-its aim is to provide a tool to fetch Access or/and OIDC token, able to be injected in whatever application.
+If, for any reason, you need to change the namespace storing clients resources definition, this can be modified by setting a helm chart configuration value:
 
-Launch the following command, after adjusting the issuerURL;
+???+ abstract "values.yaml"
 
-```
-kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public
-```
-
-Your browser should open on the kubauth login page
-
-![login](./assets/kubauth-login.png)
-```
-If browser doesn't open automatically, visit: http://127.0.0.1:9921
-```
-
-
-
-```
-Access token: ory_at_xLUfAhEGpFVWpMLdNEDZAj94hHFrHWjgOYB5g0Leh_k.0rgIzRGFOiIeGsMKnIZ74QL4Ve5vVOuEZyhA0402u8Y
-Refresh token: ory_rt_nU9NBZs4NtKTxVYVko1aqlJkAMF5MLBYjfiZbhVt9aE.THwsnTlqzIsWo5O1NAf1EbDhz7HdaqVHHwSTkWxrkqY
-ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiaGNBY2dtdmdBekJlSGgyODlkWHF3USIsImF1ZCI6WyJwdWJsaWMiXSwiYXV0aF90aW1lIjoxNzYxMzI2MDg2LCJhenAiOiJwdWJsaWMiLCJleHAiOjE3NjEzMjk2ODYsImlhdCI6MTc2MTMyNjA4NiwiaXNzIjoiaHR0cHM6Ly9rdWJhdXRoLmluZ3Jlc3Mua3VibzYubWJwIiwianRpIjoiZDZhYjkwODMtYTEzMi00YTNiLTlmMWItMzM2NWFhOTQ5MjQ2IiwicmF0IjoxNzYxMzI2MDg2LCJzdWIiOiJqaW0ifQ.Q8ZkF33jsUJDqLH98uqRgrFa2nwioRP1TO9n6QjX9XFr-1WmsKk9nEeHGAiASb1brQ3cSAmK8ta7fX3lBLBlszxmeVZRzq5Qvg0N8nqvlV3C4CAiv6lEl6_-y6wBoQOWN9OhNhYU6wFjpNNDTx_RW0329i9TYVxaygw58wJGCX_1F5-PY0NG74n_1sdZxYop7s5GnZ0_9S9-DEI-LNR2MMx-oVH4lpGjV5dhGRvZS0l4tMm2C7J6Yx_JoTQoZfWwPI0GGf2smZZ-C2ieB5Wj0b19fgrafuexHW9yeejI51j6WZs_eDqUwvCIf52_yAvokA4SiW4PW8Eod9fX-JuwJQ
-Expire in: 59m59s
-
-```
-
-```
-kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public
-```
-
-## Claims
-
-
-## 
-
-
-
-## SSO session.
-
-
-## Audit
+    ``` { .yaml .copy }
+    oidc:
+      issuer: https://kubauth.ingress.kubo6.mbp
+      postLogoutURL: https://kubauth.ingress.kubo6.mbp/index
+      ....
+      clients:
+        createNamespace: true
+        namespace: kubauth-oidc
+    ```
