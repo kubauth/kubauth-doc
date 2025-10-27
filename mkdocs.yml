@@ -1,15 +1,23 @@
 site_name: Kubauth
 
+# Groups
+# password grants
+# ldap connection
+
+
 nav:
   - Home: index.md
-  - "Getting started": getting-started.md
+  - "Installation": 100-installation.md
+  - "First logins": 110-first-logins.md
+  - "User groups": 120-user-groups.md
+  - "Password grant": 130-password-grant.md
 
 theme:
-#  name: readthedocs
-#  titles_only: false
-#  name: mkdocs
-#  name: windmill-dark
-#  name: gitbook
+  #  name: readthedocs
+  #  titles_only: false
+  #  name: mkdocs
+  #  name: windmill-dark
+  #  name: gitbook
   #  name: dracula
   name: material
   palette:
@@ -41,9 +49,9 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences:
       custom_fences:
-          - name: mermaid
-            class: mermaid
-            format: !!python/name:pymdownx.superfences.fence_code_format
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - attr_list
   - md_in_html
   - admonition
