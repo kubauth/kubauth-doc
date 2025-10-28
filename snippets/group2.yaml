@@ -26,6 +26,7 @@ metadata:
   name: ops
   namespace: kubauth-users
 spec:
+  comment:
   claims:
     accessProfile: p24x7
 

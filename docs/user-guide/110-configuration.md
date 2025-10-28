@@ -131,7 +131,7 @@ With Kubauth, a client application is defined as a Kubernetes Custom resource.
 
 Here is a first sample:
 
-???+ abstract "users.yaml"
+???+ abstract "client-public.yaml"
 
     ``` { .yaml .copy }
     apiVersion: kubauth.kubotal.io/v1alpha1

@@ -38,8 +38,8 @@ theme:
 #    - content.code.copy
 #    - content.code.select
 
-#extra_css:
-#  - assets/styles/extra.css
+extra_css:
+  - assets/styles/extra.css
 
 markdown_extensions:
   - pymdownx.highlight:

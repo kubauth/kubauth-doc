@@ -1,0 +1,10 @@
+
+---
+apiVersion: kubauth.kubotal.io/v1alpha1
+kind: GroupBinding
+metadata:
+  name: jim-dev
+  namespace: kubauth-users
+spec:
+  user: jim
+  group: devs

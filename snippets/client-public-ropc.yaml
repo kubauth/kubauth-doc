@@ -1,0 +1,18 @@
+apiVersion: kubauth.kubotal.io/v1alpha1
+kind: OidcClient
+metadata:
+  name: public
+  namespace: kubauth-oidc
+spec:
+  redirectURIs:
+    - "http://127.0.0.1:9921/callback"
+  grantTypes: [ "refresh_token", "authorization_code", "password" ]
+  responseTypes: [ "id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token" ]
+  scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access" ]
+  description: A test OIDC public client
+  public: true
+
+  # hashedSecret: "$2a$12$9vdc.xb3Zf4ts/C2pSvIOuGmFiv0EStBJWslaaycavblaIjYZ9Mia"
+  # accessTokenLifespan: 1h
+  # refreshTokenLifespan: 1h
+  # idTokenLifespan: 1h
