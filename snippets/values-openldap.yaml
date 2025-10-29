@@ -1,0 +1,28 @@
+replicaCount: 2
+replication:
+  enabled: true
+  tls_reqcert: never
+global:
+  adminPassword: admin123
+  adminUser: admin
+  configPassword: admin123
+  configUser: admin
+  ldapDomain: mycompany.com
+initTLSSecret:
+  tls_enabled: false
+persistence:
+  storageClass: standard
+ltb-passwd:
+  enabled : false
+phpldapadmin:
+  enabled: true
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - phpldapadmin.ingress.kubo6.mbp
+service:
+  type: ClusterIP
+#  sessionAffinity: None
+#  hosts:
+#    - ldap.kubo6.mbp

@@ -12,6 +12,18 @@ Launch the following command, after adjusting the issuerURL;
 kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public
 ```
 
+!!! notes
+
+    If you got an error like `tls: failed to verify certificate: x509:...`, this means the CA associated to the ClusterIssuer is not reckonized on your local work station.
+
+    - Add the `--insecureSkipVerify` open on the `kc token` command. You will also have to force your browser to accept such situation.
+    - Add the CA as a trusted one on your local workstation. You can extract it with a command like:
+      ``` { .bash .copy }
+      kubectl -n cert-manager get secret cluster-odp-ca \
+        -o jsonpath='{.data.ca\.crt}' | base64 -d >./ca.crt 
+      ```
+
+
 Your browser should open on the kubauth login page:
 
 ![login](../assets/kubauth-login.png){ .center width="50%" }

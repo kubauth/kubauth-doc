@@ -11,7 +11,9 @@ nav:
     - "Users Groups": user-guide/150-users-groups.md
     - "Password Grant": user-guide/160-password-grant.md
     - "LDAP connector": user-guide/170-ldap-connector.md
-    - "Identity chaining": user-guide/180-identity-chaining.md
+    - "Merging user identity": user-guide/180-merging-user-identity.md
+  - "Appendix":
+    - "OpenLDAP deployment": appendix/100-openldap.md
 
 theme:
   #  name: readthedocs

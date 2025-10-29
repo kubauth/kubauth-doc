@@ -1,0 +1,98 @@
+clusterIssuer: cluster-odp
+global:
+  adminPassword: admin123
+  adminUser: admin
+  configPassword: admin123
+  configUser: admin
+  ldapDomain: odp.com
+initTLSSecret:
+  secret: openldap-cert
+  tls_enabled: true
+persistence:
+  storageClass: standard
+phpldapadmin:
+  ingress:
+    annotations:
+      cert-manager.io/cluster-issuer: cluster-odp
+    hosts:
+      - phpldapadmin.ingress.kubo5.mbp
+    tls:
+      - hosts:
+          - phpldapadmin.ingress.kubo5.mbp
+        secretName: phpldapadmin-tls
+replicaCount: 2
+replication:
+  enabled: true
+  tls_reqcert: never
+service:
+  annotations:
+    metallb.universe.tf/loadBalancerIPs: 172.18.107.2
+  hosts:
+    - ldap.kubo5.mbp
+customLdifFiles:
+  00-root.ldif: |-
+    # Root creation
+    dn: dc=odp,dc=com
+    objectClass: dcObject
+    objectClass: organization
+    o: OpenDataPlatform
+  01-base-ou.ldif: |-
+    dn: ou=Users,dc=odp,dc=com
+    objectClass: organizationalUnit
+    ou: Users
+
+    dn: ou=Groups,dc=odp,dc=com
+    objectClass: organizationalUnit
+    ou: Groups
+  03-first-groups.ldif: |-
+    dn: cn=devs,ou=Groups,dc=odp,dc=com
+    objectclass: posixGroup
+    objectclass: top
+    gidnumber: 500
+    cn: devs
+    memberUid: alaint
+    memberUid: alext
+
+    dn: cn=ops,ou=Groups,dc=odp,dc=com
+    objectclass: posixGroup
+    objectclass: top
+    gidnumber: 501
+    cn: ops
+    memberUid: sergea
+    memberUid: moncefl
+  05-first-users.ldif: |-
+    dn: uid=sergea,ou=Users,dc=odp,dc=com
+    cn: Serge ALEXANDRE
+    objectclass: inetOrgPerson
+    objectclass: top
+    sn: ALEXANDRE
+    uid: sergea
+    mail: salexandre@odp.com
+    userpassword: {SSHA}RJB2fZdnwqAV6tcUbcLm+Awzt2CEinBT
+
+    dn: uid=moncefl,ou=Users,dc=odp,dc=com
+    cn: Moncef LAHOUAR
+    objectclass: inetOrgPerson
+    objectclass: top
+    sn: LAHOUAR
+    uid: moncefl
+    mail: moncefl@odp.com
+    userpassword: moncefl123
+
+    dn: uid=alaint,ou=Users,dc=odp,dc=com
+    cn: Alain TERIEUR
+    objectclass: inetOrgPerson
+    objectclass: top
+    sn: TERIEUR
+    uid: alaint
+    mail: alaint@odp.com
+    userpassword: alaint123
+
+    dn: uid=alext,ou=Users,dc=odp,dc=com
+    cn: Alex TERIEUR
+    objectclass: inetOrgPerson
+    objectclass: top
+    sn: TERIEUR
+    uid: alext
+    mail: alext@odp.com
+    userpassword: alext123
