@@ -9,12 +9,26 @@ oidc:
   server:
     certificateIssuer: cluster-odp
 
+  image:
+    pullPolicy: Always
+
 audit:
   idProvider:
-    baseURL: http://localhost:6803  # ldap port
+    baseURL: http://localhost:6804 # Merger listening port
+
+merger:
+  enabled: true
+  idProviders:
+    - name: ldap
+      httpConfig:
+        baseURL: http://localhost:6803 # ldap provider listening port
+    - name: ucrd
+      credentialAuthority: false
+      httpConfig:
+        baseURL: http://localhost:6802 # ucrd provider listening port
 
 ucrd:
-  enabled: false
+  enabled: true
 
 ldap:
   enabled: true

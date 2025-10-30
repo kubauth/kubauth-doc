@@ -80,8 +80,8 @@ The ldap configuration itself is tailored for an OpenLDAP server deployed as des
         certificateIssuer: cluster-odp
     
     audit:
-      idp:
-        baseURL: http://localhost:6803
+      idProvider:
+        baseURL: http://localhost:6803  # ldap provider listenning port
     
     ucrd:
       enabled: false
@@ -196,7 +196,7 @@ One your configuration is ready, you can proceed with its deployment, by launchi
 helm -n kubauth upgrade -i kubauth --values ./values-ldap.yaml oci://quay.io/kubauth/charts/kubauth --version 0.1.2-snapshot --create-namespace --wait
 ```
 
-You can check which containers has been now configured:
+You can check which containers has now been deployed:
 
 ``` { .bash .copy }
 kubectl -n kubauth get pod -l app.kubernetes.io/instance=kubauth -o jsonpath='{range .items[0].spec.containers[*]}{.name}{"\n"}{end}'
