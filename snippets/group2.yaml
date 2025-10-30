@@ -1,0 +1,32 @@
+
+---
+apiVersion: kubauth.kubotal.io/v1alpha1
+kind: GroupBinding
+metadata:
+  name: john-dev
+  namespace: kubauth-users
+spec:
+  user: john
+  group: devs
+
+---
+apiVersion: kubauth.kubotal.io/v1alpha1
+kind: GroupBinding
+metadata:
+  name: john-ops
+  namespace: kubauth-users
+spec:
+  user: john
+  group: ops
+
+---
+apiVersion: kubauth.kubotal.io/v1alpha1
+kind: Group
+metadata:
+  name: ops
+  namespace: kubauth-users
+spec:
+  comment:
+  claims:
+    accessProfile: p24x7
+

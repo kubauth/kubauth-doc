@@ -2,14 +2,26 @@ site_name: Kubauth
 
 nav:
   - Home: index.md
-  - "Getting started": getting-started.md
+  - "Installation": installation.md
+  - "User guide":
+    - "Configuration": user-guide/110-configuration.md
+    - "Tokens and Claims": user-guide/120-tokens-and-claims.md
+    - "Audit": user-guide/130-audit.md
+    - "SSO": user-guide/140-sso.md
+    - "Users Groups": user-guide/150-users-groups.md
+    - "Password Grant": user-guide/160-password-grant.md
+    - "LDAP connector": user-guide/170-ldap-connector.md
+    - "Several ID providers": user-guide/180-several-id-providers.md
+    - "Identity merge": user-guide/190-identity-merge.md
+  - "Appendix":
+    - "OpenLDAP deployment": appendix/100-openldap.md
 
 theme:
-#  name: readthedocs
-#  titles_only: false
-#  name: mkdocs
-#  name: windmill-dark
-#  name: gitbook
+  #  name: readthedocs
+  #  titles_only: false
+  #  name: mkdocs
+  #  name: windmill-dark
+  #  name: gitbook
   #  name: dracula
   name: material
   palette:
@@ -41,9 +53,9 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences:
       custom_fences:
-          - name: mermaid
-            class: mermaid
-            format: !!python/name:pymdownx.superfences.fence_code_format
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - attr_list
   - md_in_html
   - admonition

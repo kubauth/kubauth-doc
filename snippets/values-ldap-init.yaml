@@ -1,0 +1,61 @@
+customLdifFiles:
+  00-root.ldif: |-
+    # Root creation
+    dn: dc=mycompany,dc=com
+    objectClass: dcObject
+    objectClass: organization
+    o: MyCompany
+  01-base-ou.ldif: |-
+    dn: ou=Users,dc=mycompany,dc=com
+    objectClass: organizationalUnit
+    ou: Users
+
+    dn: ou=Groups,dc=mycompany,dc=com
+    objectClass: organizationalUnit
+    ou: Groups
+  03-first-groups.ldif: |-
+    dn: cn=staff,ou=Groups,dc=mycompany,dc=com
+    objectclass: posixGroup
+    objectclass: top
+    gidnumber: 500
+    cn: staff
+    memberUid: alice
+    memberUid: fred
+    memberUid: bob
+
+    dn: cn=managers,ou=Groups,dc=mycompany,dc=com
+    objectclass: posixGroup
+    objectclass: top
+    gidnumber: 501
+    cn: managers
+    memberUid: alice
+    memberUid: fred
+  05-first-users.ldif: |-
+    dn: uid=alice,ou=Users,dc=mycompany,dc=com
+    cn: Alice SMITH
+    objectclass: inetOrgPerson
+    objectclass: top
+    sn: SMITH
+    uid: alice
+    mail: alice@mycompany.com
+    userpassword: alice123
+
+    dn: uid=bob,ou=Users,dc=mycompany,dc=com
+    cn: Bob MORANE
+    objectclass: inetOrgPerson
+    objectclass: top
+    sn: MORANE
+    uid: bob
+    mail: bob@mycompany.com
+    userpassword: bob123
+
+    dn: uid=fred,ou=Users,dc=mycompany,dc=com
+    cn: Fred ASTER
+    objectclass: inetOrgPerson
+    objectclass: top
+    sn: ASTER
+    uid: fred
+    mail: fred@mycompany.com
+    userpassword: fred123
+
+

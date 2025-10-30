@@ -1,0 +1,23 @@
+---
+apiVersion: kubauth.kubotal.io/v1alpha1
+kind: User
+metadata:
+  name: jim
+  namespace: kubauth-users
+spec:
+  passwordHash: "$2a$12$yJEo9EoYn/ylGS4PCamfNe8PReYH9IPumsw7rMTDi3glZjuA7dXMm"  # jim123
+
+---
+apiVersion: kubauth.kubotal.io/v1alpha1
+kind: User
+metadata:
+  name: john
+  namespace: kubauth-users
+spec:
+  passwordHash: "$2a$12$YjalsuGc6uuWtQqVuU/O.eW9L6QGU/vHk2wpvle4dsS7hC2Ic1F.q"  # john123
+  name: John DOE
+  claims:
+    office: 208G
+  emails:
+    - johnd@mycompany.com
+

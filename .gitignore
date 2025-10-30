@@ -33,3 +33,5 @@ bin/
 **/.dump
 **/.charts
 site
+
+*.bkp

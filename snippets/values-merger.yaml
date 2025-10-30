@@ -1,0 +1,53 @@
+oidc:
+  issuer: https://kubauth.ingress.kubo6.mbp
+  postLogoutURL: https://kubauth.ingress.kubo6.mbp/index
+  allowPasswordGrant: true
+
+  ingress:
+    host: kubauth.ingress.kubo6.mbp
+
+  server:
+    certificateIssuer: cluster-odp
+
+  image:
+    pullPolicy: Always
+
+audit:
+  idProvider:
+    baseURL: http://localhost:6804 # Merger listening port
+
+merger:
+  enabled: true
+  idProviders:
+    - name: ldap
+      httpConfig:
+        baseURL: http://localhost:6803 # ldap provider listening port
+    - name: ucrd
+      credentialAuthority: false
+      httpConfig:
+        baseURL: http://localhost:6802 # ucrd provider listening port
+
+ucrd:
+  enabled: true
+
+ldap:
+  enabled: true
+  ldap:
+    host: openldap.openldap.svc
+    insecureNoSSL: true
+    bindDN: cn=admin,dc=mycompany,dc=com
+    bindPW: admin123
+    timeoutSec: 10
+    groupSearch:
+      baseDN: ou=Groups,dc=mycompany,dc=com
+      filter: (objectClass=posixgroup)
+      linkGroupAttr: memberUid
+      linkUserAttr: uid
+      nameAttr: cn
+    userSearch:
+      baseDN: ou=Users,dc=mycompany,dc=com
+      cnAttr: cn
+      emailAttr: mail
+      filter: (objectClass=inetOrgPerson)
+      loginAttr: uid
+      numericalIdAttr: uidNumber
