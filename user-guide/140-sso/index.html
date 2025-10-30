@@ -9,21 +9,25 @@
       
       
       
+        <link rel="prev" href="../130-audit/">
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+        <link rel="next" href="../150-users-groups/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
     
     
       
-        <title>Kubauth</title>
+        <title>SSO - Kubauth</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.84d31ad4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -42,9 +46,9 @@
       
     
     
-      <link rel="stylesheet" href="/assets/styles/extra.css">
+      <link rel="stylesheet" href="../../assets/styles/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -69,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#sso-session" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -81,7 +90,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Kubauth" class="md-header__button md-logo" aria-label="Kubauth" data-md-component="logo">
+    <a href="../.." title="Kubauth" class="md-header__button md-logo" aria-label="Kubauth" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -101,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              SSO
             
           </span>
         </div>
@@ -217,7 +226,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Kubauth" class="md-nav__button md-logo" aria-label="Kubauth" data-md-component="logo">
+    <a href="../.." title="Kubauth" class="md-nav__button md-logo" aria-label="Kubauth" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -247,7 +256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -269,7 +278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/installation/" class="md-nav__link">
+      <a href="../../installation/" class="md-nav__link">
         
   
   
@@ -288,18 +297,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -315,7 +326,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             User guide
@@ -329,7 +340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/user-guide/110-configuration/" class="md-nav__link">
+      <a href="../110-configuration/" class="md-nav__link">
         
   
   
@@ -352,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/user-guide/120-tokens-and-claims/" class="md-nav__link">
+      <a href="../120-tokens-and-claims/" class="md-nav__link">
         
   
   
@@ -375,7 +386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/user-guide/130-audit/" class="md-nav__link">
+      <a href="../130-audit/" class="md-nav__link">
         
   
   
@@ -395,10 +406,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/user-guide/140-sso/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    SSO
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -409,6 +442,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#logout" class="md-nav__link">
+    <span class="md-ellipsis">
+      logout
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sessions-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sessions storage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -421,7 +501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/user-guide/150-users-groups/" class="md-nav__link">
+      <a href="../150-users-groups/" class="md-nav__link">
         
   
   
@@ -444,7 +524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/user-guide/160-password-grant/" class="md-nav__link">
+      <a href="../160-password-grant/" class="md-nav__link">
         
   
   
@@ -467,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/user-guide/170-ldap-connector/" class="md-nav__link">
+      <a href="../170-ldap-connector/" class="md-nav__link">
         
   
   
@@ -490,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/user-guide/180-several-id-providers/" class="md-nav__link">
+      <a href="../180-several-id-providers/" class="md-nav__link">
         
   
   
@@ -513,7 +593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/user-guide/190-identity-merge/" class="md-nav__link">
+      <a href="../190-identity-merge/" class="md-nav__link">
         
   
   
@@ -581,7 +661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/appendix/100-openldap/" class="md-nav__link">
+      <a href="../../appendix/100-openldap/" class="md-nav__link">
         
   
   
@@ -621,6 +701,43 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#logout" class="md-nav__link">
+    <span class="md-ellipsis">
+      logout
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sessions-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sessions storage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -632,8 +749,74 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="sso-session">SSO session.</h1>
+<p>Up to now, we have been prompted with a login dialog each time we issued a <code>kc token ....</code> command.</p>
+<p>On the Kubauth login page, there is a checkbox <code>Remember me</code>.</p>
+<p><img alt="login" class="center" src="../../assets/kubauth-login2.png" width="50%" /></p>
+<p>If checked, a session cookie is set, the subsequent login attempt will go through using same user.</p>
+<p>You can easily check this by launching several <code>kc token ....</code>.</p>
+<p>The session cookie is related only to the login page. It is independant of the client application.
+This means you have a cross-application Single Sign On.</p>
+<h3 id="logout">logout</h3>
+<p>What if you want now to login with another user credential ? </p>
+<p>Obviously, you must first logout. This can be achieved with another <code>kc</code> subcommand:</p>
+<p><div class="language-shell copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>
+</span></code></pre></div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>No<span class="w"> </span>OIDC<span class="w"> </span>configuration<span class="w"> </span>found<span class="w"> </span><span class="k">in</span><span class="w"> </span>kubeconfig
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Opening<span class="w"> </span>browser<span class="w"> </span>to<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>endpoint:<span class="w"> </span>https://kubauth.ingress.kubo6.mbp/oauth2/logout
+</span></code></pre></div></p>
+<p>Don't care about the first message, related to kubeconfig. This will be explained later, in Kubernetes integration</p>
+<p>As prompted, a browser should pop-up to call a specif cleanup URL.</p>
+<p><img alt="logout" class="center" src="../../assets/kubauth-logout1.png" width="80%" /></p>
+<h2 id="sessions-storage">Sessions storage</h2>
+<p>Session are persisted as Kubernetes resources:</p>
+<p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-sso<span class="w"> </span>get<span class="w"> </span>ssosessions
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>NAME<span class="w">                                                                 </span>LOGIN<span class="w">   </span>NAME<span class="w">       </span>DEADLINE<span class="w">               </span>AGE
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>h-6d4d8f33c407a727857ba335d257a04d6d0116c40fa81c26903bb9469139563c<span class="w">   </span>john<span class="w">    </span>John<span class="w"> </span>DOE<span class="w">   </span><span class="m">2025</span>-10-28T00:19:44Z<span class="w">   </span>34s
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>h-d13bc676b003a200aca5051558b2cd21eccb44f557bee058df00aa3eb6d2bd22<span class="w">   </span>jim<span class="w">                </span><span class="m">2025</span>-10-28T00:19:13Z<span class="w">   </span>65s
+</span></code></pre></div></p>
+<p>Manually deleting such entry is another method to end the session.</p>
+<h2 id="configuration">Configuration</h2>
+<p>SSO configuration be modified by setting a helm chart configuration value:</p>
+<details class="abstract" open="open">
+<summary>values.yaml</summary>
+<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">oidc</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">postLogoutURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp/index</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">sso</span><span class="p">:</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-sso</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nt">createNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nt">lifeTime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8h&quot;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="nt">sticky</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></code></pre></div>
+</details>
+<ul>
+<li><code>namespace</code> will allow to change the namespace where SSO sessions are persisted. And allow its creation at Kubauth deployment.</li>
+<li><code>lifetime</code> set the session duration. This is an absolute duration. There is no idle timeout.</li>
+<li><code>sticky</code> true means session cookie is permanent. If false, the session will be lost on browser close.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -645,6 +828,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../130-audit/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Audit">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Audit
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../150-users-groups/" class="md-footer__link md-footer__link--next" aria-label="Next: Users Groups">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Users Groups
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -671,10 +892,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": ["navigation.footer"], "search": "/assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>
