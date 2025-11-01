@@ -20,6 +20,7 @@ merger:
   enabled: true
   idProviders:
     - name: ldap
+      groupPattern: "ldap-%s"
       httpConfig:
         baseURL: http://localhost:6803 # ldap provider listening port
     - name: ucrd

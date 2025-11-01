@@ -12,7 +12,7 @@ nav:
     - "Password Grant": user-guide/160-password-grant.md
     - "LDAP connector": user-guide/170-ldap-connector.md
     - "Several ID providers": user-guide/180-several-id-providers.md
-    - "Identity merge": user-guide/190-identity-merge.md
+    - "Merge of identity": user-guide/190-merge-of-identity.md
   - "Appendix":
     - "OpenLDAP deployment": appendix/100-openldap.md
 

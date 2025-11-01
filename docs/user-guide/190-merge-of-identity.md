@@ -1,4 +1,4 @@
-# Identity merge
+# Merge of Identity
 
 In previous chapters, each user was defined inside a specific provider database. But Kubauth allow properties of a given user defined in two (or more) ID provider to be merged. 
 
@@ -262,23 +262,82 @@ ucrd       passwordChecked   -     John DOE   [devs,ops]   {"accessProfile":"p24
 
 This time, the login is successful. This because `john` does not exists on the LDAP side, So the authentication by the `ucrd` provider is effective.
 
-In other words, with the configuration, a user which have access to a Kubernetes cluster resource but no access to a central 
+In other words, with the configuration, an administrator which have access to a Kubernetes cluster resource but no access to a central 
 LDAP server will be able to create local users, but will be unable to change a global user password. 
 
 ## ID Provider configuration
 
+### Provider properties
+
+As stated above, provider's order is important. But there is also a way to control which kind of information each provider will add to the user profile.
+
+Here is an extract of the values file of the Helm chart, which, by default, configure a single `ucrd` provider with default values:
+
+
+???+ abstract "values.yaml"
+
+    ``` { .yaml .copy }
+    merger:
+      .....
+      idProviders:
+        - name: ucrd
+          httpConfig:
+            baseURL: http://localhost:6802
+          credentialAuthority: true
+          groupAuthority: true
+          groupPattern: "%s"
+          claimAuthority: true
+          claimPattern: "%s"
+          nameAuthority: true
+          emailAuthority: true
+          critical: true
+          uidOffset: 0
+      ....
+    ```
+
+- **`credentialAuthority`**: Setting this attribute to 'false' will prevent this provider from authenticating any user.
+- **`groupAuthority`**: Setting this attribute to false will prevent the `groups` from this provider from being added to each user.
+- **`groupPattern`**: Allows you to decorate with prefix or postfix all groups provided by this provider. See the example below
+- **`claimAuthority`**: Setting this attribute to false will prevent the `claims` from this provider from being added to each user.
+- **`claimPattern`**: Allows you to decorate with prefix or postfix all claims provided by this provider. This apply only on first level, if the claim is itself a map.
+- **`nameAuthority`**: Setting this attribute to false will prevent the name from this provider from being added to each user.
+- **`emailAuthority`**: Setting this attribute to false will prevent `emails` from this provider from being added to each user.
+- **`critical`**: Defines the behavior of the chain if this provider is down or out of order (e.g., LDAP server is down). 
+    - If true, then all authentication will fail. 
+    - If false, provider is skipped and authentication is performed as if ot was not existing.
+- **`uidOffset`**: This will be added to the UID value if this provider is the authority for this user.
+
+!!! notes
+
+    The properties are provided in the helm chart for documentation purpose. 
+    As they match built-in values, the previous snippet is equivalent to 
+    
+    ```
+    merger:
+      .....
+      idProviders:
+        - name: ucrd
+          httpConfig:
+            baseURL: http://localhost:6802
+    ```
+
+
+
+### Example
+
 Given the following requirement:
 
-- We want to ensure all users are referenced in a central, corporate repository.
+- We want to ensure all users are referenced in a central, corporate repository. (No local users anymore)
 - We still want to be able to enrich users with local attributes (Groups binding, claims, ...)
+- We want to identify all groups which where issued from LDAP.
 
 So:
 
 - First point means must prevent local user authentication.
 - Second point means we still need a `ucrd` K8S CR database to be effective.
+- Third point will be solved by adding a prefix to the groups provided through LDAP.
 
 This can be achieved by modifying the `merger` configuration in the Helm values file:
-
 
 ???+ abstract "values-merger.yaml"
 
@@ -290,6 +349,7 @@ This can be achieved by modifying the `merger` configuration in the Helm values 
       enabled: true
       idProviders:
         - name: ldap
+          groupPattern: "ldap-%s"
           httpConfig:
             baseURL: http://localhost:6803 # ldap provider listening port
         - name: ucrd
@@ -298,6 +358,7 @@ This can be achieved by modifying the `merger` configuration in the Helm values 
             baseURL: http://localhost:6802 # ucrd provider listening port
     .....
     ```
+
 After using an Helm update
 
 ``` { .bash .copy }
@@ -316,21 +377,8 @@ kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --l
 token request failed with status 400: {"error":"invalid_grant", ......... Unable to authenticate the provided username and password credentials."}
 ```
 
-and
 
-``` { .bash .copy }
-kc audit detail john
-```
-```
-WHEN           LOGIN   STATUS         UID   NAME       GROUPS       CLAIMS                                      EMAILS                  AUTH
-Thu 16:40:19   john    userNotFound   -     John DOE   [devs,ops]   {"accessProfile":"p24x7","office":"208G"}   [johnd@mycompany.com]   
-Detail:
-PROVIDER   STATUS         UID   NAME       GROUPS       CLAIMS                                      EMAILS
-ldap       userNotFound   -                []           {}                                          []
-ucrd       N/A            N/A   John DOE   [devs,ops]   {"accessProfile":"p24x7","office":"208G"}   [johnd@mycompany.com]
-```
-
-- Enrichment of LDAP users attribute are still effective:
+- Enrichment of LDAP users attribute are still effective. And the group from LDAP has been prefixed.
 
 ``` { .bash .copy }
 kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login bob --password bob123 -d
@@ -344,7 +392,7 @@ JWT Payload:
   ......
   "groups": [
     "ops",
-    "staff"
+    "ldap-staff"
   ],
   ....
 }
@@ -357,10 +405,10 @@ and:
 kc audit detail bob
 ```
 ```
-WHEN           LOGIN   STATUS            UID   NAME         GROUPS        CLAIMS                      EMAILS                AUTH
-Thu 16:47:13   bob     passwordChecked   -     Bob MORANE   [ops,staff]   {"accessProfile":"p24x7"}   [bob@mycompany.com]   ldap
+WHEN           LOGIN   STATUS            UID   NAME         GROUPS             CLAIMS                      EMAILS                AUTH
+Sat 10:43:42   bob     passwordChecked   -     Bob MORANE   [ldap-staff,ops]   {"accessProfile":"p24x7"}   [bob@mycompany.com]   ldap
 Detail:
-PROVIDER   STATUS            UID   NAME         GROUPS    CLAIMS                      EMAILS
-ldap       passwordChecked   -     Bob MORANE   [staff]   {}                          [bob@mycompany.com]
-ucrd       N/A               N/A                [ops]     {"accessProfile":"p24x7"}   []
+PROVIDER   STATUS            UID   NAME         GROUPS         CLAIMS                      EMAILS
+ldap       passwordChecked   -     Bob MORANE   [ldap-staff]   {}                          [bob@mycompany.com]
+ucrd       N/A               N/A                [ops]          {"accessProfile":"p24x7"}   []
 ```
