@@ -1,0 +1,17 @@
+apiVersion: kubauth.kubotal.io/v1alpha1
+kind: OidcClient
+metadata:
+  name: harbor
+  namespace: kubauth-oidc
+spec:
+  hashedSecret: "$2a$12$9vdc.xb3Zf4ts/C2pSvIOuGmFiv0EStBJWslaaycavblaIjYZ9Mia" # // hash of my-secret
+  redirectURIs:
+    - "https://harbor.ingress.kubo6.mbp/c/oidc/callback"
+  grantTypes: [ "refresh_token", "authorization_code" ]
+  responseTypes: ["id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token"]
+  scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access"]
+  # Following are optional
+  displayName: Harbor
+  description: Harbor OCI repository
+  entryURL: https://harbor.ingress.kubo6.mbp/
+

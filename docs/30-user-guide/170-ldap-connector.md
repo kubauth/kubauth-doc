@@ -61,7 +61,7 @@ To switch onto this new configuration, we must:
 
 The `values-ldap.yaml` file below setup this configuration.
 
-The ldap configuration itself is tailored for an OpenLDAP server deployed as described on [Appendix/OpenLDAP deployment](../appendix/100-openldap.md)
+The ldap configuration itself is tailored for an OpenLDAP server deployed as described on [Appendix/OpenLDAP deployment](../70-appendix/100-openldap.md)
 
 ![](../assets/empty.png){width="100%"}
 

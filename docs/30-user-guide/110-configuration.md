@@ -162,6 +162,8 @@ Here is a first sample:
 - This client is defined as `public`. As such no client secret need to be provided.<br>For non-public client, a `secret` in hashed form must be provided, as in the commented line. 
   Use the `kc hash` command described previously to generate it.
 
+
+
 Apply this manifest:
 
 ``` { .bash .copy }
