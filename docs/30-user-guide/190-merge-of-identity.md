@@ -368,47 +368,47 @@ helm -n kubauth upgrade -i kubauth --values ./values-merger.yaml oci://quay.io/k
 we can now check than:
 
 - Users `jim` and `john` seems now unexisting.
-
-
-``` { .bash .copy }
-kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login john --password john123 -d
-```
-```
-token request failed with status 400: {"error":"invalid_grant", ......... Unable to authenticate the provided username and password credentials."}
-```
+    ``` { .bash .copy }
+    kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login john --password john123 -d
+    ```
+    ```
+    token request failed with status 400: {"error":"invalid_grant", ......... Unable to authenticate the provided username and password credentials."}
+    ```
 
 
 - Enrichment of LDAP users attribute are still effective. And the group from LDAP has been prefixed.
+    ``` { .bash .copy }
+    kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login bob --password bob123 -d
+    ```
+    ```
+    JWT Payload:
+    {
+      "accessProfile": "p24x7",
+      ....
+      "authority": "ldap",
+      ......
+      "groups": [
+        "ops",
+        "ldap-staff"
+      ],
+      ....
+    }
+    ```
+  and:
+    ```
+    kc audit detail bob
+    ```
+    ```
+    WHEN           LOGIN   STATUS            UID   NAME         GROUPS             CLAIMS                      EMAILS                AUTH
+    Sat 10:43:42   bob     passwordChecked   -     Bob MORANE   [ldap-staff,ops]   {"accessProfile":"p24x7"}   [bob@mycompany.com]   ldap
+    Detail:
+    PROVIDER   STATUS            UID   NAME         GROUPS         CLAIMS                      EMAILS
+    ldap       passwordChecked   -     Bob MORANE   [ldap-staff]   {}                          [bob@mycompany.com]
+    ucrd       N/A               N/A                [ops]          {"accessProfile":"p24x7"}   []
+    ```
 
-``` { .bash .copy }
-kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login bob --password bob123 -d
-```
-```
-JWT Payload:
-{
-  "accessProfile": "p24x7",
-  ....
-  "authority": "ldap",
-  ......
-  "groups": [
-    "ops",
-    "ldap-staff"
-  ],
-  ....
-}
 
-```
-
-and:
-
-```
-kc audit detail bob
-```
-```
-WHEN           LOGIN   STATUS            UID   NAME         GROUPS             CLAIMS                      EMAILS                AUTH
-Sat 10:43:42   bob     passwordChecked   -     Bob MORANE   [ldap-staff,ops]   {"accessProfile":"p24x7"}   [bob@mycompany.com]   ldap
-Detail:
-PROVIDER   STATUS            UID   NAME         GROUPS         CLAIMS                      EMAILS
-ldap       passwordChecked   -     Bob MORANE   [ldap-staff]   {}                          [bob@mycompany.com]
-ucrd       N/A               N/A                [ops]          {"accessProfile":"p24x7"}   []
-```
+!!! notes
+    
+    As we may use users 'jim' and 'john' later in this manuel, we suggest you bring them alive, 
+    by setting back `merger.idProviders["ucrd'].credentialAuthority: true` and applying again the Helm chart.

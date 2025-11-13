@@ -1,0 +1,17 @@
+apiVersion: kubauth.kubotal.io/v1alpha1
+kind: OidcClient
+metadata:
+  name: argocd
+  namespace: kubauth-oidc
+spec:
+  hashedSecret: "$2a$12$.34NOSBLz9cfW9PD/yjj6uhrvys42Xb4euwKy6UFx9YLYEwxIICAK" # // hash of argocd123
+  redirectURIs:
+    - "https://argocd.ingress.kubo6.mbp/auth/callback"
+    - "http://localhost:8085/auth/callback"
+  grantTypes: [ "refresh_token", "authorization_code" ]
+  responseTypes: ["id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token"]
+  scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access"]
+  displayName: ArgoCD
+  description: GitOps continuous delivery tool
+  entryURL: https://argocd.ingress.kubo6.mbp/
+

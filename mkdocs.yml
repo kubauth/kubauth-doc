@@ -1,7 +1,7 @@
 site_name: Kubauth
 
 nav:
-  - Home: 10-index.md
+  - Home: index.md
   - "Installation": 20-installation.md
   - "User guide":
     - "Configuration": 30-user-guide/110-configuration.md

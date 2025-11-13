@@ -98,7 +98,7 @@ NB: Using this option skip the JWT header.
 
 ## Claims
 
-A set of 'system' Claims are set by the OIDC server. You will find a [description of most of them here](http://openid.net/specs/openid-connect-core-1_0.html#IDToken){:target="_blank"}..
+A set of 'system' Claims are set by the OIDC server. You will find a [description of most of them here](http://openid.net/specs/openid-connect-core-1_0.html#IDToken){:target="_blank"}.
 
 Another important one is the `sub` token. Stand for 'subject' and is in fact the user's login.
 

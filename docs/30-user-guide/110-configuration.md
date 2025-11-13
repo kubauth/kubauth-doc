@@ -162,8 +162,6 @@ Here is a first sample:
 - This client is defined as `public`. As such no client secret need to be provided.<br>For non-public client, a `secret` in hashed form must be provided, as in the commented line. 
   Use the `kc hash` command described previously to generate it.
 
-
-
 Apply this manifest:
 
 ``` { .bash .copy }
@@ -180,6 +178,9 @@ kubectl -n kubauth-oidc get oidcclients
 NAME     PUB.   DISPLAY   DESCRIPTION                 LINK   AGE
 public   true             A test OIDC public client          25m
 ```
+
+> This client will be used in next chapter, to test Tokens and Claims
+
 
 ### Namespace
 

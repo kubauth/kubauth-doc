@@ -44,6 +44,10 @@ Replace the values with your specific configuration:
   > Make sure to define this hostname in your DNS.
 - **`cluster-odp`**: Replace by The ClusterIssuer from your Certificate Manager for certificate management.
 
+!!! notes
+
+    This `values.yaml` file is the bare minimum configuration set. In subsequent chapters, more variables may be added. 
+
 Then, you can deploy Kubauth with the following command.
 
 
@@ -61,14 +65,14 @@ NAME                       READY   STATUS    RESTARTS   AGE
 kubauth-5d4fdc6bc8-7rlb6   3/3     Running   0          55s
 ```
 
-!!! notes
+And check the Kubauth issuer URL is reachable:
 
-    This `values.yaml` file is the bare minimum configuration set. In subsequent chapters, more variables may be added. 
 
+```
+curl https://kubauth.ingress.kubo6.mbp/.well-known/openid-configuration
+```
 
 ## `kc` CLI tool installation
-
-The easiest way to validate your Kubauth installation is to use its companion CLI tool.
 
 Download the `kc` CLI from the [GitHub releases page](https://github.com/kubauth/kc/releases/tag/0.1.2){:target="_blank"}
 and rename it to `kc`. Then make it executable and move it to your path:

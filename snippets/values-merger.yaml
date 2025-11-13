@@ -24,7 +24,7 @@ merger:
       httpConfig:
         baseURL: http://localhost:6803 # ldap provider listening port
     - name: ucrd
-      credentialAuthority: false
+      credentialAuthority: true
       httpConfig:
         baseURL: http://localhost:6802 # ucrd provider listening port
 

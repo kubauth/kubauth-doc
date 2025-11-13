@@ -1,0 +1,19 @@
+
+dex:
+  enabled: false
+
+configs:
+  cm:
+    url: "https://argocd.ingress.kubo6.mbp"
+    oidc.config: |
+      name: Kubauth
+      issuer: https://kubauth.ingress.kubo6.mbp
+      clientID: argocd
+      clientSecret: $oidc.kubauth.clientSecret
+      requestedScopes: ["openid", "profile", "email", "groups"]
+      enablePKCEAuthentication: true
+      # logoutURL: https://kubauth.ingress.kubo6.mbp/oauth2/logout
+      rootCA: $oidc.kubauth.rootCA
+  rbac:
+    policy.csv: |
+      g, argocd-admin, role:admin
