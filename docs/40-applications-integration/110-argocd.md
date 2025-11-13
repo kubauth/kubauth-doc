@@ -1,6 +1,44 @@
 # ArgoCD Integration
 
 
+## Oidc client creation
+
+As stated in [Configuration](../30-user-guide/110-configuration.md/#oidc-client-creation), a client application is defined as a Kubernetes Custom Resource.
+
+So, a manifest like the following should be created:
+
+???+ abstract "client-argocd.yaml"
+
+    ``` { .yaml .copy }
+    apiVersion: kubauth.kubotal.io/v1alpha1
+    kind: OidcClient
+    metadata:
+      name: argocd
+      namespace: kubauth-oidc
+    spec:
+      hashedSecret: "$2a$12$.34NOSBLz9cfW9PD/yjj6uhrvys42Xb4euwKy6UFx9YLYEwxIICAK" 
+      redirectURIs:
+        - "https://argocd.ingress.kubo6.mbp/auth/callback"
+        - "http://localhost:8085/auth/callback"
+      grantTypes: [ "refresh_token", "authorization_code" ]
+      responseTypes: ["id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token"]
+      scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access"]
+      displayName: ArgoCD
+      description: GitOps continuous delivery tool
+      entryURL: https://argocd.ingress.kubo6.mbp/
+    ```
+
+> `argocd.ingress.kubo6.mbp` must be replaced by your ArgoCD entry point (In 2 locations)
+
+- The sample password is 'argocd123'. Thus, the `hashedSecret` value is the result of a `kc hash argocd123` command.
+- The `http://localhost:8085/auth/callback` entry in the `redirectURIs` list is for the `argocd` CLI command
+
+Apply this manifest:
+
+``` { .bash .copy }
+kubectl apply -f client-argocd.yaml
+```
+
 ## ArgoCD configuration
 
 We will assume here ArgoCD is installed using the [community provided Helm chart](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd){:target="_blank"}.
@@ -131,45 +169,7 @@ wDQVxs1wOpHZOEekfO4fKW12BQ+f+K9m+j0ISFzUCA==
 Refer to the ArgoCD documentation for more information.
 
 
-## Oidc client creation
-
-As stated in [Configuration](../30-user-guide/110-configuration.md/#oidc-client-creation), a client application is defined as a Kubernetes Custom Resource.
-
-So, a manifest like the following should be created:
-
-???+ abstract "client-argocd.yaml"
-
-    ``` { .yaml .copy }
-    apiVersion: kubauth.kubotal.io/v1alpha1
-    kind: OidcClient
-    metadata:
-      name: argocd
-      namespace: kubauth-oidc
-    spec:
-      hashedSecret: "$2a$12$.34NOSBLz9cfW9PD/yjj6uhrvys42Xb4euwKy6UFx9YLYEwxIICAK" 
-      redirectURIs:
-        - "https://argocd.ingress.kubo6.mbp/auth/callback"
-        - "http://localhost:8085/auth/callback"
-      grantTypes: [ "refresh_token", "authorization_code" ]
-      responseTypes: ["id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token"]
-      scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access"]
-      displayName: ArgoCD
-      description: GitOps continuous delivery tool
-      entryURL: https://argocd.ingress.kubo6.mbp/
-    ```
-
-> `argocd.ingress.kubo6.mbp` must be replaced by your ArgoCD entry point.
-
-- The sample password is 'argocd123'. Thus, the `hashedSecret` value is the result of a `kc hash argocd123` command.
-- The `http://localhost:8085/auth/callback` entry in the `redirectURIs` list is for the `argocd` CLI command
-
-Apply this manifest:
-
-``` { .bash .copy }
-kubectl apply -f client-argocd.yaml
-```
-
-## Test
+## Usage
 
 The configuration completed, a 'LOG IN VIA KUBAUTH' button must appears on the ArgoCD entry page.
 

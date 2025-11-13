@@ -4,7 +4,7 @@ metadata:
   name: harbor
   namespace: kubauth-oidc
 spec:
-  hashedSecret: "$2a$12$9vdc.xb3Zf4ts/C2pSvIOuGmFiv0EStBJWslaaycavblaIjYZ9Mia" # // hash of my-secret
+  hashedSecret: "$2a$12$5lLVmTBlougPBAQ8h10wR.W9tvZQBRsK1/Sh48yO8WLyXr.P4w3tm"
   redirectURIs:
     - "https://harbor.ingress.kubo6.mbp/c/oidc/callback"
   grantTypes: [ "refresh_token", "authorization_code" ]

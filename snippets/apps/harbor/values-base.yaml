@@ -1,0 +1,10 @@
+
+externalURL: https://harbor.ingress.kubo6.mbp
+
+expose:
+  ingress:
+    hosts:
+      core: harbor.ingress.kubo6.mbp
+    className: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: cluster-odp
