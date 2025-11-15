@@ -9,21 +9,25 @@
       
       
       
+        <link rel="prev" href="..">
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+        <link rel="next" href="../30-user-guide/110-configuration/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
     
     
       
-        <title>Kubauth</title>
+        <title>Installation - Kubauth</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.84d31ad4.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -42,9 +46,9 @@
       
     
     
-      <link rel="stylesheet" href="/assets/styles/extra.css">
+      <link rel="stylesheet" href="../assets/styles/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -69,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#installation" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -81,7 +90,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Kubauth" class="md-header__button md-logo" aria-label="Kubauth" data-md-component="logo">
+    <a href=".." title="Kubauth" class="md-header__button md-logo" aria-label="Kubauth" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -101,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Installation
             
           </span>
         </div>
@@ -217,7 +226,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Kubauth" class="md-nav__button md-logo" aria-label="Kubauth" data-md-component="logo">
+    <a href=".." title="Kubauth" class="md-nav__button md-logo" aria-label="Kubauth" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -247,7 +256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -266,10 +275,32 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/20-installation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -280,6 +311,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisite
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubauth-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubauth Deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kc-cli-tool-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      kc CLI tool installation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -329,7 +407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/30-user-guide/110-configuration/" class="md-nav__link">
+      <a href="../30-user-guide/110-configuration/" class="md-nav__link">
         
   
   
@@ -352,7 +430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/30-user-guide/120-tokens-and-claims/" class="md-nav__link">
+      <a href="../30-user-guide/120-tokens-and-claims/" class="md-nav__link">
         
   
   
@@ -375,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/30-user-guide/130-audit/" class="md-nav__link">
+      <a href="../30-user-guide/130-audit/" class="md-nav__link">
         
   
   
@@ -398,7 +476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/30-user-guide/140-sso/" class="md-nav__link">
+      <a href="../30-user-guide/140-sso/" class="md-nav__link">
         
   
   
@@ -421,7 +499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/30-user-guide/150-users-groups/" class="md-nav__link">
+      <a href="../30-user-guide/150-users-groups/" class="md-nav__link">
         
   
   
@@ -444,7 +522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/30-user-guide/160-password-grant/" class="md-nav__link">
+      <a href="../30-user-guide/160-password-grant/" class="md-nav__link">
         
   
   
@@ -467,7 +545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/30-user-guide/170-ldap-connector/" class="md-nav__link">
+      <a href="../30-user-guide/170-ldap-connector/" class="md-nav__link">
         
   
   
@@ -490,7 +568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/30-user-guide/180-several-id-providers/" class="md-nav__link">
+      <a href="../30-user-guide/180-several-id-providers/" class="md-nav__link">
         
   
   
@@ -513,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/30-user-guide/190-merge-of-identity/" class="md-nav__link">
+      <a href="../30-user-guide/190-merge-of-identity/" class="md-nav__link">
         
   
   
@@ -581,7 +659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/40-applications-integration/110-argocd/" class="md-nav__link">
+      <a href="../40-applications-integration/110-argocd/" class="md-nav__link">
         
   
   
@@ -604,7 +682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/40-applications-integration/120-harbor/" class="md-nav__link">
+      <a href="../40-applications-integration/120-harbor/" class="md-nav__link">
         
   
   
@@ -627,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/40-applications-integration/130-minio/" class="md-nav__link">
+      <a href="../40-applications-integration/130-minio/" class="md-nav__link">
         
   
   
@@ -695,7 +773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/50-kubernetes-integration/110-introduction/" class="md-nav__link">
+      <a href="../50-kubernetes-integration/110-introduction/" class="md-nav__link">
         
   
   
@@ -718,7 +796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/50-kubernetes-integration/120-api-server-configuration/" class="md-nav__link">
+      <a href="../50-kubernetes-integration/120-api-server-configuration/" class="md-nav__link">
         
   
   
@@ -786,7 +864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/70-appendix/100-openldap/" class="md-nav__link">
+      <a href="../70-appendix/100-openldap/" class="md-nav__link">
         
   
   
@@ -826,6 +904,43 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisite
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubauth-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubauth Deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kc-cli-tool-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      kc CLI tool installation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -837,8 +952,99 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="installation">Installation</h1>
+<h2 id="prerequisite">Prerequisite</h2>
+<p>Before you begin, make sure you meet the following prerequisites:</p>
+<ul>
+<li>
+<p><strong>Kubectl Configuration:</strong> You should have a local client Kubernetes configuration with full administrative
+  rights on the target cluster.</p>
+</li>
+<li>
+<p><strong>Certificate Manager:</strong> Ensure that the Certificate Manager is deployed in your target Kubernetes cluster, and a <code>ClusterIssuer</code> is defined for certificate management.</p>
+</li>
+<li>
+<p><strong>Ingress Controller:</strong> An NGINX ingress controller should be deployed in your target Kubernetes cluster. With of course an upfront load balancer.</p>
+</li>
+<li>
+<p><strong>Helm:</strong> Helm must be installed locally on your system.</p>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you don't have an appropriate Kubernetes cluster at your disposal, you can deploy a <a href="https://kind.sigs.k8s.io/" target="_blank">Kind cluster</a> on your local workstation</p>
+</div>
+<h2 id="kubauth-deployment">Kubauth Deployment</h2>
+<p>The most straightforward and recommended method for installing Kubauth is by using the provided OCI Helm chart.</p>
+<p>As there are several required configuration variable, we suggest to use a 'values file' instead of setting variable on the command line.</p>
+<p>So, in your working folder, create a file like the following:</p>
+<details class="abstract" open="open">
+<summary>values.yaml</summary>
+<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">oidc</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">postLogoutURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp/index</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">ingress</span><span class="p">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.ingress.kubo6.mbp</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">server</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">certificateIssuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-odp</span>
+</span></code></pre></div>
+</details>
+<p>Replace the values with your specific configuration:</p>
+<ul>
+<li><strong><code>kubauth.ingress.kubo6.mbp</code></strong>: Replace by the hostname used for accessing the <code>kubauth</code> service from outside the cluster.<br><blockquote>
+<p>Make sure to define this hostname in your DNS.</p>
+</blockquote>
+</li>
+<li><strong><code>cluster-odp</code></strong>: Replace by The ClusterIssuer from your Certificate Manager for certificate management.</li>
+</ul>
+<div class="admonition notes">
+<p class="admonition-title">Notes</p>
+<p>This <code>values.yaml</code> file is the bare minimum configuration set. In subsequent chapters, more variables may be added. </p>
+</div>
+<p>Then, you can deploy Kubauth with the following command.</p>
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth<span class="w"> </span>--values<span class="w"> </span>./values.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.2-snapshot<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
+</span></code></pre></div>
+<p>After few seconds, verify the Kubauth server pod is running:</p>
+<p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>pods
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>NAME<span class="w">                       </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>kubauth-5d4fdc6bc8-7rlb6<span class="w">   </span><span class="m">3</span>/3<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>55s
+</span></code></pre></div></p>
+<p>And check the Kubauth issuer URL is reachable:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl https://kubauth.ingress.kubo6.mbp/.well-known/openid-configuration
+</span></code></pre></div>
+<h2 id="kc-cli-tool-installation"><code>kc</code> CLI tool installation</h2>
+<p>Download the <code>kc</code> CLI from the <a href="https://github.com/kubauth/kc/releases/tag/0.1.2" target="_blank">GitHub releases page</a>
+and rename it to <code>kc</code>. Then make it executable and move it to your path:</p>
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mv<span class="w"> </span>kc_*_*<span class="w"> </span>kc
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>kc
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>sudo<span class="w"> </span>mv<span class="w"> </span>kc<span class="w"> </span>/usr/local/bin/
+</span></code></pre></div>
+<p>Verify the installation:</p>
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span>version
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -850,6 +1056,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../30-user-guide/110-configuration/" class="md-footer__link md-footer__link--next" aria-label="Next: Configuration">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Configuration
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -876,10 +1120,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": ["navigation.footer"], "search": "/assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.footer"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>

@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../../installation/">
+        <link rel="prev" href="../../20-installation/">
       
       
         <link rel="next" href="../120-tokens-and-claims/">
@@ -278,7 +278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/" class="md-nav__link">
+      <a href="../../20-installation/" class="md-nav__link">
         
   
   
@@ -623,12 +623,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../190-identity-merge/" class="md-nav__link">
+      <a href="../190-merge-of-identity/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Identity merge
+    Merge of identity
     
   </span>
   
@@ -669,7 +669,7 @@
   
   
   <span class="md-ellipsis">
-    Appendix
+    Applications integration
     
   </span>
   
@@ -679,6 +679,211 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Applications integration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-applications-integration/110-argocd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ArgoCD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-applications-integration/120-harbor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Harbor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-applications-integration/130-minio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MinIO
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes integration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Kubernetes integration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-kubernetes-integration/110-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-kubernetes-integration/120-api-server-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Server configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Appendix
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Appendix
           </label>
@@ -691,7 +896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../appendix/100-openldap/" class="md-nav__link">
+      <a href="../../70-appendix/100-openldap/" class="md-nav__link">
         
   
   
@@ -962,6 +1167,9 @@ For this reason, an alias (<code>kuser</code>) has also be defined for kubauth's
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>NAME     PUB.   DISPLAY   DESCRIPTION                 LINK   AGE
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>public   true             A test OIDC public client          25m
 </span></code></pre></div>
+<blockquote>
+<p>This client will be used in next chapter, to test Tokens and Claims</p>
+</blockquote>
 <h3 id="namespace_1">Namespace</h3>
 <p>If, for any reason, you need to change the namespace storing clients resources definition, this can be modified by setting a helm chart configuration value:</p>
 <details class="abstract" open="open">
@@ -1004,7 +1212,7 @@ For this reason, an alias (<code>kuser</code>) has also be defined for kubauth's
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation">
+          <a href="../../20-installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
