@@ -4,7 +4,7 @@ metadata:
   name: argocd
   namespace: kubauth-oidc
 spec:
-  hashedSecret: "$2a$12$.34NOSBLz9cfW9PD/yjj6uhrvys42Xb4euwKy6UFx9YLYEwxIICAK" # // hash of argocd123
+  hashedSecret: "$2a$12$.34NOSBLz9cfW9PD/yjj6uhrvys42Xb4euwKy6UFx9YLYEwxIICAK"
   redirectURIs:
     - "https://argocd.ingress.kubo6.mbp/auth/callback"
     - "http://localhost:8085/auth/callback"

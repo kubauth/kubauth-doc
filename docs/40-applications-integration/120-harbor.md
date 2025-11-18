@@ -28,9 +28,10 @@ So, a manifest like the following should be created:
     ```
 
 
-> `harbor.ingress.kubo6.mbp` must be replaced by your Harbor entry point (In 2 locations)
-
+- `harbor.ingress.kubo6.mbp` must be replaced by your Harbor entry point (In 2 locations)
 - The sample password is 'harbor123'. Thus, the `hashedSecret` value is the result of a <br>`kc hash harbor123` command.
+- `displayName`, `description` and `entryURL` attributes are optionals. Aim is to integrate Harbor in a list of available applications.
+  This list will be displayed on a specific page (`https://kubauth.ingress.kubo6.mbp/index`) or an the Logout page.
 
 Apply this manifest:
 
@@ -50,7 +51,7 @@ And set the following values:
 
 - Auth Mode: `OIDC`
 - OIDC Provider Name: `KUBAUTH`
-- OIDC Endpoint: `https://kubauth.ingrees.kubo6.mbp` (To adjust to your local value)
+- OIDC Endpoint: `https://kubauth.ingress.kubo6.mbp` <br>(To adjust to your local Kubauth entry point)
 - OIDC Client ID: `harbor`
 - OIDC Client Secret: `harbor123`
 - Group Claim Name: `group`
@@ -62,6 +63,8 @@ And set the following values:
 ## Automated Harbor Configuration
 
 OIDC can also be configured [using environment variables](https://goharbor.io/docs/2.7.0/install-config/configure-system-settings-cli/#set-configuration-items-using-an-environment-variable){:target="_blank"}.
+
+If you have installed Harbor using the provided Helm chart, this can be achieved by appending a values file like the following on your deployment: 
 
 ???+ abstract "values-kubauth.yaml"
 
@@ -85,9 +88,11 @@ OIDC can also be configured [using environment variables](https://goharbor.io/do
             }
     ```
 
+> `https://kubauth.ingress.kubo6.mbp` must be replaced by the Kubauth entry point of your installation.
+
 ## Admin rights
 
-To grant admin rights to a user, just add it to the groups we have defined as `oidc_admin_group` in the configuration:
+To grant admin rights to a user, just add it to the groups we have defined as `oidc_admin_group` (here `harbor-admins`) in the configuration, by creating a new `GroupBinding`:
 
 ``` { .bash .copy }
 kubectl apply -f - <<EOF
@@ -102,3 +107,4 @@ spec:
 EOF
 ```
 
+Now, you can log with this user en ensure it has all admins rights (i.e can create a project)

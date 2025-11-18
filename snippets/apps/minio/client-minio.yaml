@@ -1,0 +1,17 @@
+apiVersion: kubauth.kubotal.io/v1alpha1
+kind: OidcClient
+metadata:
+  name: minio
+  namespace: kubauth-oidc
+spec:
+  hashedSecret: "$2a$12$mll9UA1oefLGY0KcAbvrG.Jvssjqlt8wSDtb2DNvEK4Oc/YYaJ8iy"
+  redirectURIs:
+    - "https://minio-console-minio1.ingress.kubo6.mbp/oauth_callback"
+  grantTypes: [ "refresh_token", "authorization_code" ]
+  responseTypes: ["id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token"]
+  scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access", "address", "phone"]
+  # Following are optional
+  displayName: Minio
+  description: S3 Server
+  entryURL: "https://minio-console-minio1.ingress.kubo6.mbp"
+

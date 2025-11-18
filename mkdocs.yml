@@ -12,7 +12,7 @@ nav:
     - "Password Grant": 30-user-guide/160-password-grant.md
     - "LDAP connector": 30-user-guide/170-ldap-connector.md
     - "Several ID providers": 30-user-guide/180-several-id-providers.md
-    - "Merge of identity": 30-user-guide/190-merge-of-identity.md
+    - "Identity merging": 30-user-guide/190-identity-merging.md
   - "Applications integration":
       - "ArgoCD": 40-applications-integration/110-argocd.md
       - "Harbor": 40-applications-integration/120-harbor.md

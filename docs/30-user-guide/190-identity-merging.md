@@ -1,4 +1,4 @@
-# Merge of Identity
+# Identity merging
 
 In previous chapters, each user was defined inside a specific provider database. But Kubauth allow properties of a given user defined in two (or more) ID provider to be merged. 
 

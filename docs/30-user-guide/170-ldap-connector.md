@@ -59,11 +59,11 @@ To switch onto this new configuration, we must:
 - Configure the `audit` module to request the `ldap` (Listening on port 6803) module instead of `ucrd` (Was listening in port 6802)
 - Configure the `ldap` module depending of the target LDAP Server
 
+![](../assets/empty.png){width="100%"}
+
 The `values-ldap.yaml` file below setup this configuration.
 
 The ldap configuration itself is tailored for an OpenLDAP server deployed as described on [Appendix/OpenLDAP deployment](../70-appendix/100-openldap.md)
-
-![](../assets/empty.png){width="100%"}
 
 ???+ abstract "values-ldap.yaml"
 
@@ -219,7 +219,8 @@ If browser doesn't open automatically, visit: http://127.0.0.1:9921
 
 If you enter `jim/jim123`, you will have a login fail.
 
-But, if you enter the credentials of a user defined in your LDAP, you should have a successful login. For example, using `fred/fred123` if using the sample LDAP configuration defined in appendix.
+But, if you enter the credentials of a user defined in your LDAP, you should have a successful login. For example, using `fred/fred123` 
+if using the sample LDAP configuration defined in [appendix](../70-appendix/100-openldap.md#sample-dataset).
 
 
 ```bash

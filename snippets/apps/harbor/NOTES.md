@@ -26,6 +26,6 @@ helm -n harbor uninstall harbor && kubectl delete ns harbor
 
 ```
 
-If you did not change them in harbor. yml , the default administrator username and password are admin and Harbor12345 .
+If you did not change them in harbor.yml , the default administrator username and password are admin and Harbor12345 .
 
 

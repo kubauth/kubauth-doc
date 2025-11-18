@@ -23,15 +23,17 @@ So, a manifest like the following should be created:
       grantTypes: [ "refresh_token", "authorization_code" ]
       responseTypes: ["id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token"]
       scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access"]
+      # Following are optional
       displayName: ArgoCD
       description: GitOps continuous delivery tool
       entryURL: https://argocd.ingress.kubo6.mbp/
     ```
 
-> `argocd.ingress.kubo6.mbp` must be replaced by your ArgoCD entry point (In 2 locations)
-
+- `argocd.ingress.kubo6.mbp` must be replaced by your ArgoCD entry point (In 2 locations)
 - The sample password is 'argocd123'. Thus, the `hashedSecret` value is the result of a `kc hash argocd123` command.
 - The `http://localhost:8085/auth/callback` entry in the `redirectURIs` list is for the `argocd` CLI command
+- `displayName`, `description` and `entryURL` attributes are optionals. Aim is to integrate ArgoCD in a list of available applications.
+  This list will be displayed on a specific page (`https://kubauth.ingress.kubo6.mbp/index`) or an the Logout page. See below.
 
 Apply this manifest:
 
@@ -92,9 +94,8 @@ Create a values file like the following to be added on your Helm command when de
         policy.csv: |
           g, argocd-admin, role:admin 
     ```
-> - `argocd.ingress.kubo6.mbp` must be replaced by your ArgoCD entry point.
-> - `kubauth.ingress.kubo6.mbp` must be replaced by your Kubauth entry point (In 2 locations).
-
+- `argocd.ingress.kubo6.mbp` must be replaced by your ArgoCD entry point.
+- `kubauth.ingress.kubo6.mbp` must be replaced by your Kubauth entry point (In 2 locations).
 - We enable PKCE, as it is safest and supported by both party.
 - The `logoutURL` parameter is here commented.. More on this below 
 - The `rootCA` parameter is the CA of the Kubauth issuer. If Kubauth has been installed using Certificate Manager, 
