@@ -1,0 +1,8 @@
+config:
+  oidc:
+    issuerURL: https://kubauth.ingress.kubo6.mbp
+    issuerCaSecretName: certs-bundle  # If we use trust-manager (from certificate-server)
+    issuerCaName: ca.crt
+    clientId: k8s
+    usernamePrefix: "-" # Dash is no prefix.
+    groupsPrefix: "oidc-" # A prefix is mandatory (Default to 'oidc:')

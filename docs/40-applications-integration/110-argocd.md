@@ -101,9 +101,8 @@ Create a values file like the following to be added on your Helm command when de
 - The `rootCA` parameter is the CA of the Kubauth issuer. If Kubauth has been installed using Certificate Manager, 
   as described at the beginning of this manual, it can be retrieved with a command like:    
     ```
-    kubectl -n cert-manager get secret cluster-odp-ca -o=jsonpath='{.data.ca\.crt}' | base64 -d
+    kubectl -n kubauth get secret kubauth-oidc-server-cert -o=jsonpath='{.data.ca\.crt}' | base64 -d
     ```
-  > `cluster-odp-ca` must be replaced by `<your clusterIssuer>-ca`
   - The `rbac` subsection grant ArgoCD admin rights to the members of the group `argocd-admin`. 
     Of course, access management can be defined in more detail, using ArgoCD RBAC system, but this is out of the scope of this manuel.
 

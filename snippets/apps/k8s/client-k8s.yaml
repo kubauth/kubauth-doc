@@ -1,0 +1,19 @@
+
+---
+apiVersion: kubauth.kubotal.io/v1alpha1
+kind: OidcClient
+metadata:
+  name: k8s
+  namespace: kubauth-oidc
+spec:
+  hashedSecret: "$2a$12$Aq5uKhYmMBZ3GDKykgSrT.0Rq1.s81VBwHgQP/cozdP3SBkQAbxv2"
+  description: For kubernetes kubectl access
+  grantTypes: ["refresh_token", "authorization_code", "password"]
+  redirectURIs:
+    - http://localhost:8000
+    - http://localhost:18000
+  responseTypes: [ "id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token" ]
+  scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access" ]
+  accessTokenLifespan: 1m0s
+  idTokenLifespan: 1m0s
+  refreshTokenLifespan: 30m0s
