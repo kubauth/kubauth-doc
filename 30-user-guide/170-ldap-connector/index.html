@@ -593,12 +593,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../190-merge-of-identity/" class="md-nav__link">
+      <a href="../190-identity-merging/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Merge of identity
+    Identity merging
     
   </span>
   
@@ -814,6 +814,52 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-kubernetes-integration/130-kubeconfig-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kubeconfig service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-kubernetes-integration/140-workstation-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Workstation setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1002,9 +1048,9 @@
 <li>Configure the <code>audit</code> module to request the <code>ldap</code> (Listening on port 6803) module instead of <code>ucrd</code> (Was listening in port 6802)</li>
 <li>Configure the <code>ldap</code> module depending of the target LDAP Server</li>
 </ul>
+<p><img alt="" src="../../assets/empty.png" width="100%" /></p>
 <p>The <code>values-ldap.yaml</code> file below setup this configuration.</p>
 <p>The ldap configuration itself is tailored for an OpenLDAP server deployed as described on <a href="../../70-appendix/100-openldap/">Appendix/OpenLDAP deployment</a></p>
-<p><img alt="" src="../../assets/empty.png" width="100%" /></p>
 <details class="abstract" open="open">
 <summary>values-ldap.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">oidc</span><span class="p">:</span>
@@ -1140,7 +1186,8 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>If<span class="w"> </span>browser<span class="w"> </span>doesn<span class="err">&#39;</span>t<span class="w"> </span>open<span class="w"> </span>automatically,<span class="w"> </span>visit:<span class="w"> </span>http://127.0.0.1:9921
 </span></code></pre></div></p>
 <p>If you enter <code>jim/jim123</code>, you will have a login fail.</p>
-<p>But, if you enter the credentials of a user defined in your LDAP, you should have a successful login. For example, using <code>fred/fred123</code> if using the sample LDAP configuration defined in appendix.</p>
+<p>But, if you enter the credentials of a user defined in your LDAP, you should have a successful login. For example, using <code>fred/fred123</code> 
+if using the sample LDAP configuration defined in <a href="../../70-appendix/100-openldap/#sample-dataset">appendix</a>.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Access<span class="w"> </span>token:<span class="w"> </span>ory_at_2vDnbRl0-cazsy2ZkIV_3bG8blZzgA5Cc0FxKXg5g6g.IvAqwgU04BnmBBoO_IPNt3UtIkiAWfJlgcj5WyMPsPk
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Refresh<span class="w"> </span>token:<span class="w"> </span>ory_rt_UQQoBvf3Pkk1Yr6W3JCO_aShfX_28e8tAnxcMUQGjJE.I-P_3XJxVwPRmrUDVOXtt0ofS_G2MISSVRMoL48ZIAg
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>ID<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiM0RMYWZJMzdNZnNGZjVWOUN6QU1hUSIsImF1ZCI6WyJwdWJsaWMiXSwiYXV0aF90aW1lIjoxNzYxNjc0MzU2LCJhenAiOiJwdWJsaWMiLCJlbWFpbCI6ImZyZWRAbXljb21wYW55LmNvbSIsImVtYWlscyI6WyJmcmVkQG15Y29tcGFueS5jb20iXSwiZXhwIjoxNzYxNjc3OTU2LCJncm91cHMiOlsibWFuYWdlcnMiLCJzdGFmZiJdLCJpYXQiOjE3NjE2NzQzNTYsImlzcyI6Imh0dHBzOi8va3ViYXV0aC5pbmdyZXNzLmt1Ym82Lm1icCIsImp0aSI6IjE3YjQxMzk1LTU4MmUtNDM3ZC05YTA2LWNkYWY5NjM1NjdjZiIsIm5hbWUiOiJGcmVkIEFTVEVSIiwicmF0IjoxNzYxNjc0MzU2LCJzdWIiOiJmcmVkIn0.ZSnv4godrQOkrYNaEteOi85N-M9b4UKOI8zj0sorrD5Az1_xezINWiSRkrN2vLq9DtMKXZUBNjr41m4dW83xTsex8Tq_lEtisJP8woZzXzUpv1HnK2_RJiX_euGM2RSUJNaih4vpeDOPBhZQPUTkCIqnH_kus2dLuh84KGmcpLFC7vG60JW1lqRlx1Wb5ggmZmSFHC6k44Lx0bkihhpofiJg0QL1UoxmN1elixOegxOs0g_vxjdoDC3jNVOWONR6qVpvG7YRa25FgNPvfIV1XWeIP9upq0Yn_LNxLXuNFY_ysdw4lIQH2aEO58118KwB5eB8UQRnZJXmnAyKF-OU5Q

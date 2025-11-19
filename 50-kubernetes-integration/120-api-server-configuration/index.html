@@ -12,7 +12,7 @@
         <link rel="prev" href="../110-introduction/">
       
       
-        <link rel="next" href="../../70-appendix/100-openldap/">
+        <link rel="next" href="../130-kubeconfig-service/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -522,12 +522,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../30-user-guide/190-merge-of-identity/" class="md-nav__link">
+      <a href="../../30-user-guide/190-identity-merging/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Merge of identity
+    Identity merging
     
   </span>
   
@@ -785,6 +785,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Automated configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#varifying-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Varifying installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -800,6 +824,52 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../130-kubeconfig-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kubeconfig service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../140-workstation-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Workstation setup
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -913,6 +983,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Automated configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#varifying-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Varifying installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -944,9 +1038,133 @@
 
 
 <h1 id="k8s-api-server-configuration">K8S API Server configuration</h1>
-<p>https://kubernetes.io/docs/reference/access-authn-authz/authentication/#configuring-the-api-server</p>
 <h2 id="automated-configuration">Automated configuration</h2>
+<p>Kubauth provide an Helm chart which will spawn appropriate jobs to perform this configuration in a fully automated way.</p>
+<p>This process assume that the API Server is managed by the Kubelet as a static pod. If your API Server is managed by 
+another system, such as systemd, you should fallback to the manual configuration.</p>
+<p>Also, this process assume some 'standard' folder layout on kubernetes installation, 
+such as used by <a href="https://kind.sigs.k8s.io/" target="_blank">kind</a> or <a href="https://github.com/kubernetes-sigs/kubespray" target="_blank">kubespray</a>. 
+If this is not the case, some adjustment can be performed by overwriting values in the Helm chart. Refer to 
+its <a href="https://github.com/kubauth/kubauth-apiserver/blob/main/helm/kubauth-apiserver/values.yaml" target="_blank">values file</a> </p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>If you perform this task on a 'critical' cluster, we strongly engage you to read the Manual configuration chapter below. 
+This to fully understand what's append under the hood, to be able to rollback manually in case of problem.</p>
+</div>
+<p>As there are several required configuration variable, we suggest to use a 'values file' instead of setting variable on the command line.</p>
+<p>So, in your working folder, create a file like the following:</p>
+<details class="abstract" open="open">
+<summary>values-k8s.yaml</summary>
+<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">oidc</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">issuerURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">issuerCaSecretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs-bundle</span><span class="w">  </span><span class="c1"># If we use trust-manager (from certificate-server)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">issuerCaName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ca.crt</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">clientId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k8s</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">usernamePrefix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w"> </span><span class="c1"># Dash is no prefix.</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">groupsPrefix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;oidc-&quot;</span><span class="w"> </span><span class="c1"># A prefix is mandatory (Default to &#39;oidc:&#39;)</span>
+</span></code></pre></div>
+</details>
+<ul>
+<li><code>kubauth.ingress.kubo6.mbp</code> must be replaced by your Kubauth entry point</li>
+<li><code>issuerCaSecretName</code>: A secret hosting the CA of the issuerURL. In this sample, we use <a href="https://cert-manager.io/docs/trust/trust-manager/" target="_blank">trust manager</a>
+  which create such secret (here <code>certs-bundle</code>) in each namespace.</li>
+<li><code>issuerCaName</code>: The path of the CA certificate inside the secret.</li>
+<li><code>clientId</code> should match the name of the <code>OidcClient</code> declared previously. Note there is no need to a <code>clientSecret</code> value, as the API server will not connect to Kubauth.</li>
+<li><code>usernamePrefix</code>: Prefix prepended to username claims to prevent clashes with existing names. Dash value means no prefix.</li>
+<li><code>groupsPrefix</code>: Prefix prepended to group claims to prevent clashes with existing names. Could not be empty for security reasons. Default is <code>oidc:</code> but in this sample, we set to <code>oidc-</code>.</li>
+</ul>
+<div class="admonition notes">
+<p class="admonition-title">Notes</p>
+<p>This <code>values.yaml</code> file is the bare minimum configuration set. Refer to the Helm chart 
+<a href="https://github.com/kubauth/kubauth-apiserver/blob/main/helm/kubauth-apiserver/values.yaml" target="_blank">values file</a> for more variables.</p>
+</div>
+<p>You can now proceed with the configuration, using the adhoc Helm chart</p>
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth-apiserver<span class="w"> </span>--values<span class="w"> </span>./values-k8s.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth-apiserver<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.0-snapshot<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
+</span></code></pre></div>
+<div class="admonition notes">
+<p class="admonition-title">Notes</p>
+<p>Note this process will take some time. So, be patient. </p>
+<p>Also, At the end of this process, a rolling restart is performed on the API Server.
+In case there will be a single instance of this critical pod, this means you will lost contact with your cluster for a certain amount of time.</p>
+<p>And this may trigger the restart of many other pods. So, wait for all your cluster to reach a stable state before moving one.</p>
+</div>
+<h3 id="varifying-installation">Varifying installation</h3>
+<p>If you suspect things goes wrong, you can refer to the manual installation below to check the configuration.</p>
+<p>Have a look also on API server logs and/or kubelet logs. </p>
+<h3 id="removal">Removal</h3>
+<p>Uninstalling the Helm chart should restore the original API server configuration </p>
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>uninstall<span class="w"> </span>kubauth-apiserver<span class="w"> </span>--wait
+</span></code></pre></div>
 <h2 id="manual-configuration">Manual configuration</h2>
+<p>The API server configuration to connect an OIDC provider is
+<a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#configuring-the-api-server" target="_blank">described here</a> in Kubernetes documentation.</p>
+<p>Depending on your specific installation, the directory mentioned below may vary. For reference, the clusters used for testing and documentation purposes were built using kind.</p>
+<p>Additionally, this procedure assumes that the API Server is managed by the Kubelet as a static Pod. If your API Server is managed by another system, such as systemd, you should make the necessary adjustments accordingly.</p>
+<div class="admonition notes">
+<p class="admonition-title">Notes</p>
+<p>Please note that the following operations must be executed on all nodes hosting an instance of the Kubernetes API server, typically encompassing all nodes within the control plane.</p>
+</div>
+<p>These operations require 'root' access on these nodes. Also each node must have <code>kubectl</code> installed and an editor available.</p>
+<p>For each node:</p>
+<ul>
+<li>
+<p>Log on it</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker exec -it kubo6-control-plane /bin/bash
+</span></code></pre></div>
+- Create a folder to store the Kubauth issuerURL certificate (-kit stands for K8s Integration Toolkit)</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mkdir /etc/kubernetes/kubauth-kit 
+</span></code></pre></div>
+</li>
+<li>
+<p>Fetch the Kubauth issuerURL certificate and store it in our newly created folder:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl -n kubauth get secret kubauth-oidc-server-cert \
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>-o=jsonpath=&#39;{.data.ca\.crt}&#39; | base64 -d &gt;/etc/kubernetes/kubauth-kit/ca.crt  
+</span></code></pre></div>
+</li>
+<li>
+<p>And edit the <code>kube-apiserver.yaml</code> manifest</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>vi /etc/kubernetes/manifests/kube-apiserver.yaml
+</span></code></pre></div>
+<p>With the following modifications:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>spec:
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  containers:
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  - command:
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    - kube-apiserver
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    - &quot;--oidc-ca-file=/etc/kubernetes/kubauth-kit/ca.crt&quot;
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    - &quot;--oidc-groups-prefix=oidc-&quot;
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    - --oidc-groups-claim=groups
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    - &quot;--oidc-username-prefix=-&quot;
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    - --oidc-username-claim=sub
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    - --oidc-client-id=k8s
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    - &quot;--oidc-issuer-url=https://kubauth.ingress.kubo6.mbp&quot;
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    ..........
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    ..........
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    volumeMounts:
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>    - mountPath: /etc/kubernetes/kubauth-kit
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>      name: kubauth-kit-config
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>    ..........
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>  ..........
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>  volumes:
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>  - hostPath:
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>      path: /etc/kubernetes/kubauth-kit
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>      type: &quot;&quot;
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>    name: kubauth-kit-config
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>  ..........
+</span></code></pre></div>
+<ul>
+<li>Quotes (<code>"</code>) are important.</li>
+<li>In <code>--oidc-issuer-url</code>, <code>kubauth.ingress.kubo6.mbp</code> must be replaced by your Kubauth entry point</li>
+<li><code>--oidc-client-id</code> should match the name of the <code>OidcClient</code> declared previously. Note there is no need to a <code>clientSecret</code> value, as the API server will not connect to Kubauth.</li>
+<li><code>--oidc-username-prefix</code>: Prefix prepended to username claims to prevent clashes with existing names. Dash value means no prefix.</li>
+<li><code>--oidc-groups-prefix</code>: Prefix prepended to group claims to prevent clashes with existing names. Could not be empty for security reasons. Default is <code>oidc:</code> but in this sample, we set to <code>oidc-</code>.</li>
+<li><code>volumeMounts</code> and <code>volumes</code> sections allow the certificate to be reachable from inside the container.</li>
+</ul>
+</li>
+<li>
+<p>The fact than <code>/etc/kubernetes/manifests/kube-apiserver.yaml</code> file is modified will trigger a restart or the API server pod.</p>
+</li>
+</ul>
 
 
 
@@ -993,13 +1211,13 @@
         
         
           
-          <a href="../../70-appendix/100-openldap/" class="md-footer__link md-footer__link--next" aria-label="Next: OpenLDAP deployment">
+          <a href="../130-kubeconfig-service/" class="md-footer__link md-footer__link--next" aria-label="Next: Kubeconfig service">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                OpenLDAP deployment
+                Kubeconfig service
               </div>
             </div>
             <div class="md-footer__button md-icon">

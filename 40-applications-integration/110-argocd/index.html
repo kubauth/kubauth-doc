@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../../30-user-guide/190-merge-of-identity/">
+        <link rel="prev" href="../../30-user-guide/190-identity-merging/">
       
       
         <link rel="next" href="../120-harbor/">
@@ -522,12 +522,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../30-user-guide/190-merge-of-identity/" class="md-nav__link">
+      <a href="../../30-user-guide/190-identity-merging/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Merge of identity
+    Identity merging
     
   </span>
   
@@ -847,6 +847,52 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-kubernetes-integration/130-kubeconfig-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kubeconfig service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-kubernetes-integration/140-workstation-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Workstation setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1046,17 +1092,18 @@
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">grantTypes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;refresh_token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;authorization_code&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">responseTypes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;id_token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;id_token</span><span class="nv"> </span><span class="s">token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">id_token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">id_token</span><span class="nv"> </span><span class="s">token&quot;</span><span class="p p-Indicator">]</span>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">scopes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;openid&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;offline&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;profile&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;groups&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;email&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;offline_access&quot;</span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">displayName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ArgoCD</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitOps continuous delivery tool</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">entryURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://argocd.ingress.kubo6.mbp/</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="c1"># Following are optional</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">displayName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ArgoCD</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitOps continuous delivery tool</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">entryURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://argocd.ingress.kubo6.mbp/</span>
 </span></code></pre></div>
 </details>
-<blockquote>
-<p><code>argocd.ingress.kubo6.mbp</code> must be replaced by your ArgoCD entry point (In 2 locations)</p>
-</blockquote>
 <ul>
+<li><code>argocd.ingress.kubo6.mbp</code> must be replaced by your ArgoCD entry point (In 2 locations)</li>
 <li>The sample password is 'argocd123'. Thus, the <code>hashedSecret</code> value is the result of a <code>kc hash argocd123</code> command.</li>
 <li>The <code>http://localhost:8085/auth/callback</code> entry in the <code>redirectURIs</code> list is for the <code>argocd</code> CLI command</li>
+<li><code>displayName</code>, <code>description</code> and <code>entryURL</code> attributes are optionals. Aim is to integrate ArgoCD in a list of available applications.
+  This list will be displayed on a specific page (<code>https://kubauth.ingress.kubo6.mbp/index</code>) or an the Logout page. See below.</li>
 </ul>
 <p>Apply this manifest:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>client-argocd.yaml
@@ -1109,22 +1156,15 @@ we will will focus only on the OIDC relative section of the 'values file'.</p>
 </span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">      </span><span class="no">g, argocd-admin, role:admin </span>
 </span></code></pre></div>
 </details>
-<blockquote>
 <ul>
 <li><code>argocd.ingress.kubo6.mbp</code> must be replaced by your ArgoCD entry point.</li>
 <li><code>kubauth.ingress.kubo6.mbp</code> must be replaced by your Kubauth entry point (In 2 locations).</li>
-</ul>
-</blockquote>
-<ul>
 <li>We enable PKCE, as it is safest and supported by both party.</li>
 <li>The <code>logoutURL</code> parameter is here commented.. More on this below </li>
 <li>The <code>rootCA</code> parameter is the CA of the Kubauth issuer. If Kubauth has been installed using Certificate Manager, 
   as described at the beginning of this manual, it can be retrieved with a command like:  <br />
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl -n cert-manager get secret cluster-odp-ca -o=jsonpath=&#39;{.data.ca\.crt}&#39; | base64 -d
-</span></code></pre></div><blockquote>
-<p><code>cluster-odp-ca</code> must be replaced by <code>&lt;your clusterIssuer&gt;-ca</code></p>
-</blockquote>
-</li>
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl -n kubauth get secret kubauth-oidc-server-cert -o=jsonpath=&#39;{.data.ca\.crt}&#39; | base64 -d
+</span></code></pre></div></li>
 <li>The <code>rbac</code> subsection grant ArgoCD admin rights to the members of the group <code>argocd-admin</code>. 
     Of course, access management can be defined in more detail, using ArgoCD RBAC system, but this is out of the scope of this manuel.</li>
 </ul>
@@ -1254,7 +1294,7 @@ you can cancel your SSO session using a <br><code>kc logout....</code> command.<
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../30-user-guide/190-merge-of-identity/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Merge of identity">
+          <a href="../../30-user-guide/190-identity-merging/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Identity merging">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1264,7 +1304,7 @@ you can cancel your SSO session using a <br><code>kc logout....</code> command.<
                 Previous
               </span>
               <div class="md-ellipsis">
-                Merge of identity
+                Identity merging
               </div>
             </div>
           </a>
