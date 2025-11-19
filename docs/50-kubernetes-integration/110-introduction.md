@@ -4,11 +4,15 @@ This chapter describe how to integrate Kubauth OIDC server to the Kubernetes Aut
 
 Aim is to authenticate users interacting with the cluster through tools like `kubectl`.
 
-There will be two part for this topic:
+There will be several parts on this topic
+
+- We first need to register Kubernetes as an OIDC client application. This is performed right below.
 
 - We need to configure the Kubernetes API server to interact with Kubauth. This configuration can be performed manually, but a tool to fully automate this configuration is provided. 
 
-- Each user will need to perform a local configuration. Here also, a toolkit is provided to automate this.
+- A service is deployed on the cluster to publish configuration parameters for users.
+
+- Each user will need to perform a local configuration on its workstation. Here also, a tool is provided to automate this.
 
 ## Oidc client creation
 
@@ -40,8 +44,10 @@ So, a manifest like the following should be created:
       refreshTokenLifespan: 30m0s
     ``` 
 
-- The sample password is 'k8s123'. Thus, the `hashedSecret` value is the result of a <br>`kc hash k8s123` command.
+- The sample password is 'k8s123'. Thus, the `hashedSecret` value is the result of a <br>`kc hash k8s123` command. 
+> The Client can also be defined as `public`.
 - As client application will be the kubectl/kubelogin running on user's workstation, `redirectURIs` refers to `localhost`.
+
 
 Apply this manifest:
 

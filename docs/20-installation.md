@@ -42,7 +42,7 @@ Replace the values with your specific configuration:
 
 - **`kubauth.ingress.kubo6.mbp`**: Replace by the hostname used for accessing the `kubauth` service from outside the cluster.<br>
   > Make sure to define this hostname in your DNS.
-- **`cluster-odp`**: Replace by The ClusterIssuer from your Certificate Manager for certificate management.
+- **`cluster-odp`**: Replace by the `ClusterIssuer` from your Certificate Manager for ingress certificate creation.
 
 !!! notes
 

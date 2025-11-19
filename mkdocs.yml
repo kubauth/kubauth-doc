@@ -20,6 +20,8 @@ nav:
   - "Kubernetes integration":
     - "Introduction": 50-kubernetes-integration/110-introduction.md
     - "API Server configuration": 50-kubernetes-integration/120-api-server-configuration.md
+    - "Kubeconfig service": 50-kubernetes-integration/130-kubeconfig-service.md
+    - "Workstation setup": 50-kubernetes-integration/140-workstation-setup.md
   - "Appendix":
     - "OpenLDAP deployment": 70-appendix/100-openldap.md
 
