@@ -1,4 +1,4 @@
-# API Reference
+# Overview
 
 This section provides comprehensive reference documentation for Kubauth's Kubernetes Custom Resource Definitions (CRDs).
 
@@ -8,10 +8,10 @@ Kubauth stores all configuration and user data as native Kubernetes resources, p
 
 ### Core Resources
 
-- **[OidcClient](oidcclient.md)** - OIDC client application definitions
-- **[User](user.md)** - User account definitions with authentication credentials
-- **[Group](group.md)** - Group definitions with shared claims
-- **[GroupBinding](groupbinding.md)** - User-to-group associations
+- **[OidcClient](110-oidcclient.md)** - OIDC client application definitions
+- **[User](120-user.md)** - User account definitions with authentication credentials
+- **[Group](130-group.md)** - Group definitions with shared claims
+- **[GroupBinding](140-groupbinding.md)** - User-to-group associations
 
 ## API Group and Version
 

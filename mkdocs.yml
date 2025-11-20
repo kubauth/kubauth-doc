@@ -26,22 +26,22 @@ nav:
     - Kubeconfig Service: 50-kubernetes-integration/130-kubeconfig-service.md
     - Workstation Setup: 50-kubernetes-integration/140-workstation-setup.md
   - API Reference:
-    - Overview: 60-references/index.md
-    - OidcClient: 60-references/oidcclient.md
-    - User: 60-references/user.md
-    - Group: 60-references/group.md
-    - GroupBinding: 60-references/groupbinding.md
+    - Overview: 60-references/100-overview.md
+    - OidcClient: 60-references/110-oidcclient.md
+    - User: 60-references/120-user.md
+    - Group: 60-references/130-group.md
+    - GroupBinding: 60-references/140-groupbinding.md
   - kc CLI Tool:
-    - Overview: 70-kc/index.md
-    - kc token: 70-kc/token.md
-    - kc token-nui: 70-kc/token-nui.md
-    - kc config: 70-kc/config.md
-    - kc whoami: 70-kc/whoami.md
-    - kc logout: 70-kc/logout.md
-    - kc hash: 70-kc/hash.md
-    - kc audit: 70-kc/audit.md
-    - kc jwt: 70-kc/jwt.md
-    - kc version: 70-kc/version.md
+    - Overview: 70-kc/100-overview.md
+    - kc version: 70-kc/110-version.md
+    - kc hash: 70-kc/120-hash.md
+    - kc token: 70-kc/130-token.md
+    - kc token-nui: 70-kc/140-token-nui.md
+    - kc audit: 70-kc/150-audit.md
+    - kc jwt: 70-kc/160-jwt.md
+    - kc whoami: 70-kc/170-whoami.md
+    - kc logout: 70-kc/180-logout.md
+    - kc config: 70-kc/190-config.md
   - Appendix:
     - OpenLDAP Deployment: 80-appendix/100-openldap.md
 

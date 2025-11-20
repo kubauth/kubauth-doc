@@ -236,10 +236,10 @@ kubectl config view
 
 ## Related Commands
 
-- [`kc config`](config.md) - Configure kubectl for OIDC
-- [`kc logout`](logout.md) - Clear authentication session
-- [`kc token`](token.md) - Get OIDC tokens
-- [`kc jwt`](jwt.md) - Decode JWT tokens
+- [`kc config`](190-config.md) - Configure kubectl for OIDC
+- [`kc logout`](180-logout.md) - Clear authentication session
+- [`kc token`](130-token.md) - Get OIDC tokens
+- [`kc jwt`](160-jwt.md) - Decode JWT tokens
 
 ## See Also
 

@@ -291,7 +291,7 @@ spec:
 
 ## Related Resources
 
-- [Group](./group.md) - Define groups with shared claims
-- [GroupBinding](./groupbinding.md) - Associate users with groups
-- [OidcClient](./oidcclient.md) - Client applications that authenticate users
+- [Group](./130-group.md) - Define groups with shared claims
+- [GroupBinding](./140-groupbinding.md) - Associate users with groups
+- [OidcClient](./110-oidcclient.md) - Client applications that authenticate users
 

@@ -237,12 +237,12 @@ kc hash mypass    # Correct
 
 ## Related Commands
 
-- [`kc token`](token.md) - Test authentication with hashed passwords
-- [`kc token-nui`](token-nui.md) - Authenticate with username/password
+- [`kc token`](130-token.md) - Test authentication with hashed passwords
+- [`kc token-nui`](140-token-nui.md) - Authenticate with username/password
 
 ## See Also
 
 - [User Configuration](../30-user-guide/110-configuration.md#password-hash)
-- [User Reference](../60-references/user.md#passwordhash-string)
-- [OidcClient Reference](../60-references/oidcclient.md#hashedsecret-string)
+- [User Reference](../60-references/120-user.md#passwordhash-string)
+- [OidcClient Reference](../60-references/110-oidcclient.md#hashedsecret-string)
 

@@ -49,21 +49,21 @@ kc version
 
 ### Authentication & Tokens
 
-- **[`kc token`](token.md)** - Obtain OIDC tokens using the authorization code flow (with browser)
-- **[`kc token-nui`](token-nui.md)** - Obtain OIDC tokens using password grant (no browser required)
-- **[`kc jwt`](jwt.md)** - Decode and display JWT token contents
-- **[`kc logout`](logout.md)** - Clear SSO session and local token cache
+- **[`kc token`](130-token.md)** - Obtain OIDC tokens using the authorization code flow (with browser)
+- **[`kc token-nui`](140-token-nui.md)** - Obtain OIDC tokens using password grant (no browser required)
+- **[`kc jwt`](160-jwt.md)** - Decode and display JWT token contents
+- **[`kc logout`](180-logout.md)** - Clear SSO session and local token cache
 
 ### Kubernetes Configuration
 
-- **[`kc config`](config.md)** - Configure kubectl for OIDC authentication with Kubauth
-- **[`kc whoami`](whoami.md)** - Display current authenticated user information
+- **[`kc config`](190-config.md)** - Configure kubectl for OIDC authentication with Kubauth
+- **[`kc whoami`](170-whoami.md)** - Display current authenticated user information
 
 ### Utilities
 
-- **[`kc hash`](hash.md)** - Generate bcrypt hashes for passwords and secrets
-- **[`kc audit`](audit.md)** - Query authentication audit logs
-- **[`kc version`](version.md)** - Display version information
+- **[`kc hash`](120-hash.md)** - Generate bcrypt hashes for passwords and secrets
+- **[`kc audit`](150-audit.md)** - Query authentication audit logs
+- **[`kc version`](110-version.md)** - Display version information
 
 ## Quick Start
 
@@ -273,5 +273,5 @@ kc audit detail username
 - [Installation](../20-installation.md#kc-cli-tool-installation)
 - [User Configuration](../30-user-guide/110-configuration.md)
 - [Kubernetes Integration](../50-kubernetes-integration/140-workstation-setup.md)
-- [API Reference](../60-references/index.md)
+- [API Reference](../60-references/100-overview.md)
 

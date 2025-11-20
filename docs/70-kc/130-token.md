@@ -212,7 +212,7 @@ If the browser doesn't open automatically:
 
 1. Check the terminal output for the URL
 2. Manually copy and paste it into your browser
-3. Or use [`kc token-nui`](token-nui.md) for terminal-based authentication
+3. Or use [`kc token-nui`](140-token-nui.md) for terminal-based authentication
 
 **Example:**
 ```
@@ -246,13 +246,13 @@ kc token --issuerURL https://kubauth.example.com --clientId public
 
 ## Related Commands
 
-- [`kc token-nui`](token-nui.md) - Non-interactive authentication (no browser)
-- [`kc jwt`](jwt.md) - Decode JWT tokens
-- [`kc logout`](logout.md) - Clear SSO session
-- [`kc whoami`](whoami.md) - Display current user information
+- [`kc token-nui`](140-token-nui.md) - Non-interactive authentication (no browser)
+- [`kc jwt`](160-jwt.md) - Decode JWT tokens
+- [`kc logout`](180-logout.md) - Clear SSO session
+- [`kc whoami`](170-whoami.md) - Display current user information
 
 ## See Also
 
 - [Tokens and Claims](../30-user-guide/120-tokens-and-claims.md)
-- [OidcClient Reference](../60-references/oidcclient.md)
+- [OidcClient Reference](../60-references/110-oidcclient.md)
 

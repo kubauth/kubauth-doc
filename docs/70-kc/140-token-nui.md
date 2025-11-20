@@ -245,10 +245,10 @@ kc token-nui --issuerURL https://kubauth.local --clientId public --insecureSkipV
 
 ## Related Commands
 
-- [`kc token`](token.md) - Browser-based authentication (preferred)
-- [`kc config`](config.md) - Configure kubectl with password grant
-- [`kc jwt`](jwt.md) - Decode JWT tokens
-- [`kc audit`](audit.md) - View authentication attempts
+- [`kc token`](130-token.md) - Browser-based authentication (preferred)
+- [`kc config`](190-config.md) - Configure kubectl with password grant
+- [`kc jwt`](160-jwt.md) - Decode JWT tokens
+- [`kc audit`](150-audit.md) - View authentication attempts
 
 ## See Also
 

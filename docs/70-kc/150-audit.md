@@ -254,9 +254,9 @@ rules:
 
 ## Related Commands
 
-- [`kc token`](token.md) - Generate login attempts to view
-- [`kc token-nui`](token-nui.md) - Test authentication
-- [`kc whoami`](whoami.md) - Check current user
+- [`kc token`](130-token.md) - Generate login attempts to view
+- [`kc token-nui`](140-token-nui.md) - Test authentication
+- [`kc whoami`](170-whoami.md) - Check current user
 
 ## See Also
 

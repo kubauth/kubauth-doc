@@ -374,7 +374,7 @@ kubectl -n kubauth-users delete group ops
 
 ## Related Resources
 
-- [GroupBinding](./groupbinding.md) - Associates users with groups
-- [User](./user.md) - User accounts that can be members of groups
-- [OidcClient](./oidcclient.md) - Client applications that receive group claims in tokens
+- [GroupBinding](./140-groupbinding.md) - Associates users with groups
+- [User](./120-user.md) - User accounts that can be members of groups
+- [OidcClient](./110-oidcclient.md) - Client applications that receive group claims in tokens
 

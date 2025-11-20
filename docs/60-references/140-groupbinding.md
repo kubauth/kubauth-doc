@@ -349,7 +349,7 @@ kubectl delete groupbinding john-developers -n kubauth-users
 
 ## Related Resources
 
-- [User](./user.md) - User accounts that can be bound to groups
-- [Group](./group.md) - Optional explicit group definitions with claims
-- [OidcClient](./oidcclient.md) - Client applications that receive group information in tokens
+- [User](./120-user.md) - User accounts that can be bound to groups
+- [Group](./130-group.md) - Optional explicit group definitions with claims
+- [OidcClient](./110-oidcclient.md) - Client applications that receive group information in tokens
 

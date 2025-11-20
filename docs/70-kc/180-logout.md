@@ -252,9 +252,9 @@ Even after SSO session expires, local tokens may still be valid until they expir
 
 ## Related Commands
 
-- [`kc token`](token.md) - Authenticate and get tokens
-- [`kc whoami`](whoami.md) - Check current authentication
-- [`kc config`](config.md) - Configure kubectl
+- [`kc token`](130-token.md) - Authenticate and get tokens
+- [`kc whoami`](170-whoami.md) - Check current authentication
+- [`kc config`](190-config.md) - Configure kubectl
 
 ## See Also
 

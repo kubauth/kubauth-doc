@@ -299,9 +299,9 @@ Error: exec plugin: invalid apiVersion "client.authentication.k8s.io/v1"
 
 ## Related Commands
 
-- [`kc whoami`](whoami.md) - Verify your configuration
-- [`kc logout`](logout.md) - Clear authentication session
-- [`kc token`](token.md) - Test OIDC authentication
+- [`kc whoami`](170-whoami.md) - Verify your configuration
+- [`kc logout`](180-logout.md) - Clear authentication session
+- [`kc token`](130-token.md) - Test OIDC authentication
 
 ## See Also
 

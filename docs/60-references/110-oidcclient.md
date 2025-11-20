@@ -329,7 +329,7 @@ spec:
 
 ## Related Resources
 
-- [User](./user.md) - User accounts that authenticate through clients
-- [Group](./group.md) - User groups for authorization
-- [GroupBinding](./groupbinding.md) - Associates users with groups
+- [User](./120-user.md) - User accounts that authenticate through clients
+- [Group](./130-group.md) - User groups for authorization
+- [GroupBinding](./140-groupbinding.md) - Associates users with groups
 

@@ -102,7 +102,7 @@ kc version
 
 ## Related Commands
 
-All `kc` commands are documented in the [kc CLI overview](index.md).
+All `kc` commands are documented in the [kc CLI overview](100-overview.md).
 
 ## See Also
 
