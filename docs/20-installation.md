@@ -1,28 +1,27 @@
 # Installation
 
-## Prerequisite
+## Prerequisites
 
-Before you begin, make sure you meet the following prerequisites:
- 
-- **Kubectl Configuration:** You should have a local client Kubernetes configuration with full administrative
-  rights on the target cluster.
+Before you begin, ensure the following components are in place:
 
-- **Certificate Manager:** Ensure that the Certificate Manager is deployed in your target Kubernetes cluster, and a `ClusterIssuer` is defined for certificate management.
+- **Kubectl Configuration:** A local Kubernetes client configuration with full cluster administrator privileges on the target cluster.
 
-- **Ingress Controller:** An NGINX ingress controller should be deployed in your target Kubernetes cluster. With of course an upfront load balancer.
+- **Certificate Manager:** The Certificate Manager must be deployed on your target Kubernetes cluster with a `ClusterIssuer` configured for certificate management.
 
-- **Helm:** Helm must be installed locally on your system.
+- **Ingress Controller:** An NGINX ingress controller must be deployed on your target Kubernetes cluster.
+
+- **Helm:** Helm must be installed on your local workstation.
 
 !!! tip
-    If you don't have an appropriate Kubernetes cluster at your disposal, you can deploy a [Kind cluster](https://kind.sigs.k8s.io/){:target="_blank"} on your local workstation
+    If you don't have a suitable Kubernetes cluster available, you can deploy a [Kind cluster](https://kind.sigs.k8s.io/){:target="_blank"} on your local workstation.
 
 ## Kubauth Deployment
 
-The most straightforward and recommended method for installing Kubauth is by using the provided OCI Helm chart.
+The recommended method for installing Kubauth is using the provided OCI Helm chart.
 
-As there are several required configuration variable, we suggest to use a 'values file' instead of setting variable on the command line.
+Since several configuration parameters are required, we recommend using a values file rather than command-line arguments.
 
-So, in your working folder, create a file like the following:
+In your working directory, create a file with the following content:
 
 ???+ abstract "values.yaml"
 
@@ -38,24 +37,23 @@ So, in your working folder, create a file like the following:
         certificateIssuer: cluster-odp
     ```
 
-Replace the values with your specific configuration:
+Replace the placeholder values with your environment-specific configuration:
 
-- **`kubauth.ingress.kubo6.mbp`**: Replace by the hostname used for accessing the `kubauth` service from outside the cluster.<br>
-  > Make sure to define this hostname in your DNS.
-- **`cluster-odp`**: Replace by the `ClusterIssuer` from your Certificate Manager for ingress certificate creation.
+- **`kubauth.ingress.kubo6.mbp`**: The hostname which will be used to access the Kubauth service from outside the cluster.<br>
+  > Ensure this hostname is registered in your DNS.
+- **`cluster-odp`**: The `ClusterIssuer` name from your Certificate Manager for ingress certificate provisioning.
 
-!!! notes
+!!! note
 
-    This `values.yaml` file is the bare minimum configuration set. In subsequent chapters, more variables may be added. 
+    This `values.yaml` represents the minimum required configuration. Additional parameters may be introduced in subsequent chapters.
 
-Then, you can deploy Kubauth with the following command.
-
+Deploy Kubauth using the following command:
 
 ``` { .bash .copy }
 helm -n kubauth upgrade -i kubauth --values ./values.yaml oci://quay.io/kubauth/charts/kubauth --version 0.1.2-snapshot --create-namespace --wait
 ```
 
-After few seconds, verify the Kubauth server pod is running:
+After a few seconds, verify that the Kubauth server pod is running:
 
 ``` { .bash .copy }
 kubectl -n kubauth get pods
@@ -65,17 +63,15 @@ NAME                       READY   STATUS    RESTARTS   AGE
 kubauth-5d4fdc6bc8-7rlb6   3/3     Running   0          55s
 ```
 
-And check the Kubauth issuer URL is reachable:
-
+Confirm that the Kubauth issuer URL is accessible:
 
 ```
 curl https://kubauth.ingress.kubo6.mbp/.well-known/openid-configuration
 ```
 
-## `kc` CLI tool installation
+## `kc` CLI Tool Installation
 
-Download the `kc` CLI from the [GitHub releases page](https://github.com/kubauth/kc/releases/tag/0.1.2){:target="_blank"}
-and rename it to `kc`. Then make it executable and move it to your path:
+Download the `kc` CLI from the [GitHub releases page](https://github.com/kubauth/kc/releases/tag/0.1.2){:target="_blank"}, rename it to `kc`, make it executable, and move it to your system path:
 
 ```{ .bash .copy }
 mv kc_*_* kc
