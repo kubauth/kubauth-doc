@@ -1,32 +1,38 @@
 site_name: Kubauth
+site_description: A Kubernetes-native OpenID Connect (OIDC) Identity Provider
+site_author: Kubauth Project
+site_url: https://kubauth.github.io/kubauth-doc/
 
 nav:
   - Home: index.md
-  - "Installation": 20-installation.md
-  - "User guide":
-    - "Configuration": 30-user-guide/110-configuration.md
-    - "Tokens and Claims": 30-user-guide/120-tokens-and-claims.md
-    - "Audit": 30-user-guide/130-audit.md
-    - "SSO": 30-user-guide/140-sso.md
-    - "Users Groups": 30-user-guide/150-users-groups.md
-    - "Password Grant": 30-user-guide/160-password-grant.md
-    - "LDAP connector": 30-user-guide/170-ldap-connector.md
-    - "Several ID providers": 30-user-guide/180-several-id-providers.md
-    - "Identity merging": 30-user-guide/190-identity-merging.md
-  - "Applications integration":
-      - "ArgoCD": 40-applications-integration/110-argocd.md
-      - "Harbor": 40-applications-integration/120-harbor.md
-      - "MinIO": 40-applications-integration/130-minio.md
-  - "Kubernetes integration":
-    - "Overview": 50-kubernetes-integration/110-overview.md
-    - "API Server configuration": 50-kubernetes-integration/120-api-server-configuration.md
-    - "Kubeconfig service": 50-kubernetes-integration/130-kubeconfig-service.md
-    - "Workstation setup": 50-kubernetes-integration/140-workstation-setup.md
-  - "Appendix":
-    - "OpenLDAP deployment": 70-appendix/100-openldap.md
-
-# Add Reference of API (OidcClient, loginAttempts, groups, users, groupBinding, ssosession, ...)
-# Add application config (Minio, harbor, ArgoCD, zot,....)
+  - Installation: 20-installation.md
+  - User Guide:
+    - Configuration: 30-user-guide/110-configuration.md
+    - Tokens and Claims: 30-user-guide/120-tokens-and-claims.md
+    - Audit: 30-user-guide/130-audit.md
+    - SSO Session: 30-user-guide/140-sso.md
+    - User Groups: 30-user-guide/150-users-groups.md
+    - Password Grant (ROPC): 30-user-guide/160-password-grant.md
+    - LDAP Connector: 30-user-guide/170-ldap-connector.md
+    - Multiple Identity Providers: 30-user-guide/180-several-id-providers.md
+    - Identity Merging: 30-user-guide/190-identity-merging.md
+  - Applications Integration:
+    - ArgoCD: 40-applications-integration/110-argocd.md
+    - Harbor: 40-applications-integration/120-harbor.md
+    - MinIO: 40-applications-integration/130-minio.md
+  - Kubernetes Integration:
+    - Overview: 50-kubernetes-integration/110-overview.md
+    - API Server Configuration: 50-kubernetes-integration/120-api-server-configuration.md
+    - Kubeconfig Service: 50-kubernetes-integration/130-kubeconfig-service.md
+    - Workstation Setup: 50-kubernetes-integration/140-workstation-setup.md
+  - API Reference:
+    - Overview: 60-references/index.md
+    - OidcClient: 60-references/oidcclient.md
+    - User: 60-references/user.md
+    - Group: 60-references/group.md
+    - GroupBinding: 60-references/groupbinding.md
+  - Appendix:
+    - OpenLDAP Deployment: 70-appendix/100-openldap.md
 
 
 theme:

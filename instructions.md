@@ -15,4 +15,8 @@ Now, rewrite all files in 50-kubernetes-integration folder
 
 Now, rewrite all files in 70-appendix folder
 
+In 60-reference folder, write the reference part for CRD OidcClient, User, GroupBinding and Group. This from source code at https://github.com/kubauth/kubauth/tree/main/api/kubauth/v1alpha1.
 
+Update mkdocs.yml accordingly
+
+Write a reference documentation for the kc CLI tool. Source is https://github.com/kubauth/kc
