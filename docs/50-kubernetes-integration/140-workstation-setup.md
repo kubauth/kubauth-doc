@@ -1,13 +1,13 @@
-# Workstation setup
+# Workstation Setup
 
 
-## kubelogin installation
+## kubelogin Installation
 
 On the `kubectl` client side, we will use the [kubelogin](https://github.com/int128/kubelogin) kubectl plugin to manage user authentication.
 
 To install it, from the Kubelogin README:
 
-Install the latest release from Homebrew, Krew, Chocolatey or GitHub Releases.
+Install the latest release from Homebrew, Krew, Chocolatey, or GitHub Releases.
 
 ```
 # Homebrew (macOS and Linux)
@@ -20,30 +20,29 @@ kubectl krew install oidc-login
 choco install kubelogin
 ```
 
-If you install via GitHub releases, save the binary as the name `kubectl-oidc_login` on your path. When you invoke kubectl oidc-login,
-kubectl finds it by the naming convention of kubectl plugins. The other install methods do this for you.
+If you install via GitHub releases, save the binary as `kubectl-oidc_login` on your path. When you invoke `kubectl oidc-login`, kubectl finds it by the naming convention for kubectl plugins. The other installation methods do this for you.
 
-Next step would be to setup your local `kubeconfig`. Kubauth provide a tool to automate this tedious task.
+The next step is to configure your local `kubeconfig`. Kubauth provides a tool to automate this task.
 
 ## Configuration
 
-The [`kc` CLI](../20-installation.md#kc-cli-tool-installation) tool provide a subcommand aimed to setup your local kubeconfig from the service we previously installed:
+The [`kc` CLI](../20-installation.md#kc-cli-tool-installation) tool provides a subcommand to configure your local kubeconfig from the service we previously installed:
 
 ``` { .bash .copy}
 kc config https://kubeconfig.ingress.kubo6.mbp/kubeconfig
 ```
 
-> Of course, adjust the URL to your local context, but keep the `/kubeconfig` path
+> Adjust the URL to your local environment, but keep the `/kubeconfig` path.
 
-You should see a message like the following 
+You should see a message like the following:
 
 ```bash
 Setup new context 'oidc-kubo6' in kubeconfig file '/Users/john/.kube/config'
 ```
 
-!!! Notes
+!!! note
 
-    If such a context already exists in you config file, it will not be overwritten and you will get an error message. Use the `--force` option to override.
+    If such a context already exists in your config file, it will not be overwritten and you will receive an error message. Use the `--force` option to override.
 
 
 !!! tip
@@ -60,7 +59,7 @@ Setup new context 'oidc-kubo6' in kubeconfig file '/Users/john/.kube/config'
 
 
 
-For information, here is a sample of a local config file resulting of this operation
+For reference, here is a sample local config file resulting from this operation:
 
 ???- abstract "config.yaml"
 
@@ -101,15 +100,15 @@ For information, here is a sample of a local config file resulting of this opera
     ```
 
 
-## First login attempt
+## First Login Attempt
 
-You can now issue a kubectl command to trigger an authentication:
+You can now issue a kubectl command to trigger authentication:
 
 ``` { .bash .copy}
 kubectl explain pods
 ```
 
-Your browser should open on the kubauth login page. Once logged, this operation will complete successfully, as it does not require any specific permissions.
+Your browser should open to the Kubauth login page. Once logged in, this operation will complete successfully, as it does not require any specific permissions.
 
 ```bash
 KIND:       Pod
@@ -121,21 +120,21 @@ DESCRIPTION:
 .....
 ```
 
-No, try another request:
+Now, try another request:
 
 ``` { .bash .copy}
 kubectl get ns
 ```
 
-This time, you will get an error, as such operation require some Kubernetes permissions.
+This time, you will receive an error, as such an operation requires Kubernetes permissions.
 
 ```bash
 Error from server (Forbidden): namespaces is forbidden: User "john" cannot list resource "namespaces" in API group "" at the cluster scope
 ```
 
-But, you can check you are authenticated with the user you use on the login page.
+However, you can verify that you are authenticated with the user you used on the login page.
 
-Another way to find out who we are is the use the following `kc` subcommand:
+Another way to determine your identity is to use the following `kc` subcommand:
 
 ``` { .bash .copy}
 kc whoami
@@ -143,7 +142,7 @@ kc whoami
 ```bash
 john
 ```
-You can also have more information by using an option to dump the JWT token:
+You can also obtain more information by using an option to dump the JWT token:
 
 ```{ .bash .copy}
 kc whoami -d
@@ -164,11 +163,11 @@ JWT Payload:
 }
 ```
 
-## Session duration
+## Session Duration
 
-You may also notice the system does not required authentication on each call, but manage some kind of session.
+You may notice that the system does not require authentication for each call, but manages some form of session.
 
-Remember the end of [Kubauth OIDC client creation](../50-kubernetes-integration/110-introduction.md#oidc-client-creation) 
+Recall the end of [Kubauth OIDC client creation](../50-kubernetes-integration/110-overview.md#oidc-client-creation):
 
 ```
   ....
@@ -177,35 +176,34 @@ Remember the end of [Kubauth OIDC client creation](../50-kubernetes-integration/
   refreshTokenLifespan: 30m0s
 ```
 
-- On initial login, the server grant a token with a lifespan of `1mn`, and a renewal token
-- During this minute, all operation will be performed without OIDC interaction.
-- After this duration, if the refresh token is not expired, the API server use it to get a new token of `1mn` and a new refresh token.
+- On initial login, the server grants a token with a lifespan of 1 minute and a refresh token.
+- During this minute, all operations are performed without OIDC interaction.
+- After this duration, if the refresh token has not expired, the API server uses it to obtain a new 1-minute token and a new refresh token.
 
-As a result, in this configuration, the session will expire after `30mn` of inactivity.
+As a result, in this configuration, the session will expire after 30 minutes of inactivity.
 
-## logout
+## Logout
 
-If you need to cancel a session before this timeout (For example to login under another account), you can issue the following command:
+If you need to cancel a session before this timeout (for example, to log in as a different user), you can issue the following command:
 
 ```
 kc logout
 ```
 
-This will perform two actions:
+This performs two actions:
 
-- Cleanup the local storage.
-- Launch a browser on the Kubauth OIDC server end of session endpoint, to cleanup eventual SSO session.
+- Cleans up the local storage.
+- Launches a browser to the Kubauth OIDC server's end-of-session endpoint to clear any SSO session.
 
-!!! notes
+!!! note
 
-    If you remember the usage of `kc logout` in the [SSO chapter](../30-user-guide/140-sso.md#logout), you may notice there is no more <br>`--issuerURL` nor `--clientId` option.
-    This because the `kc` command fetch these information from your local kubernetes config file.
+    If you recall the usage of `kc logout` in the [SSO chapter](../30-user-guide/140-sso.md#logout), you may notice there is no longer a `--issuerURL` or `--clientId` option. This is because the `kc` command fetches this information from your local Kubernetes config file.
 
-## Granting rights using k8s RBAC
+## Granting Rights Using Kubernetes RBAC
 
 Let's say we want the user `john` to have full admin rights on the cluster.
 
-First, we will include it in a group `cluster-admin`
+First, we will add them to a `cluster-admin` group:
 
 ```{ .bash .copy }
 kubectl apply -f - <<EOF
@@ -220,7 +218,7 @@ spec:
 EOF
 ```
 
-> Remember in our context, the simple fact a group is referenced in a `GroupBinding` make it existing.
+> Remember, in our context, simply referencing a group in a `GroupBinding` makes it exist.
 
 In our cluster, there is an existing role `cluster-admin`. We must bind our newly created group to this role:
 
@@ -241,35 +239,33 @@ subjects:
 EOF
 ```
 
-> Note the group is referenced here as `oidc-cluster-admin`. This because a `groupsPrefix: "oidc-"` has been set in OIDC configuration.
+> Note the group is referenced here as `oidc-cluster-admin`. This is because `groupsPrefix: "oidc-"` was set in the OIDC configuration.
 
-After executing these two scripts `kubectl get ns` should display the list of your cluster's namespaces 
+After executing these two scripts, `kubectl get ns` should display the list of your cluster's namespaces.
 
-> Of course, if you where already logged in, you must logout.
+> Of course, if you were already logged in, you must log out first.
 
-!!! Note
+!!! note
 
-    Setting a `groupPrefix` is a requirement in OIDC configuration, enforced by the API server for security reason. Otherwise any user able to create a `GroupBinding` 
-    resource could bind any user to a `system:master` existing group. 
+    Setting a `groupsPrefix` is a requirement in OIDC configuration, enforced by the API server for security reasons. Otherwise, any user able to create a `GroupBinding` resource could bind any user to an existing `system:masters` group.
 
-## No UI mode
+## No UI Mode
 
-There is some case where launching a browser is impossible. For example when working on a server accessed through ssh.
+There are cases where launching a browser is impossible, such as when working on a server accessed through SSH.
 
-We can set a 'no browser' mode when configuring your client, with the `--grantType password` option:
+We can configure a 'no browser' mode when setting up your client, using the `--grantType password` option:
 
 ``` { .bash .copy }
 kc config https://kubeconfig.ingress.kubo6.mbp/kubeconfig --grantType password
 ```
 
-> Add `--force` to override an old configuration if needed.
+> Add `--force` to override an existing configuration if needed.
 
-!!! Warning
+!!! warning
 
-    This mode will use the OAuth's Resource Owner Password Credentials (ROPC) grant type. this implies the OIDC server must be configured to allow this mode. 
-    See [Password Grant](../30-user-guide/160-password-grant.md#configuration) chapter 
+    This mode uses OAuth's Resource Owner Password Credentials (ROPC) grant type. This requires the OIDC server to be configured to allow this mode. See the [Password Grant](../30-user-guide/160-password-grant.md#configuration) chapter.
 
-With this configuration, user will be prompted on the terminal for its login/password:
+With this configuration, users will be prompted on the terminal for their login and password:
 
 ``` { .bash .copy }
 kubectl get ns
@@ -287,6 +283,7 @@ ingress-nginx        Active   27d
 kubauth              Active   32h
 ........
 ```
+
 
 
 

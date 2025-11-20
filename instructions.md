@@ -10,3 +10,8 @@ Now, rewrite index.md
 Now, rewrite all files in 30-user-guide folder
 
 Now, rewrite all files in 40-applications-integration folder
+
+Now, rewrite all files in 50-kubernetes-integration folder
+
+
+

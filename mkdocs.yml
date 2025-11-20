@@ -18,7 +18,7 @@ nav:
       - "Harbor": 40-applications-integration/120-harbor.md
       - "MinIO": 40-applications-integration/130-minio.md
   - "Kubernetes integration":
-    - "Introduction": 50-kubernetes-integration/110-introduction.md
+    - "Overview": 50-kubernetes-integration/110-overview.md
     - "API Server configuration": 50-kubernetes-integration/120-api-server-configuration.md
     - "Kubeconfig service": 50-kubernetes-integration/130-kubeconfig-service.md
     - "Workstation setup": 50-kubernetes-integration/140-workstation-setup.md
