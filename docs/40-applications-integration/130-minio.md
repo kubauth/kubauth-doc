@@ -1,18 +1,18 @@
-# MinIO integration
+# MinIO Integration
 
-!!! Warning
+!!! warning
 
-    At the time of writing this manuel, there is some change on the way MinIO is distributed.
+    At the time of writing this manual, there are changes underway in how MinIO is distributed.
 
-    The configuration provided here is validated on the the latest OSS MinIO version integrating a fully functional Console Admin.
+    The configuration provided here has been validated on the latest OSS MinIO version that includes a fully functional Console Admin.
 
-    It should also apply on MinIO AIStor, the proprietary version of MinIO.
+    It should also apply to MinIO AIStor, the proprietary version of MinIO.
 
-## Oidc client creation
+## OIDC Client Creation
 
-As stated in [Configuration](../30-user-guide/110-configuration.md/#oidc-client-creation), a client application is defined as a Kubernetes Custom Resource.
+As described in [Configuration](../30-user-guide/110-configuration.md/#oidc-client-creation), a client application is defined as a Kubernetes Custom Resource.
 
-So, a manifest like the following should be created:
+Create a manifest like the following:
 
 ???+ abstract "client-minio.yaml"
 
@@ -30,17 +30,16 @@ So, a manifest like the following should be created:
       responseTypes: ["id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token"]
       scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access", "address", "phone"]
       # Following are optional
-      displayName: Minio
+      displayName: MinIO
       description: S3 Server
       entryURL: "https://minio-console-minio1.ingress.kubo6.mbp"
     ```
 
 
-- `minio-console-minio1.ingress.kubo6.mbp` must be replaced by your MinIO console entry point (In 2 locations)
-- The sample password is 'minio123'. Thus, the `hashedSecret` value is the result of a <br>`kc hash minio123` command.
-- `scopes` contains `address` and `phone`. This seems to be required by MinIO default configuration.
-- `displayName`, `description` and `entryURL` attributes are optionals. Aim is to integrate MinIO in a list of available applications. 
-  This list will be displayed on a specific page (`https://kubauth.ingress.kubo6.mbp/index`) or an the Logout page.
+- Replace `minio-console-minio1.ingress.kubo6.mbp` with your MinIO console entry point (in 2 locations)
+- The sample password is 'minio123'. The `hashedSecret` value is the result of the `kc hash minio123` command.
+- The `scopes` include `address` and `phone`, which appear to be required by MinIO's default configuration.
+- The `displayName`, `description`, and `entryURL` attributes are optional. They enable MinIO to appear in a list of available applications displayed on a specific page (`https://kubauth.ingress.kubo6.mbp/index`) or the logout page.
 
 Apply this manifest:
 
@@ -48,13 +47,13 @@ Apply this manifest:
 kubectl apply -f client-minio.yaml
 ```
 
-## Minio Configuration
+## MinIO Configuration
 
-We will assume here you have a fully functional MinIO deployment.
+We assume you have a fully functional MinIO deployment.
 
-We also assume you have an `mc` command configured with an alias (`myminio` below) granting full admin rights.
+We also assume you have the `mc` command configured with an alias (`myminio` below) that grants full admin rights.
 
-One method to configure an OIDC connection for minio is by issuing a specific command:
+One method to configure an OIDC connection for MinIO is by issuing a specific command:
 
 
 ``` { .bash .copy }
@@ -68,28 +67,33 @@ mc idp openid add myminio kubauth \
     claim_userinfo="on"
 ```
 
-- `minio-console-minio1.ingress.kubo6.mbp` must be replaced by your MinIO console entry point
-- `kubauth.ingress.kubo6.mbp` must be replaced by your Kubauth entry point.
-- The `claim_name` Specify the name of the JWT Claim MinIO uses to identify the policies to attach to the authenticated user. 
+- Replace `minio-console-minio1.ingress.kubo6.mbp` with your MinIO console entry point
+- Replace `kubauth.ingress.kubo6.mbp` with your Kubauth entry point
+- The `claim_name` specifies the JWT claim MinIO uses to identify the policies to attach to the authenticated user. 
   The claim can contain one or more comma-separated policy names to attach to the user. 
-  The claim must contain at least one policy for the user to have any permissions on the MinIO server. Defaults value is `policy`, 
-  but we set it to `minio_policies` to be more specific and highlight it can be a list. 
+  The claim must contain at least one policy for the user to have any permissions on the MinIO server. The default value is `policy`, 
+  but we set it to `minio_policies` to be more specific and highlight that it can be a list.
 
-The server need to be restarted after this setting:
+The server needs to be restarted after this configuration:
 
 ``` { .bash .copy }
 mc admin service restart myminio
 ```
 
+!!! tip
+
+    This configuration can also be achieved using environment variables. Refer to the MinIO documentation.
+
+
 ## Usage
 
-After this configuration, a button `KUBAUTH` must appear on the MinIO console login page.
+After this configuration, a `KUBAUTH` button should appear on the MinIO console login page.
 
-It you try to log in, using a valid OIDC user, you should have an error such as:<br> `Minio_policies claim missing from the JWT token, credentials will not be generated`
+If you try to log in using a valid OIDC user, you should receive an error such as:<br> `minio_policies claim missing from the JWT token, credentials will not be generated`
 
-To be able to login on the Console with full admin rights, the easiest solution is to associate the existing policy `consoleAdmin` to the user by setting it in the claim `minio_policies`.
+To be able to log in to the Console with full admin rights, the easiest solution is to associate the existing `consoleAdmin` policy to the user by setting it in the `minio_policies` claim.
 
-This can be achieved by adding the claim in the user definition:
+This can be achieved by adding the claim to the user definition:
 
 
 ``` { .yaml .copy }
@@ -108,11 +112,11 @@ spec:
   ......
 ```
 
-> This will also works if the user's primary source is another identity provider, such as LDAP. See [Identity merging](../30-user-guide/190-identity-merging.md)
+> This will also work if the user's primary source is another identity provider, such as LDAP. See [Identity merging](../30-user-guide/190-identity-merging.md).
 
-But, another, cleaner way is to use an intermediate Group to ease management.
+However, a cleaner approach is to use an intermediate Group to simplify management.
 
-Create a group `minio-admins` with the appropriate Claim:
+Create a `minio-admins` group with the appropriate claim:
 
 ``` { .bash .copy }
 kubectl apply -f - <<EOF
@@ -127,7 +131,7 @@ spec:
 EOF
 ```
 
-And set a user in this newly create group:
+Add a user to this newly created group:
 
 
 ``` { .bash .copy }

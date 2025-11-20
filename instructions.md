@@ -8,3 +8,5 @@ Don't touch the remaining of the manuel for now.
 Now, rewrite index.md
 
 Now, rewrite all files in 30-user-guide folder
+
+Now, rewrite all files in 40-applications-integration folder

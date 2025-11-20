@@ -1,10 +1,10 @@
-# Harbor integration
+# Harbor Integration
 
-## Oidc client creation
+## OIDC Client Creation
 
-As stated in [Configuration](../30-user-guide/110-configuration.md/#oidc-client-creation), a client application is defined as a Kubernetes Custom Resource.
+As described in [Configuration](../30-user-guide/110-configuration.md/#oidc-client-creation), a client application is defined as a Kubernetes Custom Resource.
 
-So, a manifest like the following should be created:
+Create a manifest like the following:
 
 ???+ abstract "client-harbor.yaml"
 
@@ -28,10 +28,9 @@ So, a manifest like the following should be created:
     ```
 
 
-- `harbor.ingress.kubo6.mbp` must be replaced by your Harbor entry point (In 2 locations)
-- The sample password is 'harbor123'. Thus, the `hashedSecret` value is the result of a <br>`kc hash harbor123` command.
-- `displayName`, `description` and `entryURL` attributes are optionals. Aim is to integrate Harbor in a list of available applications.
-  This list will be displayed on a specific page (`https://kubauth.ingress.kubo6.mbp/index`) or an the Logout page.
+- Replace `harbor.ingress.kubo6.mbp` with your Harbor entry point (in 2 locations)
+- The sample password is 'harbor123'. The `hashedSecret` value is the result of the `kc hash harbor123` command.
+- The `displayName`, `description`, and `entryURL` attributes are optional. They enable Harbor to appear in a list of available applications displayed on a specific page (`https://kubauth.ingress.kubo6.mbp/index`) or the logout page.
 
 Apply this manifest:
 
@@ -39,22 +38,22 @@ Apply this manifest:
 kubectl apply -f client-harbor.yaml
 ```
 
-## Manual Harbor configuration.
+## Manual Harbor Configuration
 
-We assume here you have a running Harbor installation.
+We assume you have a running Harbor installation.
 
 - Log in to the Harbor interface with an account that has Harbor system administrator privileges.
 - Under Administration, go to Configuration and select the Authentication tab.
 - Use the Auth Mode drop-down menu to select OIDC.
 
-And set the following values:
+Set the following values:
 
 - Auth Mode: `OIDC`
 - OIDC Provider Name: `KUBAUTH`
-- OIDC Endpoint: `https://kubauth.ingress.kubo6.mbp` <br>(To adjust to your local Kubauth entry point)
+- OIDC Endpoint: `https://kubauth.ingress.kubo6.mbp` <br>(Adjust to your local Kubauth entry point)
 - OIDC Client ID: `harbor`
 - OIDC Client Secret: `harbor123`
-- Group Claim Name: `group`
+- Group Claim Name: `groups`
 - OIDC Admin Group: `harbor-admins`
 - OIDC Scopes: `openid,email,profile,offline_access,groups`
 - Automatic onboarding: `true` 
@@ -64,7 +63,7 @@ And set the following values:
 
 OIDC can also be configured [using environment variables](https://goharbor.io/docs/2.7.0/install-config/configure-system-settings-cli/#set-configuration-items-using-an-environment-variable){:target="_blank"}.
 
-If you have installed Harbor using the provided Helm chart, this can be achieved by appending a values file like the following on your deployment: 
+If you have installed Harbor using the provided Helm chart, this can be achieved by appending a values file like the following to your deployment:
 
 ???+ abstract "values-kubauth.yaml"
 
@@ -88,11 +87,11 @@ If you have installed Harbor using the provided Helm chart, this can be achieved
             }
     ```
 
-> `https://kubauth.ingress.kubo6.mbp` must be replaced by the Kubauth entry point of your installation.
+> Replace `https://kubauth.ingress.kubo6.mbp` with the Kubauth entry point of your installation.
 
-## Admin rights
+## Admin Rights
 
-To grant admin rights to a user, just add it to the groups we have defined as `oidc_admin_group` (here `harbor-admins`) in the configuration, by creating a new `GroupBinding`:
+To grant admin rights to a user, add them to the group we defined as `oidc_admin_group` (here `harbor-admins`) in the configuration by creating a new `GroupBinding`:
 
 ``` { .bash .copy }
 kubectl apply -f - <<EOF
@@ -107,4 +106,4 @@ spec:
 EOF
 ```
 
-Now, you can log with this user en ensure it has all admins rights (i.e can create a project)
+Now, you can log in with this user and verify they have full admin rights.

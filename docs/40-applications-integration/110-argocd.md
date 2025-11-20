@@ -1,11 +1,11 @@
 # ArgoCD Integration
 
 
-## Oidc client creation
+## OIDC Client Creation
 
-As stated in [Configuration](../30-user-guide/110-configuration.md/#oidc-client-creation), a client application is defined as a Kubernetes Custom Resource.
+As described in [Configuration](../30-user-guide/110-configuration.md/#oidc-client-creation), an OIDC client application is defined as a Kubernetes Custom Resource.
 
-So, a manifest like the following should be created:
+Create a manifest like the following:
 
 ???+ abstract "client-argocd.yaml"
 
@@ -29,11 +29,10 @@ So, a manifest like the following should be created:
       entryURL: https://argocd.ingress.kubo6.mbp/
     ```
 
-- `argocd.ingress.kubo6.mbp` must be replaced by your ArgoCD entry point (In 2 locations)
-- The sample password is 'argocd123'. Thus, the `hashedSecret` value is the result of a `kc hash argocd123` command.
+- Replace `argocd.ingress.kubo6.mbp` with your ArgoCD entry point (in 2 locations)
+- The sample password is 'argocd123'. The `hashedSecret` value is the result of the `kc hash argocd123` command.
 - The `http://localhost:8085/auth/callback` entry in the `redirectURIs` list is for the `argocd` CLI command
-- `displayName`, `description` and `entryURL` attributes are optionals. Aim is to integrate ArgoCD in a list of available applications.
-  This list will be displayed on a specific page (`https://kubauth.ingress.kubo6.mbp/index`) or an the Logout page. See below.
+- The `displayName`, `description`, and `entryURL` attributes are optional. They enable ArgoCD to appear in a list of available applications displayed on a specific page (`https://kubauth.ingress.kubo6.mbp/index`) or the logout page (see below).
 
 Apply this manifest:
 
@@ -41,26 +40,25 @@ Apply this manifest:
 kubectl apply -f client-argocd.yaml
 ```
 
-## ArgoCD configuration
+## ArgoCD Configuration
 
-We will assume here ArgoCD is installed using the [community provided Helm chart](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd){:target="_blank"}.
+We assume ArgoCD is installed using the [community-provided Helm chart](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd){:target="_blank"}.
 
-> If ArgoCD is installed using another method, it should be easy to configure OIDC as described in the 
-  [ArgoCD manual](https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#existing-oidc-provider){:target="_blank"} with information provided here.   
+> If ArgoCD is installed using another method, it should be straightforward to configure OIDC as described in the 
+  [ArgoCD manual](https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#existing-oidc-provider){:target="_blank"} using the information provided here.
 
-This means the configuration is provided using Helm 'values' or 'values files'. As the general ArgoCD configuration is out of the scope of this manual,
-we will will focus only on the OIDC relative section of the 'values file'.
+This means configuration is provided using Helm values or values files. Since general ArgoCD configuration is beyond the scope of this manual, we will focus only on the OIDC-related section of the values file.
 
-There is two tricky points regarding ArgoCD OIDC configuration:
+There are two challenging aspects of ArgoCD OIDC configuration:
 
-- How to provide the 'secret' value shared by ArgoCD and the Kubauth OIDC server
-- How to provide the CA to validate the Kubauth OIDC issuer URL. 
+- How to provide the secret value shared between ArgoCD and the Kubauth OIDC server
+- How to provide the CA to validate the Kubauth OIDC issuer URL
 
-### Basic configuration
+### Basic Configuration
 
-In this case, the secret is provided in clear text, and the CA certificate is provided in place.
+In this approach, the secret is provided in clear text, and the CA certificate is embedded directly.
 
-Create a values file like the following to be added on your Helm command when deploying ArgoCD (`.... --values values-kubauth.yaml....`).
+Create a values file like the following to be added to your Helm command when deploying ArgoCD (`... --values values-kubauth.yaml...`):
 
 ???+ abstract "values-kubauth.yaml"
 
@@ -94,25 +92,24 @@ Create a values file like the following to be added on your Helm command when de
         policy.csv: |
           g, argocd-admin, role:admin 
     ```
-- `argocd.ingress.kubo6.mbp` must be replaced by your ArgoCD entry point.
-- `kubauth.ingress.kubo6.mbp` must be replaced by your Kubauth entry point (In 2 locations).
-- We enable PKCE, as it is safest and supported by both party.
-- The `logoutURL` parameter is here commented.. More on this below 
-- The `rootCA` parameter is the CA of the Kubauth issuer. If Kubauth has been installed using Certificate Manager, 
-  as described at the beginning of this manual, it can be retrieved with a command like:    
+- Replace `argocd.ingress.kubo6.mbp` with your ArgoCD entry point.
+- Replace `kubauth.ingress.kubo6.mbp` with your Kubauth entry point (in 2 locations).
+- We enable PKCE, as it is the safest option and supported by both parties.
+- The `logoutURL` parameter is commented out here. More on this below.
+- The `rootCA` parameter is the CA of the Kubauth issuer. If Kubauth was installed using Certificate Manager as described at the beginning of this manual, it can be retrieved with:
     ```
     kubectl -n kubauth get secret kubauth-oidc-server-cert -o=jsonpath='{.data.ca\.crt}' | base64 -d
     ```
-  - The `rbac` subsection grant ArgoCD admin rights to the members of the group `argocd-admin`. 
-    Of course, access management can be defined in more detail, using ArgoCD RBAC system, but this is out of the scope of this manuel.
+- The `rbac` subsection grants ArgoCD admin rights to members of the `argocd-admin` group. 
+  Of course, access management can be defined in more detail using ArgoCD's RBAC system, but this is beyond the scope of this manual.
 
-Add `--values values-kubauth.yaml` on your Helm command deploying ArgoCD.
+Add `--values values-kubauth.yaml` to your Helm command when deploying ArgoCD.
     
-### Configuration with secret
+### Configuration with Secret
 
-In order to better protect the clientSecret, and to avoid in place CA certificate, ArgoCD allow these values to be set in a secret.
+To better protect the client secret and avoid embedding the CA certificate, ArgoCD allows these values to be stored in a secret.
 
-Modify the 'values file' like the following:
+Modify the values file as follows:
 
 ???+ abstract "values-kubauth.yaml"
 
@@ -135,12 +132,10 @@ Modify the 'values file' like the following:
           g, argocd-admin, role:admin 
     ```
 
-And update your Helm chart deployment.
+Update your Helm chart deployment.
 
 
-The values must now be stored in a secret named `argocd-secret` (ArgoCD hard coded name) in the argocd namespace. 
-But in most case, this secret exists and already contains some critical other values.
-So, care must be taken to just append the new values:
+The values must now be stored in a secret named `argocd-secret` (ArgoCD's hard-coded name) in the argocd namespace. In most cases, this secret already exists and contains other critical values. Care must be taken to append the new values without overwriting existing ones:
 
 ``` { .bash .copy }
 kubectl -n argocd create secret generic argocd-secret \
@@ -149,9 +144,9 @@ kubectl -n argocd create secret generic argocd-secret \
   --dry-run=client -o yaml | kubectl apply -f -
 ```
 
-> Don't care about warning message.
+> You can ignore any warning messages.
 
-This assuming `./ca.crt` contains the CA of the Kubauth issuer
+This assumes `./ca.crt` contains the CA of the Kubauth issuer:
 
 ``` { .bash .copy }
 cat ca.crt
@@ -171,15 +166,15 @@ Refer to the ArgoCD documentation for more information.
 
 ## Usage
 
-The configuration completed, a 'LOG IN VIA KUBAUTH' button must appears on the ArgoCD entry page.
+Once configuration is complete, a 'LOG IN VIA KUBAUTH' button should appear on the ArgoCD entry page.
 
-You can log in using whatever defined user. Let's say `john`. Once logged, you can verify who we are, and the group we belong to, using 'User Info' menu entry.
+You can log in using any defined user, such as `john`. Once logged in, you can verify your identity and group membership using the 'User Info' menu entry.
 
-> ArgoCD display the email adresse as the Username. 
+> ArgoCD displays the email address as the Username.
 
-Although logged, you can't do anything, without more permission. 
+Although logged in, you won't have any permissions without additional configuration.
 
-Now, add the user `john` to the group `argocd-admin`
+Now, add the user `john` to the `argocd-admin` group:
 
 ``` { .bash .copy }
 kubectl apply -f - <<EOF
@@ -194,27 +189,26 @@ spec:
 EOF
 ```
 
-And, after logout and login back, the user `john` will now be able to act as an ArgoCD administrator. You can create a new project to validate this.
+After logging out and logging back in, the user `john` will now be able to act as an ArgoCD administrator. You can create a new project to validate this.
 
 ## Logout URL
 
-With the current configuration, when a user log out from ArgoCD UI, it is redirected to the landing page with the 'LOG IN VIA KUBAUTH' and can log again.
+With the current configuration, when a user logs out from the ArgoCD UI, they are redirected to the landing page with the 'LOG IN VIA KUBAUTH' button and can log in again.
 
-!!! notes
+!!! note
 
-    If the `Remember me` checkbox has been checked, you will be log in again automatically by the magic of SSO. If you want to log under another user, 
-    you can cancel your SSO session using a <br>`kc logout....` command.
+    If the "Remember me" checkbox was checked, you will be logged in again automatically due to SSO. If you want to log in as a different user, you can cancel your SSO session using the `kc logout...` command.
 
 Now, uncomment the `logoutURL: ...` entry in the values file "values-kubauth.yaml" and update your Helm deployment.
 
-Now, on logout, ArgoCD will clean your local context, as previously and redirect your browser on the configured logoutURL. This will have two consequences:
+After this change, on logout, ArgoCD will clean your local context as before and redirect your browser to the configured logout URL. This has two effects:
 
-- Cleanup your global SSO session
-- Redirect you on a logout page, listing somme of the application (or client) listed on the OidcClients resources (Here only ArgoCD)
+- Clears your global SSO session
+- Redirects you to a logout page listing the applications (or clients) defined in the OidcClient resources (currently only ArgoCD)
 
 ![logout](../assets/kubauth-logout2.png){ .center width="80%" }
 
-For an OidcClient application to be presented on this list, three attributes must be set. For ArgoCD:
+For an OidcClient application to appear in this list, three attributes must be set. For ArgoCD:
 
 ```
 apiVersion: kubauth.kubotal.io/v1alpha1
@@ -227,8 +221,8 @@ spec:
   entryURL: https://argocd.ingress.kubo6.mbp/
 ```
 
-!!! Notes
+!!! note
 
-    Kubauth expose also this page on the `/index` path:<br> 
+    Kubauth also exposes this page at the `/index` path:<br> 
     `https://kubauth.ingress.kubo6.mbp/index`
 

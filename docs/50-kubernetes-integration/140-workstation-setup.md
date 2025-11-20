@@ -27,7 +27,7 @@ Next step would be to setup your local `kubeconfig`. Kubauth provide a tool to a
 
 ## Configuration
 
-The [`kc` CLI](../../20-installation#kc-cli-tool-installation) tool provide a subcommand aimed to setup your local kubeconfig from the service we previously installed:
+The [`kc` CLI](../20-installation.md#kc-cli-tool-installation) tool provide a subcommand aimed to setup your local kubeconfig from the service we previously installed:
 
 ``` { .bash .copy}
 kc config https://kubeconfig.ingress.kubo6.mbp/kubeconfig
