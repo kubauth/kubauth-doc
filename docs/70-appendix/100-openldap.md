@@ -1,14 +1,13 @@
-# OpenLDAP deployment
+# OpenLDAP Deployment
 
 
-If you do not have an easy access to an LDAP server and if you want to exercise **Kubauth** with this configuration, 
-one solution could be to deploy an OpenLDAP server on your Kubernetes cluster
+If you do not have easy access to an LDAP server and want to test Kubauth with this configuration, one solution is to deploy an OpenLDAP server on your Kubernetes cluster.
 
-We may use the following helm chart [https://github.com/jp-gouin/helm-openldap](https://github.com/jp-gouin/helm-openldap){:target="_blank"} for such deployment.
+We can use the following Helm chart [https://github.com/jp-gouin/helm-openldap](https://github.com/jp-gouin/helm-openldap){:target="_blank"} for such a deployment.
 
 ## Configuration
 
-Here is a sample 'values file': 
+Here is a sample values file:
 
 ???+ abstract "values-openldap.yaml"
 
@@ -39,16 +38,16 @@ Here is a sample 'values file':
     service:
       type: ClusterIP
     ```
-If you want to use the phpldapadmin front end, you will have to adjust at least the `phpldapadmin.ingress.host`
+If you want to use the phpldapadmin frontend, you will need to adjust at least the `phpldapadmin.ingress.hosts` value.
 
-This deployment is simplified to just fulfill our test requirement. Far to be 'production ready' 
+This deployment is simplified to fulfill our testing requirements only. It is far from production-ready:
 
-- There is no encryption. Connection is in clear text.
-- There is no LoadBalancer. LDAP is only accessible from inside the cluster using appropriate service.
+- There is no encryption. Connections are in clear text.
+- There is no LoadBalancer. LDAP is only accessible from inside the cluster using the appropriate service.
 
-## Sample dataset
+## Sample Dataset
 
-The following other 'values file' will create two groups and three users in a fictitious company.
+The following values file will create two groups and three users in a fictitious company.
 
 ???+ abstract "values-ldap-init.yaml"
 
@@ -114,21 +113,21 @@ The following other 'values file' will create two groups and three users in a fi
         userpassword: fred123
     ```
 
-As you can see, password are in clear text. 
+As you can see, passwords are in clear text.
 
-> OpenLDAP allow to provide them as hashed values
+> OpenLDAP allows you to provide them as hashed values.
 
 ## Deployment
 
-You can now proceed as usual for an Helm deployment.
+You can now proceed with a standard Helm deployment.
 
-First, you need to register the helm repo: 
+First, register the Helm repository:
 
 ``` { .bash .copy }
 helm repo add helm-openldap https://jp-gouin.github.io/helm-openldap/
 ```
 
-Then, you can deploy using the two values files.
+Then, deploy using the two values files:
 
 ``` { .copy }
 helm -n openldap upgrade -i openldap helm-openldap/openldap-stack-ha \
@@ -136,19 +135,19 @@ helm -n openldap upgrade -i openldap helm-openldap/openldap-stack-ha \
     --version 4.3.3 --create-namespace --wait
 ```
 
-You should now being able to log on the phpldapadmin front end. Use `cn=admin,dc=mycompany,dc=com` as Login DN and `admin123` as password.
+You should now be able to log in to the phpldapadmin frontend. Use `cn=admin,dc=mycompany,dc=com` as the Login DN and `admin123` as the password.
 
 
 ## Update / Removal
 
-If you want to update the configuration, you can issue again an `helm update -i .....` command. **But, if you intend to modify the data set (Users, Groups), this will be uneffective.**
+If you want to update the configuration, you can issue another `helm upgrade -i ...` command. **However, if you intend to modify the dataset (users, groups), this will be ineffective.**
 
-The Helm chart is build such a way than the dataset is used only on the initial deployment. 
+The Helm chart is designed such that the dataset is used only on initial deployment.
 
-So, apart from using the frontend, the easiest way to modify it is to uninstall everythings and re-install.
+Therefore, apart from using the frontend, the easiest way to modify the dataset is to uninstall everything and reinstall.
 
 ``` { .bash .copy }
 helm -n openldap uninstall openldap &&  kubectl delete ns openldap
 ```
 
-The deletion of the namespace is important, as it will cleanup the associated Persistant Volumes. Not doing so will preserve old data.
+Deleting the namespace is important, as it will clean up the associated Persistent Volumes. Not doing so will preserve the old data.

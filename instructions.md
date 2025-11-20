@@ -13,5 +13,6 @@ Now, rewrite all files in 40-applications-integration folder
 
 Now, rewrite all files in 50-kubernetes-integration folder
 
+Now, rewrite all files in 70-appendix folder
 
 
