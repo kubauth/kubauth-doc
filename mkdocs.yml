@@ -31,8 +31,19 @@ nav:
     - User: 60-references/user.md
     - Group: 60-references/group.md
     - GroupBinding: 60-references/groupbinding.md
+  - kc CLI Tool:
+    - Overview: 70-kc/index.md
+    - kc token: 70-kc/token.md
+    - kc token-nui: 70-kc/token-nui.md
+    - kc config: 70-kc/config.md
+    - kc whoami: 70-kc/whoami.md
+    - kc logout: 70-kc/logout.md
+    - kc hash: 70-kc/hash.md
+    - kc audit: 70-kc/audit.md
+    - kc jwt: 70-kc/jwt.md
+    - kc version: 70-kc/version.md
   - Appendix:
-    - OpenLDAP Deployment: 70-appendix/100-openldap.md
+    - OpenLDAP Deployment: 80-appendix/100-openldap.md
 
 
 theme:

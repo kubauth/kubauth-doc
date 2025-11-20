@@ -1,0 +1,213 @@
+# kc jwt
+
+## Overview
+
+The `kc jwt` command decodes and displays JWT (JSON Web Token) contents in a human-readable format. It extracts and pretty-prints the header and payload, and adds human-readable timestamps.
+
+## Syntax
+
+```bash
+kc jwt [token]
+```
+
+or
+
+```bash
+echo <token> | kc jwt
+```
+
+## Arguments
+
+### `[token]` (string, optional)
+The JWT token to decode. If not provided as an argument, reads from stdin.
+
+## Examples
+
+### Decode Token from Argument
+
+```bash
+kc jwt eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiaGNBY2dtdmdBekJlSGgyODlkWHF3USIsImF1ZCI6WyJwdWJsaWMiXSwi...
+```
+
+### Decode Token from Stdin
+
+```bash
+echo "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0..." | kc jwt
+```
+
+### Pipe from kc token
+
+```bash
+kc token --issuerURL https://kubauth.example.com --clientId public --onlyIDToken | kc jwt
+```
+
+## Output
+
+```
+JWT Header:
+{
+  "alg": "RS256",
+  "kid": "f4ccd454-f3a8-447f-a7c3-67ff935136b1",
+  "typ": "JWT"
+}
+
+JWT Payload:
+{
+  "at_hash": "_GWrC20juEb4Zh39S0ly5w",
+  "aud": ["public"],
+  "auth_time": 1761564624,
+  "auth_time_human": "2025-10-27 11:30:24 UTC",
+  "azp": "public",
+  "email": "john@example.com",
+  "emails": ["john@example.com"],
+  "exp": 1761568224,
+  "exp_human": "2025-10-27 12:30:24 UTC",
+  "groups": ["developers", "ops"],
+  "iat": 1761564624,
+  "iat_human": "2025-10-27 11:30:24 UTC",
+  "iss": "https://kubauth.example.com",
+  "jti": "be30eeb2-153f-4dec-97b8-c75d23035f81",
+  "name": "John DOE",
+  "office": "208G",
+  "rat": 1761564624,
+  "rat_human": "2025-10-27 11:30:24 UTC",
+  "sub": "john"
+}
+```
+
+### Human-Readable Timestamps
+
+The decoder adds `_human` suffixed fields for timestamp claims:
+
+- `auth_time_human` - When user authenticated
+- `exp_human` - When token expires
+- `iat_human` - When token was issued  
+- `rat_human` - Token refresh time
+
+!!! note
+    The `*_human` fields are added by the decoder for convenience and are not part of the actual JWT token.
+
+## Use Cases
+
+### Inspect Token Claims
+
+```bash
+# Get token and decode in one command
+kc token --issuerURL https://kubauth.example.com --clientId public -d
+
+# Or pipe explicitly
+kc token --issuerURL https://kubauth.example.com --clientId public --onlyIDToken | kc jwt
+```
+
+### Verify User Information
+
+```bash
+# Check which user and groups are in the token
+kc token --issuerURL https://kubauth.example.com --clientId public --onlyIDToken | \
+  kc jwt | grep -E '"sub"|"groups"'
+```
+
+### Debug Token Issues
+
+```bash
+# Check if expected claims are present
+TOKEN=$(kc token-nui --issuerURL https://kubauth.example.com --clientId public \
+  --login john --password john123 --onlyIDToken)
+echo $TOKEN | kc jwt | grep "office"
+```
+
+### Verify Token Expiration
+
+```bash
+kc token --issuerURL https://kubauth.example.com --clientId public --onlyIDToken | \
+  kc jwt | grep exp_human
+```
+
+### Compare Tokens
+
+```bash
+# Token for user 1
+kc token-nui --issuerURL https://kubauth.example.com --clientId public \
+  --login alice --password alice123 --onlyIDToken | kc jwt > alice-token.json
+
+# Token for user 2
+kc token-nui --issuerURL https://kubauth.example.com --clientId public \
+  --login bob --password bob123 --onlyIDToken | kc jwt > bob-token.json
+
+# Compare claims
+diff alice-token.json bob-token.json
+```
+
+## JWT Structure
+
+### Header
+
+Contains token metadata:
+- `alg` - Signing algorithm (e.g., RS256)
+- `kid` - Key ID used for signing
+- `typ` - Token type (JWT)
+
+### Payload
+
+Contains claims (user information):
+
+**Standard OIDC Claims:**
+- `sub` - Subject (username)
+- `iss` - Issuer URL
+- `aud` - Audience (client ID)
+- `exp` - Expiration time
+- `iat` - Issued at time
+- `auth_time` - Authentication time
+
+**Kubauth-Added Claims:**
+- `name` - User's full name
+- `email` - Primary email
+- `emails` - All emails
+- `groups` - Group memberships
+
+**Custom Claims:**
+- Any claims from User or Group `spec.claims`
+
+## Limitations
+
+### No Signature Verification
+
+The `kc jwt` command only decodes the token; it does not verify the signature. For signature verification, use your application's JWT library or online tools like [jwt.io](https://jwt.io).
+
+### Base64 Decoding Only
+
+This command simply base64-decodes the JWT parts. It doesn't validate:
+- Token expiration
+- Issuer authenticity
+- Signature validity
+
+## Troubleshooting
+
+### Invalid Token Format
+
+**Error:**
+```
+Error: invalid JWT format
+```
+
+**Solution:** Ensure the token is a complete JWT with three dot-separated parts:
+```
+header.payload.signature
+```
+
+### Malformed JSON
+
+If the output shows malformed JSON, the token may be corrupted or incomplete.
+
+## Related Commands
+
+- [`kc token`](token.md) - Get tokens with `-d` flag for automatic decoding
+- [`kc token-nui`](token-nui.md) - Get tokens in terminal
+- [`kc whoami`](whoami.md) - Display decoded token from kubectl context
+
+## See Also
+
+- [Tokens and Claims](../30-user-guide/120-tokens-and-claims.md)
+- [User Reference](../60-references/user.md)
+- [JWT Specification](https://jwt.io/introduction)
+

@@ -19,4 +19,16 @@ In 60-reference folder, write the reference part for CRD OidcClient, User, Group
 
 Update mkdocs.yml accordingly
 
-Write a reference documentation for the kc CLI tool. Source is https://github.com/kubauth/kc
+In the 70-kc folder, add an overview about kc CLI executable and a page for each of the kc subcommand.  Source is https://github.com/kubauth/kc
+
+
+The kc token doc mention a --redirectURL option which does not seems to exists
+
+Could you check for all subcommand that all options you documented really exists.
+
+You removed existing options. Please check the SOURCE CODE
+
+
+Seems too verbose. Focus on essential
+
+

@@ -63,7 +63,7 @@ To switch to this configuration, you must:
 
 The `values-ldap.yaml` file below implements this configuration.
 
-The LDAP configuration itself is tailored for an OpenLDAP server deployed as described in [Appendix/OpenLDAP Deployment](../70-appendix/100-openldap.md).
+The LDAP configuration itself is tailored for an OpenLDAP server deployed as described in [Appendix/OpenLDAP Deployment](../80-appendix/100-openldap.md).
 
 ???+ abstract "values-ldap.yaml"
 
@@ -219,7 +219,7 @@ If browser doesn't open automatically, visit: http://127.0.0.1:9921
 
 If you enter `jim/jim123`, the login will fail.
 
-However, if you enter credentials for a user defined in your LDAP server, the login should succeed. For example, using `fred/fred123` (if using the sample LDAP configuration defined in the [appendix](../70-appendix/100-openldap.md#sample-dataset)):
+However, if you enter credentials for a user defined in your LDAP server, the login should succeed. For example, using `fred/fred123` (if using the sample LDAP configuration defined in the [appendix](../80-appendix/100-openldap.md#sample-dataset)):
 
 
 ```bash
