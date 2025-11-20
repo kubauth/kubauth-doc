@@ -1,18 +1,18 @@
 # Configuration
 
-Basic Kubauth configuration is based on:
+Kubauth configuration is based on:
 
-- Helm chart variable
-- Users and Groups as Kubernetes Custom Resources
-- Client Application as Kubernetes Custom Resources.
+- Helm chart variables
+- Users and Groups defined as Kubernetes Custom Resources
+- Client Applications defined as Kubernetes Custom Resources
 
-We suggest you apply the sample configuration described below as this will be used in subsequent chapters.
+We recommend applying the sample configuration described below, as it will be referenced in subsequent chapters.
 
-## User creation
+## User Creation
 
-With Kubauth users may be defined as Kubernetes Custom Resources.
+With Kubauth, users can be defined as Kubernetes Custom Resources.
 
-Here is a sample manifest which will create two users:
+Here is a sample manifest that creates two users:
 
 ???+ abstract "users.yaml"
 
@@ -42,19 +42,19 @@ Here is a sample manifest which will create two users:
     ```
 
 - The resource name is the user login.
-- User must be defined in a specific namespace (`kubauth-users`). This to allow control using k8s rbac.
-- The only mandatory user attribute is its password, provided as a hash.
-- A `name` attribute can be set with the user full name.
-- A list of emails can be associated to each user.
-- To each user can be associated a list of supplementary OIDC claims, which will be merged with the system provided one. More on this below
+- Users must be defined in a specific namespace (`kubauth-users`) to enable access control using Kubernetes RBAC.
+- The only mandatory user attribute is the password, provided as a bcrypt hash.
+- A `name` attribute can be set to specify the user's full name.
+- A list of email addresses can be associated with each user.
+- Each user can have a set of supplementary OIDC claims defined in `spec.claims`, which will be merged with system-provided claims. More details on this below.
 
-Deploy the manifest on your clusters
+Deploy the manifest on your cluster:
 
 ``` { .bash .copy }
 kubectl apply -f users.yaml 
 ```
 
-You can now list the newly created users
+List the newly created users:
 
 ``` { .bash .copy }
 kubectl -n kubauth-users get users.kubauth.kubotal.io
@@ -66,15 +66,15 @@ john   John DOE   ["johnd@mycompany.com"]                              67m
 ```
 
 !!! note
-    We better provide the fully qualified name of the resource, as `user` may refer to several other Kind of CRD.<br>
-    For this reason, an alias (`kuser`) has also be defined for kubauth's users:
+    We provide the fully qualified resource name, as `user` may refer to other CRD types.<br>
+    For convenience, an alias (`kuser`) has also been defined for Kubauth users:
     ``` { .bash .copy }
     kubectl -n kubauth-users get kusers
     ```
 
-### Password hash
+### Password Hash
 
-The `kc` CLI tool provide a subcommand to generate the hash of a password:
+The `kc` CLI tool provides a subcommand to generate password hashes:
 
 ``` { .copy }
 kc hash jim123
@@ -103,11 +103,11 @@ Example:
     hashedSecret: "$2a$12$nSplFbbsGoI7LXdhJrKx0erRmIv.zkTftG82sQZA0.v3l1eCf.ey."
 ```
 
-Just cut/paste appropriate line in your user manifest.
+Copy and paste the appropriate line into your user manifest.
 
 ### Namespace
 
-If, for any reason, you need to change the namespace storing users resources definition, this can be modified by setting a helm chart configuration value: 
+If you need to change the namespace for user resource storage, modify the Helm chart configuration:
 
 ???+ abstract "values.yaml"
 
@@ -123,13 +123,13 @@ If, for any reason, you need to change the namespace storing users resources def
 
     ```
 
-## OIDC Client creation
+## OIDC Client Creation
 
-In OIDC terminology, a 'client' is an application delegating user's authentication to an OIDC server. As such, it must be referenced in the server.
+In OIDC terminology, a 'client' is an application that delegates user authentication to an OIDC server. As such, it must be registered with the server.
 
-With Kubauth, a client application is defined as a Kubernetes Custom resource.
+With Kubauth, client applications are defined as Kubernetes Custom Resources.
 
-Here is a first sample:
+Here is an initial example:
 
 ???+ abstract "client-public.yaml"
 
@@ -155,12 +155,11 @@ Here is a first sample:
     ```
 
 - The resource name is the client ID.
-- The `redirectURIs` list must be adjusted for each application. The value here is specific to the test client included in the `kc` cli. See below.
-- The `grantTypes` list define which authorization flow will be accepted by this client definition.
-- The `responseTypes` list define what kind of tokens or credentials the client can expects to receive from the authorization endpoint after the user authenticates.
-- The `scopes` list define which scope can be requested by the application. 
-- This client is defined as `public`. As such no client secret need to be provided.<br>For non-public client, a `secret` in hashed form must be provided, as in the commented line. 
-  Use the `kc hash` command described previously to generate it.
+- The `redirectURIs` list must be configured for each application. The value shown here is specific to the test client included in the `kc` CLI (see below).
+- The `grantTypes` list defines which authorization flows are accepted by this client.
+- The `responseTypes` list defines what types of tokens or credentials the client can expect from the authorization endpoint after user authentication.
+- The `scopes` list defines which scopes can be requested by the application.
+- This client is defined as `public`, so no client secret is required.<br>For confidential clients, a hashed `secret` must be provided, as shown in the commented line. Use the `kc hash` command described above to generate it.
 
 Apply this manifest:
 
@@ -168,7 +167,7 @@ Apply this manifest:
 kubectl apply -f client-public.yaml
 ```
 
-You can list existing OIDC client:
+List existing OIDC clients:
 
 ``` { .bash .copy }
 kubectl -n kubauth-oidc get oidcclients
@@ -179,12 +178,12 @@ NAME     PUB.   DISPLAY   DESCRIPTION                 LINK   AGE
 public   true             A test OIDC public client          25m
 ```
 
-> This client will be used in next chapter, to test Tokens and Claims
+> This client will be used in the next chapter to test tokens and claims.
 
 
 ### Namespace
 
-If, for any reason, you need to change the namespace storing clients resources definition, this can be modified by setting a helm chart configuration value:
+If you need to change the namespace for client resource storage, modify the Helm chart configuration:
 
 ???+ abstract "values.yaml"
 

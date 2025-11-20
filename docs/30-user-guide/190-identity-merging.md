@@ -1,18 +1,16 @@
-# Identity merging
+# Identity Merging
 
-In previous chapters, each user was defined inside a specific provider database. But Kubauth allow properties of a given user defined in two (or more) ID provider to be merged. 
+In previous chapters, each user was defined within a specific provider database. However, Kubauth allows properties of a user defined in two (or more) identity providers to be merged.
 
-This will allow, for example, to enrich a user profile from a central user repository by local (cluster wide) specific properties.
+This enables you to, for example, enrich a user profile from a central repository with local (cluster-specific) properties.
 
-> This is specially useful if you have a READ ONLY access to your LDAP server.
+> This is especially useful if you have read-only access to your LDAP server.
 
-## Sample setup
+## Sample Setup
 
-Here is an example manifest to exercise this capability:
+Here is an example manifest to demonstrate this capability:
 
-> It is assumed here than Kubauth is configured with an LDAP and an local CRD user database, 
-  as described in previous chapter, with Users and Groups sample dataset.
-  And than `alice` and `bob` are existing user defined in the LDAP Server.
+> This assumes Kubauth is configured with both LDAP and local CRD user databases as described in the previous chapter, with Users and Groups sample datasets, and that `alice` and `bob` are existing users defined in the LDAP server.
 
 ???+ abstract "ldap-addon.yaml"
 
@@ -45,8 +43,8 @@ Here is an example manifest to exercise this capability:
 
 This will:
 
-- Create a user `alice` in the k8S CRD user storage (`ucrd`). As a duplicate of the existing one in LDAP referential. `name`, `claims` and `emails` properties are provided.
-- Bind the user `bob` to the group `ops`. Note than this user does not exist in the `ucrd` provider.
+- Create a user `alice` in the Kubernetes CRD user storage (`ucrd`), duplicating the one in the LDAP directory. The `name`, `claims`, and `emails` properties are provided.
+- Bind the user `bob` to the group `ops`. Note that this user does not exist in the `ucrd` provider.
 
 Apply this manifest:
 
@@ -56,11 +54,11 @@ kubectl apply -f ldap-addon.yaml
 
 ## Logins
 
-> To ease testing we will use the 'no User Interface' of the `kc token` tool. Remember, this will use a [specific configuration](./160-password-grant.md)
+> To simplify testing, we will use the 'no User Interface' mode of the `kc token` tool. Remember, this requires [specific configuration](./160-password-grant.md).
 
 ### Bob
 
-First, log as `bob` user
+First, log in as the `bob` user:
 
 ``` { .bash .copy }
 kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login bob --password bob123 -d
@@ -98,14 +96,14 @@ JWT Payload:
 }
 ```
 
-One can check here than:
+You can verify that:
 
-- We got a JWT token, so authentication is successful.
-- We have a `autority` claim. This is added by Kubauth and is the provider name which validate the user's credentials.
-- The `groups` claim is made of the concatenation of the group list of each provider. With de-duplication
-- There is an `accessProfile": p24x7` claim. This is a Claim granted to all members of the group `ops` defined in the `ucrd` provider.
+- We received a JWT token, so authentication was successful.
+- There is an `authority` claim. This is added by Kubauth and indicates which provider validated the user's credentials.
+- The `groups` claim is the concatenation of the group lists from each provider, with de-duplication.
+- There is an `accessProfile: p24x7` claim. This is a claim granted to all members of the `ops` group defined in the `ucrd` provider.
 
-As it can be tricky to check from where a value is coming from, Kubauth provide a tool to lookup user details:
+Since it can be difficult to determine where each value originates, Kubauth provides a tool to look up user details:
 
 ``` { .bash .copy }
 kc audit detail bob
@@ -119,13 +117,12 @@ ldap       passwordChecked   -     Bob MORANE   [staff]   {}                    
 ucrd       userNotFound      -                  [ops]     {"accessProfile":"p24x7"}   []
 ```
 
-This tool will lookup the last login for the user provided as parameter. It first display a line with the same format as the `kc audit logins` command.
-Then, it display another array with, for each provider, which information is provided
+This tool looks up the last login for the specified user. It first displays a line in the same format as the `kc audit logins` command. Then it displays a table showing what information each provider contributed.
 
 
 ### alice
 
-Now, login as `alice` user:
+Now, log in as the `alice` user:
 
 ``` { .bash .copy }
 kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login alice --password alice123 -d
@@ -165,17 +162,15 @@ JWT Payload:
 }
 ```
 
-We can check than:
+We can verify that:
 
-- We are logged using credentials from the LDAP server.
+- We are logged in using credentials from the LDAP server.
 - The `authority` claim is set to `ldap`.
-- The claim `office: 312R` from the `ucrd` provider is present
-- The `emails` claim is made of the concatenation of the emails list of each provider. With de-duplication
-- The `name` claim is the one from the LDAP definition. While there is another value in the `ucrd` database, 
-  the value from LDAP take precedence, as the LDAP provider is before in the list. 
-  The value from CRD based definition would have been used if LDAP did not provide any value. 
+- The `office: 312R` claim from the `ucrd` provider is present.
+- The `emails` claim is the concatenation of the email lists from each provider, with de-duplication.
+- The `name` claim is from the LDAP definition. While there is a different value in the `ucrd` database, the LDAP value takes precedence because the LDAP provider is listed first. The CRD value would be used if LDAP did not provide a value.
 
-You can also use `kc audit detail...` to figure out what happen:
+You can also use `kc audit detail ...` to understand what happened:
 
 ``` { .bash .copy }
 kc audit detail alice
@@ -192,7 +187,7 @@ ucrd       passwordFail      -     Alice SMITH-WESSON   []                 {"off
 
 ### alice (2)
 
-Now, let's try to login with the password defined in the `ucrd` user database: 
+Now, let's try to log in with the password defined in the `ucrd` user database:
 
 ``` { .bash .copy }
 kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login alice --password smith123 -d
@@ -217,19 +212,20 @@ ldap       passwordFail      -     Alice SMITH          [staff,managers]   {}   
 ucrd       passwordChecked   -     Alice SMITH-WESSON   []                 {"office":"312R"}   [alice@mycompany.com,alice.smith@mycompany.com]
 ```
 
-Although this password was validated by the `ucrd` provider, the login fail. 
-This is intended behavior, as, for a user defined in a prioritized provider, we don't want a secondary one to allow a password change.
+Although the password was validated by the `ucrd` provider, the login failed. This is intentional behavior: for a user defined in a higher-priority provider, we don't want a secondary provider to allow password changes.
 
-In other words, the first provider in the list which define a password for a given user will validate it. (either successfully or not).
+In other words, the first provider in the list that defines a password for a given user will validate it (either successfully or not).
 
-> The providers list order is important
+!!! note
+    
+    This is why **the provider list order is important**.
 
-This also means the password definition in the k8s CR database for `alice` is useless.
+This also means the password definition in the Kubernetes CR database for `alice` is unused.
 
 
 ### john
 
-Now, let's try to login with `john` user.
+Now, let's try to log in with the `john` user:
 
 ``` { .bash .copy }
 kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login john --password john123 -d
@@ -250,9 +246,9 @@ JWT Payload:
 
 ``` { .bash .copy }
 kc audit detail john
+```
+```
 WHEN           LOGIN   STATUS            UID   NAME       GROUPS       CLAIMS                                      EMAILS                  AUTH
-```
-```
 Thu 16:14:04   john    passwordChecked   -     John DOE   [devs,ops]   {"accessProfile":"p24x7","office":"208G"}   [johnd@mycompany.com]   ucrd
 Detail:
 PROVIDER   STATUS            UID   NAME       GROUPS       CLAIMS                                      EMAILS
@@ -260,18 +256,17 @@ ldap       userNotFound      -                []           {}                   
 ucrd       passwordChecked   -     John DOE   [devs,ops]   {"accessProfile":"p24x7","office":"208G"}   [johnd@mycompany.com]
 ```
 
-This time, the login is successful. This because `john` does not exists on the LDAP side, So the authentication by the `ucrd` provider is effective.
+This time, the login is successful. This is because `john` does not exist in LDAP, so authentication by the `ucrd` provider is effective.
 
-In other words, with the configuration, an administrator which have access to a Kubernetes cluster resource but no access to a central 
-LDAP server will be able to create local users, but will be unable to change a global user password. 
+In other words, with this configuration, an administrator who has access to Kubernetes cluster resources but no access to the central LDAP server will be able to create local users, but will be unable to change a global user's password.
 
-## ID Provider configuration
+## Identity Provider Configuration
 
-### Provider properties
+### Provider Properties
 
-As stated above, provider's order is important. But there is also a way to control which kind of information each provider will add to the user profile.
+As stated above, provider order is important. However, you can also control what type of information each provider contributes to the user profile.
 
-Here is an extract of the values file of the Helm chart, which, by default, configure a single `ucrd` provider with default values:
+Here is an extract from the Helm chart values file, which by default configures a single `ucrd` provider with default values:
 
 
 ???+ abstract "values.yaml"
@@ -295,24 +290,23 @@ Here is an extract of the values file of the Helm chart, which, by default, conf
       ....
     ```
 
-- **`credentialAuthority`**: Setting this attribute to 'false' will prevent this provider from authenticating any user.
-- **`groupAuthority`**: Setting this attribute to false will prevent the `groups` from this provider from being added to each user.
-- **`groupPattern`**: Allows you to decorate with prefix or postfix all groups provided by this provider. See the example below
-- **`claimAuthority`**: Setting this attribute to false will prevent the `claims` from this provider from being added to each user.
-- **`claimPattern`**: Allows you to decorate with prefix or postfix all claims provided by this provider. This apply only on first level, if the claim is itself a map.
-- **`nameAuthority`**: Setting this attribute to false will prevent the name from this provider from being added to each user.
-- **`emailAuthority`**: Setting this attribute to false will prevent `emails` from this provider from being added to each user.
-- **`critical`**: Defines the behavior of the chain if this provider is down or out of order (e.g., LDAP server is down). 
-    - If true, then all authentication will fail. 
-    - If false, provider is skipped and authentication is performed as if ot was not existing.
-- **`uidOffset`**: This will be added to the UID value if this provider is the authority for this user.
+- **`credentialAuthority`**: Setting this to `false` prevents this provider from authenticating any user.
+- **`groupAuthority`**: Setting this to `false` prevents groups from this provider from being added to user profiles.
+- **`groupPattern`**: Allows you to decorate all groups from this provider with a prefix or suffix. See the example below.
+- **`claimAuthority`**: Setting this to `false` prevents claims from this provider from being added to user profiles.
+- **`claimPattern`**: Allows you to decorate all claims from this provider with a prefix or suffix. This applies only to the first level if the claim is itself a map.
+- **`nameAuthority`**: Setting this to `false` prevents the name from this provider from being added to user profiles.
+- **`emailAuthority`**: Setting this to `false` prevents emails from this provider from being added to user profiles.
+- **`critical`**: Defines behavior if this provider is down or unavailable (e.g., LDAP server is down).
+    - If `true`, all authentication will fail.
+    - If `false`, the provider is skipped and authentication proceeds as if it didn't exist.
+- **`uidOffset`**: This value is added to the UID if this provider is the authority for the user.
 
-!!! notes
+!!! note
 
-    The properties are provided in the helm chart for documentation purpose. 
-    As they match built-in values, the previous snippet is equivalent to 
+    These properties are provided in the Helm chart for documentation purposes. Since they match built-in defaults, the previous snippet is equivalent to:
     
-    ```
+    ``` { .yaml .copy }
     merger:
       .....
       idProviders:
@@ -325,17 +319,17 @@ Here is an extract of the values file of the Helm chart, which, by default, conf
 
 ### Example
 
-Given the following requirement:
+Given the following requirements:
 
-- We want to ensure all users are referenced in a central, corporate repository. (No local users anymore)
-- We still want to be able to enrich users with local attributes (Groups binding, claims, ...)
-- We want to identify all groups which where issued from LDAP.
+- We want to ensure all users are referenced in a central, corporate repository (no local users)
+- We still want to enrich users with local attributes (group bindings, claims, ...)
+- We want to identify all groups issued from LDAP
 
-So:
+Therefore:
 
-- First point means must prevent local user authentication.
-- Second point means we still need a `ucrd` K8S CR database to be effective.
-- Third point will be solved by adding a prefix to the groups provided through LDAP.
+- The first requirement means we must prevent local user authentication
+- The second requirement means we still need a `ucrd` Kubernetes CR database to be active
+- The third requirement will be solved by adding a prefix to groups provided through LDAP
 
 This can be achieved by modifying the `merger` configuration in the Helm values file:
 
@@ -359,15 +353,15 @@ This can be achieved by modifying the `merger` configuration in the Helm values 
     .....
     ```
 
-After using an Helm update
+After applying the Helm update:
 
 ``` { .bash .copy }
 helm -n kubauth upgrade -i kubauth --values ./values-merger.yaml oci://quay.io/kubauth/charts/kubauth --version 0.1.2-snapshot --create-namespace --wait
 ```
 
-we can now check than:
+we can now verify that:
 
-- Users `jim` and `john` seems now unexisting.
+- Users `jim` and `john` now appear to be non-existent:
     ``` { .bash .copy }
     kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login john --password john123 -d
     ```
@@ -376,7 +370,7 @@ we can now check than:
     ```
 
 
-- Enrichment of LDAP users attribute are still effective. And the group from LDAP has been prefixed.
+- Enrichment of LDAP user attributes is still effective, and groups from LDAP have been prefixed:
     ``` { .bash .copy }
     kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login bob --password bob123 -d
     ```
@@ -408,7 +402,6 @@ we can now check than:
     ```
 
 
-!!! notes
+!!! note
     
-    As we may use users 'jim' and 'john' later in this manuel, we suggest you bring them alive, 
-    by setting back `merger.idProviders["ucrd'].credentialAuthority: true` and applying again the Helm chart.
+    Since we may use the `jim` and `john` users later in this manual, we recommend restoring them by setting `merger.idProviders["ucrd"].credentialAuthority: true` and reapplying the Helm chart.

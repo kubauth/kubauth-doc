@@ -45,6 +45,21 @@ Setup new context 'oidc-kubo6' in kubeconfig file '/Users/john/.kube/config'
 
     If such a context already exists in you config file, it will not be overwritten and you will get an error message. Use the `--force` option to override.
 
+
+!!! tip
+
+    If you encounter an error like `tls: failed to verify certificate: x509:...`, the CA associated with your ClusterIssuer is not recognized on your local workstation.
+
+    - Add the `--insecureSkipVerify` option to the `kc config` command. You will also need to configure your browser to accept the certificate.
+    - Add the CA as a trusted certificate on your local workstation. You can extract it with:
+      ``` { .bash .copy }
+      kubectl -n kubauth get secret kubauth-oidc-server-cert \
+        -o=jsonpath='{.data.ca\.crt}' | base64 -d >./ca.crt 
+      ```
+
+
+
+
 For information, here is a sample of a local config file resulting of this operation
 
 ???- abstract "config.yaml"

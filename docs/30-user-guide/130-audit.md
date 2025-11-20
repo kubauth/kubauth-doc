@@ -1,6 +1,6 @@
 # Audit
 
-Kubauth store all login attempts. You can display them with the following `kc` subcommand:
+Kubauth records all login attempts. You can display them using the following `kc` subcommand:
 
 ``` { .bash .copy }
 kc audit logins
@@ -13,11 +13,11 @@ Mon 12:58:29   john    passwordChecked   -     John DOE   []       {"office":"20
 Mon 15:34:59   john    passwordChecked   -     John DOE   []       {"office":"208G"}   [johnd@mycompany.com]   
 ```
 
-!!! notes
+!!! note
 
-    The Claims stored in audit are only the ones bound to the user's Custom Resources.
+    The claims stored in audit records are only those defined in the User Custom Resource.
 
-Each attempt is stored as a Kubernetes resource `LoginAttempt.kubauth.kubotal.io` in the namespace `kubauth-login`
+Each attempt is stored as a Kubernetes resource `LoginAttempt.kubauth.kubotal.io` in the `kubauth-audit` namespace:
 
 ``` { .bash .copy }
 kubectl -n kubauth-audit get loginattempts
@@ -32,7 +32,7 @@ john-2025-10-27-14-34-59-923   john    John DOE   passwordChecked               
 
 ## Configuration
 
-This history is cleaned every 5 minutes by removing all records older than 8 hours. This can be modified by setting a helm chart configuration value:
+The audit history is cleaned every 5 minutes by removing all records older than 8 hours. This can be modified using Helm chart configuration:
 
 ???+ abstract "values.yaml"
 

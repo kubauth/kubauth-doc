@@ -1,40 +1,41 @@
 
 # Tokens and Claims
 
-## Get a token
+## Obtaining a Token
 
-The Kubauth companion CLI application `kc` provide an embedded OIDC client application. Beside being used as here for testing installation,
-its aim is to provide a tool to fetch Access token or OIDC token, ready to be injected in whatever application.
+The Kubauth companion CLI application `kc` provides an embedded OIDC client. Beyond testing the installation, its primary purpose is to fetch access tokens or ID tokens for use in any application.
 
-Launch the following command, after adjusting the issuerURL;
+Launch the following command after adjusting the issuer URL:
 
 ``` { .bash .copy }
 kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public
 ```
 
-!!! notes
+> Adjust the `issuerURL` to the value set previously in Kubauth configuration  
 
-    If you got an error like `tls: failed to verify certificate: x509:...`, this means the CA associated to the ClusterIssuer is not reckonized on your local work station.
+!!! tip
 
-    - Add the `--insecureSkipVerify` open on the `kc token` command. You will also have to force your browser to accept such situation.
-    - Add the CA as a trusted one on your local workstation. You can extract it with a command like:
+    If you encounter an error like `tls: failed to verify certificate: x509:...`, the CA associated with your ClusterIssuer is not recognized on your local workstation.
+
+    - Add the `--insecureSkipVerify` option to the `kc token` command. You will also need to configure your browser to accept the certificate.
+    - Add the CA as a trusted certificate on your local workstation. You can extract it with:
       ``` { .bash .copy }
-      kubectl -n cert-manager get secret cluster-odp-ca \
-        -o jsonpath='{.data.ca\.crt}' | base64 -d >./ca.crt 
+      kubectl -n kubauth get secret kubauth-oidc-server-cert \
+        -o=jsonpath='{.data.ca\.crt}' | base64 -d >./ca.crt 
       ```
 
 
-Your browser should open on the kubauth login page:
+Your browser should open to the Kubauth login page:
 
 ![login](../assets/kubauth-login.png){ .center width="50%" }
 
-Log in using `jim/jim123`. You should land on a page like the following
+Log in using `jim/jim123`. You should land on a page similar to the following:
 
 ![tokens](../assets/kubauth-tokens.png){ .center width="70%" }
 
-Where you can copy the provided tokens from.
+From this page, you can copy the provided tokens.
 
-Theses tokens are also in the CLI response:
+These tokens are also displayed in the CLI response:
 
 ```bash
 Access token: ory_at_xLUfAhEGpFVWpMLdNEDZAj94hHFrHWjgOYB5g0Leh_k.0rgIzRGFOiIeGsMKnIZ74QL4Ve5vVOuEZyhA0402u8Y
@@ -49,8 +50,8 @@ Let's try another variant of the command:
 kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --onlyIDToken | kc jwt
 ```
 
-- The `--onlyIDToken` instruct the command to display only the base64 encoded OIDC token. Useful for batch inclusion.
-- The `kc jwt` act as a filter to decode the jwt token.
+- The `--onlyIDToken` option instructs the command to output only the base64-encoded ID token, useful for batch processing.
+- The `kc jwt` command decodes the JWT token.
 
 The response should look like:
 
@@ -83,26 +84,25 @@ JWT Payload:
 }
 ```
 
-!!! notes
+!!! note
 
-    The `auth_time_human`, `exp_human`, `iat_human` and `rat_human` are not effective claims, 
-    but values added by the filter to ease interpretation of the corresponding timestamp values.
+    The `auth_time_human`, `exp_human`, `iat_human`, and `rat_human` fields are not actual claims but human-readable values added by the decoder to aid interpretation of the corresponding timestamp values.
 
-There is also a shortcut (`-d`) to this command:
+There is also a shortcut (`-d`) for this command:
 
 ``` { .bash .copy }
 kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public -d
 ```
 
-NB: Using this option skip the JWT header.
+Note: This option skips the JWT header.
 
 ## Claims
 
-A set of 'system' Claims are set by the OIDC server. You will find a [description of most of them here](http://openid.net/specs/openid-connect-core-1_0.html#IDToken){:target="_blank"}.
+A set of 'system' claims are provided by the OIDC server. You can find a [description of most standard claims here](http://openid.net/specs/openid-connect-core-1_0.html#IDToken){:target="_blank"}.
 
-Another important one is the `sub` token. Stand for 'subject' and is in fact the user's login.
+Another important claim is `sub`, which stands for 'subject' and represents the user's login.
 
-Now, type again the previous command, but use john/john123 when prompted for login:
+Now, run the previous command again, but use `john/john123` when prompted for login:
 
 ```
 JWT Payload:
@@ -132,24 +132,24 @@ JWT Payload:
 }
 ```
 
-Kubauth has added some new claims, issued from the `user` resource définition:
+Kubauth has added several new claims derived from the `User` resource definition:
 
-- `name`: The user `spec.name` property. Used to to the full user name.
-- `emails`: The user `spec.emails` list.
-- `email`: The first email of the previous list.
-- `office`: The content of the `spec.claims` property. Could contains whatever valid map values.
+- `name`: The `spec.name` property, containing the user's full name.
+- `emails`: The `spec.emails` list.
+- `email`: The first email from the emails list.
+- `office`: Content from the `spec.claims` property, which can contain any valid map values.
 
 
-The principle is the resulting set of claim is the result of the merge of:
+The resulting claim set is the result of merging:
 
-- An initial set of system ones (`aud`, `azp`, `exp`, `iss`, ...)
-- Some added by Kubauth from the Kubernetes CRD based definition:
-    - `name`
-    - `emails`
-    - `groups` (Will be describe in a next chapter)
-- The content of the user's `spec.claims`
+- An initial set of system claims (`aud`, `azp`, `exp`, `iss`, ...)
+- Claims added by Kubauth from the user CRD definition:
+    - `name` from `spec.name`
+    - `emails` from `spec.emails`
+    - `groups` described in a [following chapter](./150-users-groups.md)
+- The contents of the user's `spec.claims`
 
 !!! warning
 
-    On the current version, claims are not filtered by scope. In other words, all claims of a user are provided in the OIDC token.
+    In the current version, claims are not filtered by scope. In other words, all user claims are included in the ID token.
 

@@ -6,3 +6,5 @@ Could you rewrite 20-installation.md in correct technical english.
 Don't touch the remaining of the manuel for now.
 
 Now, rewrite index.md
+
+Now, rewrite all files in 30-user-guide folder

@@ -1,8 +1,8 @@
-# LDAP connector
+# LDAP Connector
 
-## Kubauth architecture
+## Kubauth Architecture
 
-If you look inside the `kubauth` pod, you will find it is currently made of 3 containers:
+If you inspect the `kubauth` pod, you will find it currently consists of 3 containers:
 
 ``` { .bash .copy }
 kubectl -n kubauth get pod -l app.kubernetes.io/instance=kubauth
@@ -12,7 +12,7 @@ NAME                       READY   STATUS    RESTARTS   AGE
 kubauth-65dbdbb447-bl4qz   3/3     Running   0          17m
 ```
 
-We can list them:
+List the containers:
 
 ``` { .bash .copy }
 kubectl -n kubauth get pod -l app.kubernetes.io/instance=kubauth -o jsonpath='{range .items[0].spec.containers[*]}{.name}{"\n"}{end}'
@@ -23,47 +23,47 @@ audit
 ucrd
 ```
 
-Kubauth is build from a modular architecture. The following schema describe the default configuration:
+Kubauth is built on a modular architecture. The following diagram describes the default configuration:
 
 ![containers](../assets/archi-default.png){ align=left width="40%" }
 
-To exchange together, all modules use the same very simple identity protocol, with only one exchange type.
+All modules communicate using the same simple identity protocol with a single exchange type:
 
-- The Request provide a login and optionally a password
-- The Response provide a status (NotFound, PasswordFail, PasswordChecked, ....) and all user related information (Name, Emails, Claims, ....) it can provide
+- The Request provides a login and optionally a password
+- The Response provides a status (NotFound, PasswordFail, PasswordChecked, ...) and all available user-related information (Name, Emails, Claims, ...)
 
-All communication between modules (aka container) are using `localhost`. As such they remains 'private' and not exposed outside of the pod.
+All communication between modules (containers) uses `localhost`, keeping it private and not exposed outside the pod.
 
-Each module (or container) listen on a specific port
- 
-- The `OIDC` module handle all user interaction and initiate an identity request.
-- The `audit` is a transparent pass trough for the protocol. It log all request to provide the Audit feature described previously
-- The `ucrd` module will access the User, Groups and GroupBinding Custom resource to build the response.
+Each module (container) listens on a specific port:
 
-All these module are 'built-in' the kubauth image. And assembly is performed by the helm chart.
+- The `oidc` module handles all user interaction and initiates identity requests
+- The `audit` module is a transparent pass-through for the protocol, logging all requests to provide the audit feature described previously
+- The `ucrd` module accesses the User, Group, and GroupBinding Custom Resources to build the response
+
+All these modules are built into the kubauth image. Assembly is performed by the Helm chart.
 
 
 ![](../assets/empty.png){width="100%"}
 
 
-There is another build-in module: `ldap` which will serve the identity protocol by connecting to an external LDAP server
+There is another built-in module: `ldap`, which implements the identity protocol by connecting to an external LDAP server.
 
 Here is the new configuration:
 
 ![containers](../assets/archi-ldap.png){ align=left width="40%" }
 
-To switch onto this new configuration, we must:
+To switch to this configuration, you must:
 
-- Disable the `ucrd` module.
-- Activate the `ldap` module
-- Configure the `audit` module to request the `ldap` (Listening on port 6803) module instead of `ucrd` (Was listening in port 6802)
-- Configure the `ldap` module depending of the target LDAP Server
+- Disable the `ucrd` module
+- Enable the `ldap` module
+- Configure the `audit` module to request the `ldap` module (listening on port 6803) instead of `ucrd` (which listened on port 6802)
+- Configure the `ldap` module for your target LDAP server
 
 ![](../assets/empty.png){width="100%"}
 
-The `values-ldap.yaml` file below setup this configuration.
+The `values-ldap.yaml` file below implements this configuration.
 
-The ldap configuration itself is tailored for an OpenLDAP server deployed as described on [Appendix/OpenLDAP deployment](../70-appendix/100-openldap.md)
+The LDAP configuration itself is tailored for an OpenLDAP server deployed as described in [Appendix/OpenLDAP Deployment](../70-appendix/100-openldap.md).
 
 ???+ abstract "values-ldap.yaml"
 
@@ -81,7 +81,7 @@ The ldap configuration itself is tailored for an OpenLDAP server deployed as des
     
     audit:
       idProvider:
-        baseURL: http://localhost:6803  # ldap provider listenning port
+        baseURL: http://localhost:6803  # ldap provider listening port
     
     ucrd:
       enabled: false
@@ -109,9 +109,9 @@ The ldap configuration itself is tailored for an OpenLDAP server deployed as des
           numericalIdAttr: uidNumber
     ```
 
-## LDAP configuration
+## LDAP Configuration
 
-If you need to configure another kind of LDAP server, each property is documented in the Helm chart value file. For convenience, below is the corresponding extract:  
+If you need to configure a different type of LDAP server, each property is documented in the Helm chart values file. For convenience, the relevant extract is provided below:
 
 
 ???- abstract "values-ldap-commented.yaml"
@@ -190,13 +190,13 @@ If you need to configure another kind of LDAP server, each property is documente
 
 ## Deployment
 
-One your configuration is ready, you can proceed with its deployment, by launching an `helm update ....` command:
+Once your configuration is ready, proceed with deployment by running the `helm upgrade ...` command:
 
 ``` { .bash .copy }
 helm -n kubauth upgrade -i kubauth --values ./values-ldap.yaml oci://quay.io/kubauth/charts/kubauth --version 0.1.2-snapshot --create-namespace --wait
 ```
 
-You can check which containers has now been deployed:
+Verify which containers have been deployed:
 
 ``` { .bash .copy }
 kubectl -n kubauth get pod -l app.kubernetes.io/instance=kubauth -o jsonpath='{range .items[0].spec.containers[*]}{.name}{"\n"}{end}'
@@ -204,10 +204,10 @@ kubectl -n kubauth get pod -l app.kubernetes.io/instance=kubauth -o jsonpath='{r
 ```bash
 oidc
 audit
-ucrd
+ldap
 ```
 
-And you can now test authentication:
+Test authentication:
 
 
 ``` { .bash .copy }
@@ -217,10 +217,9 @@ kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public -d
 If browser doesn't open automatically, visit: http://127.0.0.1:9921
 ```
 
-If you enter `jim/jim123`, you will have a login fail.
+If you enter `jim/jim123`, the login will fail.
 
-But, if you enter the credentials of a user defined in your LDAP, you should have a successful login. For example, using `fred/fred123` 
-if using the sample LDAP configuration defined in [appendix](../70-appendix/100-openldap.md#sample-dataset).
+However, if you enter credentials for a user defined in your LDAP server, the login should succeed. For example, using `fred/fred123` (if using the sample LDAP configuration defined in the [appendix](../70-appendix/100-openldap.md#sample-dataset)):
 
 
 ```bash
@@ -258,7 +257,7 @@ JWT Payload:
 }
 ```
 
-And regarding Audit track record:
+Check the audit trail:
 
 ``` { .bash .copy }
 kc audit logins

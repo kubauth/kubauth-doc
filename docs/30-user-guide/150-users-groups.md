@@ -1,11 +1,10 @@
-# Users Groups
+# User Groups
 
-For most application, a Key attribute of a user is the groups this user belong to. To handle this, 
-Kubauth user management support a Custom Resource: `GroupBinding.kubauth.kubotal.io`
+For most applications, a key attribute of a user is the groups they belong to. To handle this, Kubauth user management supports a Custom Resource: `GroupBinding.kubauth.kubotal.io`
 
 ## GroupBinding
 
-Here is a sample manifest
+Here is a sample manifest:
 
 ???+ abstract "group1.yaml"
 
@@ -21,24 +20,22 @@ Here is a sample manifest
       group: devs
     ```
 
-This will associate the user `jim` to the group `devs`. Note there is no explicit creation of a `dev` group. 
-With Kubauth, a group can exist only because it is referenced by a `GroupBinding`.
+This associates the user `jim` with the group `devs`. Note that there is no explicit creation of a `devs` group. With Kubauth, a group exists simply by being referenced in a `GroupBinding`.
 
 
-!!! notes
+!!! note
 
-    Generally, Kubernetes does not check referential integrity when creating a resource that references another one.
-    For example, the following will work:
+    Generally, Kubernetes does not enforce referential integrity when creating resources that reference other resources. For example, the following will succeed:
     
     ```shell
-    kubectl -n ldemo create rolebinding missing-integrity --role=unexisting-role --group=unexisting-group
+    kubectl -n mynamespace create rolebinding missing-integrity --role=unexisting-role --group=unexisting-group
 
     rolebinding.rbac.authorization.k8s.io/missing-integrity created
     ```
     
-    Maybe the referenced resource will be created later, or the link will be useless. This is evidently a design choice in Kubernetes, and Kubauth follows the same logic.
+    The referenced resource might be created later, or the reference might never be used. This is by design in Kubernetes, and Kubauth follows the same pattern.
 
-Now, apply the manifest:
+Apply the manifest:
 
 ``` { .bash .copy }
 kubectl apply -f group1.yaml
@@ -47,13 +44,13 @@ kubectl apply -f group1.yaml
 groupbinding.kubauth.kubotal.io/jim-dev created
 ```
 
-Now, login with the `jim` account:
+Now, log in with the `jim` account:
 
 ``` { .bash .copy }
 kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public -d
 ```
 
-When looking at the decoded JWT token, you should now find a `groups` claim:
+When inspecting the decoded JWT token, you should now find a `groups` claim:
 
 ```bash
 .....
@@ -82,30 +79,30 @@ JWT Payload:
 
 ```
 
-This claim has been added by Kubauth, based on `GroupBinding` resource.
+This claim has been added by Kubauth based on the `GroupBinding` resource.
 
 !!! question
 
-    What if a `groups` claim has already being defined in the `spec.claims` set of the user entity ? 
+    What if a `groups` claim is already defined in the `spec.claims` of the user entity?
     
-    Answer: The `User.spec.claims.groups` is overwritten. 
+    Answer: The `User.spec.claims.groups` value is overwritten.
 
 ## Group Custom Resource
 
-Kubauth also allow the explicit creation of `Group.kubauth.kubotal.io` entity.
+Kubauth also allows explicit creation of `Group.kubauth.kubotal.io` entities.
 
-There will be two reason to do so:
+There are two reasons to do this:
 
-- Documentation, by setting a `spec.comment` attribut on the `Group` resource.
-- Define a set of 'Claims', which will be applied to all members of the group.
+- Documentation, by setting a `spec.comment` attribute on the `Group` resource.
+- Define a set of claims that will be applied to all group members.
 
 For example, the following manifest will:
 
-- Associate user `john` to the group `devs` defined previously.
-- Associate user `john` to the group `ops`, newly create.
-- Create explicitly the group `ops`
-  - with a `spec.comment` 
-  - and a `spec.claims.accessProfile`, which will be set for all members. 
+- Associate user `john` with the `devs` group defined previously.
+- Associate user `john` with a newly created `ops` group.
+- Explicitly create the `ops` group:
+  - With a `spec.comment`
+  - With a `spec.claims.accessProfile` that will be applied to all members.
 
 
 ???+ abstract "group2.yaml"
@@ -144,7 +141,7 @@ For example, the following manifest will:
     
     ```
 
-Apply it
+Apply it:
 
 ``` { .bash .copy }
 kubectl apply -f group2.yaml
@@ -156,7 +153,7 @@ group.kubauth.kubotal.io/ops created
 ```
 
 
-And now, login with the `john` account:
+Now, log in with the `john` account:
 
 ``` { .bash .copy }
 kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public -d
@@ -196,8 +193,8 @@ JWT Payload:
 }
 ```
 
-When looking at the decoded JWT token, you should check than:
+When inspecting the decoded JWT token, you should verify that:
 
-- The `groups` claim now list two values.
-- The `accessProfile` claims is set with appropriate value.
+- The `groups` claim now lists two values.
+- The `accessProfile` claim is set with the appropriate value.
 
