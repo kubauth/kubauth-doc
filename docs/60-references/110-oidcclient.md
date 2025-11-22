@@ -28,6 +28,11 @@ spec:
   responseTypes:
     - "code"
     - "id_token"
+    - "token"
+    - "id_token token"
+    - "code id_token"
+    - "code token"
+    - "code id_token token"      
   scopes:
     - "openid"
     - "profile"
@@ -43,9 +48,23 @@ spec:
 
 ## Spec Fields
 
-### Required Fields
 
-#### `redirectURIs` ([]string)
+### `hashedSecret`
+string - Required if non public
+
+The hashed client secret for confidential clients. Use the `kc hash` command to generate the hash from a plain-text secret.
+
+> Omit this field for public clients (see `public` field).
+
+**Example:**
+```yaml
+hashedSecret: "$2a$12$..."
+```
+
+-----
+### `redirectURIs`
+[]string - Required
+
 List of allowed redirect URIs for the OAuth2 authorization flow. After successful authentication, the authorization server will redirect the user back to one of these URIs.
 
 **Example:**
@@ -55,10 +74,13 @@ redirectURIs:
   - "http://localhost:8080/callback"  # For local development
 ```
 
-#### `grantTypes` ([]string)
+-----
+### `grantTypes`
+[]string - Required
+
 List of OAuth2 grant types that this client is allowed to use.
 
-**Possible values:**
+**Common values:**
 
 - `authorization_code` - Standard OAuth2 authorization code flow
 - `refresh_token` - Allows using refresh tokens to obtain new access tokens
@@ -71,7 +93,10 @@ grantTypes:
   - "refresh_token"
 ```
 
-#### `responseTypes` ([]string)
+-----
+### `responseTypes`
+[]string - Required
+
 List of response types the client can expect from the authorization endpoint.
 
 **Common values:**
@@ -86,12 +111,13 @@ List of response types the client can expect from the authorization endpoint.
 
 **Example:**
 ```yaml
-responseTypes:
-  - "code"
-  - "id_token"
+responseTypes: [ "id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token" ]
 ```
 
-#### `scopes` ([]string)
+-----
+### `scopes`
+[]string - Required
+
 List of OAuth2 scopes that this client can request.
 
 **Standard OIDC scopes:**
@@ -111,23 +137,11 @@ scopes:
   - "email"
   - "offline_access"
 ```
+-----
+### `public`
+boolean -  Optional. Default: `false`
 
-### Optional Fields
-
-#### `hashedSecret` (string)
-The hashed client secret for confidential clients. Use the `kc hash` command to generate the hash from a plain-text secret.
-
-**Note:** Omit this field for public clients (see `public` field below).
-
-**Example:**
-```yaml
-hashedSecret: "$2a$12$..."
-```
-
-#### `public` (boolean)
 Indicates whether this is a public client. Public clients do not require a client secret.
-
-**Default:** `false`
 
 **Use for:** Browser-based applications, native mobile apps, CLI tools
 
@@ -135,16 +149,25 @@ Indicates whether this is a public client. Public clients do not require a clien
 ```yaml
 public: true
 ```
+-----
+### `forceOpenIdScope`
+boolean - Optional. Default: `false`
 
-#### `description` (string)
-A description of the client application for administrative purposes.
+Force openid scope even if not requested by the client application.
 
-**Example:**
-```yaml
-description: "Internal corporate application for employee management"
-```
+-----
+### `postLogoutURL` 
+boolean - Optional. Default: `false`
 
-#### `displayName` (string)
+Where to redirected user on logout.
+
+- Will take precedence on the same global configuration value.
+- May be overridden by a query parameter on the logout url
+
+-----
+### `displayName`
+string - optional
+
 A user-friendly name for the application. This is displayed on the Kubauth index page and logout page.
 
 **Example:**
@@ -152,7 +175,21 @@ A user-friendly name for the application. This is displayed on the Kubauth index
 displayName: "Employee Portal"
 ```
 
-#### `entryURL` (string)
+-----
+### `description` (string)
+Optional 
+
+A short description of the client application. This is displayed on the Kubauth index page and logout page.
+
+**Example:**
+```yaml
+description: "Corporate application for employee management"
+```
+
+-----
+### `entryURL`
+string - optional
+
 The main entry URL for the application. Used to provide a link to the application on the Kubauth index page and logout page.
 
 **Note:** Requires `displayName` and `description` to be set for the application to appear in the application list.
@@ -162,10 +199,11 @@ The main entry URL for the application. Used to provide a link to the applicatio
 entryURL: "https://portal.example.com"
 ```
 
-#### `accessTokenLifespan` (duration)
-The lifespan of access tokens issued to this client.
+-----
+### `accessTokenLifespan`
+duration - optional - default: 1 Hour
 
-**Default:** Server default (typically 1 hour)
+The lifespan of access tokens issued to this client.
 
 **Format:** Duration string (e.g., `1m0s`, `1h`, `30m`)
 
@@ -174,10 +212,11 @@ The lifespan of access tokens issued to this client.
 accessTokenLifespan: 15m
 ```
 
-#### `idTokenLifespan` (duration)
-The lifespan of ID tokens issued to this client.
+---
+### `idTokenLifespan`
+duration - optional - default: 1 Hour
 
-**Default:** Server default (typically 1 hour)
+The lifespan of ID tokens issued to this client.
 
 **Format:** Duration string (e.g., `1m0s`, `1h`, `30m`)
 
@@ -186,10 +225,11 @@ The lifespan of ID tokens issued to this client.
 idTokenLifespan: 1h
 ```
 
-#### `refreshTokenLifespan` (duration)
-The lifespan of refresh tokens issued to this client.
+---
+### `refreshTokenLifespan`
+duration - optional - default: 30 days
 
-**Default:** Server default (typically several hours)
+The lifespan of refresh tokens issued to this client.
 
 **Format:** Duration string (e.g., `1h`, `8h`, `24h`)
 
@@ -214,16 +254,19 @@ The client ID is derived from the resource name in the metadata section. This is
 
 ### Security Considerations
 
-1. **Public vs Confidential Clients:**
+**Public vs Confidential Clients:**
+
    - Use `public: true` for applications that cannot securely store a secret (browsers, mobile apps, CLIs)
    - Use `hashedSecret` for server-side applications that can securely store credentials
 
-2. **Token Lifespans:**
+**Token Lifespans:**
+
    - Shorter access token lifespans increase security but may impact performance
    - Balance security requirements with user experience
    - For kubectl integration, consider very short access tokens (1-5 minutes) with longer refresh tokens
 
-3. **Grant Types:**
+**Grant Types:**
+   
    - Only enable the grant types your application actually needs
    - The `password` grant type is deprecated and disabled by default - use only for specific use cases
 
@@ -326,10 +369,3 @@ spec:
   idTokenLifespan: 1m
   refreshTokenLifespan: 30m
 ```
-
-## Related Resources
-
-- [User](./120-user.md) - User accounts that authenticate through clients
-- [Group](./130-group.md) - User groups for authorization
-- [GroupBinding](./140-groupbinding.md) - Associates users with groups
-

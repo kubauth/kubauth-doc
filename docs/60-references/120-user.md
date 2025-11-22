@@ -36,40 +36,16 @@ spec:
 
 ## Spec Fields
 
-### Required Fields
+### `name`
+string - optional
 
-#### `passwordHash` (string)
-The bcrypt hash of the user's password. This is the only mandatory field for a user.
-
-**Generation:** Use the `kc hash <password>` command to generate the hash from a plain-text password.
-
-**Security:** Passwords are stored as bcrypt hashes (never in plain text), providing strong protection against password database compromise.
-
-**Example:**
-```yaml
-passwordHash: "$2a$12$yJEo9EoYn/ylGS4PCamfNe8PReYH9IPumsw7rMTDi3glZjuA7dXMm"
-```
-
-**Generating a hash:**
-```bash
-$ kc hash mypassword123
-Secret: mypassword123
-Hash: $2a$12$yJEo9EoYn/ylGS4PCamfNe8PReYH9IPumsw7rMTDi3glZjuA7dXMm
-
-Use this hash in your User 'passwordHash' field
-```
-
-### Optional Fields
-
-#### `name` (string)
 The full name of the user. This appears in the `name` claim in OIDC ID tokens.
 
 **Example:**
 ```yaml
 name: "John DOE"
 ```
-
-**JWT Token Claim:**
+**Resulting JWT Token Claim:**
 ```json
 {
   "name": "John DOE",
@@ -77,7 +53,10 @@ name: "John DOE"
 }
 ```
 
-#### `emails` ([]string)
+-----
+### `emails`
+[]string - optional
+
 List of email addresses associated with the user.
 
 **Behavior:**
@@ -100,10 +79,40 @@ emails:
 }
 ```
 
-#### `claims` (map[string]any)
+---
+### `passwordHash`
+string - optional
+
+The bcrypt hash of the user's password. 
+
+**Generation:** Use the `kc hash <password>` command to generate the hash from a plain-text password.
+
+**Security:** Passwords are stored as bcrypt hashes (never in plain text), providing strong protection against password database compromise.
+
+**Behavior:** A user definition without password is useful on case of multiple Identity Providers.
+
+**Example:**
+```yaml
+passwordHash: "$2a$12$yJEo9EoYn/ylGS4PCamfNe8PReYH9IPumsw7rMTDi3glZjuA7dXMm"
+```
+
+**Generating a hash:**
+```bash
+$ kc hash mypassword123
+Secret: mypassword123
+Hash: $2a$12$yJEo9EoYn/ylGS4PCamfNe8PReYH9IPumsw7rMTDi3glZjuA7dXMm
+```
+
+Use this hash in your User 'passwordHash' field
+
+---
+### `claims` 
+map[string]any - required
+
 Custom OIDC claims to include in ID tokens for this user. Can contain any valid JSON values.
 
 **Use Cases:**
+
 - Application-specific user attributes
 - Custom authorization data
 - Integration with downstream systems
@@ -128,7 +137,10 @@ claims:
 }
 ```
 
-#### `comment` (string)
+-----
+### `comment`
+string - optional
+
 Administrative comment or description for the user. Not included in OIDC tokens.
 
 **Example:**
@@ -136,7 +148,10 @@ Administrative comment or description for the user. Not included in OIDC tokens.
 comment: "External consultant - expires 2025-12-31"
 ```
 
-#### `disabled` (boolean)
+---
+### `disabled`
+boolean - optional default false
+
 Whether the user account is disabled. Disabled users cannot authenticate.
 
 **Default:** `false`
@@ -156,7 +171,7 @@ The `User` resource does not currently expose status fields. The resource is rea
 The user login is the resource name in the metadata section. This becomes:
 
 - The `sub` (subject) claim in OIDC tokens
-- The username for authentication
+- The login for authentication
 
 **Example:**
 ```yaml
@@ -293,5 +308,4 @@ spec:
 
 - [Group](./130-group.md) - Define groups with shared claims
 - [GroupBinding](./140-groupbinding.md) - Associate users with groups
-- [OidcClient](./110-oidcclient.md) - Client applications that authenticate users
 

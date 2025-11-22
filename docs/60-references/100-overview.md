@@ -35,18 +35,6 @@ Kubauth resources are namespaced and typically organized as follows:
 
 Namespace configuration can be adjusted via Helm chart values during Kubauth deployment.
 
-### Resource Relationships
-
-```
-OidcClient
-    │
-    └─> Authenticates ──> User
-                          │
-                          └─> Member of ──> GroupBinding ──> References ──> Group
-                                                                              │
-                                                                              └─> Provides Claims
-```
-
 ## Common Patterns
 
 ### Accessing Resources
@@ -121,14 +109,6 @@ rules:
 - **Client Secrets:** Stored as bcrypt hashes in OidcClient resources
 - **Use `kc hash` command:** Generate hashes for passwords and secrets
 
-### Audit Trail
-
-All changes to Kubauth resources are tracked through Kubernetes audit logs. Enable audit logging on your cluster for comprehensive tracking of:
-
-- Resource creation, modification, and deletion
-- Who made changes
-- When changes were made
-
 ## Best Practices
 
 ### Resource Naming
@@ -136,25 +116,6 @@ All changes to Kubauth resources are tracked through Kubernetes audit logs. Enab
 - Use descriptive, lowercase names with hyphens
 - Follow consistent naming conventions across your organization
 - For GroupBindings, use pattern: `<username>-<groupname>`
-
-### Documentation
-
-- Use `comment` fields in User and Group resources
-- Use `description` fields in OidcClient resources
-- Document the purpose and ownership of each resource
-
-### Organization
-
-- Use dedicated namespaces for Kubauth resources
-- Apply labels for easier querying and management
-- Group related resources in the same manifest files
-
-### Lifecycle Management
-
-- Use GitOps practices to manage Kubauth resources
-- Store resource definitions in version control
-- Use CI/CD pipelines for deploying changes
-- Implement review processes for security-sensitive resources
 
 ## Examples Repository
 
@@ -167,7 +128,5 @@ Complete examples for all resources can be found throughout the documentation:
 
 ## Additional Resources
 
-- [Kubauth GitHub Repository](https://github.com/kubauth/kubauth)
-- [User Guide](../30-user-guide/110-configuration.md)
-- [Kubernetes Integration](../50-kubernetes-integration/110-overview.md)
+- [Kubauth GitHub Repository](https://github.com/kubauth/kubauth){:target="_blank"}
 
