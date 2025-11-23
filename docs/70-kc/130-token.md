@@ -45,6 +45,12 @@ Skip TLS certificate verification. Use only for testing with self-signed certifi
 **Example:** `--insecureSkipVerify`
 
 -----
+### `--caFile`
+Provide a CA file for TLS certificate verification of ìssuerURL
+
+**Example:** `--caFile ./CA.crt`
+
+-----
 ### `--onlyIDToken`
 Output only the ID token (base64-encoded JWT). Useful for piping to other commands or scripts.
 
@@ -214,14 +220,22 @@ If the browser doesn't open automatically:
 If browser doesn't open automatically, visit: http://127.0.0.1:9921
 ```
 
-### Certificate Errors
+### TLS Certificate Errors
 
-```bash
-# For development/testing only
-kc token --issuerURL https://kubauth.local --clientId public --insecureSkipVerify
+**Error:**
+```
+Error: x509: certificate signed by unknown authority
 ```
 
-**Better approach:** Add the CA certificate to your system trust store.
+**Solutions:**
+
+- Use `--insecureSkipVerify` for testing (not recommended for production)
+- Use `--caFile ./ca.crt`. To extract the CA:
+   ```bash
+   kubectl -n kubauth get secret kubauth-oidc-server-cert \
+     -o=jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt
+   ```
+- Add this CA certificate to system trust store.
 
 ## Security Considerations
 

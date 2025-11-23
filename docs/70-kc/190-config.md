@@ -35,6 +35,12 @@ Skip TLS certificate verification. Use only for testing with self-signed certifi
 Example: --insecureSkipVerify
 
 -----
+### `--caFile`
+Provide a CA file for TLS certificate verification of ìssuerURL
+
+**Example:** `--caFile ./CA.crt`
+
+-----
 ### `--grantType` (string)
 Specify the OAuth2 grant type to use.
 
@@ -212,11 +218,12 @@ Error: x509: certificate signed by unknown authority
 **Solutions:**
 
 - Use `--insecureSkipVerify` for testing (not recommended for production)
- - Add CA certificate to system trust store. To extract the CA:
-    ```bash
-    kubectl -n kubauth get secret kubauth-oidc-server-cert \
-      -o=jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt
-    ```
+- Use `--caFile ./ca.crt`. To extract the CA:
+   ```bash
+   kubectl -n kubauth get secret kubauth-oidc-server-cert \
+     -o=jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt
+   ```
+- Add this CA certificate to system trust store.
 
 ### kubelogin Not Found
 

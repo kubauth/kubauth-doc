@@ -56,6 +56,12 @@ Skip TLS certificate verification. Use only for testing with self-signed certifi
 **Example:** `--insecureSkipVerify`
 
 -----
+### `--caFile`
+Provide a CA file for TLS certificate verification of ìssuerURL
+
+**Example:** `--caFile ./CA.crt`
+
+-----
 ### `--onlyIDToken`
 Output only the ID token (base64-encoded JWT). Useful for piping to other commands or scripts.
 
@@ -184,6 +190,24 @@ token request failed with status 403: {"error":"request_forbidden","error_descri
 
 **Solution:** Enable password grant in both Kubauth configuration and the OidcClient. See [Password Grant Configuration](../30-user-guide/160-password-grant.md#configuration).
 
+
+### TLS Certificate Errors
+
+**Error:**
+```
+Error: x509: certificate signed by unknown authority
+```
+
+**Solutions:**
+
+- Use `--insecureSkipVerify` for testing (not recommended for production)
+- Use `--caFile ./ca.crt`. To extract the CA:
+   ```bash
+   kubectl -n kubauth get secret kubauth-oidc-server-cert \
+     -o=jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt
+   ```
+- Add this CA certificate to system trust store.
+
 ### Authentication Failed
 
 **Error:**
@@ -196,13 +220,6 @@ token request failed with status 400: {"error":"invalid_grant","error_descriptio
 - Verify username and password are correct
 - Check user is not disabled: `kubectl -n kubauth-users get user <username>`
 - Review audit logs: `kc audit logins`
-
-### Network/TLS Errors
-
-```bash
-# For development/testing only
-kc token-nui --issuerURL https://kubauth.local --clientId public --insecureSkipVerify
-```
 
 ## Comparison with kc token
 

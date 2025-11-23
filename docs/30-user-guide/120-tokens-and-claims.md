@@ -23,6 +23,7 @@ kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public
       kubectl -n kubauth get secret kubauth-oidc-server-cert \
         -o=jsonpath='{.data.ca\.crt}' | base64 -d >./ca.crt 
       ```
+    - Add the `--caFile ./ca.crt` option to the `kc token` command.
 
 
 Your browser should open to the Kubauth login page:

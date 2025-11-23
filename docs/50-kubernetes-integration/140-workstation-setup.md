@@ -55,9 +55,7 @@ Setup new context 'oidc-kubo6' in kubeconfig file '/Users/john/.kube/config'
       kubectl -n kubauth get secret kubauth-oidc-server-cert \
         -o=jsonpath='{.data.ca\.crt}' | base64 -d >./ca.crt 
       ```
-
-
-
+    - Add the `--caFile ./ca.crt` option to the `kc token` command.
 
 For reference, here is a sample local config file resulting from this operation:
 

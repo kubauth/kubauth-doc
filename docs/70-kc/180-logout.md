@@ -26,6 +26,12 @@ Skip TLS certificate verification. Use only for testing with self-signed certifi
 
 **Example:** `--insecureSkipVerify`
 
+-----
+### `--caFile`
+Provide a CA file for TLS certificate verification of ìssuerURL
+
+**Example:** `--caFile ./CA.crt`
+
 ----
 ### `--browser`
 
@@ -88,6 +94,25 @@ After logout, you'll see a page listing available applications:
 
 This page shows OIDC clients with `displayName`, `description`, and `entryURL` configured.
 
+
+## Troubleshooting
+
+### TLS Certificate Errors
+
+**Error:**
+```
+Error: x509: certificate signed by unknown authority
+```
+
+**Solutions:**
+
+- Use `--insecureSkipVerify` for testing (not recommended for production)
+- Use `--caFile ./ca.crt`. To extract the CA:
+   ```bash
+   kubectl -n kubauth get secret kubauth-oidc-server-cert \
+     -o=jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt
+   ```
+- Add this CA certificate to system trust store.
 
 ## Related Commands
 

@@ -112,9 +112,12 @@ The OIDC client ID.
 **Example:** `--clientId public`
 
 ### `--insecureSkipVerify`
-Skip TLS certificate verification (useful for testing with self-signed certificates).
+Skip TLS certificate verification for `ìssuerURL` (useful for testing with self-signed certificates).
 
 **Example:** `--insecureSkipVerify`
+
+### `--caFile`
+Provide a CA file for TLS certificate verification of `ìssuerURL`
 
 ### `-d, --detailed`
 Decode and display JWT token contents (shortcut for piping to `kc jwt`).
