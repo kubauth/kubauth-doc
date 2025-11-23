@@ -101,6 +101,6 @@ kc hash "P@ssw0rd\$pecial!"
 ## See Also
 
 - [User Configuration](../30-user-guide/110-configuration.md#password-hash)
-- [User Reference](../60-references/120-user.md#passwordhash-string)
-- [OidcClient Reference](../60-references/110-oidcclient.md#hashedsecret-string)
+- [User Reference](../60-references/120-user.md#passwordhash)
+- [OidcClient Reference](../60-references/110-oidcclient.md#hashedsecret)
 
