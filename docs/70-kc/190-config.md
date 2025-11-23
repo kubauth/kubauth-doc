@@ -2,7 +2,9 @@
 
 ## Overview
 
-The `kc config` command configures kubectl for OIDC authentication with Kubauth. It fetches configuration from the Kubauth kubeconfig service and automatically sets up your local `~/.kube/config` file with the necessary OIDC settings.
+The `kc config` command configures `kubectl` for OIDC authentication with Kubauth. 
+It fetches configuration from the Kubauth kubeconfig service and automatically 
+sets up your local `~/.kube/config` file (Or the file set by `KUBECONFIG` environment variable) with the necessary OIDC settings.
 
 ## Syntax
 
@@ -12,21 +14,27 @@ kc config <kubeconfig-service-url> [options]
 
 ## Arguments
 
-### `<kubeconfig-service-url>` (string, required)
+### `<kubeconfig-service-url>`
+string - required
+
 The URL of the Kubauth kubeconfig service endpoint.
 
 **Format:** `https://<host>/kubeconfig`
 
 **Example:** `https://kubeconfig.example.com/kubeconfig`
 
-## Optional Flags
+## Flags
 
 ### `--force`
 Overwrite existing context if it already exists in your kubeconfig.
 
+-----
 ### `--insecureSkipVerify`
-Skip TLS certificate verification.
+Skip TLS certificate verification. Use only for testing with self-signed certificates.
 
+Example: --insecureSkipVerify
+
+-----
 ### `--grantType` (string)
 Specify the OAuth2 grant type to use.
 
@@ -61,10 +69,7 @@ kc config https://kubeconfig.example.com/kubeconfig --force
 kc config https://kubeconfig.example.com/kubeconfig --grantType password
 ```
 
-This is useful for:
-- SSH sessions
-- Remote servers without browser access
-- Automated CI/CD pipelines
+This is useful for remote servers without browser access
 
 ### Skip TLS Verification (Testing Only)
 
@@ -76,28 +81,28 @@ kc config https://kubeconfig.local/kubeconfig --insecureSkipVerify
 
 ### What It Does
 
-1. **Fetches Configuration** - Retrieves OIDC and cluster configuration from the kubeconfig service
-2. **Updates ~/.kube/config** - Adds or updates:
-   - Cluster definition (API server URL, CA certificate)
-   - Context definition (links cluster and user)
-   - User definition (OIDC authentication settings)
-3. **Sets Current Context** - Makes the new context active
+- **Fetches Configuration** - Retrieves OIDC and cluster configuration from the kubeconfig service running on the cluster
+- **Updates ~/.kube/config** - Adds or updates:
+     - Cluster definition (API server URL, CA certificate)
+     - Context definition (links cluster and user)
+     - User definition (OIDC authentication settings)
+- **Sets Current Context** - Makes the new context active
 
 ### Configuration Retrieved
 
 The kubeconfig service provides:
 
 - **Cluster information:**
-  - API server URL
-  - API server CA certificate
+    - API server URL
+    - API server CA certificate
 - **OIDC settings:**
-  - Issuer URL
-  - Client ID
-  - Client secret (if any)
-  - Issuer CA certificate
+    - Issuer URL
+    - Client ID
+    - Client secret (if any)
+    - Issuer CA certificate
 - **Context settings:**
-  - Context name
-  - Default namespace (optional)
+    - Context name
+    - Default namespace (optional)
 
 ### Resulting Kubeconfig
 
@@ -139,72 +144,11 @@ users:
       provideClusterInfo: false
 ```
 
-## Use Cases
-
-### Initial Setup
-
-```bash
-# Configure kubectl for first time
-kc config https://kubeconfig.example.com/kubeconfig
-
-# Verify configuration
-kc whoami
-
-# Test access
-kubectl get nodes
-```
-
-### Multiple Clusters
-
-```bash
-# Configure first cluster
-kc config https://kubeconfig-prod.example.com/kubeconfig
-
-# Configure second cluster
-kc config https://kubeconfig-dev.example.com/kubeconfig
-
-# Switch between contexts
-kubectl config use-context oidc-prod
-kubectl config use-context oidc-dev
-```
-
-### Headless Environments
-
-```bash
-# Configure for SSH/remote servers
-kc config https://kubeconfig.example.com/kubeconfig --grantType password
-
-# kubectl will prompt for credentials
-kubectl get pods
-```
-
-**Interaction:**
-```
-Username: john
-Password: 
-```
-
-### Team Onboarding
-
-Create a script for new team members:
-
-```bash
-#!/bin/bash
-# team-setup.sh
-
-echo "Setting up kubectl for OIDC authentication..."
-kc config https://kubeconfig.company.com/kubeconfig
-
-echo ""
-echo "Configuration complete!"
-echo "Test with: kubectl get namespaces"
-```
-
 ## Prerequisites
 
 ### kubelogin Plugin
 
-The `kc config` command configures kubectl to use the `kubectl oidc-login` plugin. Ensure it's installed:
+The `kc config` command configures kubectl to use the `kubectl oidc-login` plugin. Ensure the [kubelogin plugin](https://github.com/int128/kubelogin){:target="_blank"} is installed:
 
 ```bash
 # Homebrew (macOS and Linux)
@@ -249,11 +193,13 @@ Error: failed to fetch configuration: Get "https://kubeconfig.example.com/kubeco
 ```
 
 **Solutions:**
+
 - Verify the URL is correct
 - Check network connectivity
-- Ensure the kubeconfig service is running:
+- Ensure the kubeconfig service is running and ingress is correctly set:
   ```bash
-  kubectl -n kubauth get pods -l app=kubauth-kubeconfig
+  kubectl -n kubauth get pods
+  kubectl -n kubauth get ingress kubauth-kubeconfig
   ```
 
 ### TLS Certificate Error
@@ -264,13 +210,13 @@ Error: x509: certificate signed by unknown authority
 ```
 
 **Solutions:**
+
 - Use `--insecureSkipVerify` for testing (not recommended for production)
-- Add CA certificate to system trust store
-- Extract CA:
-  ```bash
-  kubectl -n kubauth get secret kubauth-oidc-server-cert \
-    -o=jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt
-  ```
+ - Add CA certificate to system trust store. To extract the CA:
+    ```bash
+    kubectl -n kubauth get secret kubauth-oidc-server-cert \
+      -o=jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt
+    ```
 
 ### kubelogin Not Found
 

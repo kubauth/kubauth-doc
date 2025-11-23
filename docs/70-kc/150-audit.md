@@ -2,17 +2,18 @@
 
 ## Overview
 
-The `kc audit` command queries Kubauth authentication audit logs. It provides subcommands to view login attempts and detailed user authentication information.
+The `kc audit` command queries Kubauth authentication audit logs. It provides two subcommands to view login attempts and detailed user authentication information.
 
-## Subcommands
+## flags
+### `--namespace`
+string
 
-### `kc audit logins`
-Display all login attempts with status, user information, and authentication source.
+The namespace storing the audit logs
 
-### `kc audit detail <username>`
-Display detailed authentication information for a specific user's last login, including per-provider breakdown.
+**Default:** `kubauth-audit`
 
 ## kc audit logins
+Display all login attempts with status, user information, and authentication source.
 
 ### Syntax
 
@@ -24,7 +25,7 @@ kc audit logins [options]
 
 #### View All Login Attempts
 
-```bash
+``` { .bash .copy }
 kc audit logins
 ```
 
@@ -43,10 +44,10 @@ Tue 19:02:20   jim     userNotFound      -                  []                 {
 - **WHEN** - Timestamp of the login attempt
 - **LOGIN** - Username attempted
 - **STATUS** - Authentication status:
-  - `passwordChecked` - Successful authentication
-  - `passwordFail` - Invalid password
-  - `userNotFound` - User doesn't exist
-- **UID** - Numerical user ID (from LDAP if applicable)
+    - `passwordChecked` - Successful authentication
+    - `passwordFail` - Invalid password
+    - `userNotFound` - User doesn't exist
+- **UID** - Numerical user ID
 - **NAME** - User's full name
 - **GROUPS** - User's group memberships
 - **CLAIMS** - Custom claims from User/Group resources
@@ -54,6 +55,7 @@ Tue 19:02:20   jim     userNotFound      -                  []                 {
 - **AUTH** - Authentication authority (identity provider name)
 
 ## kc audit detail
+Display detailed authentication information for a specific user's last login, including per-provider breakdown.
 
 ### Syntax
 
@@ -63,14 +65,16 @@ kc audit detail <username>
 
 ### Arguments
 
-#### `<username>` (string, required)
+#### `<username>` 
+string - required)
+
 The username to query detailed information for.
 
 ### Examples
 
 #### View Single Provider Authentication
 
-```bash
+``` { .bash .copy }
 kc audit detail john
 ```
 
@@ -86,7 +90,7 @@ ucrd       passwordChecked   -     John DOE   [devs,ops]   {"accessProfile":"p24
 
 #### View Merged Identity
 
-```bash
+``` { .bash .copy }
 kc audit detail bob
 ```
 
@@ -101,6 +105,7 @@ ucrd       userNotFound      -                  [ops]     {"accessProfile":"p24x
 ```
 
 This shows that:
+
 - User authenticated via LDAP
 - Groups include `staff` from LDAP and `ops` from local CRD
 - Claims `accessProfile` comes from local Group definition
@@ -119,61 +124,11 @@ This helps understand:
 - How identity information is merged
 - Where specific claims originate
 
-## Use Cases
-
-### Troubleshooting Authentication
-
-```bash
-# Check if user login attempts are reaching Kubauth
-kc audit logins
-
-# Look for specific user
-kc audit logins | grep alice
-
-# Check why authentication failed
-kc audit detail alice
-```
-
-### Verify Identity Merging
-
-When using multiple identity providers:
-
-```bash
-# Check how LDAP and local CRD info is merged
-kc audit detail bob
-
-# Verify group memberships from different sources
-kc audit logins | grep bob
-```
-
-### Security Monitoring
-
-```bash
-# Check for failed login attempts
-kc audit logins | grep -E "passwordFail|userNotFound"
-
-# Monitor login activity
-watch -n 5 'kc audit logins | tail -10'
-
-# Audit specific timeframe
-kc audit logins | grep "$(date +%a)"
-```
-
-### User Onboarding Verification
-
-```bash
-# After creating a new user, verify they can authenticate
-kc audit logins | grep newuser
-
-# Check their groups and claims
-kc audit detail newuser
-```
-
 ## Data Source
 
 Audit data is stored as Kubernetes `LoginAttempt` resources:
 
-```bash
+``` { .bash .copy }
 kubectl -n kubauth-audit get loginattempts
 ```
 
@@ -187,7 +142,7 @@ john-2025-10-27-14-34-59-923   john    John DOE   passwordChecked               
 
 ### Retention
 
-Login attempts are automatically cleaned up based on Kubauth configuration:
+Login attempts are automatically cleaned up based on Kubauth configuration, from helm chart:
 
 ```yaml
 audit:
@@ -211,6 +166,7 @@ Audit logs are retained for a limited time (default 8 hours). For longer-term au
 ### Kubectl Access Required
 
 The `kc audit` commands query Kubernetes resources, so you need:
+
 - kubectl configured and authenticated
 - Read access to the `kubauth-audit` namespace
 
@@ -221,13 +177,13 @@ The `kc audit` commands query Kubernetes resources, so you need:
 If `kc audit logins` shows no data:
 
 1. **Check audit namespace:**
-   ```bash
+   ``` { .bash .copy }
    kubectl -n kubauth-audit get loginattempts
    ```
 
 2. **Verify Kubauth audit module is enabled:**
-   ```bash
-   kubectl -n kubauth get pods
+   ``` { .bash .copy }
+   kubectl -n kubauth get pod -l app.kubernetes.io/instance=kubauth -o jsonpath='{range .items[0].spec.containers[*]}{.name}{"\n"}{end}'
    ```
 
 3. **Check retention settings** - Data may have been cleaned up

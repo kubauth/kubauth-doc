@@ -116,19 +116,48 @@ Skip TLS certificate verification (useful for testing with self-signed certifica
 
 **Example:** `--insecureSkipVerify`
 
-### `-d, --decode`
+### `-d, --detailed`
 Decode and display JWT token contents (shortcut for piping to `kc jwt`).
 
 **Example:** `kc token --issuerURL https://kubauth.example.com --clientId public -d`
 
-## Configuration File
+## Kubeconfig configuration File
 
 The `kc` tool can read OIDC configuration from your kubectl config file when available. This eliminates the need to specify `--issuerURL` and `--clientId` for many commands after you've run `kc config`.
 
-**Commands that use kubeconfig:**
-- `kc whoami`
-- `kc logout` (when no `--issuerURL` is provided)
 
+## Environment Variables
+
+Some commands support environment variables for configuration:
+
+- `KC_ISSUER_URL` - Default issuer URL
+- `KC_CLIENT_ID` - Default client ID
+- `KC_CLIENT_SECRET` - Default client secret
+- `KC_USER_LOGIN` - Default user login for `token-nui`
+- `KC_USER_PASSWORD` - Default user password for `token-nui`
+
+**Example:**
+```bash
+export KC_ISSUER_URL=https://kubauth.example.com
+export KC_CLIENT_ID=public
+
+# Now you can omit these flags
+kc token
+```
+
+## Getting Help
+
+For help with any command:
+
+```bash
+# General help
+kc --help
+
+# Command-specific help
+kc token --help
+kc config --help
+kc audit --help
+```
 ## Use Cases
 
 ### Development & Testing
@@ -179,63 +208,27 @@ kc token-nui --issuerURL https://kubauth.example.com \
   --onlyIDToken
 ```
 
-## Environment Variables
-
-Some commands support environment variables for configuration:
-
-- `KC_ISSUER_URL` - Default issuer URL
-- `KC_CLIENT_ID` - Default client ID
-- `KC_CLIENT_SECRET` - Default client secret
-
-**Example:**
-```bash
-export KC_ISSUER_URL=https://kubauth.example.com
-export KC_CLIENT_ID=public
-
-# Now you can omit these flags
-kc token
-```
-
-## Exit Codes
-
-`kc` uses standard exit codes:
-
-- `0` - Success
-- `1` - General error
-- `2` - Authentication error
-- `3` - Configuration error
-
-## Getting Help
-
-For help with any command:
-
-```bash
-# General help
-kc --help
-
-# Command-specific help
-kc token --help
-kc config --help
-kc audit --help
-```
-
 ## Troubleshooting
 
 ### Certificate Errors
 
 If you encounter TLS certificate errors:
 
-```bash
-# Option 1: Skip verification (not recommended for production)
-kc token --issuerURL https://kubauth.local --clientId public --insecureSkipVerify
+- Option 1: Skip verification (not recommended for production)
+    ```
+    kc token --issuerURL https://kubauth.local --clientId public --insecureSkipVerify
+    ```
 
-# Option 2: Add CA certificate to your system trust store
-# Extract CA certificate
-kubectl -n kubauth get secret kubauth-oidc-server-cert \
-  -o=jsonpath='{.data.ca\.crt}' | base64 -d > kubauth-ca.crt
+- Option 2: Add CA certificate to your system trust store
 
-# Add to system trust store (OS-specific)
-```
+    Extract CA certificate
+    ```
+    kubectl -n kubauth get secret kubauth-oidc-server-cert \
+      -o=jsonpath='{.data.ca\.crt}' | base64 -d > kubauth-ca.crt
+    ```
+
+    Add to system trust store (OS-specific)
+
 
 ### Browser Not Opening
 
@@ -245,33 +238,4 @@ If the browser doesn't open automatically with `kc token`:
 2. Manually open the URL in your browser
 3. Or use `kc token-nui` for terminal-based authentication
 
-### Authentication Failures
-
-```bash
-# Check detailed error messages
-kc token --issuerURL https://kubauth.example.com --clientId public
-
-# Verify user exists and password is correct
-kc audit logins
-
-# Check user details
-kc audit detail username
-```
-
-## Best Practices
-
-1. **Use `kc config` for kubectl** - Automates kubeconfig setup correctly
-2. **Secure password hashes** - Never commit plain-text passwords
-3. **Use `--insecureSkipVerify` carefully** - Only for development/testing
-4. **Leverage `kc whoami`** - Verify your identity before operations
-5. **Check audit logs** - Use `kc audit` to troubleshoot authentication issues
-6. **Use environment variables** - Simplify repetitive commands
-7. **Pipe tokens carefully** - Be cautious when piping tokens in scripts
-
-## Related Documentation
-
-- [Installation](../20-installation.md#kc-cli-tool-installation)
-- [User Configuration](../30-user-guide/110-configuration.md)
-- [Kubernetes Integration](../50-kubernetes-integration/140-workstation-setup.md)
-- [API Reference](../60-references/100-overview.md)
 

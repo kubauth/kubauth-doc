@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `kc token` command obtains OIDC tokens using the authorization code flow with PKCE. It opens a browser for user authentication and returns access, refresh, and ID tokens.
+The `kc token` command obtains OIDC tokens using the authorization code flow. It opens a browser for user authentication and returns access, refresh, and ID tokens.
 
 ## Syntax
 
@@ -10,46 +10,92 @@ The `kc token` command obtains OIDC tokens using the authorization code flow wit
 kc token --issuerURL <url> --clientId <id> [options]
 ```
 
-## Required Flags
+## Flags
 
-### `--issuerURL` (string)
+### `--issuerURL`
+
 The Kubauth OIDC issuer URL.
 
 **Example:** `--issuerURL https://kubauth.example.com`
 
-### `--clientId` (string)
+Value may also be fetched from `KC_ISSUER_URL` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
+
+-----
+### `--clientId`
+
 The OIDC client ID to use for authentication.
 
 **Example:** `--clientId public`
 
-## Optional Flags
+Value may also be fetched from `KC_CLIENT_ID` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
 
-### `--clientSecret` (string)
+-----
+### `--clientSecret`
+
 The client secret (for confidential clients).
 
 **Example:** `--clientSecret mysecret123`
 
+Value may also be fetched from `KC_CLIENT_ID` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
+
+-----
 ### `--insecureSkipVerify`
 Skip TLS certificate verification. Use only for testing with self-signed certificates.
 
 **Example:** `--insecureSkipVerify`
 
+-----
 ### `--onlyIDToken`
 Output only the ID token (base64-encoded JWT). Useful for piping to other commands or scripts.
 
 **Example:** `--onlyIDToken`
 
-### `-d, --decode`
+-----
+### `--onlyAccessToken`
+Output only the access token (base64-encoded). Useful for piping to other commands or scripts.
+
+**Example:** `--onlyAccessToken`
+
+-----
+### `-d`, `--detailIDToken`
 Decode and display the JWT token payload. This is a shortcut for `| kc jwt`.
 
 **Example:** `-d`
 
-### `--scopes` (string)
+-----
+### `--scopes`
 Comma-separated list of OAuth2 scopes to request.
 
-**Default:** `openid,profile,email,groups,offline_access`
+**Default:** `openid,profile,groups,offline`
 
-**Example:** `--scopes openid,profile,email`
+**Example:** `--scopes openid,profile,email,groups`
+
+!!! warning
+
+    In its current version, Kubauth does not manage scopes. All claims are included in the JWT token.
+
+-----
+### `-p`, `bindPort`
+
+Local web server bind port.
+
+**Default:** 9921
+
+-----
+### `--pkce`
+
+Use PKCE (Proof Key for Code Exchange) for enhanced security.
+
+----
+### `--browser`
+
+Override default browser. Possible values: 
+
+- `chrome`
+- `firefox`
+- `safari`
+
+
 
 ## Examples
 
@@ -59,7 +105,12 @@ Comma-separated list of OAuth2 scopes to request.
 kc token --issuerURL https://kubauth.example.com --clientId public
 ```
 
-**Output:**
+**output:**
+```
+if browser doesn't open automatically, visit: http://127.0.0.1:9921
+```
+
+**Output:** (After successful login)
 ```
 Access token: ory_at_xLUfAhEGpFVWpMLdNEDZAj94hHFrHWjgOYB5g0Leh_k...
 Refresh token: ory_rt_nU9NBZs4NtKTxVYVko1aqlJkAMF5MLBYjfiZbhVt9aE...
@@ -115,28 +166,6 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIs
 kc token --issuerURL https://kubauth.example.com --clientId public --onlyIDToken | kc jwt
 ```
 
-### With Confidential Client
-
-```bash
-kc token --issuerURL https://kubauth.example.com \
-  --clientId webapp \
-  --clientSecret myappsecret
-```
-
-### Skip TLS Verification (Testing Only)
-
-```bash
-kc token --issuerURL https://kubauth.local --clientId public --insecureSkipVerify
-```
-
-### Custom Scopes
-
-```bash
-kc token --issuerURL https://kubauth.example.com \
-  --clientId public \
-  --scopes openid,profile,email
-```
-
 ## Behavior
 
 ### Browser Flow
@@ -170,40 +199,6 @@ To clear the SSO session:
 kc logout --issuerURL https://kubauth.example.com
 ```
 
-## Use Cases
-
-### Testing OIDC Configuration
-
-```bash
-# Quick test after setting up Kubauth
-kc token --issuerURL https://kubauth.example.com --clientId public
-```
-
-### Inspecting User Claims
-
-```bash
-# View what claims are in your token
-kc token --issuerURL https://kubauth.example.com --clientId public -d
-```
-
-### API Testing
-
-```bash
-# Get a token for API testing
-TOKEN=$(kc token --issuerURL https://kubauth.example.com --clientId api-client --onlyIDToken)
-
-# Use in API call
-curl -H "Authorization: Bearer $TOKEN" https://api.example.com/endpoint
-```
-
-### Application Development
-
-```bash
-# Test your application's OIDC integration
-kc token --issuerURL https://kubauth.example.com \
-  --clientId myapp
-```
-
 ## Troubleshooting
 
 ### Browser Doesn't Open
@@ -227,14 +222,6 @@ kc token --issuerURL https://kubauth.local --clientId public --insecureSkipVerif
 ```
 
 **Better approach:** Add the CA certificate to your system trust store.
-
-### Token Expired
-
-Tokens have a limited lifespan. If you receive an expired token error, simply request a new token:
-
-```bash
-kc token --issuerURL https://kubauth.example.com --clientId public
-```
 
 ## Security Considerations
 

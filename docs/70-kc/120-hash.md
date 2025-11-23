@@ -17,7 +17,6 @@ The plain-text password or secret to hash.
 
 ## Examples
 
-### Basic Usage
 
 ```bash
 kc hash mypassword123
@@ -47,113 +46,6 @@ Example:
     hashedSecret: "$2a$12$nSplFbbsGoI7LXdhJrKx0erRmIv.zkTftG82sQZA0.v3l1eCf.ey."
 ```
 
-### Generate Hash for User Password
-
-```bash
-$ kc hash alice123
-Secret: alice123
-Hash: $2a$12$.WUyue3xr.nKuH8Tu0q.T.WF.PKHLZ92g9ewnLoB.27CuMQIdvuza
-```
-
-**Use in User resource:**
-```yaml
-apiVersion: kubauth.kubotal.io/v1alpha1
-kind: User
-metadata:
-  name: alice
-  namespace: kubauth-users
-spec:
-  passwordHash: "$2a$12$.WUyue3xr.nKuH8Tu0q.T.WF.PKHLZ92g9ewnLoB.27CuMQIdvuza"
-  name: "Alice Smith"
-```
-
-### Generate Hash for Client Secret
-
-```bash
-$ kc hash argocd123
-Secret: argocd123
-Hash: $2a$12$.34NOSBLz9cfW9PD/yjj6uhrvys42Xb4euwKy6UFx9YLYEwxIICAK
-```
-
-**Use in OidcClient resource:**
-```yaml
-apiVersion: kubauth.kubotal.io/v1alpha1
-kind: OidcClient
-metadata:
-  name: argocd
-  namespace: kubauth-oidc
-spec:
-  hashedSecret: "$2a$12$.34NOSBLz9cfW9PD/yjj6uhrvys42Xb4euwKy6UFx9YLYEwxIICAK"
-  redirectURIs:
-    - "https://argocd.example.com/auth/callback"
-  ...
-```
-
-## Use Cases
-
-### Creating New Users
-
-```bash
-# Generate hash for new user
-kc hash strongpassword456
-
-# Copy the hash into user manifest
-kubectl apply -f - <<EOF
-apiVersion: kubauth.kubotal.io/v1alpha1
-kind: User
-metadata:
-  name: newuser
-  namespace: kubauth-users
-spec:
-  passwordHash: "$2a$12$..."
-  name: "New User"
-EOF
-```
-
-### Updating User Password
-
-```bash
-# Generate new hash
-NEW_HASH=$(kc hash newpassword789 | grep "Hash:" | awk '{print $2}')
-
-# Update user
-kubectl patch user john -n kubauth-users --type merge \
-  -p "{\"spec\":{\"passwordHash\":\"$NEW_HASH\"}}"
-```
-
-### Creating OIDC Clients
-
-```bash
-# Generate client secret hash
-kc hash clientsecret123
-
-# Use in client manifest
-kubectl apply -f client-myapp.yaml
-```
-
-### Batch User Creation
-
-```bash
-#!/bin/bash
-USERS=("alice" "bob" "charlie")
-
-for user in "${USERS[@]}"; do
-  PASSWORD="${user}123"
-  HASH=$(kc hash $PASSWORD | grep "Hash:" | awk '{print $2}')
-  
-  kubectl apply -f - <<EOF
-apiVersion: kubauth.kubotal.io/v1alpha1
-kind: User
-metadata:
-  name: $user
-  namespace: kubauth-users
-spec:
-  passwordHash: "$HASH"
-  name: "$(echo $user | sed 's/.*/\u&/')"
-EOF
-done
-```
-
 ## Security Considerations
 
 ### Password Strength
@@ -164,25 +56,6 @@ The `kc hash` command will hash any input, but you should enforce strong passwor
 - **Complexity:** Mix of letters, numbers, and symbols
 - **No common passwords:** Avoid dictionary words
 - **No personal information:** Don't use names, birthdates, etc.
-
-**Example of strong passwords:**
-```bash
-kc hash 'Tr0ng!P@ssw0rd#2024'
-kc hash 'MyC0mplex&SecureP@ss'
-```
-
-### Don't Log Plain-Text Passwords
-
-```bash
-# Bad - password visible in shell history
-kc hash mypassword123
-
-# Better - read from stdin
-read -s PASSWORD && kc hash "$PASSWORD"
-
-# Or use password manager
-kc hash "$(pass show kubauth/alice)"
-```
 
 ### Hash Properties
 
@@ -224,21 +97,6 @@ kc hash 'P@ssw0rd$pecial!'
 # Or escape special characters
 kc hash "P@ssw0rd\$pecial!"
 ```
-
-### Empty Output
-
-If `kc hash` produces no output:
-
-```bash
-# Ensure you provide an argument
-kc hash           # Wrong
-kc hash mypass    # Correct
-```
-
-## Related Commands
-
-- [`kc token`](130-token.md) - Test authentication with hashed passwords
-- [`kc token-nui`](140-token-nui.md) - Authenticate with username/password
 
 ## See Also
 

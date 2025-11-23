@@ -21,33 +21,81 @@ The ROPC/Password Grant must be enabled in Kubauth:
 
 See [Password Grant Configuration](../30-user-guide/160-password-grant.md#configuration) for details.
 
-## Required Flags
+## Flags
 
-### `--issuerURL` (string)
+### `--issuerURL`
+
 The Kubauth OIDC issuer URL.
 
-### `--clientId` (string)
-The OIDC client ID.
+**Example:** `--issuerURL https://kubauth.example.com`
 
-## Optional Flags
+Value may also be fetched from `KC_ISSUER_URL` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
 
+-----
+### `--clientId`
+
+The OIDC client ID to use for authentication.
+
+**Example:** `--clientId public`
+
+Value may also be fetched from `KC_CLIENT_ID` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
+
+-----
+### `--clientSecret`
+
+The client secret (for confidential clients).
+
+**Example:** `--clientSecret mysecret123`
+
+Value may also be fetched from `KC_CLIENT_ID` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
+
+-----
+### `--insecureSkipVerify`
+Skip TLS certificate verification. Use only for testing with self-signed certificates.
+
+**Example:** `--insecureSkipVerify`
+
+-----
+### `--onlyIDToken`
+Output only the ID token (base64-encoded JWT). Useful for piping to other commands or scripts.
+
+**Example:** `--onlyIDToken`
+
+-----
+### `--onlyAccessToken`
+Output only the access token (base64-encoded). Useful for piping to other commands or scripts.
+
+**Example:** `--onlyAccessToken`
+
+-----
+### `-d`, `--detailIDToken`
+Decode and display the JWT token payload. This is a shortcut for `| kc jwt`.
+
+**Example:** `-d`
+
+-----
+### `--scopes`
+Comma-separated list of OAuth2 scopes to request.
+
+**Default:** `openid,profile,groups,offline`
+
+**Example:** `--scopes openid,profile,email,groups`
+
+!!! warning
+
+    In its current version, Kubauth does not manage scopes. All claims are included in the JWT token.
+
+-----
 ### `--login` (string)
 Username for authentication. If not provided, you'll be prompted.
 
+Value may also be fetched from `KC_USER_LOGIN` environment variable.
+
+----
 ### `--password` (string)
 Password for authentication. If not provided, you'll be prompted (input hidden).
 
-### `--clientSecret` (string)
-Client secret for confidential clients.
-
-### `--insecureSkipVerify`
-Skip TLS certificate verification.
-
-### `--onlyIDToken`
-Output only the ID token.
-
-### `-d, --decode`
-Decode and display JWT token payload.
+Value may also be fetched from `KC_USER_PASSWORD` environment variable.
 
 ## Examples
 
@@ -114,57 +162,6 @@ TOKEN=$(kc token-nui \
 curl -H "Authorization: Bearer $TOKEN" https://api.example.com/deploy
 ```
 
-## Use Cases
-
-### SSH/Remote Sessions
-
-When working on a remote server without browser access:
-
-```bash
-ssh user@server
-kc token-nui --issuerURL https://kubauth.example.com --clientId public
-```
-
-### kubectl on Remote Servers
-
-```bash
-# Configure kubectl to use password grant
-kc config https://kubeconfig.example.com/kubeconfig --grantType password
-
-# kubectl commands will prompt for credentials
-kubectl get pods
-```
-
-**Interaction:**
-```
-Username: john
-Password: 
-```
-
-### Automated Scripts
-
-```bash
-#!/bin/bash
-# Fetch configuration data with authentication
-CONFIG=$(kc token-nui \
-  --issuerURL $KUBAUTH_URL \
-  --clientId $CLIENT_ID \
-  --login $AUTOMATION_USER \
-  --password $AUTOMATION_PASSWORD \
-  --onlyIDToken | \
-  curl -H "Authorization: Bearer $(cat -)" https://config-api.example.com/config)
-```
-
-### CI/CD Authentication
-
-```yaml
-# GitLab CI example
-test:
-  script:
-    - TOKEN=$(kc token-nui --issuerURL $KUBAUTH_URL --clientId $CLIENT_ID --login $CI_USER --password $CI_PASSWORD --onlyIDToken)
-    - kubectl --token=$TOKEN get pods
-```
-
 ## Security Considerations
 
 !!! warning "Password Grant Security"
@@ -175,31 +172,6 @@ test:
     - Users may be trained to enter passwords in applications
     
     Use only when browser-based flows are impossible.
-
-### Best Practices
-
-1. **Use environment variables** for passwords in scripts:
-   ```bash
-   kc token-nui --issuerURL $URL --clientId $CLIENT --login $USER --password $PASSWORD
-   ```
-
-2. **Avoid logging passwords:**
-   ```bash
-   # Bad
-   set -x
-   kc token-nui --login user --password secretpass
-   
-   # Good
-   set +x
-   kc token-nui --login user --password $PASSWORD
-   set -x
-   ```
-
-3. **Use service accounts** for automation, not personal accounts
-
-4. **Rotate passwords regularly** for automated accounts
-
-5. **Restrict client permissions** - Use dedicated clients with minimal scopes
 
 ## Troubleshooting
 
@@ -220,6 +192,7 @@ token request failed with status 400: {"error":"invalid_grant","error_descriptio
 ```
 
 **Solutions:**
+
 - Verify username and password are correct
 - Check user is not disabled: `kubectl -n kubauth-users get user <username>`
 - Review audit logs: `kc audit logins`

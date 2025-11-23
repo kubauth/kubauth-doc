@@ -138,6 +138,12 @@ claims:
 ```
 
 -----
+### `uid`
+integer - optional
+
+A user numerical ID. May be useful in some Linux context
+
+-----
 ### `comment`
 string - optional
 
