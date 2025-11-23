@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="A Kubernetes-native OpenID Connect (OIDC) Identity Provider">
       
+      
+        <meta name="author" content="Kubauth Project">
+      
+      
+        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/30-user-guide/180-several-id-providers/">
       
       
         <link rel="prev" href="../170-ldap-connector/">
@@ -20,7 +26,7 @@
     
     
       
-        <title>Several ID providers - Kubauth</title>
+        <title>Multiple Identity Providers - Kubauth</title>
       
     
     
@@ -74,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#several-id-providers" class="md-skip">
+        <a href="#multiple-identity-providers" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Several ID providers
+              Multiple Identity Providers
             
           </span>
         </div>
@@ -318,7 +324,7 @@
   
   
   <span class="md-ellipsis">
-    User guide
+    User Guide
     
   </span>
   
@@ -329,7 +335,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            User guide
+            User Guide
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -414,7 +420,7 @@
   
   
   <span class="md-ellipsis">
-    SSO
+    SSO Session
     
   </span>
   
@@ -437,7 +443,7 @@
   
   
   <span class="md-ellipsis">
-    Users Groups
+    User Groups
     
   </span>
   
@@ -460,7 +466,7 @@
   
   
   <span class="md-ellipsis">
-    Password Grant
+    Password Grant (ROPC)
     
   </span>
   
@@ -483,7 +489,7 @@
   
   
   <span class="md-ellipsis">
-    LDAP connector
+    LDAP Connector
     
   </span>
   
@@ -515,7 +521,7 @@
   
   
   <span class="md-ellipsis">
-    Several ID providers
+    Multiple Identity Providers
     
   </span>
   
@@ -528,7 +534,7 @@
   
   
   <span class="md-ellipsis">
-    Several ID providers
+    Multiple Identity Providers
     
   </span>
   
@@ -598,7 +604,7 @@
   
   
   <span class="md-ellipsis">
-    Identity merging
+    Identity Merging
     
   </span>
   
@@ -639,7 +645,7 @@
   
   
   <span class="md-ellipsis">
-    Applications integration
+    Applications Integration
     
   </span>
   
@@ -650,7 +656,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Applications integration
+            Applications Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -753,7 +759,7 @@
   
   
   <span class="md-ellipsis">
-    Kubernetes integration
+    Kubernetes Integration
     
   </span>
   
@@ -764,7 +770,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Kubernetes integration
+            Kubernetes Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -775,12 +781,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../50-kubernetes-integration/110-introduction/" class="md-nav__link">
+      <a href="../../50-kubernetes-integration/110-overview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Introduction
+    Overview
     
   </span>
   
@@ -803,7 +809,7 @@
   
   
   <span class="md-ellipsis">
-    API Server configuration
+    API Server Configuration
     
   </span>
   
@@ -826,7 +832,7 @@
   
   
   <span class="md-ellipsis">
-    Kubeconfig service
+    Kubeconfig Service
     
   </span>
   
@@ -849,7 +855,7 @@
   
   
   <span class="md-ellipsis">
-    Workstation setup
+    Workstation Setup
     
   </span>
   
@@ -890,7 +896,7 @@
   
   
   <span class="md-ellipsis">
-    Appendix
+    API Reference
     
   </span>
   
@@ -900,6 +906,441 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/110-oidcclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OidcClient
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/120-user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/130-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Group
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/140-groupbinding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GroupBinding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    kc CLI Tool
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            kc CLI Tool
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/110-version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc version
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/120-hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc hash
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/130-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/140-token-nui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token-nui
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/150-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc audit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/160-jwt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc jwt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/170-whoami/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc whoami
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/180-logout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc logout
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/190-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Appendix
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Appendix
           </label>
@@ -912,12 +1353,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-appendix/100-openldap/" class="md-nav__link">
+      <a href="../../80-appendix/100-openldap/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    OpenLDAP deployment
+    OpenLDAP Deployment
     
   </span>
   
@@ -1007,13 +1448,13 @@
   
 
 
-<h1 id="several-id-providers">Several ID Providers</h1>
-<p>In previous chapter, we substitute our local user database by an external LDAP server. But what if we want to have both.</p>
+<h1 id="multiple-identity-providers">Multiple Identity Providers</h1>
+<p>In the previous chapter, we replaced our local user database with an external LDAP server. But what if we want to have both?</p>
 <h2 id="configuration">Configuration</h2>
-<p>Kubauth provide another built-in module: the <code>merger</code>. </p>
+<p>Kubauth provides another built-in module: the <code>merger</code>.</p>
 <p>Here is our target architecture:</p>
 <p><img alt="containers" class="center" src="../../assets/archi-merge.png" width="60%" /></p>
-<p>And here is a <code>values file</code> to implement it:</p>
+<p>Here is a values file to implement it:</p>
 <details class="abstract" open="open">
 <summary>values-merger.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">oidc</span><span class="p">:</span>
@@ -1069,14 +1510,14 @@
 </details>
 <ul>
 <li>The <code>audit</code> module is now connected to the <code>merger</code> module.</li>
-<li>This <code>merger</code> module is configured with a list of two ID provider. We will see in next chapter than order is important.</li>
+<li>The <code>merger</code> module is configured with a list of two identity providers. We will see in the next chapter that order is important.</li>
 <li>The <code>ucrd</code> module is enabled.</li>
-<li>The <code>ldap</code> module configuration os the same as in previous chapter.</li>
+<li>The <code>ldap</code> module configuration is the same as in the previous chapter.</li>
 </ul>
-<p>One your configuration is ready, you can proceed with its deployment, by launching an <code>helm update ....</code> command:</p>
+<p>Once your configuration is ready, proceed with deployment by running the <code>helm upgrade ...</code> command:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth<span class="w"> </span>--values<span class="w"> </span>./values-merger.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.2-snapshot<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
 </span></code></pre></div>
-<p>And you can check which containers has now been deployed:</p>
+<p>Verify which containers have been deployed:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>kubauth<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{range .items[0].spec.containers[*]}{.name}{&quot;\n&quot;}{end}&#39;</span>
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>oidc
@@ -1085,26 +1526,26 @@
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>ucrd
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>ldap
 </span></code></pre></div></p>
-<p>If you have followed this manual, the <code>ucrd</code> module has been previously removed. So all its content is gone. You must restore it:</p>
+<p>If you have followed this manual, the <code>ucrd</code> module was previously removed, so all its content is gone. You must restore it:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>users.yaml
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>group1.yaml
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>group2.yaml<span class="w"> </span>
 </span></code></pre></div>
 <h2 id="logins">Logins</h2>
-<p>And you can now test authentication:</p>
+<p>Test authentication:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>-d
 </span></code></pre></div>
-<p>Launch this command twice, one with <code>bob/bob123</code> and another with <code>john/john123</code></p>
-<p>You can check with the result both user's claims are properly populated.</p>
+<p>Run this command twice: once with <code>bob/bob123</code> and again with <code>john/john123</code>.</p>
+<p>Verify that both users' claims are properly populated.</p>
 <h2 id="audit">Audit</h2>
-<p>If you issue some login command:</p>
+<p>If you review the login attempts:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span>audit<span class="w"> </span>logins
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>WHEN           LOGIN   STATUS            UID   NAME         GROUPS       CLAIMS                                      EMAILS                  AUTH
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Thu 12:14:32   bob     passwordChecked   -     Bob MORANE   [staff]      {}                                          [bob@mycompany.com]     ldap
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Thu 12:14:18   john    passwordChecked   -     John DOE     [devs,ops]   {&quot;accessProfile&quot;:&quot;p24x7&quot;,&quot;office&quot;:&quot;208G&quot;}   [johnd@mycompany.com]   ucrd
 </span></code></pre></div></p>
-<p>You can see the rightmost column <code>AUTH</code> for AUTHORITY with is now fulfilled with the name of the ID Provider which validate the password. </p>
+<p>Notice the rightmost column <code>AUTH</code> (AUTHORITY), which now indicates the identity provider that validated the password.</p>
 
 
 
@@ -1134,7 +1575,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../170-ldap-connector/" class="md-footer__link md-footer__link--prev" aria-label="Previous: LDAP connector">
+          <a href="../170-ldap-connector/" class="md-footer__link md-footer__link--prev" aria-label="Previous: LDAP Connector">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1144,20 +1585,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                LDAP connector
+                LDAP Connector
               </div>
             </div>
           </a>
         
         
           
-          <a href="../190-identity-merging/" class="md-footer__link md-footer__link--next" aria-label="Next: Identity merging">
+          <a href="../190-identity-merging/" class="md-footer__link md-footer__link--next" aria-label="Next: Identity Merging">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Identity merging
+                Identity Merging
               </div>
             </div>
             <div class="md-footer__button md-icon">

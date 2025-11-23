@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="A Kubernetes-native OpenID Connect (OIDC) Identity Provider">
       
+      
+        <meta name="author" content="Kubauth Project">
+      
+      
+        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/30-user-guide/150-users-groups/">
       
       
         <link rel="prev" href="../140-sso/">
@@ -20,7 +26,7 @@
     
     
       
-        <title>Users Groups - Kubauth</title>
+        <title>User Groups - Kubauth</title>
       
     
     
@@ -74,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#users-groups" class="md-skip">
+        <a href="#user-groups" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Users Groups
+              User Groups
             
           </span>
         </div>
@@ -318,7 +324,7 @@
   
   
   <span class="md-ellipsis">
-    User guide
+    User Guide
     
   </span>
   
@@ -329,7 +335,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            User guide
+            User Guide
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -414,7 +420,7 @@
   
   
   <span class="md-ellipsis">
-    SSO
+    SSO Session
     
   </span>
   
@@ -446,7 +452,7 @@
   
   
   <span class="md-ellipsis">
-    Users Groups
+    User Groups
     
   </span>
   
@@ -459,7 +465,7 @@
   
   
   <span class="md-ellipsis">
-    Users Groups
+    User Groups
     
   </span>
   
@@ -520,7 +526,7 @@
   
   
   <span class="md-ellipsis">
-    Password Grant
+    Password Grant (ROPC)
     
   </span>
   
@@ -543,7 +549,7 @@
   
   
   <span class="md-ellipsis">
-    LDAP connector
+    LDAP Connector
     
   </span>
   
@@ -566,7 +572,7 @@
   
   
   <span class="md-ellipsis">
-    Several ID providers
+    Multiple Identity Providers
     
   </span>
   
@@ -589,7 +595,7 @@
   
   
   <span class="md-ellipsis">
-    Identity merging
+    Identity Merging
     
   </span>
   
@@ -630,7 +636,7 @@
   
   
   <span class="md-ellipsis">
-    Applications integration
+    Applications Integration
     
   </span>
   
@@ -641,7 +647,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Applications integration
+            Applications Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -744,7 +750,7 @@
   
   
   <span class="md-ellipsis">
-    Kubernetes integration
+    Kubernetes Integration
     
   </span>
   
@@ -755,7 +761,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Kubernetes integration
+            Kubernetes Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -766,12 +772,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../50-kubernetes-integration/110-introduction/" class="md-nav__link">
+      <a href="../../50-kubernetes-integration/110-overview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Introduction
+    Overview
     
   </span>
   
@@ -794,7 +800,7 @@
   
   
   <span class="md-ellipsis">
-    API Server configuration
+    API Server Configuration
     
   </span>
   
@@ -817,7 +823,7 @@
   
   
   <span class="md-ellipsis">
-    Kubeconfig service
+    Kubeconfig Service
     
   </span>
   
@@ -840,7 +846,7 @@
   
   
   <span class="md-ellipsis">
-    Workstation setup
+    Workstation Setup
     
   </span>
   
@@ -881,7 +887,7 @@
   
   
   <span class="md-ellipsis">
-    Appendix
+    API Reference
     
   </span>
   
@@ -891,6 +897,441 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/110-oidcclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OidcClient
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/120-user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/130-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Group
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/140-groupbinding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GroupBinding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    kc CLI Tool
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            kc CLI Tool
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/110-version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc version
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/120-hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc hash
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/130-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/140-token-nui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token-nui
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/150-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc audit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/160-jwt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc jwt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/170-whoami/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc whoami
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/180-logout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc logout
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/190-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Appendix
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Appendix
           </label>
@@ -903,12 +1344,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-appendix/100-openldap/" class="md-nav__link">
+      <a href="../../80-appendix/100-openldap/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    OpenLDAP deployment
+    OpenLDAP Deployment
     
   </span>
   
@@ -989,11 +1430,10 @@
   
 
 
-<h1 id="users-groups">Users Groups</h1>
-<p>For most application, a Key attribute of a user is the groups this user belong to. To handle this, 
-Kubauth user management support a Custom Resource: <code>GroupBinding.kubauth.kubotal.io</code></p>
+<h1 id="user-groups">User Groups</h1>
+<p>For most applications, a key attribute of a user is the groups they belong to. To handle this, Kubauth user management supports a Custom Resource: <code>GroupBinding.kubauth.kubotal.io</code></p>
 <h2 id="groupbinding">GroupBinding</h2>
-<p>Here is a sample manifest</p>
+<p>Here is a sample manifest:</p>
 <details class="abstract" open="open">
 <summary>group1.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nn">---</span>
@@ -1007,27 +1447,25 @@ Kubauth user management support a Custom Resource: <code>GroupBinding.kubauth.ku
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">devs</span>
 </span></code></pre></div>
 </details>
-<p>This will associate the user <code>jim</code> to the group <code>devs</code>. Note there is no explicit creation of a <code>dev</code> group. 
-With Kubauth, a group can exist only because it is referenced by a <code>GroupBinding</code>.</p>
-<div class="admonition notes">
-<p class="admonition-title">Notes</p>
-<p>Generally, Kubernetes does not check referential integrity when creating a resource that references another one.
-For example, the following will work:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>ldemo<span class="w"> </span>create<span class="w"> </span>rolebinding<span class="w"> </span>missing-integrity<span class="w"> </span>--role<span class="o">=</span>unexisting-role<span class="w"> </span>--group<span class="o">=</span>unexisting-group
+<p>This associates the user <code>jim</code> with the group <code>devs</code>. Note that there is no explicit creation of a <code>devs</code> group. With Kubauth, a group exists simply by being referenced in a <code>GroupBinding</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Generally, Kubernetes does not enforce referential integrity when creating resources that reference other resources. For example, the following will succeed:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>mynamespace<span class="w"> </span>create<span class="w"> </span>rolebinding<span class="w"> </span>missing-integrity<span class="w"> </span>--role<span class="o">=</span>unexisting-role<span class="w"> </span>--group<span class="o">=</span>unexisting-group
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>rolebinding.rbac.authorization.k8s.io/missing-integrity<span class="w"> </span>created
 </span></code></pre></div>
-<p>Maybe the referenced resource will be created later, or the link will be useless. This is evidently a design choice in Kubernetes, and Kubauth follows the same logic.</p>
+<p>The referenced resource might be created later, or the reference might never be used. This is by design in Kubernetes, and Kubauth follows the same pattern.</p>
 </div>
-<p>Now, apply the manifest:</p>
+<p>Apply the manifest:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>group1.yaml
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>groupbinding.kubauth.kubotal.io/jim-dev<span class="w"> </span>created
 </span></code></pre></div></p>
-<p>Now, login with the <code>jim</code> account:</p>
+<p>Now, log in with the <code>jim</code> account:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>-d
 </span></code></pre></div>
-<p>When looking at the decoded JWT token, you should now find a <code>groups</code> claim:</p>
+<p>When inspecting the decoded JWT token, you should now find a <code>groups</code> claim:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>.....
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>JWT<span class="w"> </span>Payload:
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="o">{</span>
@@ -1052,26 +1490,26 @@ For example, the following will work:</p>
 </span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">  </span><span class="s2">&quot;sub&quot;</span>:<span class="w"> </span><span class="s2">&quot;jim&quot;</span>
 </span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="o">}</span>
 </span></code></pre></div>
-<p>This claim has been added by Kubauth, based on <code>GroupBinding</code> resource.</p>
+<p>This claim has been added by Kubauth based on the <code>GroupBinding</code> resource.</p>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
-<p>What if a <code>groups</code> claim has already being defined in the <code>spec.claims</code> set of the user entity ? </p>
-<p>Answer: The <code>User.spec.claims.groups</code> is overwritten. </p>
+<p>What if a <code>groups</code> claim is already defined in the <code>spec.claims</code> of the user entity?</p>
+<p>Answer: The <code>User.spec.claims.groups</code> value is overwritten.</p>
 </div>
 <h2 id="group-custom-resource">Group Custom Resource</h2>
-<p>Kubauth also allow the explicit creation of <code>Group.kubauth.kubotal.io</code> entity.</p>
-<p>There will be two reason to do so:</p>
+<p>Kubauth also allows explicit creation of <code>Group.kubauth.kubotal.io</code> entities.</p>
+<p>There are two reasons to do this:</p>
 <ul>
-<li>Documentation, by setting a <code>spec.comment</code> attribut on the <code>Group</code> resource.</li>
-<li>Define a set of 'Claims', which will be applied to all members of the group.</li>
+<li>Documentation, by setting a <code>spec.comment</code> attribute on the <code>Group</code> resource.</li>
+<li>Define a set of claims that will be applied to all group members.</li>
 </ul>
 <p>For example, the following manifest will:</p>
 <ul>
-<li>Associate user <code>john</code> to the group <code>devs</code> defined previously.</li>
-<li>Associate user <code>john</code> to the group <code>ops</code>, newly create.</li>
-<li>Create explicitly the group <code>ops</code></li>
-<li>with a <code>spec.comment</code> </li>
-<li>and a <code>spec.claims.accessProfile</code>, which will be set for all members. </li>
+<li>Associate user <code>john</code> with the <code>devs</code> group defined previously.</li>
+<li>Associate user <code>john</code> with a newly created <code>ops</code> group.</li>
+<li>Explicitly create the <code>ops</code> group:</li>
+<li>With a <code>spec.comment</code></li>
+<li>With a <code>spec.claims.accessProfile</code> that will be applied to all members.</li>
 </ul>
 <details class="abstract" open="open">
 <summary>group2.yaml</summary>
@@ -1107,14 +1545,14 @@ For example, the following will work:</p>
 </span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="w">    </span><span class="nt">accessProfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p24x7</span>
 </span></code></pre></div>
 </details>
-<p>Apply it</p>
+<p>Apply it:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>group2.yaml
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>groupbinding.kubauth.kubotal.io/john-dev<span class="w"> </span>created
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>groupbinding.kubauth.kubotal.io/john-ops<span class="w"> </span>created
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>group.kubauth.kubotal.io/ops<span class="w"> </span>created
 </span></code></pre></div></p>
-<p>And now, login with the <code>john</code> account:</p>
+<p>Now, log in with the <code>john</code> account:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>-d
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>.....
@@ -1149,10 +1587,10 @@ For example, the following will work:</p>
 </span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="w">  </span><span class="s2">&quot;sub&quot;</span>:<span class="w"> </span><span class="s2">&quot;john&quot;</span>
 </span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a><span class="o">}</span>
 </span></code></pre></div>
-<p>When looking at the decoded JWT token, you should check than:</p>
+<p>When inspecting the decoded JWT token, you should verify that:</p>
 <ul>
-<li>The <code>groups</code> claim now list two values.</li>
-<li>The <code>accessProfile</code> claims is set with appropriate value.</li>
+<li>The <code>groups</code> claim now lists two values.</li>
+<li>The <code>accessProfile</code> claim is set with the appropriate value.</li>
 </ul>
 
 
@@ -1183,7 +1621,7 @@ For example, the following will work:</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../140-sso/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SSO">
+          <a href="../140-sso/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SSO Session">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1193,20 +1631,20 @@ For example, the following will work:</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                SSO
+                SSO Session
               </div>
             </div>
           </a>
         
         
           
-          <a href="../160-password-grant/" class="md-footer__link md-footer__link--next" aria-label="Next: Password Grant">
+          <a href="../160-password-grant/" class="md-footer__link md-footer__link--next" aria-label="Next: Password Grant (ROPC)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Password Grant
+                Password Grant (ROPC)
               </div>
             </div>
             <div class="md-footer__button md-icon">

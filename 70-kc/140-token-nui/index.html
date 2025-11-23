@@ -12,13 +12,13 @@
         <meta name="author" content="Kubauth Project">
       
       
-        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/40-applications-integration/120-harbor/">
+        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/70-kc/140-token-nui/">
       
       
-        <link rel="prev" href="../110-argocd/">
+        <link rel="prev" href="../130-token/">
       
       
-        <link rel="next" href="../130-minio/">
+        <link rel="next" href="../150-audit/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Harbor - Kubauth</title>
+        <title>kc token-nui - Kubauth</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#harbor-integration" class="md-skip">
+        <a href="#kc-token-nui" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Harbor
+              kc token-nui
             
           </span>
         </div>
@@ -555,20 +555,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -584,7 +582,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Applications Integration
@@ -598,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../110-argocd/" class="md-nav__link">
+      <a href="../../40-applications-integration/110-argocd/" class="md-nav__link">
         
   
   
@@ -618,32 +616,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Harbor
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../40-applications-integration/120-harbor/" class="md-nav__link">
         
   
   
@@ -654,62 +630,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#oidc-client-creation" class="md-nav__link">
-    <span class="md-ellipsis">
-      OIDC Client Creation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#manual-harbor-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Manual Harbor Configuration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#automated-harbor-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Automated Harbor Configuration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#admin-rights" class="md-nav__link">
-    <span class="md-ellipsis">
-      Admin Rights
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -722,7 +642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../130-minio/" class="md-nav__link">
+      <a href="../../40-applications-integration/130-minio/" class="md-nav__link">
         
   
   
@@ -1046,18 +966,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1073,7 +995,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             kc CLI Tool
@@ -1087,7 +1009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/100-overview/" class="md-nav__link">
+      <a href="../100-overview/" class="md-nav__link">
         
   
   
@@ -1110,7 +1032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/110-version/" class="md-nav__link">
+      <a href="../110-version/" class="md-nav__link">
         
   
   
@@ -1133,7 +1055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/120-hash/" class="md-nav__link">
+      <a href="../120-hash/" class="md-nav__link">
         
   
   
@@ -1156,7 +1078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/130-token/" class="md-nav__link">
+      <a href="../130-token/" class="md-nav__link">
         
   
   
@@ -1176,10 +1098,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../70-kc/140-token-nui/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    kc token-nui
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1190,6 +1134,305 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syntax
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-issuerurl" class="md-nav__link">
+    <span class="md-ellipsis">
+      --issuerURL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-clientid" class="md-nav__link">
+    <span class="md-ellipsis">
+      --clientId
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-clientsecret" class="md-nav__link">
+    <span class="md-ellipsis">
+      --clientSecret
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-insecureskipverify" class="md-nav__link">
+    <span class="md-ellipsis">
+      --insecureSkipVerify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-cafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      --caFile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-onlyidtoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --onlyIDToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-onlyaccesstoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --onlyAccessToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-d-detailidtoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      -d, --detailIDToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-scopes" class="md-nav__link">
+    <span class="md-ellipsis">
+      --scopes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-login-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      --login (string)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-password-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      --password (string)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interactive-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Login
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-interactive-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non-Interactive (Automation)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-token-decoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      With Token Decoding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#only-id-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Only ID Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-cicd-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      For CI/CD Pipelines
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Considerations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#password-grant-not-allowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Password Grant Not Allowed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-certificate-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      TLS Certificate Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication Failed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-with-kc-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparison with kc token
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See Also
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1202,7 +1445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/150-audit/" class="md-nav__link">
+      <a href="../150-audit/" class="md-nav__link">
         
   
   
@@ -1225,7 +1468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/160-jwt/" class="md-nav__link">
+      <a href="../160-jwt/" class="md-nav__link">
         
   
   
@@ -1248,7 +1491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/170-whoami/" class="md-nav__link">
+      <a href="../170-whoami/" class="md-nav__link">
         
   
   
@@ -1271,7 +1514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/180-logout/" class="md-nav__link">
+      <a href="../180-logout/" class="md-nav__link">
         
   
   
@@ -1294,7 +1537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/190-config/" class="md-nav__link">
+      <a href="../190-config/" class="md-nav__link">
         
   
   
@@ -1412,36 +1655,279 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#oidc-client-creation" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      OIDC Client Creation
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#manual-harbor-configuration" class="md-nav__link">
+  <a href="#syntax" class="md-nav__link">
     <span class="md-ellipsis">
-      Manual Harbor Configuration
+      Syntax
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#automated-harbor-configuration" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Automated Harbor Configuration
+      Prerequisites
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#admin-rights" class="md-nav__link">
+  <a href="#flags" class="md-nav__link">
     <span class="md-ellipsis">
-      Admin Rights
+      Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-issuerurl" class="md-nav__link">
+    <span class="md-ellipsis">
+      --issuerURL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-clientid" class="md-nav__link">
+    <span class="md-ellipsis">
+      --clientId
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-clientsecret" class="md-nav__link">
+    <span class="md-ellipsis">
+      --clientSecret
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-insecureskipverify" class="md-nav__link">
+    <span class="md-ellipsis">
+      --insecureSkipVerify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-cafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      --caFile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-onlyidtoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --onlyIDToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-onlyaccesstoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --onlyAccessToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-d-detailidtoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      -d, --detailIDToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-scopes" class="md-nav__link">
+    <span class="md-ellipsis">
+      --scopes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-login-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      --login (string)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-password-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      --password (string)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interactive-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Login
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-interactive-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non-Interactive (Automation)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-token-decoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      With Token Decoding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#only-id-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Only ID Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-cicd-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      For CI/CD Pipelines
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Considerations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#password-grant-not-allowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Password Grant Not Allowed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-certificate-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      TLS Certificate Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication Failed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-with-kc-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparison with kc token
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See Also
     </span>
   </a>
   
@@ -1466,99 +1952,216 @@
   
 
 
-<h1 id="harbor-integration">Harbor Integration</h1>
-<h2 id="oidc-client-creation">OIDC Client Creation</h2>
-<p>As described in <a href="../../30-user-guide/110-configuration/#oidc-client-creation">Configuration</a>, a client application is defined as a Kubernetes Custom Resource.</p>
-<p>Create a manifest like the following:</p>
-<details class="abstract" open="open">
-<summary>client-harbor.yaml</summary>
-<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OidcClient</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">harbor</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-oidc</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">hashedSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$2a$12$5lLVmTBlougPBAQ8h10wR.W9tvZQBRsK1/Sh48yO8WLyXr.P4w3tm&quot;</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">redirectURIs</span><span class="p">:</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;https://harbor.ingress.kubo6.mbp/c/oidc/callback&quot;</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">grantTypes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;refresh_token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;authorization_code&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">responseTypes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;id_token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;id_token</span><span class="nv"> </span><span class="s">token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">id_token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">id_token</span><span class="nv"> </span><span class="s">token&quot;</span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">scopes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;openid&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;offline&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;profile&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;groups&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;email&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;offline_access&quot;</span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="c1"># Following are optional</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">displayName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Harbor</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Harbor OCI repository</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">entryURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://harbor.ingress.kubo6.mbp/</span>
+<h1 id="kc-token-nui">kc token-nui</h1>
+<h2 id="overview">Overview</h2>
+<p>The <code>kc token-nui</code> command obtains OIDC tokens using the Resource Owner Password Credentials (ROPC) flow. It prompts for username and password in the terminal without requiring a browser, making it suitable for headless environments, SSH sessions, and automation.</p>
+<p><strong>NUI</strong> stands for "No User Interface" (no browser).</p>
+<h2 id="syntax">Syntax</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>&lt;url&gt;<span class="w"> </span>--clientId<span class="w"> </span>&lt;id&gt;<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
 </span></code></pre></div>
-</details>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>The ROPC/Password Grant must be enabled in Kubauth:</p>
+<ol>
+<li><strong>Global configuration:</strong> Set <code>allowPasswordGrant: true</code> in Kubauth Helm values</li>
+<li><strong>Client configuration:</strong> Add <code>"password"</code> to the client's <code>grantTypes</code> list</li>
+</ol>
+<p>See <a href="../../30-user-guide/160-password-grant/#configuration">Password Grant Configuration</a> for details.</p>
+<h2 id="flags">Flags</h2>
+<h3 id="-issuerurl"><code>--issuerURL</code></h3>
+<p>The Kubauth OIDC issuer URL.</p>
+<p><strong>Example:</strong> <code>--issuerURL https://kubauth.example.com</code></p>
+<p>Value may also be fetched from <code>KC_ISSUER_URL</code> environment variable, or Kubernetes kubeconfig if <code>kc init ....</code> has been used.</p>
+<hr />
+<h3 id="-clientid"><code>--clientId</code></h3>
+<p>The OIDC client ID to use for authentication.</p>
+<p><strong>Example:</strong> <code>--clientId public</code></p>
+<p>Value may also be fetched from <code>KC_CLIENT_ID</code> environment variable, or Kubernetes kubeconfig if <code>kc init ....</code> has been used.</p>
+<hr />
+<h3 id="-clientsecret"><code>--clientSecret</code></h3>
+<p>The client secret (for confidential clients).</p>
+<p><strong>Example:</strong> <code>--clientSecret mysecret123</code></p>
+<p>Value may also be fetched from <code>KC_CLIENT_ID</code> environment variable, or Kubernetes kubeconfig if <code>kc init ....</code> has been used.</p>
+<hr />
+<h3 id="-insecureskipverify"><code>--insecureSkipVerify</code></h3>
+<p>Skip TLS certificate verification. Use only for testing with self-signed certificates.</p>
+<p><strong>Example:</strong> <code>--insecureSkipVerify</code></p>
+<hr />
+<h3 id="-cafile"><code>--caFile</code></h3>
+<p>Provide a CA file for TLS certificate verification of ìssuerURL</p>
+<p><strong>Example:</strong> <code>--caFile ./CA.crt</code></p>
+<hr />
+<h3 id="-onlyidtoken"><code>--onlyIDToken</code></h3>
+<p>Output only the ID token (base64-encoded JWT). Useful for piping to other commands or scripts.</p>
+<p><strong>Example:</strong> <code>--onlyIDToken</code></p>
+<hr />
+<h3 id="-onlyaccesstoken"><code>--onlyAccessToken</code></h3>
+<p>Output only the access token (base64-encoded). Useful for piping to other commands or scripts.</p>
+<p><strong>Example:</strong> <code>--onlyAccessToken</code></p>
+<hr />
+<h3 id="-d-detailidtoken"><code>-d</code>, <code>--detailIDToken</code></h3>
+<p>Decode and display the JWT token payload. This is a shortcut for <code>| kc jwt</code>.</p>
+<p><strong>Example:</strong> <code>-d</code></p>
+<hr />
+<h3 id="-scopes"><code>--scopes</code></h3>
+<p>Comma-separated list of OAuth2 scopes to request.</p>
+<p><strong>Default:</strong> <code>openid,profile,groups,offline</code></p>
+<p><strong>Example:</strong> <code>--scopes openid,profile,email,groups</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In its current version, Kubauth does not manage scopes. All claims are included in the JWT token.</p>
+</div>
+<hr />
+<h3 id="-login-string"><code>--login</code> (string)</h3>
+<p>Username for authentication. If not provided, you'll be prompted.</p>
+<p>Value may also be fetched from <code>KC_USER_LOGIN</code> environment variable.</p>
+<hr />
+<h3 id="-password-string"><code>--password</code> (string)</h3>
+<p>Password for authentication. If not provided, you'll be prompted (input hidden).</p>
+<p>Value may also be fetched from <code>KC_USER_PASSWORD</code> environment variable.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="interactive-login">Interactive Login</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public
+</span></code></pre></div>
+<p><strong>Interaction:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Login: john
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Password: 
+</span></code></pre></div></p>
+<p><strong>Output:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Access token: ory_at_LAhtO0e8T8-V2wLZ72V0G98jKMJEpYQLH6tm6Aeg_Lw...
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Refresh token: ory_rt_kP1rTr6eF_AgdVvUtzfEKywhIddEK2cjDRC9EmkT0Hw...
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY...
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Expire in: 1h0m0s
+</span></code></pre></div></p>
+<h3 id="non-interactive-automation">Non-Interactive (Automation)</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--clientId<span class="w"> </span>public<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>--login<span class="w"> </span>john<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>--password<span class="w"> </span>john123
+</span></code></pre></div>
+<h3 id="with-token-decoding">With Token Decoding</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>--clientId<span class="w"> </span>public<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--login<span class="w"> </span>john<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>--password<span class="w"> </span>john123<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>-d
+</span></code></pre></div>
+<h3 id="only-id-token">Only ID Token</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>--clientId<span class="w"> </span>public<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>--login<span class="w"> </span>john<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>--password<span class="w"> </span>john123<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>--onlyIDToken
+</span></code></pre></div>
+<h3 id="for-cicd-pipelines">For CI/CD Pipelines</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nv">TOKEN</span><span class="o">=</span><span class="k">$(</span>kc<span class="w"> </span>token-nui<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span>--clientId<span class="w"> </span>automation<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span>--login<span class="w"> </span>serviceaccount<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span>--password<span class="w"> </span><span class="nv">$SERVICE_PASSWORD</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span>--onlyIDToken<span class="k">)</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span><span class="w"> </span>https://api.example.com/deploy
+</span></code></pre></div>
+<h2 id="security-considerations">Security Considerations</h2>
+<div class="admonition warning">
+<p class="admonition-title">Password Grant Security</p>
+<p>The password grant flow is deprecated in OAuth 2.1 due to security concerns:</p>
 <ul>
-<li>Replace <code>harbor.ingress.kubo6.mbp</code> with your Harbor entry point (in 2 locations)</li>
-<li>The sample password is 'harbor123'. The <code>hashedSecret</code> value is the result of the <code>kc hash harbor123</code> command.</li>
-<li>The <code>displayName</code>, <code>description</code>, and <code>entryURL</code> attributes are optional. They enable Harbor to appear in a list of available applications displayed on a specific page (<code>https://kubauth.ingress.kubo6.mbp/index</code>) or the logout page.</li>
+<li>Credentials are exposed to the client application</li>
+<li>Cannot support phishing-resistant MFA</li>
+<li>Users may be trained to enter passwords in applications</li>
 </ul>
-<p>Apply this manifest:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>client-harbor.yaml
-</span></code></pre></div>
-<h2 id="manual-harbor-configuration">Manual Harbor Configuration</h2>
-<p>We assume you have a running Harbor installation.</p>
+<p>Use only when browser-based flows are impossible.</p>
+</div>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="password-grant-not-allowed">Password Grant Not Allowed</h3>
+<p><strong>Error:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>token request failed with status 403: {&quot;error&quot;:&quot;request_forbidden&quot;,&quot;error_description&quot;:&quot;The request is not allowed. This server does not allow to use authorization grant &#39;password&#39;. Check server configuration&quot;}
+</span></code></pre></div></p>
+<p><strong>Solution:</strong> Enable password grant in both Kubauth configuration and the OidcClient. See <a href="../../30-user-guide/160-password-grant/#configuration">Password Grant Configuration</a>.</p>
+<h3 id="tls-certificate-errors">TLS Certificate Errors</h3>
+<p><strong>Error:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Error: x509: certificate signed by unknown authority
+</span></code></pre></div></p>
+<p><strong>Solutions:</strong></p>
 <ul>
-<li>Log in to the Harbor interface with an account that has Harbor system administrator privileges.</li>
-<li>Under Administration, go to Configuration and select the Authentication tab.</li>
-<li>Use the Auth Mode drop-down menu to select OIDC.</li>
+<li>Use <code>--insecureSkipVerify</code> for testing (not recommended for production)</li>
+<li>Use <code>--caFile ./ca.crt</code>. To extract the CA:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>kubauth-oidc-server-cert<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>-o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.ca\.crt}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;<span class="w"> </span>ca.crt
+</span></code></pre></div></li>
+<li>Add this CA certificate to system trust store.</li>
 </ul>
-<p>Set the following values:</p>
+<h3 id="authentication-failed">Authentication Failed</h3>
+<p><strong>Error:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>token request failed with status 400: {&quot;error&quot;:&quot;invalid_grant&quot;,&quot;error_description&quot;:&quot;...Unable to authenticate the provided username and password credentials.&quot;}
+</span></code></pre></div></p>
+<p><strong>Solutions:</strong></p>
 <ul>
-<li>Auth Mode: <code>OIDC</code></li>
-<li>OIDC Provider Name: <code>KUBAUTH</code></li>
-<li>OIDC Endpoint: <code>https://kubauth.ingress.kubo6.mbp</code> <br>(Adjust to your local Kubauth entry point)</li>
-<li>OIDC Client ID: <code>harbor</code></li>
-<li>OIDC Client Secret: <code>harbor123</code></li>
-<li>Group Claim Name: <code>groups</code></li>
-<li>OIDC Admin Group: <code>harbor-admins</code></li>
-<li>OIDC Scopes: <code>openid,email,profile,offline_access,groups</code></li>
-<li>Automatic onboarding: <code>true</code> </li>
-<li>Username Claim: <code>name</code></li>
+<li>Verify username and password are correct</li>
+<li>Check user is not disabled: <code>kubectl -n kubauth-users get user &lt;username&gt;</code></li>
+<li>Review audit logs: <code>kc audit logins</code></li>
 </ul>
-<h2 id="automated-harbor-configuration">Automated Harbor Configuration</h2>
-<p>OIDC can also be configured <a href="https://goharbor.io/docs/2.7.0/install-config/configure-system-settings-cli/#set-configuration-items-using-an-environment-variable" target="_blank">using environment variables</a>.</p>
-<p>If you have installed Harbor using the provided Helm chart, this can be achieved by appending a values file like the following to your deployment:</p>
-<details class="abstract" open="open">
-<summary>values-kubauth.yaml</summary>
-<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">core</span><span class="p">:</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">extraEnvVars</span><span class="p">:</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CONFIG_OVERWRITE_JSON</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="no">{</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">          </span><span class="no">&quot;auth_mode&quot;: &quot;oidc_auth&quot;,</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">          </span><span class="no">&quot;oidc_name&quot;: &quot;KUBAUTH&quot;,</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">          </span><span class="no">&quot;oidc_endpoint&quot;: &quot;https://kubauth.ingress.kubo6.mbp&quot;,</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">          </span><span class="no">&quot;oidc_groups_claim&quot;: &quot;groups&quot;,</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">          </span><span class="no">&quot;oidc_admin_group&quot;: &quot;harbor-admins&quot;,</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">          </span><span class="no">&quot;oidc_client_id&quot;: &quot;harbor&quot;,</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">          </span><span class="no">&quot;oidc_client_secret&quot;: &quot;harbor123&quot;,</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">          </span><span class="no">&quot;oidc_scope&quot;: &quot;openid,email,profile,offline_access,groups&quot;,</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">          </span><span class="no">&quot;oidc_verify_cert&quot;: &quot;false&quot;,</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">          </span><span class="no">&quot;oidc_auto_onboard&quot;: &quot;true&quot;,</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">          </span><span class="no">&quot;oidc_user_claim&quot;: &quot;name&quot;</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span><span class="no">}</span>
-</span></code></pre></div>
-</details>
-<blockquote>
-<p>Replace <code>https://kubauth.ingress.kubo6.mbp</code> with the Kubauth entry point of your installation.</p>
-</blockquote>
-<h2 id="admin-rights">Admin Rights</h2>
-<p>To grant admin rights to a user, add them to the group we defined as <code>oidc_admin_group</code> (here <code>harbor-admins</code>) in the configuration by creating a new <code>GroupBinding</code>:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="s">apiVersion: kubauth.kubotal.io/v1alpha1</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="s">kind: GroupBinding</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s">metadata:</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s">  name: john-harbor-admins</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="s">  namespace: kubauth-users</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="s">spec:</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="s">  group: harbor-admins</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="s">  user: john</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="s">EOF</span>
-</span></code></pre></div>
-<p>Now, you can log in with this user and verify they have full admin rights.</p>
+<h2 id="comparison-with-kc-token">Comparison with kc token</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th><code>kc token</code></th>
+<th><code>kc token-nui</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser required</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>OAuth flow</td>
+<td>Authorization Code + PKCE</td>
+<td>Password Grant (ROPC)</td>
+</tr>
+<tr>
+<td>SSH-friendly</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Automation-friendly</td>
+<td>Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>MFA support</td>
+<td>Yes</td>
+<td>Limited</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>Better</td>
+<td>Acceptable for specific cases</td>
+</tr>
+<tr>
+<td>Setup required</td>
+<td>Standard OIDC</td>
+<td>Must enable password grant</td>
+</tr>
+</tbody>
+</table>
+<h2 id="related-commands">Related Commands</h2>
+<ul>
+<li><a href="../130-token/"><code>kc token</code></a> - Browser-based authentication (preferred)</li>
+<li><a href="../190-config/"><code>kc config</code></a> - Configure kubectl with password grant</li>
+<li><a href="../160-jwt/"><code>kc jwt</code></a> - Decode JWT tokens</li>
+<li><a href="../150-audit/"><code>kc audit</code></a> - View authentication attempts</li>
+</ul>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="../../30-user-guide/160-password-grant/">Password Grant (ROPC)</a></li>
+<li><a href="../../50-kubernetes-integration/140-workstation-setup/#no-ui-mode">Workstation Setup</a></li>
+</ul>
 
 
 
@@ -1588,7 +2191,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../110-argocd/" class="md-footer__link md-footer__link--prev" aria-label="Previous: ArgoCD">
+          <a href="../130-token/" class="md-footer__link md-footer__link--prev" aria-label="Previous: kc token">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1598,20 +2201,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                ArgoCD
+                kc token
               </div>
             </div>
           </a>
         
         
           
-          <a href="../130-minio/" class="md-footer__link md-footer__link--next" aria-label="Next: MinIO">
+          <a href="../150-audit/" class="md-footer__link md-footer__link--next" aria-label="Next: kc audit">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                MinIO
+                kc audit
               </div>
             </div>
             <div class="md-footer__button md-icon">

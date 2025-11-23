@@ -6,10 +6,16 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="A Kubernetes-native OpenID Connect (OIDC) Identity Provider">
       
       
+        <meta name="author" content="Kubauth Project">
       
-        <link rel="prev" href="../110-introduction/">
+      
+        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/50-kubernetes-integration/120-api-server-configuration/">
+      
+      
+        <link rel="prev" href="../110-overview/">
       
       
         <link rel="next" href="../130-kubeconfig-service/">
@@ -20,7 +26,7 @@
     
     
       
-        <title>API Server configuration - Kubauth</title>
+        <title>API Server Configuration - Kubauth</title>
       
     
     
@@ -74,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#k8s-api-server-configuration" class="md-skip">
+        <a href="#kubernetes-api-server-configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              API Server configuration
+              API Server Configuration
             
           </span>
         </div>
@@ -316,7 +322,7 @@
   
   
   <span class="md-ellipsis">
-    User guide
+    User Guide
     
   </span>
   
@@ -327,7 +333,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            User guide
+            User Guide
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -412,7 +418,7 @@
   
   
   <span class="md-ellipsis">
-    SSO
+    SSO Session
     
   </span>
   
@@ -435,7 +441,7 @@
   
   
   <span class="md-ellipsis">
-    Users Groups
+    User Groups
     
   </span>
   
@@ -458,7 +464,7 @@
   
   
   <span class="md-ellipsis">
-    Password Grant
+    Password Grant (ROPC)
     
   </span>
   
@@ -481,7 +487,7 @@
   
   
   <span class="md-ellipsis">
-    LDAP connector
+    LDAP Connector
     
   </span>
   
@@ -504,7 +510,7 @@
   
   
   <span class="md-ellipsis">
-    Several ID providers
+    Multiple Identity Providers
     
   </span>
   
@@ -527,7 +533,7 @@
   
   
   <span class="md-ellipsis">
-    Identity merging
+    Identity Merging
     
   </span>
   
@@ -568,7 +574,7 @@
   
   
   <span class="md-ellipsis">
-    Applications integration
+    Applications Integration
     
   </span>
   
@@ -579,7 +585,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Applications integration
+            Applications Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -684,7 +690,7 @@
   
   
   <span class="md-ellipsis">
-    Kubernetes integration
+    Kubernetes Integration
     
   </span>
   
@@ -695,7 +701,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Kubernetes integration
+            Kubernetes Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -706,12 +712,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../110-introduction/" class="md-nav__link">
+      <a href="../110-overview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Introduction
+    Overview
     
   </span>
   
@@ -743,7 +749,7 @@
   
   
   <span class="md-ellipsis">
-    API Server configuration
+    API Server Configuration
     
   </span>
   
@@ -756,7 +762,7 @@
   
   
   <span class="md-ellipsis">
-    API Server configuration
+    API Server Configuration
     
   </span>
   
@@ -781,17 +787,17 @@
         <li class="md-nav__item">
   <a href="#automated-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Automated configuration
+      Automated Configuration
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Automated configuration">
+    <nav class="md-nav" aria-label="Automated Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#varifying-installation" class="md-nav__link">
+  <a href="#verifying-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Varifying installation
+      Verifying Installation
     </span>
   </a>
   
@@ -814,7 +820,7 @@
         <li class="md-nav__item">
   <a href="#manual-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Manual configuration
+      Manual Configuration
     </span>
   </a>
   
@@ -841,7 +847,7 @@
   
   
   <span class="md-ellipsis">
-    Kubeconfig service
+    Kubeconfig Service
     
   </span>
   
@@ -864,7 +870,7 @@
   
   
   <span class="md-ellipsis">
-    Workstation setup
+    Workstation Setup
     
   </span>
   
@@ -905,7 +911,7 @@
   
   
   <span class="md-ellipsis">
-    Appendix
+    API Reference
     
   </span>
   
@@ -915,6 +921,441 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/110-oidcclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OidcClient
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/120-user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/130-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Group
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/140-groupbinding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GroupBinding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    kc CLI Tool
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            kc CLI Tool
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/110-version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc version
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/120-hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc hash
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/130-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/140-token-nui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token-nui
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/150-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc audit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/160-jwt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc jwt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/170-whoami/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc whoami
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/180-logout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc logout
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/190-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Appendix
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Appendix
           </label>
@@ -927,12 +1368,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-appendix/100-openldap/" class="md-nav__link">
+      <a href="../../80-appendix/100-openldap/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    OpenLDAP deployment
+    OpenLDAP Deployment
     
   </span>
   
@@ -979,17 +1420,17 @@
         <li class="md-nav__item">
   <a href="#automated-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Automated configuration
+      Automated Configuration
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Automated configuration">
+    <nav class="md-nav" aria-label="Automated Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#varifying-installation" class="md-nav__link">
+  <a href="#verifying-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Varifying installation
+      Verifying Installation
     </span>
   </a>
   
@@ -1012,7 +1453,7 @@
         <li class="md-nav__item">
   <a href="#manual-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Manual configuration
+      Manual Configuration
     </span>
   </a>
   
@@ -1037,96 +1478,88 @@
   
 
 
-<h1 id="k8s-api-server-configuration">K8S API Server configuration</h1>
-<h2 id="automated-configuration">Automated configuration</h2>
-<p>Kubauth provide an Helm chart which will spawn appropriate jobs to perform this configuration in a fully automated way.</p>
-<p>This process assume that the API Server is managed by the Kubelet as a static pod. If your API Server is managed by 
-another system, such as systemd, you should fallback to the manual configuration.</p>
-<p>Also, this process assume some 'standard' folder layout on kubernetes installation, 
-such as used by <a href="https://kind.sigs.k8s.io/" target="_blank">kind</a> or <a href="https://github.com/kubernetes-sigs/kubespray" target="_blank">kubespray</a>. 
-If this is not the case, some adjustment can be performed by overwriting values in the Helm chart. Refer to 
-its <a href="https://github.com/kubauth/kubauth-apiserver/blob/main/helm/kubauth-apiserver/values.yaml" target="_blank">values file</a> </p>
+<h1 id="kubernetes-api-server-configuration">Kubernetes API Server Configuration</h1>
+<h2 id="automated-configuration">Automated Configuration</h2>
+<p>Kubauth provides a Helm chart that spawns appropriate jobs to perform this configuration in a fully automated manner.</p>
+<p>This process assumes that the API Server is managed by the Kubelet as a static pod. If your API Server is managed by another system, such as systemd, you should fall back to the manual configuration.</p>
+<p>Additionally, this process assumes a 'standard' folder layout for the Kubernetes installation, such as those used by <a href="https://kind.sigs.k8s.io/" target="_blank">kind</a> or <a href="https://github.com/kubernetes-sigs/kubespray" target="_blank">kubespray</a>. If this is not the case, adjustments can be made by overriding values in the Helm chart. Refer to its <a href="https://github.com/kubauth/kubauth-apiserver/blob/main/helm/kubauth-apiserver/values.yaml" target="_blank">values file</a>.</p>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
-<p>If you perform this task on a 'critical' cluster, we strongly engage you to read the Manual configuration chapter below. 
-This to fully understand what's append under the hood, to be able to rollback manually in case of problem.</p>
+<p>If you are performing this task on a critical cluster, we strongly recommend reading the Manual Configuration section below. This will help you fully understand what happens under the hood, enabling you to roll back manually in case of problems.</p>
 </div>
-<p>As there are several required configuration variable, we suggest to use a 'values file' instead of setting variable on the command line.</p>
-<p>So, in your working folder, create a file like the following:</p>
+<p>Since several configuration variables are required, we recommend using a values file rather than command-line arguments.</p>
+<p>In your working directory, create a file like the following:</p>
 <details class="abstract" open="open">
 <summary>values-k8s.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">config</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">oidc</span><span class="p">:</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">issuerURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">issuerCaSecretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs-bundle</span><span class="w">  </span><span class="c1"># If we use trust-manager (from certificate-server)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">issuerCaSecretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs-bundle</span><span class="w">  </span><span class="c1"># If using trust-manager (from cert-manager)</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">issuerCaName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ca.crt</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">clientId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k8s</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">usernamePrefix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w"> </span><span class="c1"># Dash is no prefix.</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">groupsPrefix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;oidc-&quot;</span><span class="w"> </span><span class="c1"># A prefix is mandatory (Default to &#39;oidc:&#39;)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">usernamePrefix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w"> </span><span class="c1"># Dash means no prefix.</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">groupsPrefix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;oidc-&quot;</span><span class="w"> </span><span class="c1"># A prefix is mandatory (default is &#39;oidc:&#39;)</span>
 </span></code></pre></div>
 </details>
 <ul>
-<li><code>kubauth.ingress.kubo6.mbp</code> must be replaced by your Kubauth entry point</li>
-<li><code>issuerCaSecretName</code>: A secret hosting the CA of the issuerURL. In this sample, we use <a href="https://cert-manager.io/docs/trust/trust-manager/" target="_blank">trust manager</a>
-  which create such secret (here <code>certs-bundle</code>) in each namespace.</li>
+<li>Replace <code>kubauth.ingress.kubo6.mbp</code> with your Kubauth entry point</li>
+<li><code>issuerCaSecretName</code>: A secret hosting the CA of the issuer URL. In this sample, we use <a href="https://cert-manager.io/docs/trust/trust-manager/" target="_blank">trust-manager</a>, which creates such a secret (here <code>certs-bundle</code>) in each namespace.</li>
 <li><code>issuerCaName</code>: The path of the CA certificate inside the secret.</li>
-<li><code>clientId</code> should match the name of the <code>OidcClient</code> declared previously. Note there is no need to a <code>clientSecret</code> value, as the API server will not connect to Kubauth.</li>
-<li><code>usernamePrefix</code>: Prefix prepended to username claims to prevent clashes with existing names. Dash value means no prefix.</li>
-<li><code>groupsPrefix</code>: Prefix prepended to group claims to prevent clashes with existing names. Could not be empty for security reasons. Default is <code>oidc:</code> but in this sample, we set to <code>oidc-</code>.</li>
+<li><code>clientId</code> should match the name of the <code>OidcClient</code> declared previously. Note that a <code>clientSecret</code> value is not needed, as the API server will not connect to Kubauth.</li>
+<li><code>usernamePrefix</code>: Prefix prepended to username claims to prevent clashes with existing names. A dash value means no prefix.</li>
+<li><code>groupsPrefix</code>: Prefix prepended to group claims to prevent clashes with existing names. Cannot be empty for security reasons. The default is <code>oidc:</code>, but in this sample, we set it to <code>oidc-</code>.</li>
 </ul>
-<div class="admonition notes">
-<p class="admonition-title">Notes</p>
-<p>This <code>values.yaml</code> file is the bare minimum configuration set. Refer to the Helm chart 
-<a href="https://github.com/kubauth/kubauth-apiserver/blob/main/helm/kubauth-apiserver/values.yaml" target="_blank">values file</a> for more variables.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This <code>values.yaml</code> file represents the minimum required configuration. Refer to the Helm chart <a href="https://github.com/kubauth/kubauth-apiserver/blob/main/helm/kubauth-apiserver/values.yaml" target="_blank">values file</a> for additional variables.</p>
 </div>
-<p>You can now proceed with the configuration, using the adhoc Helm chart</p>
+<p>You can now proceed with the configuration using the dedicated Helm chart:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth-apiserver<span class="w"> </span>--values<span class="w"> </span>./values-k8s.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth-apiserver<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.0-snapshot<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
 </span></code></pre></div>
-<div class="admonition notes">
-<p class="admonition-title">Notes</p>
-<p>Note this process will take some time. So, be patient. </p>
-<p>Also, At the end of this process, a rolling restart is performed on the API Server.
-In case there will be a single instance of this critical pod, this means you will lost contact with your cluster for a certain amount of time.</p>
-<p>And this may trigger the restart of many other pods. So, wait for all your cluster to reach a stable state before moving one.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This process will take some time, so please be patient.</p>
+<p>At the end of this process, a rolling restart is performed on the API Server. If there is only a single instance of this critical pod, you will lose contact with your cluster for a certain period.</p>
+<p>This may trigger the restart of many other pods. Wait for your cluster to reach a stable state before proceeding further.</p>
 </div>
-<h3 id="varifying-installation">Varifying installation</h3>
-<p>If you suspect things goes wrong, you can refer to the manual installation below to check the configuration.</p>
-<p>Have a look also on API server logs and/or kubelet logs. </p>
+<h3 id="verifying-installation">Verifying Installation</h3>
+<p>If your cluster is up and running, there is good chance installation was successful. </p>
+<p>If you suspect something went wrong, refer to the manual installation section below to check the configuration.</p>
+<p>Also review the API server logs and/or kubelet logs.</p>
 <h3 id="removal">Removal</h3>
-<p>Uninstalling the Helm chart should restore the original API server configuration </p>
+<p>Uninstalling the Helm chart should restore the original API server configuration:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>uninstall<span class="w"> </span>kubauth-apiserver<span class="w"> </span>--wait
 </span></code></pre></div>
-<h2 id="manual-configuration">Manual configuration</h2>
-<p>The API server configuration to connect an OIDC provider is
-<a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#configuring-the-api-server" target="_blank">described here</a> in Kubernetes documentation.</p>
-<p>Depending on your specific installation, the directory mentioned below may vary. For reference, the clusters used for testing and documentation purposes were built using kind.</p>
-<p>Additionally, this procedure assumes that the API Server is managed by the Kubelet as a static Pod. If your API Server is managed by another system, such as systemd, you should make the necessary adjustments accordingly.</p>
-<div class="admonition notes">
-<p class="admonition-title">Notes</p>
-<p>Please note that the following operations must be executed on all nodes hosting an instance of the Kubernetes API server, typically encompassing all nodes within the control plane.</p>
+<h2 id="manual-configuration">Manual Configuration</h2>
+<p>The API server configuration for connecting an OIDC provider is <a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#configuring-the-api-server" target="_blank">described here</a> in the Kubernetes documentation.</p>
+<p>Depending on your specific installation, the directories mentioned below may vary. For reference, the clusters used for testing and documentation purposes were built using <code>kind</code>.</p>
+<p>Additionally, this procedure assumes that the API Server is managed by the Kubelet as a static pod. If your API Server is managed by another system, such as systemd, you should make the necessary adjustments accordingly.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following operations must be executed on all nodes hosting an instance of the Kubernetes API server, typically all nodes within the control plane.</p>
 </div>
-<p>These operations require 'root' access on these nodes. Also each node must have <code>kubectl</code> installed and an editor available.</p>
+<p>These operations require root access on these nodes. Each node must also have <code>kubectl</code> installed and an editor available.</p>
 <p>For each node:</p>
 <ul>
 <li>
-<p>Log on it</p>
+<p>Log into it:</p>
 <p><div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker exec -it kubo6-control-plane /bin/bash
 </span></code></pre></div>
-- Create a folder to store the Kubauth issuerURL certificate (-kit stands for K8s Integration Toolkit)</p>
+- Create a folder to store the Kubauth issuer URL certificate (<code>-kit</code> stands for Kubernetes Integration Toolkit):</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mkdir /etc/kubernetes/kubauth-kit 
 </span></code></pre></div>
 </li>
 <li>
-<p>Fetch the Kubauth issuerURL certificate and store it in our newly created folder:</p>
+<p>Fetch the Kubauth issuer URL certificate and store it in the newly created folder:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl -n kubauth get secret kubauth-oidc-server-cert \
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>-o=jsonpath=&#39;{.data.ca\.crt}&#39; | base64 -d &gt;/etc/kubernetes/kubauth-kit/ca.crt  
 </span></code></pre></div>
 </li>
 <li>
-<p>And edit the <code>kube-apiserver.yaml</code> manifest</p>
+<p>Edit the <code>kube-apiserver.yaml</code> manifest:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>vi /etc/kubernetes/manifests/kube-apiserver.yaml
 </span></code></pre></div>
-<p>With the following modifications:</p>
+<p>Make the following modifications:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>spec:
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  containers:
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  - command:
@@ -1154,15 +1587,15 @@ In case there will be a single instance of this critical pod, this means you wil
 </span></code></pre></div>
 <ul>
 <li>Quotes (<code>"</code>) are important.</li>
-<li>In <code>--oidc-issuer-url</code>, <code>kubauth.ingress.kubo6.mbp</code> must be replaced by your Kubauth entry point</li>
-<li><code>--oidc-client-id</code> should match the name of the <code>OidcClient</code> declared previously. Note there is no need to a <code>clientSecret</code> value, as the API server will not connect to Kubauth.</li>
-<li><code>--oidc-username-prefix</code>: Prefix prepended to username claims to prevent clashes with existing names. Dash value means no prefix.</li>
-<li><code>--oidc-groups-prefix</code>: Prefix prepended to group claims to prevent clashes with existing names. Could not be empty for security reasons. Default is <code>oidc:</code> but in this sample, we set to <code>oidc-</code>.</li>
-<li><code>volumeMounts</code> and <code>volumes</code> sections allow the certificate to be reachable from inside the container.</li>
+<li>In <code>--oidc-issuer-url</code>, replace <code>kubauth.ingress.kubo6.mbp</code> with your Kubauth entry point.</li>
+<li><code>--oidc-client-id</code> should match the name of the <code>OidcClient</code> declared previously. Note that a <code>clientSecret</code> value is not needed, as the API server will not connect to Kubauth.</li>
+<li><code>--oidc-username-prefix</code>: Prefix prepended to username claims to prevent clashes with existing names. A dash value means no prefix.</li>
+<li><code>--oidc-groups-prefix</code>: Prefix prepended to group claims to prevent clashes with existing names. Cannot be empty for security reasons. The default is <code>oidc:</code>, but in this sample, we set it to <code>oidc-</code>.</li>
+<li>The <code>volumeMounts</code> and <code>volumes</code> sections allow the certificate to be accessible from inside the container.</li>
 </ul>
 </li>
 <li>
-<p>The fact than <code>/etc/kubernetes/manifests/kube-apiserver.yaml</code> file is modified will trigger a restart or the API server pod.</p>
+<p>Modifying the <code>/etc/kubernetes/manifests/kube-apiserver.yaml</code> file will trigger a restart of the API server pod.</p>
 </li>
 </ul>
 
@@ -1194,7 +1627,7 @@ In case there will be a single instance of this critical pod, this means you wil
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../110-introduction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction">
+          <a href="../110-overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1204,20 +1637,20 @@ In case there will be a single instance of this critical pod, this means you wil
                 Previous
               </span>
               <div class="md-ellipsis">
-                Introduction
+                Overview
               </div>
             </div>
           </a>
         
         
           
-          <a href="../130-kubeconfig-service/" class="md-footer__link md-footer__link--next" aria-label="Next: Kubeconfig service">
+          <a href="../130-kubeconfig-service/" class="md-footer__link md-footer__link--next" aria-label="Next: Kubeconfig Service">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Kubeconfig service
+                Kubeconfig Service
               </div>
             </div>
             <div class="md-footer__button md-icon">

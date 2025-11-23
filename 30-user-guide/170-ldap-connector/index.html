@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="A Kubernetes-native OpenID Connect (OIDC) Identity Provider">
       
+      
+        <meta name="author" content="Kubauth Project">
+      
+      
+        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/30-user-guide/170-ldap-connector/">
       
       
         <link rel="prev" href="../160-password-grant/">
@@ -20,7 +26,7 @@
     
     
       
-        <title>LDAP connector - Kubauth</title>
+        <title>LDAP Connector - Kubauth</title>
       
     
     
@@ -110,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              LDAP connector
+              LDAP Connector
             
           </span>
         </div>
@@ -318,7 +324,7 @@
   
   
   <span class="md-ellipsis">
-    User guide
+    User Guide
     
   </span>
   
@@ -329,7 +335,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            User guide
+            User Guide
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -414,7 +420,7 @@
   
   
   <span class="md-ellipsis">
-    SSO
+    SSO Session
     
   </span>
   
@@ -437,7 +443,7 @@
   
   
   <span class="md-ellipsis">
-    Users Groups
+    User Groups
     
   </span>
   
@@ -460,7 +466,7 @@
   
   
   <span class="md-ellipsis">
-    Password Grant
+    Password Grant (ROPC)
     
   </span>
   
@@ -492,7 +498,7 @@
   
   
   <span class="md-ellipsis">
-    LDAP connector
+    LDAP Connector
     
   </span>
   
@@ -505,7 +511,7 @@
   
   
   <span class="md-ellipsis">
-    LDAP connector
+    LDAP Connector
     
   </span>
   
@@ -530,7 +536,7 @@
         <li class="md-nav__item">
   <a href="#kubauth-architecture" class="md-nav__link">
     <span class="md-ellipsis">
-      Kubauth architecture
+      Kubauth Architecture
     </span>
   </a>
   
@@ -539,7 +545,7 @@
         <li class="md-nav__item">
   <a href="#ldap-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      LDAP configuration
+      LDAP Configuration
     </span>
   </a>
   
@@ -575,7 +581,7 @@
   
   
   <span class="md-ellipsis">
-    Several ID providers
+    Multiple Identity Providers
     
   </span>
   
@@ -598,7 +604,7 @@
   
   
   <span class="md-ellipsis">
-    Identity merging
+    Identity Merging
     
   </span>
   
@@ -639,7 +645,7 @@
   
   
   <span class="md-ellipsis">
-    Applications integration
+    Applications Integration
     
   </span>
   
@@ -650,7 +656,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Applications integration
+            Applications Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -753,7 +759,7 @@
   
   
   <span class="md-ellipsis">
-    Kubernetes integration
+    Kubernetes Integration
     
   </span>
   
@@ -764,7 +770,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Kubernetes integration
+            Kubernetes Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -775,12 +781,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../50-kubernetes-integration/110-introduction/" class="md-nav__link">
+      <a href="../../50-kubernetes-integration/110-overview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Introduction
+    Overview
     
   </span>
   
@@ -803,7 +809,7 @@
   
   
   <span class="md-ellipsis">
-    API Server configuration
+    API Server Configuration
     
   </span>
   
@@ -826,7 +832,7 @@
   
   
   <span class="md-ellipsis">
-    Kubeconfig service
+    Kubeconfig Service
     
   </span>
   
@@ -849,7 +855,7 @@
   
   
   <span class="md-ellipsis">
-    Workstation setup
+    Workstation Setup
     
   </span>
   
@@ -890,7 +896,7 @@
   
   
   <span class="md-ellipsis">
-    Appendix
+    API Reference
     
   </span>
   
@@ -900,6 +906,441 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/110-oidcclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OidcClient
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/120-user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/130-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Group
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/140-groupbinding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GroupBinding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    kc CLI Tool
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            kc CLI Tool
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/110-version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc version
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/120-hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc hash
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/130-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/140-token-nui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token-nui
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/150-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc audit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/160-jwt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc jwt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/170-whoami/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc whoami
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/180-logout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc logout
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/190-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Appendix
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Appendix
           </label>
@@ -912,12 +1353,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-appendix/100-openldap/" class="md-nav__link">
+      <a href="../../80-appendix/100-openldap/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    OpenLDAP deployment
+    OpenLDAP Deployment
     
   </span>
   
@@ -964,7 +1405,7 @@
         <li class="md-nav__item">
   <a href="#kubauth-architecture" class="md-nav__link">
     <span class="md-ellipsis">
-      Kubauth architecture
+      Kubauth Architecture
     </span>
   </a>
   
@@ -973,7 +1414,7 @@
         <li class="md-nav__item">
   <a href="#ldap-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      LDAP configuration
+      LDAP Configuration
     </span>
   </a>
   
@@ -1007,50 +1448,50 @@
   
 
 
-<h1 id="ldap-connector">LDAP connector</h1>
-<h2 id="kubauth-architecture">Kubauth architecture</h2>
-<p>If you look inside the <code>kubauth</code> pod, you will find it is currently made of 3 containers:</p>
+<h1 id="ldap-connector">LDAP Connector</h1>
+<h2 id="kubauth-architecture">Kubauth Architecture</h2>
+<p>If you inspect the <code>kubauth</code> pod, you will find it currently consists of 3 containers:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>kubauth
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>NAME<span class="w">                       </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>kubauth-65dbdbb447-bl4qz<span class="w">   </span><span class="m">3</span>/3<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>17m
 </span></code></pre></div></p>
-<p>We can list them:</p>
+<p>List the containers:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>kubauth<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{range .items[0].spec.containers[*]}{.name}{&quot;\n&quot;}{end}&#39;</span>
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>oidc
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>audit
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>ucrd
 </span></code></pre></div></p>
-<p>Kubauth is build from a modular architecture. The following schema describe the default configuration:</p>
+<p>Kubauth is built on a modular architecture. The following diagram describes the default configuration:</p>
 <p><img align="left" alt="containers" src="../../assets/archi-default.png" width="40%" /></p>
-<p>To exchange together, all modules use the same very simple identity protocol, with only one exchange type.</p>
+<p>All modules communicate using the same simple identity protocol with a single exchange type:</p>
 <ul>
-<li>The Request provide a login and optionally a password</li>
-<li>The Response provide a status (NotFound, PasswordFail, PasswordChecked, ....) and all user related information (Name, Emails, Claims, ....) it can provide</li>
+<li>The Request provides a login and optionally a password</li>
+<li>The Response provides a status (NotFound, PasswordFail, PasswordChecked, ...) and all available user-related information (Name, Emails, Claims, ...)</li>
 </ul>
-<p>All communication between modules (aka container) are using <code>localhost</code>. As such they remains 'private' and not exposed outside of the pod.</p>
-<p>Each module (or container) listen on a specific port</p>
+<p>All communication between modules (containers) uses <code>localhost</code>, keeping it private and not exposed outside the pod.</p>
+<p>Each module (container) listens on a specific port:</p>
 <ul>
-<li>The <code>OIDC</code> module handle all user interaction and initiate an identity request.</li>
-<li>The <code>audit</code> is a transparent pass trough for the protocol. It log all request to provide the Audit feature described previously</li>
-<li>The <code>ucrd</code> module will access the User, Groups and GroupBinding Custom resource to build the response.</li>
+<li>The <code>oidc</code> module handles all user interaction and initiates identity requests</li>
+<li>The <code>audit</code> module is a transparent pass-through for the protocol, logging all requests to provide the audit feature described previously</li>
+<li>The <code>ucrd</code> module accesses the User, Group, and GroupBinding Custom Resources to build the response</li>
 </ul>
-<p>All these module are 'built-in' the kubauth image. And assembly is performed by the helm chart.</p>
+<p>All these modules are built into the kubauth image. Assembly is performed by the Helm chart.</p>
 <p><img alt="" src="../../assets/empty.png" width="100%" /></p>
-<p>There is another build-in module: <code>ldap</code> which will serve the identity protocol by connecting to an external LDAP server</p>
+<p>There is another built-in module: <code>ldap</code>, which implements the identity protocol by connecting to an external LDAP server.</p>
 <p>Here is the new configuration:</p>
 <p><img align="left" alt="containers" src="../../assets/archi-ldap.png" width="40%" /></p>
-<p>To switch onto this new configuration, we must:</p>
+<p>To switch to this configuration, you must:</p>
 <ul>
-<li>Disable the <code>ucrd</code> module.</li>
-<li>Activate the <code>ldap</code> module</li>
-<li>Configure the <code>audit</code> module to request the <code>ldap</code> (Listening on port 6803) module instead of <code>ucrd</code> (Was listening in port 6802)</li>
-<li>Configure the <code>ldap</code> module depending of the target LDAP Server</li>
+<li>Disable the <code>ucrd</code> module</li>
+<li>Enable the <code>ldap</code> module</li>
+<li>Configure the <code>audit</code> module to request the <code>ldap</code> module (listening on port 6803) instead of <code>ucrd</code> (which listened on port 6802)</li>
+<li>Configure the <code>ldap</code> module for your target LDAP server</li>
 </ul>
 <p><img alt="" src="../../assets/empty.png" width="100%" /></p>
-<p>The <code>values-ldap.yaml</code> file below setup this configuration.</p>
-<p>The ldap configuration itself is tailored for an OpenLDAP server deployed as described on <a href="../../70-appendix/100-openldap/">Appendix/OpenLDAP deployment</a></p>
+<p>The <code>values-ldap.yaml</code> file below implements this configuration.</p>
+<p>The LDAP configuration itself is tailored for an OpenLDAP server deployed as described in <a href="../../80-appendix/100-openldap/">Appendix/OpenLDAP Deployment</a>.</p>
 <details class="abstract" open="open">
 <summary>values-ldap.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">oidc</span><span class="p">:</span>
@@ -1066,7 +1507,7 @@
 </span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
 </span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="nt">audit</span><span class="p">:</span>
 </span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="nt">idProvider</span><span class="p">:</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="nt">baseURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:6803</span><span class="w">  </span><span class="c1"># ldap provider listenning port</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="nt">baseURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:6803</span><span class="w">  </span><span class="c1"># ldap provider listening port</span>
 </span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
 </span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="nt">ucrd</span><span class="p">:</span>
 </span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
@@ -1094,8 +1535,8 @@
 </span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="w">      </span><span class="nt">numericalIdAttr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uidNumber</span>
 </span></code></pre></div>
 </details>
-<h2 id="ldap-configuration">LDAP configuration</h2>
-<p>If you need to configure another kind of LDAP server, each property is documented in the Helm chart value file. For convenience, below is the corresponding extract:  </p>
+<h2 id="ldap-configuration">LDAP Configuration</h2>
+<p>If you need to configure a different type of LDAP server, each property is documented in the Helm chart values file. For convenience, the relevant extract is provided below:</p>
 <details class="- abstract">
 <summary>values-ldap-commented.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="l l-Scalar l-Scalar-Plain">.......</span>
@@ -1170,24 +1611,23 @@
 </span></code></pre></div>
 </details>
 <h2 id="deployment">Deployment</h2>
-<p>One your configuration is ready, you can proceed with its deployment, by launching an <code>helm update ....</code> command:</p>
+<p>Once your configuration is ready, proceed with deployment by running the <code>helm upgrade ...</code> command:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth<span class="w"> </span>--values<span class="w"> </span>./values-ldap.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.2-snapshot<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
 </span></code></pre></div>
-<p>You can check which containers has now been deployed:</p>
+<p>Verify which containers have been deployed:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/instance<span class="o">=</span>kubauth<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{range .items[0].spec.containers[*]}{.name}{&quot;\n&quot;}{end}&#39;</span>
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>oidc
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>audit
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>ucrd
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>ldap
 </span></code></pre></div></p>
-<p>And you can now test authentication:</p>
+<p>Test authentication:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>-d
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>If<span class="w"> </span>browser<span class="w"> </span>doesn<span class="err">&#39;</span>t<span class="w"> </span>open<span class="w"> </span>automatically,<span class="w"> </span>visit:<span class="w"> </span>http://127.0.0.1:9921
 </span></code></pre></div></p>
-<p>If you enter <code>jim/jim123</code>, you will have a login fail.</p>
-<p>But, if you enter the credentials of a user defined in your LDAP, you should have a successful login. For example, using <code>fred/fred123</code> 
-if using the sample LDAP configuration defined in <a href="../../70-appendix/100-openldap/#sample-dataset">appendix</a>.</p>
+<p>If you enter <code>jim/jim123</code>, the login will fail.</p>
+<p>However, if you enter credentials for a user defined in your LDAP server, the login should succeed. For example, using <code>fred/fred123</code> (if using the sample LDAP configuration defined in the <a href="../../80-appendix/100-openldap/#sample-dataset">appendix</a>):</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Access<span class="w"> </span>token:<span class="w"> </span>ory_at_2vDnbRl0-cazsy2ZkIV_3bG8blZzgA5Cc0FxKXg5g6g.IvAqwgU04BnmBBoO_IPNt3UtIkiAWfJlgcj5WyMPsPk
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Refresh<span class="w"> </span>token:<span class="w"> </span>ory_rt_UQQoBvf3Pkk1Yr6W3JCO_aShfX_28e8tAnxcMUQGjJE.I-P_3XJxVwPRmrUDVOXtt0ofS_G2MISSVRMoL48ZIAg
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>ID<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiM0RMYWZJMzdNZnNGZjVWOUN6QU1hUSIsImF1ZCI6WyJwdWJsaWMiXSwiYXV0aF90aW1lIjoxNzYxNjc0MzU2LCJhenAiOiJwdWJsaWMiLCJlbWFpbCI6ImZyZWRAbXljb21wYW55LmNvbSIsImVtYWlscyI6WyJmcmVkQG15Y29tcGFueS5jb20iXSwiZXhwIjoxNzYxNjc3OTU2LCJncm91cHMiOlsibWFuYWdlcnMiLCJzdGFmZiJdLCJpYXQiOjE3NjE2NzQzNTYsImlzcyI6Imh0dHBzOi8va3ViYXV0aC5pbmdyZXNzLmt1Ym82Lm1icCIsImp0aSI6IjE3YjQxMzk1LTU4MmUtNDM3ZC05YTA2LWNkYWY5NjM1NjdjZiIsIm5hbWUiOiJGcmVkIEFTVEVSIiwicmF0IjoxNzYxNjc0MzU2LCJzdWIiOiJmcmVkIn0.ZSnv4godrQOkrYNaEteOi85N-M9b4UKOI8zj0sorrD5Az1_xezINWiSRkrN2vLq9DtMKXZUBNjr41m4dW83xTsex8Tq_lEtisJP8woZzXzUpv1HnK2_RJiX_euGM2RSUJNaih4vpeDOPBhZQPUTkCIqnH_kus2dLuh84KGmcpLFC7vG60JW1lqRlx1Wb5ggmZmSFHC6k44Lx0bkihhpofiJg0QL1UoxmN1elixOegxOs0g_vxjdoDC3jNVOWONR6qVpvG7YRa25FgNPvfIV1XWeIP9upq0Yn_LNxLXuNFY_ysdw4lIQH2aEO58118KwB5eB8UQRnZJXmnAyKF-OU5Q
@@ -1221,7 +1661,7 @@ if using the sample LDAP configuration defined in <a href="../../70-appendix/100
 </span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="w">  </span><span class="s2">&quot;sub&quot;</span>:<span class="w"> </span><span class="s2">&quot;fred&quot;</span>
 </span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="o">}</span>
 </span></code></pre></div>
-<p>And regarding Audit track record:</p>
+<p>Check the audit trail:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kc<span class="w"> </span>audit<span class="w"> </span>logins
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>WHEN           LOGIN   STATUS            UID   NAME         GROUPS             CLAIMS                                      EMAILS                  AUTH
@@ -1257,7 +1697,7 @@ if using the sample LDAP configuration defined in <a href="../../70-appendix/100
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../160-password-grant/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Password Grant">
+          <a href="../160-password-grant/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Password Grant (ROPC)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1267,20 +1707,20 @@ if using the sample LDAP configuration defined in <a href="../../70-appendix/100
                 Previous
               </span>
               <div class="md-ellipsis">
-                Password Grant
+                Password Grant (ROPC)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../180-several-id-providers/" class="md-footer__link md-footer__link--next" aria-label="Next: Several ID providers">
+          <a href="../180-several-id-providers/" class="md-footer__link md-footer__link--next" aria-label="Next: Multiple Identity Providers">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Several ID providers
+                Multiple Identity Providers
               </div>
             </div>
             <div class="md-footer__button md-icon">

@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="A Kubernetes-native OpenID Connect (OIDC) Identity Provider">
       
+      
+        <meta name="author" content="Kubauth Project">
+      
+      
+        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/40-applications-integration/110-argocd/">
       
       
         <link rel="prev" href="../../30-user-guide/190-identity-merging/">
@@ -316,7 +322,7 @@
   
   
   <span class="md-ellipsis">
-    User guide
+    User Guide
     
   </span>
   
@@ -327,7 +333,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            User guide
+            User Guide
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -412,7 +418,7 @@
   
   
   <span class="md-ellipsis">
-    SSO
+    SSO Session
     
   </span>
   
@@ -435,7 +441,7 @@
   
   
   <span class="md-ellipsis">
-    Users Groups
+    User Groups
     
   </span>
   
@@ -458,7 +464,7 @@
   
   
   <span class="md-ellipsis">
-    Password Grant
+    Password Grant (ROPC)
     
   </span>
   
@@ -481,7 +487,7 @@
   
   
   <span class="md-ellipsis">
-    LDAP connector
+    LDAP Connector
     
   </span>
   
@@ -504,7 +510,7 @@
   
   
   <span class="md-ellipsis">
-    Several ID providers
+    Multiple Identity Providers
     
   </span>
   
@@ -527,7 +533,7 @@
   
   
   <span class="md-ellipsis">
-    Identity merging
+    Identity Merging
     
   </span>
   
@@ -570,7 +576,7 @@
   
   
   <span class="md-ellipsis">
-    Applications integration
+    Applications Integration
     
   </span>
   
@@ -581,7 +587,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Applications integration
+            Applications Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -644,7 +650,7 @@
         <li class="md-nav__item">
   <a href="#oidc-client-creation" class="md-nav__link">
     <span class="md-ellipsis">
-      Oidc client creation
+      OIDC Client Creation
     </span>
   </a>
   
@@ -653,17 +659,17 @@
         <li class="md-nav__item">
   <a href="#argocd-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      ArgoCD configuration
+      ArgoCD Configuration
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ArgoCD configuration">
+    <nav class="md-nav" aria-label="ArgoCD Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#basic-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Basic configuration
+      Basic Configuration
     </span>
   </a>
   
@@ -672,7 +678,7 @@
           <li class="md-nav__item">
   <a href="#configuration-with-secret" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration with secret
+      Configuration with Secret
     </span>
   </a>
   
@@ -786,7 +792,7 @@
   
   
   <span class="md-ellipsis">
-    Kubernetes integration
+    Kubernetes Integration
     
   </span>
   
@@ -797,7 +803,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Kubernetes integration
+            Kubernetes Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -808,12 +814,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../50-kubernetes-integration/110-introduction/" class="md-nav__link">
+      <a href="../../50-kubernetes-integration/110-overview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Introduction
+    Overview
     
   </span>
   
@@ -836,7 +842,7 @@
   
   
   <span class="md-ellipsis">
-    API Server configuration
+    API Server Configuration
     
   </span>
   
@@ -859,7 +865,7 @@
   
   
   <span class="md-ellipsis">
-    Kubeconfig service
+    Kubeconfig Service
     
   </span>
   
@@ -882,7 +888,7 @@
   
   
   <span class="md-ellipsis">
-    Workstation setup
+    Workstation Setup
     
   </span>
   
@@ -923,7 +929,7 @@
   
   
   <span class="md-ellipsis">
-    Appendix
+    API Reference
     
   </span>
   
@@ -933,6 +939,441 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/110-oidcclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OidcClient
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/120-user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/130-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Group
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/140-groupbinding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GroupBinding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    kc CLI Tool
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            kc CLI Tool
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/110-version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc version
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/120-hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc hash
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/130-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/140-token-nui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token-nui
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/150-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc audit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/160-jwt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc jwt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/170-whoami/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc whoami
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/180-logout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc logout
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/190-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Appendix
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Appendix
           </label>
@@ -945,12 +1386,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-appendix/100-openldap/" class="md-nav__link">
+      <a href="../../80-appendix/100-openldap/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    OpenLDAP deployment
+    OpenLDAP Deployment
     
   </span>
   
@@ -997,7 +1438,7 @@
         <li class="md-nav__item">
   <a href="#oidc-client-creation" class="md-nav__link">
     <span class="md-ellipsis">
-      Oidc client creation
+      OIDC Client Creation
     </span>
   </a>
   
@@ -1006,17 +1447,17 @@
         <li class="md-nav__item">
   <a href="#argocd-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      ArgoCD configuration
+      ArgoCD Configuration
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ArgoCD configuration">
+    <nav class="md-nav" aria-label="ArgoCD Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#basic-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Basic configuration
+      Basic Configuration
     </span>
   </a>
   
@@ -1025,7 +1466,7 @@
           <li class="md-nav__item">
   <a href="#configuration-with-secret" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration with secret
+      Configuration with Secret
     </span>
   </a>
   
@@ -1074,9 +1515,9 @@
 
 
 <h1 id="argocd-integration">ArgoCD Integration</h1>
-<h2 id="oidc-client-creation">Oidc client creation</h2>
-<p>As stated in <a href="../../30-user-guide/110-configuration/#oidc-client-creation">Configuration</a>, a client application is defined as a Kubernetes Custom Resource.</p>
-<p>So, a manifest like the following should be created:</p>
+<h2 id="oidc-client-creation">OIDC Client Creation</h2>
+<p>As described in <a href="../../30-user-guide/110-configuration/#oidc-client-creation">Configuration</a>, an OIDC client application is defined as a Kubernetes Custom Resource.</p>
+<p>Create a manifest like the following:</p>
 <details class="abstract" open="open">
 <summary>client-argocd.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
@@ -1099,31 +1540,29 @@
 </span></code></pre></div>
 </details>
 <ul>
-<li><code>argocd.ingress.kubo6.mbp</code> must be replaced by your ArgoCD entry point (In 2 locations)</li>
-<li>The sample password is 'argocd123'. Thus, the <code>hashedSecret</code> value is the result of a <code>kc hash argocd123</code> command.</li>
+<li>Replace <code>argocd.ingress.kubo6.mbp</code> with your ArgoCD entry point (in 2 locations)</li>
+<li>The sample password is 'argocd123'. The <code>hashedSecret</code> value is the result of the <code>kc hash argocd123</code> command.</li>
 <li>The <code>http://localhost:8085/auth/callback</code> entry in the <code>redirectURIs</code> list is for the <code>argocd</code> CLI command</li>
-<li><code>displayName</code>, <code>description</code> and <code>entryURL</code> attributes are optionals. Aim is to integrate ArgoCD in a list of available applications.
-  This list will be displayed on a specific page (<code>https://kubauth.ingress.kubo6.mbp/index</code>) or an the Logout page. See below.</li>
+<li>The <code>displayName</code>, <code>description</code>, and <code>entryURL</code> attributes are optional. They enable ArgoCD to appear in a list of available applications displayed on a specific page (<code>https://kubauth.ingress.kubo6.mbp/index</code>) or the logout page (see below).</li>
 </ul>
 <p>Apply this manifest:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>client-argocd.yaml
 </span></code></pre></div>
-<h2 id="argocd-configuration">ArgoCD configuration</h2>
-<p>We will assume here ArgoCD is installed using the <a href="https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd" target="_blank">community provided Helm chart</a>.</p>
+<h2 id="argocd-configuration">ArgoCD Configuration</h2>
+<p>We assume ArgoCD is installed using the <a href="https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd" target="_blank">community-provided Helm chart</a>.</p>
 <blockquote>
-<p>If ArgoCD is installed using another method, it should be easy to configure OIDC as described in the 
-  <a href="https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#existing-oidc-provider" target="_blank">ArgoCD manual</a> with information provided here.   </p>
+<p>If ArgoCD is installed using another method, it should be straightforward to configure OIDC as described in the 
+  <a href="https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#existing-oidc-provider" target="_blank">ArgoCD manual</a> using the information provided here.</p>
 </blockquote>
-<p>This means the configuration is provided using Helm 'values' or 'values files'. As the general ArgoCD configuration is out of the scope of this manual,
-we will will focus only on the OIDC relative section of the 'values file'.</p>
-<p>There is two tricky points regarding ArgoCD OIDC configuration:</p>
+<p>This means configuration is provided using Helm values or values files. Since general ArgoCD configuration is beyond the scope of this manual, we will focus only on the OIDC-related section of the values file.</p>
+<p>There are two challenging aspects of ArgoCD OIDC configuration:</p>
 <ul>
-<li>How to provide the 'secret' value shared by ArgoCD and the Kubauth OIDC server</li>
-<li>How to provide the CA to validate the Kubauth OIDC issuer URL. </li>
+<li>How to provide the secret value shared between ArgoCD and the Kubauth OIDC server</li>
+<li>How to provide the CA to validate the Kubauth OIDC issuer URL</li>
 </ul>
-<h3 id="basic-configuration">Basic configuration</h3>
-<p>In this case, the secret is provided in clear text, and the CA certificate is provided in place.</p>
-<p>Create a values file like the following to be added on your Helm command when deploying ArgoCD (<code>.... --values values-kubauth.yaml....</code>).</p>
+<h3 id="basic-configuration">Basic Configuration</h3>
+<p>In this approach, the secret is provided in clear text, and the CA certificate is embedded directly.</p>
+<p>Create a values file like the following to be added to your Helm command when deploying ArgoCD (<code>... --values values-kubauth.yaml...</code>):</p>
 <details class="abstract" open="open">
 <summary>values-kubauth.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">configs</span><span class="p">:</span>
@@ -1157,21 +1596,20 @@ we will will focus only on the OIDC relative section of the 'values file'.</p>
 </span></code></pre></div>
 </details>
 <ul>
-<li><code>argocd.ingress.kubo6.mbp</code> must be replaced by your ArgoCD entry point.</li>
-<li><code>kubauth.ingress.kubo6.mbp</code> must be replaced by your Kubauth entry point (In 2 locations).</li>
-<li>We enable PKCE, as it is safest and supported by both party.</li>
-<li>The <code>logoutURL</code> parameter is here commented.. More on this below </li>
-<li>The <code>rootCA</code> parameter is the CA of the Kubauth issuer. If Kubauth has been installed using Certificate Manager, 
-  as described at the beginning of this manual, it can be retrieved with a command like:  <br />
+<li>Replace <code>argocd.ingress.kubo6.mbp</code> with your ArgoCD entry point.</li>
+<li>Replace <code>kubauth.ingress.kubo6.mbp</code> with your Kubauth entry point (in 2 locations).</li>
+<li>We enable PKCE, as it is the safest option and supported by both parties.</li>
+<li>The <code>logoutURL</code> parameter is commented out here. More on this below.</li>
+<li>The <code>rootCA</code> parameter is the CA of the Kubauth issuer. If Kubauth was installed using Certificate Manager as described at the beginning of this manual, it can be retrieved with:
     <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl -n kubauth get secret kubauth-oidc-server-cert -o=jsonpath=&#39;{.data.ca\.crt}&#39; | base64 -d
 </span></code></pre></div></li>
-<li>The <code>rbac</code> subsection grant ArgoCD admin rights to the members of the group <code>argocd-admin</code>. 
-    Of course, access management can be defined in more detail, using ArgoCD RBAC system, but this is out of the scope of this manuel.</li>
+<li>The <code>rbac</code> subsection grants ArgoCD admin rights to members of the <code>argocd-admin</code> group. 
+  Of course, access management can be defined in more detail using ArgoCD's RBAC system, but this is beyond the scope of this manual.</li>
 </ul>
-<p>Add <code>--values values-kubauth.yaml</code> on your Helm command deploying ArgoCD.</p>
-<h3 id="configuration-with-secret">Configuration with secret</h3>
-<p>In order to better protect the clientSecret, and to avoid in place CA certificate, ArgoCD allow these values to be set in a secret.</p>
-<p>Modify the 'values file' like the following:</p>
+<p>Add <code>--values values-kubauth.yaml</code> to your Helm command when deploying ArgoCD.</p>
+<h3 id="configuration-with-secret">Configuration with Secret</h3>
+<p>To better protect the client secret and avoid embedding the CA certificate, ArgoCD allows these values to be stored in a secret.</p>
+<p>Modify the values file as follows:</p>
 <details class="abstract" open="open">
 <summary>values-kubauth.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">configs</span><span class="p">:</span>
@@ -1192,19 +1630,17 @@ we will will focus only on the OIDC relative section of the 'values file'.</p>
 </span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">      </span><span class="no">g, argocd-admin, role:admin </span>
 </span></code></pre></div>
 </details>
-<p>And update your Helm chart deployment.</p>
-<p>The values must now be stored in a secret named <code>argocd-secret</code> (ArgoCD hard coded name) in the argocd namespace. 
-But in most case, this secret exists and already contains some critical other values.
-So, care must be taken to just append the new values:</p>
+<p>Update your Helm chart deployment.</p>
+<p>The values must now be stored in a secret named <code>argocd-secret</code> (ArgoCD's hard-coded name) in the argocd namespace. In most cases, this secret already exists and contains other critical values. Care must be taken to append the new values without overwriting existing ones:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>argocd<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>argocd-secret<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>--from-literal<span class="o">=</span><span class="s1">&#39;oidc.kubauth.clientSecret=argocd123&#39;</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--from-file<span class="o">=</span>oidc.kubauth.rootCA<span class="o">=</span>./ca.crt<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>--dry-run<span class="o">=</span>client<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-
 </span></code></pre></div>
 <blockquote>
-<p>Don't care about warning message.</p>
+<p>You can ignore any warning messages.</p>
 </blockquote>
-<p>This assuming <code>./ca.crt</code> contains the CA of the Kubauth issuer</p>
+<p>This assumes <code>./ca.crt</code> contains the CA of the Kubauth issuer:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cat<span class="w"> </span>ca.crt
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>-----BEGIN CERTIFICATE-----
@@ -1217,13 +1653,13 @@ So, care must be taken to just append the new values:</p>
 </span></code></pre></div></p>
 <p>Refer to the ArgoCD documentation for more information.</p>
 <h2 id="usage">Usage</h2>
-<p>The configuration completed, a 'LOG IN VIA KUBAUTH' button must appears on the ArgoCD entry page.</p>
-<p>You can log in using whatever defined user. Let's say <code>john</code>. Once logged, you can verify who we are, and the group we belong to, using 'User Info' menu entry.</p>
+<p>Once configuration is complete, a 'LOG IN VIA KUBAUTH' button should appear on the ArgoCD entry page.</p>
+<p>You can log in using any defined user, such as <code>john</code>. Once logged in, you can verify your identity and group membership using the 'User Info' menu entry.</p>
 <blockquote>
-<p>ArgoCD display the email adresse as the Username. </p>
+<p>ArgoCD displays the email address as the Username.</p>
 </blockquote>
-<p>Although logged, you can't do anything, without more permission. </p>
-<p>Now, add the user <code>john</code> to the group <code>argocd-admin</code></p>
+<p>Although logged in, you won't have any permissions without additional configuration.</p>
+<p>Now, add the user <code>john</code> to the <code>argocd-admin</code> group:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="s">apiVersion: kubauth.kubotal.io/v1alpha1</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="s">kind: GroupBinding</span>
@@ -1235,22 +1671,21 @@ So, care must be taken to just append the new values:</p>
 </span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="s">  user: john</span>
 </span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="s">EOF</span>
 </span></code></pre></div>
-<p>And, after logout and login back, the user <code>john</code> will now be able to act as an ArgoCD administrator. You can create a new project to validate this.</p>
+<p>After logging out and logging back in, the user <code>john</code> will now be able to act as an ArgoCD administrator. You can create a new project to validate this.</p>
 <h2 id="logout-url">Logout URL</h2>
-<p>With the current configuration, when a user log out from ArgoCD UI, it is redirected to the landing page with the 'LOG IN VIA KUBAUTH' and can log again.</p>
-<div class="admonition notes">
-<p class="admonition-title">Notes</p>
-<p>If the <code>Remember me</code> checkbox has been checked, you will be log in again automatically by the magic of SSO. If you want to log under another user, 
-you can cancel your SSO session using a <br><code>kc logout....</code> command.</p>
+<p>With the current configuration, when a user logs out from the ArgoCD UI, they are redirected to the landing page with the 'LOG IN VIA KUBAUTH' button and can log in again.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the "Remember me" checkbox was checked, you will be logged in again automatically due to SSO. If you want to log in as a different user, you can cancel your SSO session using the <code>kc logout...</code> command.</p>
 </div>
 <p>Now, uncomment the <code>logoutURL: ...</code> entry in the values file "values-kubauth.yaml" and update your Helm deployment.</p>
-<p>Now, on logout, ArgoCD will clean your local context, as previously and redirect your browser on the configured logoutURL. This will have two consequences:</p>
+<p>After this change, on logout, ArgoCD will clean your local context as before and redirect your browser to the configured logout URL. This has two effects:</p>
 <ul>
-<li>Cleanup your global SSO session</li>
-<li>Redirect you on a logout page, listing somme of the application (or client) listed on the OidcClients resources (Here only ArgoCD)</li>
+<li>Clears your global SSO session</li>
+<li>Redirects you to a logout page listing the applications (or clients) defined in the OidcClient resources (currently only ArgoCD)</li>
 </ul>
 <p><img alt="logout" class="center" src="../../assets/kubauth-logout2.png" width="80%" /></p>
-<p>For an OidcClient application to be presented on this list, three attributes must be set. For ArgoCD:</p>
+<p>For an OidcClient application to appear in this list, three attributes must be set. For ArgoCD:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>apiVersion: kubauth.kubotal.io/v1alpha1
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>kind: OidcClient
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>...
@@ -1260,9 +1695,9 @@ you can cancel your SSO session using a <br><code>kc logout....</code> command.<
 </span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>  description: GitOps continuous delivery tool
 </span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>  entryURL: https://argocd.ingress.kubo6.mbp/
 </span></code></pre></div>
-<div class="admonition notes">
-<p class="admonition-title">Notes</p>
-<p>Kubauth expose also this page on the <code>/index</code> path:<br> 
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Kubauth also exposes this page at the <code>/index</code> path:<br> 
 <code>https://kubauth.ingress.kubo6.mbp/index</code></p>
 </div>
 
@@ -1294,7 +1729,7 @@ you can cancel your SSO session using a <br><code>kc logout....</code> command.<
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../30-user-guide/190-identity-merging/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Identity merging">
+          <a href="../../30-user-guide/190-identity-merging/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Identity Merging">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1304,7 +1739,7 @@ you can cancel your SSO session using a <br><code>kc logout....</code> command.<
                 Previous
               </span>
               <div class="md-ellipsis">
-                Identity merging
+                Identity Merging
               </div>
             </div>
           </a>

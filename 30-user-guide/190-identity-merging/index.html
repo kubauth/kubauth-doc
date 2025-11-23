@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="A Kubernetes-native OpenID Connect (OIDC) Identity Provider">
       
+      
+        <meta name="author" content="Kubauth Project">
+      
+      
+        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/30-user-guide/190-identity-merging/">
       
       
         <link rel="prev" href="../180-several-id-providers/">
@@ -20,7 +26,7 @@
     
     
       
-        <title>Identity merging - Kubauth</title>
+        <title>Identity Merging - Kubauth</title>
       
     
     
@@ -110,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Identity merging
+              Identity Merging
             
           </span>
         </div>
@@ -318,7 +324,7 @@
   
   
   <span class="md-ellipsis">
-    User guide
+    User Guide
     
   </span>
   
@@ -329,7 +335,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            User guide
+            User Guide
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -414,7 +420,7 @@
   
   
   <span class="md-ellipsis">
-    SSO
+    SSO Session
     
   </span>
   
@@ -437,7 +443,7 @@
   
   
   <span class="md-ellipsis">
-    Users Groups
+    User Groups
     
   </span>
   
@@ -460,7 +466,7 @@
   
   
   <span class="md-ellipsis">
-    Password Grant
+    Password Grant (ROPC)
     
   </span>
   
@@ -483,7 +489,7 @@
   
   
   <span class="md-ellipsis">
-    LDAP connector
+    LDAP Connector
     
   </span>
   
@@ -506,7 +512,7 @@
   
   
   <span class="md-ellipsis">
-    Several ID providers
+    Multiple Identity Providers
     
   </span>
   
@@ -538,7 +544,7 @@
   
   
   <span class="md-ellipsis">
-    Identity merging
+    Identity Merging
     
   </span>
   
@@ -551,7 +557,7 @@
   
   
   <span class="md-ellipsis">
-    Identity merging
+    Identity Merging
     
   </span>
   
@@ -576,7 +582,7 @@
         <li class="md-nav__item">
   <a href="#sample-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      Sample setup
+      Sample Setup
     </span>
   </a>
   
@@ -634,19 +640,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#id-provider-configuration" class="md-nav__link">
+  <a href="#identity-provider-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      ID Provider configuration
+      Identity Provider Configuration
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ID Provider configuration">
+    <nav class="md-nav" aria-label="Identity Provider Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#provider-properties" class="md-nav__link">
     <span class="md-ellipsis">
-      Provider properties
+      Provider Properties
     </span>
   </a>
   
@@ -705,7 +711,7 @@
   
   
   <span class="md-ellipsis">
-    Applications integration
+    Applications Integration
     
   </span>
   
@@ -716,7 +722,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Applications integration
+            Applications Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -819,7 +825,7 @@
   
   
   <span class="md-ellipsis">
-    Kubernetes integration
+    Kubernetes Integration
     
   </span>
   
@@ -830,7 +836,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Kubernetes integration
+            Kubernetes Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -841,12 +847,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../50-kubernetes-integration/110-introduction/" class="md-nav__link">
+      <a href="../../50-kubernetes-integration/110-overview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Introduction
+    Overview
     
   </span>
   
@@ -869,7 +875,7 @@
   
   
   <span class="md-ellipsis">
-    API Server configuration
+    API Server Configuration
     
   </span>
   
@@ -892,7 +898,7 @@
   
   
   <span class="md-ellipsis">
-    Kubeconfig service
+    Kubeconfig Service
     
   </span>
   
@@ -915,7 +921,7 @@
   
   
   <span class="md-ellipsis">
-    Workstation setup
+    Workstation Setup
     
   </span>
   
@@ -956,7 +962,7 @@
   
   
   <span class="md-ellipsis">
-    Appendix
+    API Reference
     
   </span>
   
@@ -966,6 +972,441 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/110-oidcclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OidcClient
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/120-user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/130-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Group
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/140-groupbinding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GroupBinding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    kc CLI Tool
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            kc CLI Tool
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/110-version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc version
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/120-hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc hash
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/130-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/140-token-nui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token-nui
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/150-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc audit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/160-jwt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc jwt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/170-whoami/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc whoami
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/180-logout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc logout
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/190-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Appendix
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Appendix
           </label>
@@ -978,12 +1419,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-appendix/100-openldap/" class="md-nav__link">
+      <a href="../../80-appendix/100-openldap/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    OpenLDAP deployment
+    OpenLDAP Deployment
     
   </span>
   
@@ -1030,7 +1471,7 @@
         <li class="md-nav__item">
   <a href="#sample-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      Sample setup
+      Sample Setup
     </span>
   </a>
   
@@ -1088,19 +1529,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#id-provider-configuration" class="md-nav__link">
+  <a href="#identity-provider-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      ID Provider configuration
+      Identity Provider Configuration
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="ID Provider configuration">
+    <nav class="md-nav" aria-label="Identity Provider Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#provider-properties" class="md-nav__link">
     <span class="md-ellipsis">
-      Provider properties
+      Provider Properties
     </span>
   </a>
   
@@ -1139,18 +1580,16 @@
   
 
 
-<h1 id="identity-merging">Identity merging</h1>
-<p>In previous chapters, each user was defined inside a specific provider database. But Kubauth allow properties of a given user defined in two (or more) ID provider to be merged. </p>
-<p>This will allow, for example, to enrich a user profile from a central user repository by local (cluster wide) specific properties.</p>
+<h1 id="identity-merging">Identity Merging</h1>
+<p>In previous chapters, each user was defined within a specific provider database. However, Kubauth allows properties of a user defined in two (or more) identity providers to be merged.</p>
+<p>This enables you to, for example, enrich a user profile from a central repository with local (cluster-specific) properties.</p>
 <blockquote>
-<p>This is specially useful if you have a READ ONLY access to your LDAP server.</p>
+<p>This is especially useful if you have read-only access to your LDAP server.</p>
 </blockquote>
-<h2 id="sample-setup">Sample setup</h2>
-<p>Here is an example manifest to exercise this capability:</p>
+<h2 id="sample-setup">Sample Setup</h2>
+<p>Here is an example manifest to demonstrate this capability:</p>
 <blockquote>
-<p>It is assumed here than Kubauth is configured with an LDAP and an local CRD user database, 
-  as described in previous chapter, with Users and Groups sample dataset.
-  And than <code>alice</code> and <code>bob</code> are existing user defined in the LDAP Server.</p>
+<p>This assumes Kubauth is configured with both LDAP and local CRD user databases as described in the previous chapter, with Users and Groups sample datasets, and that <code>alice</code> and <code>bob</code> are existing users defined in the LDAP server.</p>
 </blockquote>
 <details class="abstract" open="open">
 <summary>ldap-addon.yaml</summary>
@@ -1182,18 +1621,18 @@
 </details>
 <p>This will:</p>
 <ul>
-<li>Create a user <code>alice</code> in the k8S CRD user storage (<code>ucrd</code>). As a duplicate of the existing one in LDAP referential. <code>name</code>, <code>claims</code> and <code>emails</code> properties are provided.</li>
-<li>Bind the user <code>bob</code> to the group <code>ops</code>. Note than this user does not exist in the <code>ucrd</code> provider.</li>
+<li>Create a user <code>alice</code> in the Kubernetes CRD user storage (<code>ucrd</code>), duplicating the one in the LDAP directory. The <code>name</code>, <code>claims</code>, and <code>emails</code> properties are provided.</li>
+<li>Bind the user <code>bob</code> to the group <code>ops</code>. Note that this user does not exist in the <code>ucrd</code> provider.</li>
 </ul>
 <p>Apply this manifest:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>ldap-addon.yaml<span class="w"> </span>
 </span></code></pre></div>
 <h2 id="logins">Logins</h2>
 <blockquote>
-<p>To ease testing we will use the 'no User Interface' of the <code>kc token</code> tool. Remember, this will use a <a href="../160-password-grant/">specific configuration</a></p>
+<p>To simplify testing, we will use the 'no User Interface' mode of the <code>kc token</code> tool. Remember, this requires <a href="../160-password-grant/">specific configuration</a>.</p>
 </blockquote>
 <h3 id="bob">Bob</h3>
-<p>First, log as <code>bob</code> user</p>
+<p>First, log in as the <code>bob</code> user:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>bob<span class="w"> </span>--password<span class="w"> </span>bob123<span class="w"> </span>-d
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>JWT Payload:
@@ -1226,14 +1665,14 @@
 </span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>  &quot;sub&quot;: &quot;bob&quot;
 </span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>}
 </span></code></pre></div>
-<p>One can check here than:</p>
+<p>You can verify that:</p>
 <ul>
-<li>We got a JWT token, so authentication is successful.</li>
-<li>We have a <code>autority</code> claim. This is added by Kubauth and is the provider name which validate the user's credentials.</li>
-<li>The <code>groups</code> claim is made of the concatenation of the group list of each provider. With de-duplication</li>
-<li>There is an <code>accessProfile": p24x7</code> claim. This is a Claim granted to all members of the group <code>ops</code> defined in the <code>ucrd</code> provider.</li>
+<li>We received a JWT token, so authentication was successful.</li>
+<li>There is an <code>authority</code> claim. This is added by Kubauth and indicates which provider validated the user's credentials.</li>
+<li>The <code>groups</code> claim is the concatenation of the group lists from each provider, with de-duplication.</li>
+<li>There is an <code>accessProfile: p24x7</code> claim. This is a claim granted to all members of the <code>ops</code> group defined in the <code>ucrd</code> provider.</li>
 </ul>
-<p>As it can be tricky to check from where a value is coming from, Kubauth provide a tool to lookup user details:</p>
+<p>Since it can be difficult to determine where each value originates, Kubauth provides a tool to look up user details:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kc<span class="w"> </span>audit<span class="w"> </span>detail<span class="w"> </span>bob
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>WHEN           LOGIN   STATUS            UID   NAME         GROUPS        CLAIMS                      EMAILS                AUTH
@@ -1243,10 +1682,9 @@
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>ldap       passwordChecked   -     Bob MORANE   [staff]   {}                          [bob@mycompany.com]
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>ucrd       userNotFound      -                  [ops]     {&quot;accessProfile&quot;:&quot;p24x7&quot;}   []
 </span></code></pre></div></p>
-<p>This tool will lookup the last login for the user provided as parameter. It first display a line with the same format as the <code>kc audit logins</code> command.
-Then, it display another array with, for each provider, which information is provided</p>
+<p>This tool looks up the last login for the specified user. It first displays a line in the same format as the <code>kc audit logins</code> command. Then it displays a table showing what information each provider contributed.</p>
 <h3 id="alice">alice</h3>
-<p>Now, login as <code>alice</code> user:</p>
+<p>Now, log in as the <code>alice</code> user:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>alice<span class="w"> </span>--password<span class="w"> </span>alice123<span class="w"> </span>-d
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>.....
@@ -1281,17 +1719,15 @@ Then, it display another array with, for each provider, which information is pro
 </span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>  &quot;sub&quot;: &quot;alice&quot;
 </span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>}
 </span></code></pre></div>
-<p>We can check than:</p>
+<p>We can verify that:</p>
 <ul>
-<li>We are logged using credentials from the LDAP server.</li>
+<li>We are logged in using credentials from the LDAP server.</li>
 <li>The <code>authority</code> claim is set to <code>ldap</code>.</li>
-<li>The claim <code>office: 312R</code> from the <code>ucrd</code> provider is present</li>
-<li>The <code>emails</code> claim is made of the concatenation of the emails list of each provider. With de-duplication</li>
-<li>The <code>name</code> claim is the one from the LDAP definition. While there is another value in the <code>ucrd</code> database, 
-  the value from LDAP take precedence, as the LDAP provider is before in the list. 
-  The value from CRD based definition would have been used if LDAP did not provide any value. </li>
+<li>The <code>office: 312R</code> claim from the <code>ucrd</code> provider is present.</li>
+<li>The <code>emails</code> claim is the concatenation of the email lists from each provider, with de-duplication.</li>
+<li>The <code>name</code> claim is from the LDAP definition. While there is a different value in the <code>ucrd</code> database, the LDAP value takes precedence because the LDAP provider is listed first. The CRD value would be used if LDAP did not provide a value.</li>
 </ul>
-<p>You can also use <code>kc audit detail...</code> to figure out what happen:</p>
+<p>You can also use <code>kc audit detail ...</code> to understand what happened:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kc<span class="w"> </span>audit<span class="w"> </span>detail<span class="w"> </span>alice
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>WHEN           LOGIN   STATUS            UID   NAME          GROUPS             CLAIMS              EMAILS                                            AUTH
@@ -1302,7 +1738,7 @@ Then, it display another array with, for each provider, which information is pro
 </span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>ucrd       passwordFail      -     Alice SMITH-WESSON   []                 {&quot;office&quot;:&quot;312R&quot;}   [alice@mycompany.com,alice.smith@mycompany.com]
 </span></code></pre></div></p>
 <h3 id="alice-2">alice (2)</h3>
-<p>Now, let's try to login with the password defined in the <code>ucrd</code> user database: </p>
+<p>Now, let's try to log in with the password defined in the <code>ucrd</code> user database:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>alice<span class="w"> </span>--password<span class="w"> </span>smith123<span class="w"> </span>-d
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>token request failed with status 400: {&quot;error&quot;:&quot;invalid_grant&quot;,&quot;error_description&quot;:&quot;The provided authorization grant \
@@ -1319,15 +1755,15 @@ Then, it display another array with, for each provider, which information is pro
 </span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>ldap       passwordFail      -     Alice SMITH          [staff,managers]   {}                  [alice@mycompany.com]
 </span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>ucrd       passwordChecked   -     Alice SMITH-WESSON   []                 {&quot;office&quot;:&quot;312R&quot;}   [alice@mycompany.com,alice.smith@mycompany.com]
 </span></code></pre></div></p>
-<p>Although this password was validated by the <code>ucrd</code> provider, the login fail. 
-This is intended behavior, as, for a user defined in a prioritized provider, we don't want a secondary one to allow a password change.</p>
-<p>In other words, the first provider in the list which define a password for a given user will validate it. (either successfully or not).</p>
-<blockquote>
-<p>The providers list order is important</p>
-</blockquote>
-<p>This also means the password definition in the k8s CR database for <code>alice</code> is useless.</p>
+<p>Although the password was validated by the <code>ucrd</code> provider, the login failed. This is intentional behavior: for a user defined in a higher-priority provider, we don't want a secondary provider to allow password changes.</p>
+<p>In other words, the first provider in the list that defines a password for a given user will validate it (either successfully or not).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is why <strong>the provider list order is important</strong>.</p>
+</div>
+<p>This also means the password definition in the Kubernetes CR database for <code>alice</code> is unused.</p>
 <h3 id="john">john</h3>
-<p>Now, let's try to login with <code>john</code> user.</p>
+<p>Now, let's try to log in with the <code>john</code> user:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>john<span class="w"> </span>--password<span class="w"> </span>john123<span class="w"> </span>-d
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>.......
@@ -1342,21 +1778,20 @@ This is intended behavior, as, for a user defined in a prioritized provider, we 
 </span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>}
 </span></code></pre></div>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kc<span class="w"> </span>audit<span class="w"> </span>detail<span class="w"> </span>john
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>WHEN<span class="w">           </span>LOGIN<span class="w">   </span>STATUS<span class="w">            </span>UID<span class="w">   </span>NAME<span class="w">       </span>GROUPS<span class="w">       </span>CLAIMS<span class="w">                                      </span>EMAILS<span class="w">                  </span>AUTH
 </span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Thu 16:14:04   john    passwordChecked   -     John DOE   [devs,ops]   {&quot;accessProfile&quot;:&quot;p24x7&quot;,&quot;office&quot;:&quot;208G&quot;}   [johnd@mycompany.com]   ucrd
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Detail:
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>PROVIDER   STATUS            UID   NAME       GROUPS       CLAIMS                                      EMAILS
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>ldap       userNotFound      -                []           {}                                          []
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>ucrd       passwordChecked   -     John DOE   [devs,ops]   {&quot;accessProfile&quot;:&quot;p24x7&quot;,&quot;office&quot;:&quot;208G&quot;}   [johnd@mycompany.com]
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>WHEN           LOGIN   STATUS            UID   NAME       GROUPS       CLAIMS                                      EMAILS                  AUTH
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Thu 16:14:04   john    passwordChecked   -     John DOE   [devs,ops]   {&quot;accessProfile&quot;:&quot;p24x7&quot;,&quot;office&quot;:&quot;208G&quot;}   [johnd@mycompany.com]   ucrd
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>Detail:
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>PROVIDER   STATUS            UID   NAME       GROUPS       CLAIMS                                      EMAILS
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>ldap       userNotFound      -                []           {}                                          []
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>ucrd       passwordChecked   -     John DOE   [devs,ops]   {&quot;accessProfile&quot;:&quot;p24x7&quot;,&quot;office&quot;:&quot;208G&quot;}   [johnd@mycompany.com]
 </span></code></pre></div></p>
-<p>This time, the login is successful. This because <code>john</code> does not exists on the LDAP side, So the authentication by the <code>ucrd</code> provider is effective.</p>
-<p>In other words, with the configuration, an administrator which have access to a Kubernetes cluster resource but no access to a central 
-LDAP server will be able to create local users, but will be unable to change a global user password. </p>
-<h2 id="id-provider-configuration">ID Provider configuration</h2>
-<h3 id="provider-properties">Provider properties</h3>
-<p>As stated above, provider's order is important. But there is also a way to control which kind of information each provider will add to the user profile.</p>
-<p>Here is an extract of the values file of the Helm chart, which, by default, configure a single <code>ucrd</code> provider with default values:</p>
+<p>This time, the login is successful. This is because <code>john</code> does not exist in LDAP, so authentication by the <code>ucrd</code> provider is effective.</p>
+<p>In other words, with this configuration, an administrator who has access to Kubernetes cluster resources but no access to the central LDAP server will be able to create local users, but will be unable to change a global user's password.</p>
+<h2 id="identity-provider-configuration">Identity Provider Configuration</h2>
+<h3 id="provider-properties">Provider Properties</h3>
+<p>As stated above, provider order is important. However, you can also control what type of information each provider contributes to the user profile.</p>
+<p>Here is an extract from the Helm chart values file, which by default configures a single <code>ucrd</code> provider with default values:</p>
 <details class="abstract" open="open">
 <summary>values.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nt">merger</span><span class="p">:</span>
@@ -1378,44 +1813,43 @@ LDAP server will be able to create local users, but will be unable to change a g
 </span></code></pre></div>
 </details>
 <ul>
-<li><strong><code>credentialAuthority</code></strong>: Setting this attribute to 'false' will prevent this provider from authenticating any user.</li>
-<li><strong><code>groupAuthority</code></strong>: Setting this attribute to false will prevent the <code>groups</code> from this provider from being added to each user.</li>
-<li><strong><code>groupPattern</code></strong>: Allows you to decorate with prefix or postfix all groups provided by this provider. See the example below</li>
-<li><strong><code>claimAuthority</code></strong>: Setting this attribute to false will prevent the <code>claims</code> from this provider from being added to each user.</li>
-<li><strong><code>claimPattern</code></strong>: Allows you to decorate with prefix or postfix all claims provided by this provider. This apply only on first level, if the claim is itself a map.</li>
-<li><strong><code>nameAuthority</code></strong>: Setting this attribute to false will prevent the name from this provider from being added to each user.</li>
-<li><strong><code>emailAuthority</code></strong>: Setting this attribute to false will prevent <code>emails</code> from this provider from being added to each user.</li>
-<li><strong><code>critical</code></strong>: Defines the behavior of the chain if this provider is down or out of order (e.g., LDAP server is down). <ul>
-<li>If true, then all authentication will fail. </li>
-<li>If false, provider is skipped and authentication is performed as if ot was not existing.</li>
+<li><strong><code>credentialAuthority</code></strong>: Setting this to <code>false</code> prevents this provider from authenticating any user.</li>
+<li><strong><code>groupAuthority</code></strong>: Setting this to <code>false</code> prevents groups from this provider from being added to user profiles.</li>
+<li><strong><code>groupPattern</code></strong>: Allows you to decorate all groups from this provider with a prefix or suffix. See the example below.</li>
+<li><strong><code>claimAuthority</code></strong>: Setting this to <code>false</code> prevents claims from this provider from being added to user profiles.</li>
+<li><strong><code>claimPattern</code></strong>: Allows you to decorate all claims from this provider with a prefix or suffix. This applies only to the first level if the claim is itself a map.</li>
+<li><strong><code>nameAuthority</code></strong>: Setting this to <code>false</code> prevents the name from this provider from being added to user profiles.</li>
+<li><strong><code>emailAuthority</code></strong>: Setting this to <code>false</code> prevents emails from this provider from being added to user profiles.</li>
+<li><strong><code>critical</code></strong>: Defines behavior if this provider is down or unavailable (e.g., LDAP server is down).<ul>
+<li>If <code>true</code>, all authentication will fail.</li>
+<li>If <code>false</code>, the provider is skipped and authentication proceeds as if it didn't exist.</li>
 </ul>
 </li>
-<li><strong><code>uidOffset</code></strong>: This will be added to the UID value if this provider is the authority for this user.</li>
+<li><strong><code>uidOffset</code></strong>: This value is added to the UID if this provider is the authority for the user.</li>
 </ul>
-<div class="admonition notes">
-<p class="admonition-title">Notes</p>
-<p>The properties are provided in the helm chart for documentation purpose. 
-As they match built-in values, the previous snippet is equivalent to </p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>merger:
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>  .....
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>  idProviders:
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    - name: ucrd
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>      httpConfig:
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>        baseURL: http://localhost:6802
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These properties are provided in the Helm chart for documentation purposes. Since they match built-in defaults, the previous snippet is equivalent to:</p>
+<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nt">merger</span><span class="p">:</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">.....</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">idProviders</span><span class="p p-Indicator">:</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ucrd</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">      </span><span class="nt">httpConfig</span><span class="p">:</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">        </span><span class="nt">baseURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:6802</span>
 </span></code></pre></div>
 </div>
 <h3 id="example">Example</h3>
-<p>Given the following requirement:</p>
+<p>Given the following requirements:</p>
 <ul>
-<li>We want to ensure all users are referenced in a central, corporate repository. (No local users anymore)</li>
-<li>We still want to be able to enrich users with local attributes (Groups binding, claims, ...)</li>
-<li>We want to identify all groups which where issued from LDAP.</li>
+<li>We want to ensure all users are referenced in a central, corporate repository (no local users)</li>
+<li>We still want to enrich users with local attributes (group bindings, claims, ...)</li>
+<li>We want to identify all groups issued from LDAP</li>
 </ul>
-<p>So:</p>
+<p>Therefore:</p>
 <ul>
-<li>First point means must prevent local user authentication.</li>
-<li>Second point means we still need a <code>ucrd</code> K8S CR database to be effective.</li>
-<li>Third point will be solved by adding a prefix to the groups provided through LDAP.</li>
+<li>The first requirement means we must prevent local user authentication</li>
+<li>The second requirement means we still need a <code>ucrd</code> Kubernetes CR database to be active</li>
+<li>The third requirement will be solved by adding a prefix to groups provided through LDAP</li>
 </ul>
 <p>This can be achieved by modifying the <code>merger</code> configuration in the Helm values file:</p>
 <details class="abstract" open="open">
@@ -1436,20 +1870,20 @@ As they match built-in values, the previous snippet is equivalent to </p>
 </span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="l l-Scalar l-Scalar-Plain">.....</span>
 </span></code></pre></div>
 </details>
-<p>After using an Helm update</p>
+<p>After applying the Helm update:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth<span class="w"> </span>--values<span class="w"> </span>./values-merger.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.2-snapshot<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
 </span></code></pre></div>
-<p>we can now check than:</p>
+<p>we can now verify that:</p>
 <ul>
 <li>
-<p>Users <code>jim</code> and <code>john</code> seems now unexisting.
+<p>Users <code>jim</code> and <code>john</code> now appear to be non-existent:
     <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>john<span class="w"> </span>--password<span class="w"> </span>john123<span class="w"> </span>-d
 </span></code></pre></div>
     <div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>token request failed with status 400: {&quot;error&quot;:&quot;invalid_grant&quot;, ......... Unable to authenticate the provided username and password credentials.&quot;}
 </span></code></pre></div></p>
 </li>
 <li>
-<p>Enrichment of LDAP users attribute are still effective. And the group from LDAP has been prefixed.
+<p>Enrichment of LDAP user attributes is still effective, and groups from LDAP have been prefixed:
     <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>bob<span class="w"> </span>--password<span class="w"> </span>bob123<span class="w"> </span>-d
 </span></code></pre></div>
     <div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>JWT Payload:
@@ -1477,10 +1911,9 @@ As they match built-in values, the previous snippet is equivalent to </p>
 </span></code></pre></div></p>
 </li>
 </ul>
-<div class="admonition notes">
-<p class="admonition-title">Notes</p>
-<p>As we may use users 'jim' and 'john' later in this manuel, we suggest you bring them alive, 
-by setting back <code>merger.idProviders["ucrd'].credentialAuthority: true</code> and applying again the Helm chart.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since we may use the <code>jim</code> and <code>john</code> users later in this manual, we recommend restoring them by setting <code>merger.idProviders["ucrd"].credentialAuthority: true</code> and reapplying the Helm chart.</p>
 </div>
 
 
@@ -1511,7 +1944,7 @@ by setting back <code>merger.idProviders["ucrd'].credentialAuthority: true</code
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../180-several-id-providers/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Several ID providers">
+          <a href="../180-several-id-providers/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Multiple Identity Providers">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1521,7 +1954,7 @@ by setting back <code>merger.idProviders["ucrd'].credentialAuthority: true</code
                 Previous
               </span>
               <div class="md-ellipsis">
-                Several ID providers
+                Multiple Identity Providers
               </div>
             </div>
           </a>

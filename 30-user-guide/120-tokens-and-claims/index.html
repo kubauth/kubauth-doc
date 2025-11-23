@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="A Kubernetes-native OpenID Connect (OIDC) Identity Provider">
       
+      
+        <meta name="author" content="Kubauth Project">
+      
+      
+        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/30-user-guide/120-tokens-and-claims/">
       
       
         <link rel="prev" href="../110-configuration/">
@@ -318,7 +324,7 @@
   
   
   <span class="md-ellipsis">
-    User guide
+    User Guide
     
   </span>
   
@@ -329,7 +335,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            User guide
+            User Guide
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -413,9 +419,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#get-a-token" class="md-nav__link">
+  <a href="#obtaining-a-token" class="md-nav__link">
     <span class="md-ellipsis">
-      Get a token
+      Obtaining a Token
     </span>
   </a>
   
@@ -474,7 +480,7 @@
   
   
   <span class="md-ellipsis">
-    SSO
+    SSO Session
     
   </span>
   
@@ -497,7 +503,7 @@
   
   
   <span class="md-ellipsis">
-    Users Groups
+    User Groups
     
   </span>
   
@@ -520,7 +526,7 @@
   
   
   <span class="md-ellipsis">
-    Password Grant
+    Password Grant (ROPC)
     
   </span>
   
@@ -543,7 +549,7 @@
   
   
   <span class="md-ellipsis">
-    LDAP connector
+    LDAP Connector
     
   </span>
   
@@ -566,7 +572,7 @@
   
   
   <span class="md-ellipsis">
-    Several ID providers
+    Multiple Identity Providers
     
   </span>
   
@@ -589,7 +595,7 @@
   
   
   <span class="md-ellipsis">
-    Identity merging
+    Identity Merging
     
   </span>
   
@@ -630,7 +636,7 @@
   
   
   <span class="md-ellipsis">
-    Applications integration
+    Applications Integration
     
   </span>
   
@@ -641,7 +647,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Applications integration
+            Applications Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -744,7 +750,7 @@
   
   
   <span class="md-ellipsis">
-    Kubernetes integration
+    Kubernetes Integration
     
   </span>
   
@@ -755,7 +761,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Kubernetes integration
+            Kubernetes Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -766,12 +772,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../50-kubernetes-integration/110-introduction/" class="md-nav__link">
+      <a href="../../50-kubernetes-integration/110-overview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Introduction
+    Overview
     
   </span>
   
@@ -794,7 +800,7 @@
   
   
   <span class="md-ellipsis">
-    API Server configuration
+    API Server Configuration
     
   </span>
   
@@ -817,7 +823,7 @@
   
   
   <span class="md-ellipsis">
-    Kubeconfig service
+    Kubeconfig Service
     
   </span>
   
@@ -840,7 +846,7 @@
   
   
   <span class="md-ellipsis">
-    Workstation setup
+    Workstation Setup
     
   </span>
   
@@ -881,7 +887,7 @@
   
   
   <span class="md-ellipsis">
-    Appendix
+    API Reference
     
   </span>
   
@@ -891,6 +897,441 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/110-oidcclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OidcClient
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/120-user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/130-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Group
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/140-groupbinding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GroupBinding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    kc CLI Tool
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            kc CLI Tool
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/110-version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc version
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/120-hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc hash
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/130-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/140-token-nui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token-nui
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/150-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc audit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/160-jwt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc jwt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/170-whoami/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc whoami
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/180-logout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc logout
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/190-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Appendix
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Appendix
           </label>
@@ -903,12 +1344,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-appendix/100-openldap/" class="md-nav__link">
+      <a href="../../80-appendix/100-openldap/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    OpenLDAP deployment
+    OpenLDAP Deployment
     
   </span>
   
@@ -953,9 +1394,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#get-a-token" class="md-nav__link">
+  <a href="#obtaining-a-token" class="md-nav__link">
     <span class="md-ellipsis">
-      Get a token
+      Obtaining a Token
     </span>
   </a>
   
@@ -990,29 +1431,32 @@
 
 
 <h1 id="tokens-and-claims">Tokens and Claims</h1>
-<h2 id="get-a-token">Get a token</h2>
-<p>The Kubauth companion CLI application <code>kc</code> provide an embedded OIDC client application. Beside being used as here for testing installation,
-its aim is to provide a tool to fetch Access token or OIDC token, ready to be injected in whatever application.</p>
-<p>Launch the following command, after adjusting the issuerURL;</p>
+<h2 id="obtaining-a-token">Obtaining a Token</h2>
+<p>The Kubauth companion CLI application <code>kc</code> provides an embedded OIDC client. Beyond testing the installation, its primary purpose is to fetch access tokens or ID tokens for use in any application.</p>
+<p>Launch the following command after adjusting the issuer URL:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public
 </span></code></pre></div>
-<div class="admonition notes">
-<p class="admonition-title">Notes</p>
-<p>If you got an error like <code>tls: failed to verify certificate: x509:...</code>, this means the CA associated to the ClusterIssuer is not reckonized on your local work station.</p>
+<blockquote>
+<p>Adjust the <code>issuerURL</code> to the value set previously in Kubauth configuration  </p>
+</blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you encounter an error like <code>tls: failed to verify certificate: x509:...</code>, the CA associated with your ClusterIssuer is not recognized on your local workstation.</p>
 <ul>
-<li>Add the <code>--insecureSkipVerify</code> open on the <code>kc token</code> command. You will also have to force your browser to accept such situation.</li>
-<li>Add the CA as a trusted one on your local workstation. You can extract it with a command like:
-  <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>cert-manager<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>cluster-odp-ca<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.ca\.crt}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;./ca.crt<span class="w"> </span>
+<li>Add the <code>--insecureSkipVerify</code> option to the <code>kc token</code> command. You will also need to configure your browser to accept the certificate.</li>
+<li>Add the CA as a trusted certificate on your local workstation. You can extract it with:
+  <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>kubauth-oidc-server-cert<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.ca\.crt}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;./ca.crt<span class="w"> </span>
 </span></code></pre></div></li>
+<li>Add the <code>--caFile ./ca.crt</code> option to the <code>kc token</code> command.</li>
 </ul>
 </div>
-<p>Your browser should open on the kubauth login page:</p>
+<p>Your browser should open to the Kubauth login page:</p>
 <p><img alt="login" class="center" src="../../assets/kubauth-login.png" width="50%" /></p>
-<p>Log in using <code>jim/jim123</code>. You should land on a page like the following</p>
+<p>Log in using <code>jim/jim123</code>. You should land on a page similar to the following:</p>
 <p><img alt="tokens" class="center" src="../../assets/kubauth-tokens.png" width="70%" /></p>
-<p>Where you can copy the provided tokens from.</p>
-<p>Theses tokens are also in the CLI response:</p>
+<p>From this page, you can copy the provided tokens.</p>
+<p>These tokens are also displayed in the CLI response:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Access<span class="w"> </span>token:<span class="w"> </span>ory_at_xLUfAhEGpFVWpMLdNEDZAj94hHFrHWjgOYB5g0Leh_k.0rgIzRGFOiIeGsMKnIZ74QL4Ve5vVOuEZyhA0402u8Y
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Refresh<span class="w"> </span>token:<span class="w"> </span>ory_rt_nU9NBZs4NtKTxVYVko1aqlJkAMF5MLBYjfiZbhVt9aE.THwsnTlqzIsWo5O1NAf1EbDhz7HdaqVHHwSTkWxrkqY
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>ID<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiaGNBY2dtdmdBekJlSGgyODlkWHF3USIsImF1ZCI6WyJwdWJsaWMiXSwiYXV0aF90aW1lIjoxNzYxMzI2MDg2LCJhenAiOiJwdWJsaWMiLCJleHAiOjE3NjEzMjk2ODYsImlhdCI6MTc2MTMyNjA4NiwiaXNzIjoiaHR0cHM6Ly9rdWJhdXRoLmluZ3Jlc3Mua3VibzYubWJwIiwianRpIjoiZDZhYjkwODMtYTEzMi00YTNiLTlmMWItMzM2NWFhOTQ5MjQ2IiwicmF0IjoxNzYxMzI2MDg2LCJzdWIiOiJqaW0ifQ.Q8ZkF33jsUJDqLH98uqRgrFa2nwioRP1TO9n6QjX9XFr-1WmsKk9nEeHGAiASb1brQ3cSAmK8ta7fX3lBLBlszxmeVZRzq5Qvg0N8nqvlV3C4CAiv6lEl6_-y6wBoQOWN9OhNhYU6wFjpNNDTx_RW0329i9TYVxaygw58wJGCX_1F5-PY0NG74n_1sdZxYop7s5GnZ0_9S9-DEI-LNR2MMx-oVH4lpGjV5dhGRvZS0l4tMm2C7J6Yx_JoTQoZfWwPI0GGf2smZZ-C2ieB5Wj0b19fgrafuexHW9yeejI51j6WZs_eDqUwvCIf52_yAvokA4SiW4PW8Eod9fX-JuwJQ
@@ -1022,8 +1466,8 @@ its aim is to provide a tool to fetch Access token or OIDC token, ready to be in
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIDToken<span class="w"> </span><span class="p">|</span><span class="w"> </span>kc<span class="w"> </span>jwt
 </span></code></pre></div>
 <ul>
-<li>The <code>--onlyIDToken</code> instruct the command to display only the base64 encoded OIDC token. Useful for batch inclusion.</li>
-<li>The <code>kc jwt</code> act as a filter to decode the jwt token.</li>
+<li>The <code>--onlyIDToken</code> option instructs the command to output only the base64-encoded ID token, useful for batch processing.</li>
+<li>The <code>kc jwt</code> command decodes the JWT token.</li>
 </ul>
 <p>The response should look like:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>JWT Header:
@@ -1053,19 +1497,18 @@ its aim is to provide a tool to fetch Access token or OIDC token, ready to be in
 </span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>  &quot;sub&quot;: &quot;jim&quot;
 </span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>}
 </span></code></pre></div>
-<div class="admonition notes">
-<p class="admonition-title">Notes</p>
-<p>The <code>auth_time_human</code>, <code>exp_human</code>, <code>iat_human</code> and <code>rat_human</code> are not effective claims, 
-but values added by the filter to ease interpretation of the corresponding timestamp values.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>auth_time_human</code>, <code>exp_human</code>, <code>iat_human</code>, and <code>rat_human</code> fields are not actual claims but human-readable values added by the decoder to aid interpretation of the corresponding timestamp values.</p>
 </div>
-<p>There is also a shortcut (<code>-d</code>) to this command:</p>
+<p>There is also a shortcut (<code>-d</code>) for this command:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>-d
 </span></code></pre></div>
-<p>NB: Using this option skip the JWT header.</p>
+<p>Note: This option skips the JWT header.</p>
 <h2 id="claims">Claims</h2>
-<p>A set of 'system' Claims are set by the OIDC server. You will find a <a href="http://openid.net/specs/openid-connect-core-1_0.html#IDToken" target="_blank">description of most of them here</a>.</p>
-<p>Another important one is the <code>sub</code> token. Stand for 'subject' and is in fact the user's login.</p>
-<p>Now, type again the previous command, but use john/john123 when prompted for login:</p>
+<p>A set of 'system' claims are provided by the OIDC server. You can find a <a href="http://openid.net/specs/openid-connect-core-1_0.html#IDToken" target="_blank">description of most standard claims here</a>.</p>
+<p>Another important claim is <code>sub</code>, which stands for 'subject' and represents the user's login.</p>
+<p>Now, run the previous command again, but use <code>john/john123</code> when prompted for login:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>JWT Payload:
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>{
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  &quot;at_hash&quot;: &quot;fdg2po7ht7lBaFFvgXg14A&quot;,
@@ -1092,27 +1535,27 @@ but values added by the filter to ease interpretation of the corresponding times
 </span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>  &quot;sub&quot;: &quot;john&quot;
 </span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>}
 </span></code></pre></div>
-<p>Kubauth has added some new claims, issued from the <code>user</code> resource définition:</p>
+<p>Kubauth has added several new claims derived from the <code>User</code> resource definition:</p>
 <ul>
-<li><code>name</code>: The user <code>spec.name</code> property. Used to to the full user name.</li>
-<li><code>emails</code>: The user <code>spec.emails</code> list.</li>
-<li><code>email</code>: The first email of the previous list.</li>
-<li><code>office</code>: The content of the <code>spec.claims</code> property. Could contains whatever valid map values.</li>
+<li><code>name</code>: The <code>spec.name</code> property, containing the user's full name.</li>
+<li><code>emails</code>: The <code>spec.emails</code> list.</li>
+<li><code>email</code>: The first email from the emails list.</li>
+<li><code>office</code>: Content from the <code>spec.claims</code> property, which can contain any valid map values.</li>
 </ul>
-<p>The principle is the resulting set of claim is the result of the merge of:</p>
+<p>The resulting claim set is the result of merging:</p>
 <ul>
-<li>An initial set of system ones (<code>aud</code>, <code>azp</code>, <code>exp</code>, <code>iss</code>, ...)</li>
-<li>Some added by Kubauth from the Kubernetes CRD based definition:<ul>
-<li><code>name</code></li>
-<li><code>emails</code></li>
-<li><code>groups</code> (Will be describe in a next chapter)</li>
+<li>An initial set of system claims (<code>aud</code>, <code>azp</code>, <code>exp</code>, <code>iss</code>, ...)</li>
+<li>Claims added by Kubauth from the user CRD definition:<ul>
+<li><code>name</code> from <code>spec.name</code></li>
+<li><code>emails</code> from <code>spec.emails</code></li>
+<li><code>groups</code> described in a <a href="../150-users-groups/">following chapter</a></li>
 </ul>
 </li>
-<li>The content of the user's <code>spec.claims</code></li>
+<li>The contents of the user's <code>spec.claims</code></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>On the current version, claims are not filtered by scope. In other words, all claims of a user are provided in the OIDC token.</p>
+<p>In the current version, claims are not filtered by scope. In other words, all user claims are included in the ID token.</p>
 </div>
 
 

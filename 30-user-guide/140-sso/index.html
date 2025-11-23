@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="A Kubernetes-native OpenID Connect (OIDC) Identity Provider">
       
+      
+        <meta name="author" content="Kubauth Project">
+      
+      
+        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/30-user-guide/140-sso/">
       
       
         <link rel="prev" href="../130-audit/">
@@ -20,7 +26,7 @@
     
     
       
-        <title>SSO - Kubauth</title>
+        <title>SSO Session - Kubauth</title>
       
     
     
@@ -110,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SSO
+              SSO Session
             
           </span>
         </div>
@@ -318,7 +324,7 @@
   
   
   <span class="md-ellipsis">
-    User guide
+    User Guide
     
   </span>
   
@@ -329,7 +335,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            User guide
+            User Guide
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -423,7 +429,7 @@
   
   
   <span class="md-ellipsis">
-    SSO
+    SSO Session
     
   </span>
   
@@ -436,7 +442,7 @@
   
   
   <span class="md-ellipsis">
-    SSO
+    SSO Session
     
   </span>
   
@@ -461,16 +467,16 @@
         <li class="md-nav__item">
   <a href="#logout" class="md-nav__link">
     <span class="md-ellipsis">
-      logout
+      Logout
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sessions-storage" class="md-nav__link">
+  <a href="#session-storage" class="md-nav__link">
     <span class="md-ellipsis">
-      Sessions storage
+      Session Storage
     </span>
   </a>
   
@@ -506,7 +512,7 @@
   
   
   <span class="md-ellipsis">
-    Users Groups
+    User Groups
     
   </span>
   
@@ -529,7 +535,7 @@
   
   
   <span class="md-ellipsis">
-    Password Grant
+    Password Grant (ROPC)
     
   </span>
   
@@ -552,7 +558,7 @@
   
   
   <span class="md-ellipsis">
-    LDAP connector
+    LDAP Connector
     
   </span>
   
@@ -575,7 +581,7 @@
   
   
   <span class="md-ellipsis">
-    Several ID providers
+    Multiple Identity Providers
     
   </span>
   
@@ -598,7 +604,7 @@
   
   
   <span class="md-ellipsis">
-    Identity merging
+    Identity Merging
     
   </span>
   
@@ -639,7 +645,7 @@
   
   
   <span class="md-ellipsis">
-    Applications integration
+    Applications Integration
     
   </span>
   
@@ -650,7 +656,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Applications integration
+            Applications Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -753,7 +759,7 @@
   
   
   <span class="md-ellipsis">
-    Kubernetes integration
+    Kubernetes Integration
     
   </span>
   
@@ -764,7 +770,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Kubernetes integration
+            Kubernetes Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -775,12 +781,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../50-kubernetes-integration/110-introduction/" class="md-nav__link">
+      <a href="../../50-kubernetes-integration/110-overview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Introduction
+    Overview
     
   </span>
   
@@ -803,7 +809,7 @@
   
   
   <span class="md-ellipsis">
-    API Server configuration
+    API Server Configuration
     
   </span>
   
@@ -826,7 +832,7 @@
   
   
   <span class="md-ellipsis">
-    Kubeconfig service
+    Kubeconfig Service
     
   </span>
   
@@ -849,7 +855,7 @@
   
   
   <span class="md-ellipsis">
-    Workstation setup
+    Workstation Setup
     
   </span>
   
@@ -890,7 +896,7 @@
   
   
   <span class="md-ellipsis">
-    Appendix
+    API Reference
     
   </span>
   
@@ -900,6 +906,441 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/110-oidcclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OidcClient
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/120-user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/130-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Group
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/140-groupbinding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GroupBinding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    kc CLI Tool
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            kc CLI Tool
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/110-version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc version
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/120-hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc hash
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/130-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/140-token-nui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token-nui
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/150-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc audit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/160-jwt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc jwt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/170-whoami/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc whoami
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/180-logout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc logout
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-kc/190-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Appendix
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Appendix
           </label>
@@ -912,12 +1353,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-appendix/100-openldap/" class="md-nav__link">
+      <a href="../../80-appendix/100-openldap/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    OpenLDAP deployment
+    OpenLDAP Deployment
     
   </span>
   
@@ -964,16 +1405,16 @@
         <li class="md-nav__item">
   <a href="#logout" class="md-nav__link">
     <span class="md-ellipsis">
-      logout
+      Logout
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sessions-storage" class="md-nav__link">
+  <a href="#session-storage" class="md-nav__link">
     <span class="md-ellipsis">
-      Sessions storage
+      Session Storage
     </span>
   </a>
   
@@ -1007,36 +1448,35 @@
   
 
 
-<h1 id="sso-session">SSO session.</h1>
-<p>Up to now, we have been prompted with a login dialog each time we issued a <code>kc token ....</code> command.</p>
-<p>On the Kubauth login page, there is a checkbox <code>Remember me</code>.</p>
+<h1 id="sso-session">SSO Session</h1>
+<p>Until now, we have been prompted with a login dialog each time we issued a <code>kc token ...</code> command.</p>
+<p>On the Kubauth login page, there is a "Remember me" checkbox:</p>
 <p><img alt="login" class="center" src="../../assets/kubauth-login2.png" width="50%" /></p>
-<p>If checked, a session cookie is set, the subsequent login attempt will go through using same user.</p>
-<p>You can easily check this by launching several <code>kc token ....</code>.</p>
-<p>The session cookie is related only to the login page. It is independant of the client application.
-This means you have a cross-application Single Sign On.</p>
-<h3 id="logout">logout</h3>
-<p>What if you want now to login with another user credential ? </p>
-<p>Obviously, you must first logout. This can be achieved with another <code>kc</code> subcommand:</p>
+<p>When checked, a session cookie is set, and subsequent login attempts will proceed automatically using the same user credentials.</p>
+<p>You can verify this by launching several <code>kc token ...</code> commands.</p>
+<p>The session cookie is associated only with the login page and is independent of the client application. This enables cross-application Single Sign-On (SSO).</p>
+<h3 id="logout">Logout</h3>
+<p>What if you want to log in with different user credentials?</p>
+<p>You must first log out. This can be accomplished with another <code>kc</code> subcommand:</p>
 <p><div class="language-shell copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>
 </span></code></pre></div>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>No<span class="w"> </span>OIDC<span class="w"> </span>configuration<span class="w"> </span>found<span class="w"> </span><span class="k">in</span><span class="w"> </span>kubeconfig
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Opening<span class="w"> </span>browser<span class="w"> </span>to<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>endpoint:<span class="w"> </span>https://kubauth.ingress.kubo6.mbp/oauth2/logout
 </span></code></pre></div></p>
-<p>Don't care about the first message, related to kubeconfig. This will be explained later, in Kubernetes integration</p>
-<p>As prompted, a browser should pop-up to call a specif cleanup URL.</p>
+<p>Disregard the first message about kubeconfig. This will be explained later in the <a href="../../50-kubernetes-integration/140-workstation-setup/">Kubernetes integration</a> section.</p>
+<p>As indicated, a browser should open to call the logout URL.</p>
 <p><img alt="logout" class="center" src="../../assets/kubauth-logout1.png" width="80%" /></p>
-<h2 id="sessions-storage">Sessions storage</h2>
-<p>Session are persisted as Kubernetes resources:</p>
+<h2 id="session-storage">Session Storage</h2>
+<p>Sessions are persisted as Kubernetes resources:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-sso<span class="w"> </span>get<span class="w"> </span>ssosessions
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>NAME<span class="w">                                                                 </span>LOGIN<span class="w">   </span>NAME<span class="w">       </span>DEADLINE<span class="w">               </span>AGE
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>h-6d4d8f33c407a727857ba335d257a04d6d0116c40fa81c26903bb9469139563c<span class="w">   </span>john<span class="w">    </span>John<span class="w"> </span>DOE<span class="w">   </span><span class="m">2025</span>-10-28T00:19:44Z<span class="w">   </span>34s
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>h-d13bc676b003a200aca5051558b2cd21eccb44f557bee058df00aa3eb6d2bd22<span class="w">   </span>jim<span class="w">                </span><span class="m">2025</span>-10-28T00:19:13Z<span class="w">   </span>65s
 </span></code></pre></div></p>
-<p>Manually deleting such entry is another method to end the session.</p>
+<p>Manually deleting a session resource is an alternative method to terminate a session.</p>
 <h2 id="configuration">Configuration</h2>
-<p>SSO configuration be modified by setting a helm chart configuration value:</p>
+<p>SSO configuration can be modified using Helm chart values:</p>
 <details class="abstract" open="open">
 <summary>values.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">oidc</span><span class="p">:</span>
@@ -1051,9 +1491,9 @@ This means you have a cross-application Single Sign On.</p>
 </span></code></pre></div>
 </details>
 <ul>
-<li><code>namespace</code> will allow to change the namespace where SSO sessions are persisted. And allow its creation at Kubauth deployment.</li>
-<li><code>lifetime</code> set the session duration. This is an absolute duration. There is no idle timeout.</li>
-<li><code>sticky</code> true means session cookie is permanent. If false, the session will be lost on browser close.</li>
+<li><code>namespace</code>: Specifies the namespace where SSO sessions are persisted, and enables its creation during Kubauth deployment.</li>
+<li><code>lifeTime</code>: Sets the session duration. This is an absolute duration with no idle timeout.</li>
+<li><code>sticky</code>: When true, the session cookie is persistent. When false, the session expires when the browser is closed.</li>
 </ul>
 
 
@@ -1101,13 +1541,13 @@ This means you have a cross-application Single Sign On.</p>
         
         
           
-          <a href="../150-users-groups/" class="md-footer__link md-footer__link--next" aria-label="Next: Users Groups">
+          <a href="../150-users-groups/" class="md-footer__link md-footer__link--next" aria-label="Next: User Groups">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Users Groups
+                User Groups
               </div>
             </div>
             <div class="md-footer__button md-icon">

@@ -12,13 +12,13 @@
         <meta name="author" content="Kubauth Project">
       
       
-        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/40-applications-integration/120-harbor/">
+        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/60-references/140-groupbinding/">
       
       
-        <link rel="prev" href="../110-argocd/">
+        <link rel="prev" href="../130-group/">
       
       
-        <link rel="next" href="../130-minio/">
+        <link rel="next" href="../../70-kc/100-overview/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Harbor - Kubauth</title>
+        <title>GroupBinding - Kubauth</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#harbor-integration" class="md-skip">
+        <a href="#groupbinding-reference" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Harbor
+              GroupBinding
             
           </span>
         </div>
@@ -555,20 +555,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -584,7 +582,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Applications Integration
@@ -598,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../110-argocd/" class="md-nav__link">
+      <a href="../../40-applications-integration/110-argocd/" class="md-nav__link">
         
   
   
@@ -618,32 +616,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Harbor
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../40-applications-integration/120-harbor/" class="md-nav__link">
         
   
   
@@ -654,62 +630,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#oidc-client-creation" class="md-nav__link">
-    <span class="md-ellipsis">
-      OIDC Client Creation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#manual-harbor-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Manual Harbor Configuration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#automated-harbor-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Automated Harbor Configuration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#admin-rights" class="md-nav__link">
-    <span class="md-ellipsis">
-      Admin Rights
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -722,7 +642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../130-minio/" class="md-nav__link">
+      <a href="../../40-applications-integration/130-minio/" class="md-nav__link">
         
   
   
@@ -886,18 +806,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -913,7 +835,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             API Reference
@@ -927,7 +849,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../60-references/100-overview/" class="md-nav__link">
+      <a href="../100-overview/" class="md-nav__link">
         
   
   
@@ -950,7 +872,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../60-references/110-oidcclient/" class="md-nav__link">
+      <a href="../110-oidcclient/" class="md-nav__link">
         
   
   
@@ -973,7 +895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../60-references/120-user/" class="md-nav__link">
+      <a href="../120-user/" class="md-nav__link">
         
   
   
@@ -996,7 +918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../60-references/130-group/" class="md-nav__link">
+      <a href="../130-group/" class="md-nav__link">
         
   
   
@@ -1016,10 +938,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../60-references/140-groupbinding/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    GroupBinding
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1030,6 +974,143 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spec-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spec Fields
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spec Fields">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    <span class="md-ellipsis">
+      user
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="user">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#group" class="md-nav__link">
+    <span class="md-ellipsis">
+      group
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavior
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implicit-group-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implicit Group Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-claims-in-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Group Claims in Tokens
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#naming-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Naming Convention
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deletion-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deletion Behavior
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1412,36 +1493,117 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#oidc-client-creation" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      OIDC Client Creation
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#manual-harbor-configuration" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
-      Manual Harbor Configuration
+      Example
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#automated-harbor-configuration" class="md-nav__link">
+  <a href="#spec-fields" class="md-nav__link">
     <span class="md-ellipsis">
-      Automated Harbor Configuration
+      Spec Fields
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spec Fields">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    <span class="md-ellipsis">
+      user
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="user">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#group" class="md-nav__link">
+    <span class="md-ellipsis">
+      group
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavior
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implicit-group-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implicit Group Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-claims-in-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Group Claims in Tokens
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#naming-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Naming Convention
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#admin-rights" class="md-nav__link">
+  <a href="#deletion-behavior" class="md-nav__link">
     <span class="md-ellipsis">
-      Admin Rights
+      Deletion Behavior
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Resources
     </span>
   </a>
   
@@ -1466,99 +1628,84 @@
   
 
 
-<h1 id="harbor-integration">Harbor Integration</h1>
-<h2 id="oidc-client-creation">OIDC Client Creation</h2>
-<p>As described in <a href="../../30-user-guide/110-configuration/#oidc-client-creation">Configuration</a>, a client application is defined as a Kubernetes Custom Resource.</p>
-<p>Create a manifest like the following:</p>
-<details class="abstract" open="open">
-<summary>client-harbor.yaml</summary>
-<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OidcClient</span>
+<h1 id="groupbinding-reference">GroupBinding Reference</h1>
+<h2 id="overview">Overview</h2>
+<p>A <code>GroupBinding</code> associates a user with a group. Groups are used to organize users and apply common claims and permissions. With Kubauth, a group exists simply by being referenced in a <code>GroupBinding</code> - explicit Group creation is optional.</p>
+<p><strong>API Group:</strong> <code>kubauth.kubotal.io/v1alpha1</code></p>
+<p><strong>Kind:</strong> <code>GroupBinding</code></p>
+<p><strong>Namespaced:</strong> Yes (typically <code>kubauth-users</code>)</p>
+<h2 id="example">Example</h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GroupBinding</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">harbor</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-oidc</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">john-developers</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-users</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">hashedSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$2a$12$5lLVmTBlougPBAQ8h10wR.W9tvZQBRsK1/Sh48yO8WLyXr.P4w3tm&quot;</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">redirectURIs</span><span class="p">:</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;https://harbor.ingress.kubo6.mbp/c/oidc/callback&quot;</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">grantTypes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;refresh_token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;authorization_code&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">responseTypes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;id_token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;id_token</span><span class="nv"> </span><span class="s">token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">id_token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">id_token</span><span class="nv"> </span><span class="s">token&quot;</span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">scopes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;openid&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;offline&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;profile&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;groups&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;email&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;offline_access&quot;</span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="c1"># Following are optional</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">displayName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Harbor</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Harbor OCI repository</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">entryURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://harbor.ingress.kubo6.mbp/</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">john</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">developers</span>
 </span></code></pre></div>
-</details>
+<h2 id="spec-fields">Spec Fields</h2>
+<hr />
+<h3 id="user"><code>user</code></h3>
+<p>string - required</p>
+<p>The name of the user to bind to the group. This must match the <code>metadata.name</code> of an existing User resource.</p>
+<hr />
+<h4 id="group"><code>group</code></h4>
+<p>string - required</p>
+<p>The name of the group to bind the user to. The group does not need to exist as a Group resource - it will be created implicitly by the GroupBinding.</p>
+<h2 id="behavior">Behavior</h2>
+<h3 id="implicit-group-creation">Implicit Group Creation</h3>
+<p>Creating a GroupBinding automatically makes the referenced group exist, even if no explicit Group resource is defined. 
+This follows Kubernetes' pattern of weak referential integrity.</p>
+<h3 id="group-claims-in-tokens">Group Claims in Tokens</h3>
+<p>When a user authenticates, all groups they belong to (via GroupBinding resources) are included in the <code>groups</code> claim in the OIDC ID token.</p>
+<p><strong>Example:</strong>
+User <code>john</code> has two GroupBindings:
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nn">---</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GroupBinding</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">john-developers</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-users</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">john</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">developers</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nn">---</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GroupBinding</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">john-leads</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-users</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">john</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">team-leads</span>
+</span></code></pre></div></p>
+<p><strong>JWT Token for user <code>john</code>:</strong>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;john&quot;</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developers&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;team-leads&quot;</span><span class="p">],</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="err">...</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<h2 id="naming-convention">Naming Convention</h2>
+<p>While the <code>metadata.name</code> can be any valid Kubernetes resource name, we recommend a naming convention that makes the binding easy to understand:</p>
+<p><strong>Pattern:</strong> <code>&lt;username&gt;-&lt;groupname&gt;</code></p>
+<p><strong>Examples:</strong>
+- <code>john-developers</code>
+- <code>alice-cluster-admins</code>
+- <code>bob-ops-team</code></p>
+<p>This makes it easy to identify what each binding does and find all bindings for a specific user or group using kubectl.</p>
+<h2 id="deletion-behavior">Deletion Behavior</h2>
+<p>Deleting a GroupBinding removes the user from the group immediately. The user will no longer have the group in their <code>groups</code> claim or inherit any group-level claims on the next authentication.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>groupbinding<span class="w"> </span>john-developers<span class="w"> </span>-n<span class="w"> </span>kubauth-users
+</span></code></pre></div>
+<p><strong>Note:</strong> Deleting the last GroupBinding that references a group does not delete the group itself if an explicit Group resource exists. 
+Only implicit groups (those that exist solely through GroupBindings) cease to exist when all their bindings are deleted.</p>
+<h2 id="related-resources">Related Resources</h2>
 <ul>
-<li>Replace <code>harbor.ingress.kubo6.mbp</code> with your Harbor entry point (in 2 locations)</li>
-<li>The sample password is 'harbor123'. The <code>hashedSecret</code> value is the result of the <code>kc hash harbor123</code> command.</li>
-<li>The <code>displayName</code>, <code>description</code>, and <code>entryURL</code> attributes are optional. They enable Harbor to appear in a list of available applications displayed on a specific page (<code>https://kubauth.ingress.kubo6.mbp/index</code>) or the logout page.</li>
+<li><a href="../120-user/">User</a> - User accounts that can be bound to groups</li>
+<li><a href="../130-group/">Group</a> - Optional explicit group definitions with claims</li>
 </ul>
-<p>Apply this manifest:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>client-harbor.yaml
-</span></code></pre></div>
-<h2 id="manual-harbor-configuration">Manual Harbor Configuration</h2>
-<p>We assume you have a running Harbor installation.</p>
-<ul>
-<li>Log in to the Harbor interface with an account that has Harbor system administrator privileges.</li>
-<li>Under Administration, go to Configuration and select the Authentication tab.</li>
-<li>Use the Auth Mode drop-down menu to select OIDC.</li>
-</ul>
-<p>Set the following values:</p>
-<ul>
-<li>Auth Mode: <code>OIDC</code></li>
-<li>OIDC Provider Name: <code>KUBAUTH</code></li>
-<li>OIDC Endpoint: <code>https://kubauth.ingress.kubo6.mbp</code> <br>(Adjust to your local Kubauth entry point)</li>
-<li>OIDC Client ID: <code>harbor</code></li>
-<li>OIDC Client Secret: <code>harbor123</code></li>
-<li>Group Claim Name: <code>groups</code></li>
-<li>OIDC Admin Group: <code>harbor-admins</code></li>
-<li>OIDC Scopes: <code>openid,email,profile,offline_access,groups</code></li>
-<li>Automatic onboarding: <code>true</code> </li>
-<li>Username Claim: <code>name</code></li>
-</ul>
-<h2 id="automated-harbor-configuration">Automated Harbor Configuration</h2>
-<p>OIDC can also be configured <a href="https://goharbor.io/docs/2.7.0/install-config/configure-system-settings-cli/#set-configuration-items-using-an-environment-variable" target="_blank">using environment variables</a>.</p>
-<p>If you have installed Harbor using the provided Helm chart, this can be achieved by appending a values file like the following to your deployment:</p>
-<details class="abstract" open="open">
-<summary>values-kubauth.yaml</summary>
-<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">core</span><span class="p">:</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">extraEnvVars</span><span class="p">:</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CONFIG_OVERWRITE_JSON</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="no">{</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">          </span><span class="no">&quot;auth_mode&quot;: &quot;oidc_auth&quot;,</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">          </span><span class="no">&quot;oidc_name&quot;: &quot;KUBAUTH&quot;,</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">          </span><span class="no">&quot;oidc_endpoint&quot;: &quot;https://kubauth.ingress.kubo6.mbp&quot;,</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">          </span><span class="no">&quot;oidc_groups_claim&quot;: &quot;groups&quot;,</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">          </span><span class="no">&quot;oidc_admin_group&quot;: &quot;harbor-admins&quot;,</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">          </span><span class="no">&quot;oidc_client_id&quot;: &quot;harbor&quot;,</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">          </span><span class="no">&quot;oidc_client_secret&quot;: &quot;harbor123&quot;,</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">          </span><span class="no">&quot;oidc_scope&quot;: &quot;openid,email,profile,offline_access,groups&quot;,</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">          </span><span class="no">&quot;oidc_verify_cert&quot;: &quot;false&quot;,</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">          </span><span class="no">&quot;oidc_auto_onboard&quot;: &quot;true&quot;,</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">          </span><span class="no">&quot;oidc_user_claim&quot;: &quot;name&quot;</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span><span class="no">}</span>
-</span></code></pre></div>
-</details>
-<blockquote>
-<p>Replace <code>https://kubauth.ingress.kubo6.mbp</code> with the Kubauth entry point of your installation.</p>
-</blockquote>
-<h2 id="admin-rights">Admin Rights</h2>
-<p>To grant admin rights to a user, add them to the group we defined as <code>oidc_admin_group</code> (here <code>harbor-admins</code>) in the configuration by creating a new <code>GroupBinding</code>:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="s">apiVersion: kubauth.kubotal.io/v1alpha1</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="s">kind: GroupBinding</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s">metadata:</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s">  name: john-harbor-admins</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="s">  namespace: kubauth-users</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="s">spec:</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="s">  group: harbor-admins</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="s">  user: john</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="s">EOF</span>
-</span></code></pre></div>
-<p>Now, you can log in with this user and verify they have full admin rights.</p>
 
 
 
@@ -1588,7 +1735,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../110-argocd/" class="md-footer__link md-footer__link--prev" aria-label="Previous: ArgoCD">
+          <a href="../130-group/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Group">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1598,20 +1745,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                ArgoCD
+                Group
               </div>
             </div>
           </a>
         
         
           
-          <a href="../130-minio/" class="md-footer__link md-footer__link--next" aria-label="Next: MinIO">
+          <a href="../../70-kc/100-overview/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                MinIO
+                Overview
               </div>
             </div>
             <div class="md-footer__button md-icon">

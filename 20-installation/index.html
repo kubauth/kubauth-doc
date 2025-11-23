@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="A Kubernetes-native OpenID Connect (OIDC) Identity Provider">
       
+      
+        <meta name="author" content="Kubauth Project">
+      
+      
+        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/20-installation/">
       
       
         <link rel="prev" href="..">
@@ -328,9 +334,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisite" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisite
+      Prerequisites
     </span>
   </a>
   
@@ -348,7 +354,7 @@
         <li class="md-nav__item">
   <a href="#kc-cli-tool-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      kc CLI tool installation
+      kc CLI Tool Installation
     </span>
   </a>
   
@@ -385,7 +391,7 @@
   
   
   <span class="md-ellipsis">
-    User guide
+    User Guide
     
   </span>
   
@@ -396,7 +402,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            User guide
+            User Guide
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -481,7 +487,7 @@
   
   
   <span class="md-ellipsis">
-    SSO
+    SSO Session
     
   </span>
   
@@ -504,7 +510,7 @@
   
   
   <span class="md-ellipsis">
-    Users Groups
+    User Groups
     
   </span>
   
@@ -527,7 +533,7 @@
   
   
   <span class="md-ellipsis">
-    Password Grant
+    Password Grant (ROPC)
     
   </span>
   
@@ -550,7 +556,7 @@
   
   
   <span class="md-ellipsis">
-    LDAP connector
+    LDAP Connector
     
   </span>
   
@@ -573,7 +579,7 @@
   
   
   <span class="md-ellipsis">
-    Several ID providers
+    Multiple Identity Providers
     
   </span>
   
@@ -596,7 +602,7 @@
   
   
   <span class="md-ellipsis">
-    Identity merging
+    Identity Merging
     
   </span>
   
@@ -637,7 +643,7 @@
   
   
   <span class="md-ellipsis">
-    Applications integration
+    Applications Integration
     
   </span>
   
@@ -648,7 +654,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Applications integration
+            Applications Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -751,7 +757,7 @@
   
   
   <span class="md-ellipsis">
-    Kubernetes integration
+    Kubernetes Integration
     
   </span>
   
@@ -762,7 +768,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Kubernetes integration
+            Kubernetes Integration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -773,12 +779,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../50-kubernetes-integration/110-introduction/" class="md-nav__link">
+      <a href="../50-kubernetes-integration/110-overview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Introduction
+    Overview
     
   </span>
   
@@ -801,7 +807,7 @@
   
   
   <span class="md-ellipsis">
-    API Server configuration
+    API Server Configuration
     
   </span>
   
@@ -824,7 +830,7 @@
   
   
   <span class="md-ellipsis">
-    Kubeconfig service
+    Kubeconfig Service
     
   </span>
   
@@ -847,7 +853,7 @@
   
   
   <span class="md-ellipsis">
-    Workstation setup
+    Workstation Setup
     
   </span>
   
@@ -888,7 +894,7 @@
   
   
   <span class="md-ellipsis">
-    Appendix
+    API Reference
     
   </span>
   
@@ -898,6 +904,441 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../60-references/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../60-references/110-oidcclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OidcClient
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../60-references/120-user/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../60-references/130-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Group
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../60-references/140-groupbinding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GroupBinding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    kc CLI Tool
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            kc CLI Tool
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-kc/100-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-kc/110-version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc version
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-kc/120-hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc hash
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-kc/130-token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-kc/140-token-nui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc token-nui
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-kc/150-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc audit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-kc/160-jwt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc jwt
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-kc/170-whoami/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc whoami
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-kc/180-logout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc logout
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../70-kc/190-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Appendix
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Appendix
           </label>
@@ -910,12 +1351,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../70-appendix/100-openldap/" class="md-nav__link">
+      <a href="../80-appendix/100-openldap/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    OpenLDAP deployment
+    OpenLDAP Deployment
     
   </span>
   
@@ -960,9 +1401,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisite" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisite
+      Prerequisites
     </span>
   </a>
   
@@ -980,7 +1421,7 @@
         <li class="md-nav__item">
   <a href="#kc-cli-tool-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      kc CLI tool installation
+      kc CLI Tool Installation
     </span>
   </a>
   
@@ -1006,31 +1447,30 @@
 
 
 <h1 id="installation">Installation</h1>
-<h2 id="prerequisite">Prerequisite</h2>
-<p>Before you begin, make sure you meet the following prerequisites:</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before you begin, ensure the following components are in place:</p>
 <ul>
 <li>
-<p><strong>Kubectl Configuration:</strong> You should have a local client Kubernetes configuration with full administrative
-  rights on the target cluster.</p>
+<p><strong>Kubectl Configuration:</strong> A local Kubernetes client configuration with full cluster administrator privileges on the target cluster.</p>
 </li>
 <li>
-<p><strong>Certificate Manager:</strong> Ensure that the Certificate Manager is deployed in your target Kubernetes cluster, and a <code>ClusterIssuer</code> is defined for certificate management.</p>
+<p><strong>Certificate Manager:</strong> The Certificate Manager must be deployed on your target Kubernetes cluster with a <code>ClusterIssuer</code> configured for certificate management.</p>
 </li>
 <li>
-<p><strong>Ingress Controller:</strong> An NGINX ingress controller should be deployed in your target Kubernetes cluster. With of course an upfront load balancer.</p>
+<p><strong>Ingress Controller:</strong> An NGINX ingress controller must be deployed on your target Kubernetes cluster.</p>
 </li>
 <li>
-<p><strong>Helm:</strong> Helm must be installed locally on your system.</p>
+<p><strong>Helm:</strong> Helm must be installed on your local workstation.</p>
 </li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>If you don't have an appropriate Kubernetes cluster at your disposal, you can deploy a <a href="https://kind.sigs.k8s.io/" target="_blank">Kind cluster</a> on your local workstation</p>
+<p>If you don't have a suitable Kubernetes cluster available, you can deploy a <a href="https://kind.sigs.k8s.io/" target="_blank">Kind cluster</a> on your local workstation.</p>
 </div>
 <h2 id="kubauth-deployment">Kubauth Deployment</h2>
-<p>The most straightforward and recommended method for installing Kubauth is by using the provided OCI Helm chart.</p>
-<p>As there are several required configuration variable, we suggest to use a 'values file' instead of setting variable on the command line.</p>
-<p>So, in your working folder, create a file like the following:</p>
+<p>The recommended method for installing Kubauth is using the provided OCI Helm chart.</p>
+<p>Since several configuration parameters are required, we recommend using a values file rather than command-line arguments.</p>
+<p>In your working directory, create a file with the following content:</p>
 <details class="abstract" open="open">
 <summary>values.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">oidc</span><span class="p">:</span>
@@ -1044,33 +1484,32 @@
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">certificateIssuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-odp</span>
 </span></code></pre></div>
 </details>
-<p>Replace the values with your specific configuration:</p>
+<p>Replace the placeholder values with your environment-specific configuration:</p>
 <ul>
-<li><strong><code>kubauth.ingress.kubo6.mbp</code></strong>: Replace by the hostname used for accessing the <code>kubauth</code> service from outside the cluster.<br><blockquote>
-<p>Make sure to define this hostname in your DNS.</p>
+<li><strong><code>kubauth.ingress.kubo6.mbp</code></strong>: The hostname which will be used to access the Kubauth service from outside the cluster.<br><blockquote>
+<p>Ensure this hostname is registered in your DNS.</p>
 </blockquote>
 </li>
-<li><strong><code>cluster-odp</code></strong>: Replace by the <code>ClusterIssuer</code> from your Certificate Manager for ingress certificate creation.</li>
+<li><strong><code>cluster-odp</code></strong>: The <code>ClusterIssuer</code> name from your Certificate Manager for ingress certificate provisioning.</li>
 </ul>
-<div class="admonition notes">
-<p class="admonition-title">Notes</p>
-<p>This <code>values.yaml</code> file is the bare minimum configuration set. In subsequent chapters, more variables may be added. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This <code>values.yaml</code> represents the minimum required configuration. Additional parameters may be introduced in subsequent chapters.</p>
 </div>
-<p>Then, you can deploy Kubauth with the following command.</p>
+<p>Deploy Kubauth using the following command:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth<span class="w"> </span>--values<span class="w"> </span>./values.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.2-snapshot<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
 </span></code></pre></div>
-<p>After few seconds, verify the Kubauth server pod is running:</p>
+<p>After a few seconds, verify that the Kubauth server pod is running:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>pods
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>NAME<span class="w">                       </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>kubauth-5d4fdc6bc8-7rlb6<span class="w">   </span><span class="m">3</span>/3<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>55s
 </span></code></pre></div></p>
-<p>And check the Kubauth issuer URL is reachable:</p>
+<p>Confirm that the Kubauth issuer URL is accessible:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl https://kubauth.ingress.kubo6.mbp/.well-known/openid-configuration
 </span></code></pre></div>
-<h2 id="kc-cli-tool-installation"><code>kc</code> CLI tool installation</h2>
-<p>Download the <code>kc</code> CLI from the <a href="https://github.com/kubauth/kc/releases/tag/0.1.2" target="_blank">GitHub releases page</a>
-and rename it to <code>kc</code>. Then make it executable and move it to your path:</p>
+<h2 id="kc-cli-tool-installation"><code>kc</code> CLI Tool Installation</h2>
+<p>Download the <code>kc</code> CLI from the <a href="https://github.com/kubauth/kc/releases/tag/0.1.2" target="_blank">GitHub releases page</a>, rename it to <code>kc</code>, make it executable, and move it to your system path:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mv<span class="w"> </span>kc_*_*<span class="w"> </span>kc
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>kc
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>sudo<span class="w"> </span>mv<span class="w"> </span>kc<span class="w"> </span>/usr/local/bin/
