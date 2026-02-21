@@ -193,7 +193,7 @@ If you need to configure a different type of LDAP server, each property is docum
 Once your configuration is ready, proceed with deployment by running the `helm upgrade ...` command:
 
 ``` { .bash .copy }
-helm -n kubauth upgrade -i kubauth --values ./values-ldap.yaml oci://quay.io/kubauth/charts/kubauth --version 0.1.2-snapshot --create-namespace --wait
+helm -n kubauth upgrade -i kubauth --values ./values-ldap.yaml oci://quay.io/kubauth/charts/kubauth --version 0.1.2 --create-namespace --wait
 ```
 
 Verify which containers have been deployed:

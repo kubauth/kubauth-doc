@@ -50,7 +50,7 @@ Replace the placeholder values with your environment-specific configuration:
 Deploy Kubauth using the following command:
 
 ``` { .bash .copy }
-helm -n kubauth upgrade -i kubauth --values ./values.yaml oci://quay.io/kubauth/charts/kubauth --version 0.1.2-snapshot --create-namespace --wait
+helm -n kubauth upgrade -i kubauth --values ./values.yaml oci://quay.io/kubauth/charts/kubauth --version 0.1.2 --create-namespace --wait
 ```
 
 After a few seconds, verify that the Kubauth server pod is running:

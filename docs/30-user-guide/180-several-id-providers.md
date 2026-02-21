@@ -74,7 +74,7 @@ Here is a values file to implement it:
 Once your configuration is ready, proceed with deployment by running the `helm upgrade ...` command:
 
 ``` { .bash .copy }
-helm -n kubauth upgrade -i kubauth --values ./values-merger.yaml oci://quay.io/kubauth/charts/kubauth --version 0.1.2-snapshot --create-namespace --wait
+helm -n kubauth upgrade -i kubauth --values ./values-merger.yaml oci://quay.io/kubauth/charts/kubauth --version 0.1.2 --create-namespace --wait
 ```
 
 Verify which containers have been deployed:
