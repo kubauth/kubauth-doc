@@ -1453,7 +1453,7 @@
 <p class="admonition-title">Warning</p>
 <p>At the time of writing this manual, there are changes underway in how MinIO is distributed.</p>
 <p>The configuration provided here has been validated on the latest OSS MinIO version that includes a fully functional Console Admin.</p>
-<p>It should also apply to MinIO AIStor, the proprietary version of MinIO.</p>
+<p>It should also apply to MinIO AIStor, the proprietary version of MinIO. It has been tested against the Free version of this  product.</p>
 </div>
 <h2 id="oidc-client-creation">OIDC Client Creation</h2>
 <p>As described in <a href="../../30-user-guide/110-configuration/#oidc-client-creation">Configuration</a>, a client application is defined as a Kubernetes Custom Resource.</p>
@@ -1496,9 +1496,10 @@
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nv">client_secret</span><span class="o">=</span>minio123<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nv">config_url</span><span class="o">=</span><span class="s2">&quot;https://kubauth.ingress.kubo6.mbp/.well-known/openid-configuration&quot;</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nv">redirect_uri</span><span class="o">=</span><span class="s2">&quot;https://minio-console-minio1.ingress.kubo6.mbp/oauth_callback&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nv">claim_name</span><span class="o">=</span><span class="s2">&quot;minio_policies&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nv">display_name</span><span class="o">=</span>KUBAUTH<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nv">claim_userinfo</span><span class="o">=</span><span class="s2">&quot;on&quot;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nv">scopes</span><span class="o">=</span><span class="s2">&quot;openid,groups,profile,email&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nv">claim_name</span><span class="o">=</span><span class="s2">&quot;minio_policies&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nv">display_name</span><span class="o">=</span>KUBAUTH<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nv">claim_userinfo</span><span class="o">=</span><span class="s2">&quot;off&quot;</span>
 </span></code></pre></div>
 <ul>
 <li>Replace <code>minio-console-minio1.ingress.kubo6.mbp</code> with your MinIO console entry point</li>
