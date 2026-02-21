@@ -6,7 +6,7 @@
 
     The configuration provided here has been validated on the latest OSS MinIO version that includes a fully functional Console Admin.
 
-    It should also apply to MinIO AIStor, the proprietary version of MinIO.
+    It should also apply to MinIO AIStor, the proprietary version of MinIO. It has been tested against the Free version of this  product.
 
 ## OIDC Client Creation
 
@@ -62,9 +62,10 @@ mc idp openid add myminio kubauth \
     client_secret=minio123 \
     config_url="https://kubauth.ingress.kubo6.mbp/.well-known/openid-configuration" \
     redirect_uri="https://minio-console-minio1.ingress.kubo6.mbp/oauth_callback" \
+    scopes="openid,groups,profile,email" \
     claim_name="minio_policies" \
     display_name=KUBAUTH \
-    claim_userinfo="on"
+    claim_userinfo="off"
 ```
 
 - Replace `minio-console-minio1.ingress.kubo6.mbp` with your MinIO console entry point
