@@ -208,7 +208,7 @@ kc token-nui --issuerURL https://kubauth.example.com \
   --clientId automation \
   --login serviceaccount \
   --password $SERVICE_PASSWORD \
-  --onlyIDToken
+  --onlyIdToken
 ```
 
 ## Troubleshooting

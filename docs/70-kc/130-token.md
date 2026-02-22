@@ -51,10 +51,10 @@ Provide a CA file for TLS certificate verification of ìssuerURL
 **Example:** `--caFile ./CA.crt`
 
 -----
-### `--onlyIDToken`
+### `--onlyIdToken`
 Output only the ID token (base64-encoded JWT). Useful for piping to other commands or scripts.
 
-**Example:** `--onlyIDToken`
+**Example:** `--onlyIdToken`
 
 -----
 ### `--onlyAccessToken`
@@ -63,18 +63,26 @@ Output only the access token (base64-encoded). Useful for piping to other comman
 **Example:** `--onlyAccessToken`
 
 -----
-### `-d`, `--detailIDToken`
-Decode and display the JWT token payload. This is a shortcut for `| kc jwt`.
+### `-d`, `--detailIdToken`
+Decode and display the JWT OIDC token payload. This is equivalent to `kc token .... --onlyIdToken | kc jwt`.
 
 **Example:** `-d`
 
 -----
-### `--scopes`
-Comma-separated list of OAuth2 scopes to request.
+### `-d`, `--detailAccessToken`
+Decode and display the JWT Access token payload. This is equivalent to `kc token .... --onlyAccessToken | kc jwt`.
 
-**Default:** `openid,profile,groups,offline`
+**Example:** `-a`
 
-**Example:** `--scopes openid,profile,email,groups`
+> The Kubauth server must be configured to generate AccessToken in JWT form.
+
+-----
+### `--scope`
+List of OAuth2 scopes to request.
+
+**Default:** `openid profile groups offline`
+
+**Example:** `--scope "openid" --scope "profile" --scope "email" --scope "groups"`
 
 !!! warning
 
@@ -158,7 +166,7 @@ JWT Payload:
 ### Only ID Token (for Piping)
 
 ```bash
-kc token --issuerURL https://kubauth.example.com --clientId public --onlyIDToken
+kc token --issuerURL https://kubauth.example.com --clientId public --onlyIdToken
 ```
 
 **Output:**
@@ -169,7 +177,7 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIs
 ### Pipe to JWT Decoder
 
 ```bash
-kc token --issuerURL https://kubauth.example.com --clientId public --onlyIDToken | kc jwt
+kc token --issuerURL https://kubauth.example.com --clientId public --onlyIdToken | kc jwt
 ```
 
 ## Behavior
@@ -189,10 +197,10 @@ Tokens are displayed but not automatically stored. If you need to save them:
 
 ```bash
 # Save ID token to variable
-ID_TOKEN=$(kc token --issuerURL https://kubauth.example.com --clientId public --onlyIDToken)
+ID_TOKEN=$(kc token --issuerURL https://kubauth.example.com --clientId public --onlyIdToken)
 
 # Save to file
-kc token --issuerURL https://kubauth.example.com --clientId public --onlyIDToken > token.txt
+kc token --issuerURL https://kubauth.example.com --clientId public --onlyIdToken > token.txt
 ```
 
 ### SSO Session

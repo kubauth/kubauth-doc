@@ -62,10 +62,10 @@ Provide a CA file for TLS certificate verification of ìssuerURL
 **Example:** `--caFile ./CA.crt`
 
 -----
-### `--onlyIDToken`
+### `--onlyIdToken`
 Output only the ID token (base64-encoded JWT). Useful for piping to other commands or scripts.
 
-**Example:** `--onlyIDToken`
+**Example:** `--onlyIdToken`
 
 -----
 ### `--onlyAccessToken`
@@ -74,18 +74,26 @@ Output only the access token (base64-encoded). Useful for piping to other comman
 **Example:** `--onlyAccessToken`
 
 -----
-### `-d`, `--detailIDToken`
-Decode and display the JWT token payload. This is a shortcut for `| kc jwt`.
+### `-d`, `--detailIdToken`
+Decode and display the JWT OIDC token payload. This is equivalent to `kc token .... --onlyIdToken | kc jwt`.
 
 **Example:** `-d`
 
 -----
-### `--scopes`
-Comma-separated list of OAuth2 scopes to request.
+### `-d`, `--detailAccessToken`
+Decode and display the JWT Access token payload. This is equivalent to `kc token .... --onlyAccessToken | kc jwt`.
 
-**Default:** `openid,profile,groups,offline`
+**Example:** `-a`
 
-**Example:** `--scopes openid,profile,email,groups`
+> The Kubauth server must be configured to generate AccessToken in JWT form.
+
+-----
+### `--scope`
+List of OAuth2 scopes to request.
+
+**Default:** `openid profile groups offline`
+
+**Example:** `--scope "openid" --scope "profile" --scope "email" --scope "groups"`
 
 !!! warning
 
@@ -151,7 +159,7 @@ kc token-nui --issuerURL https://kubauth.example.com \
   --clientId public \
   --login john \
   --password john123 \
-  --onlyIDToken
+  --onlyIdToken
 ```
 
 ### For CI/CD Pipelines
@@ -163,7 +171,7 @@ TOKEN=$(kc token-nui \
   --clientId automation \
   --login serviceaccount \
   --password $SERVICE_PASSWORD \
-  --onlyIDToken)
+  --onlyIdToken)
 
 curl -H "Authorization: Bearer $TOKEN" https://api.example.com/deploy
 ```

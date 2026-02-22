@@ -48,10 +48,10 @@ Expire in: 59m59s
 Let's try another variant of the command:
 
 ``` { .bash .copy }
-kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --onlyIDToken | kc jwt
+kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --onlyIdToken | kc jwt
 ```
 
-- The `--onlyIDToken` option instructs the command to output only the base64-encoded ID token, useful for batch processing.
+- The `--onlyIdToken` option instructs the command to output only the base64-encoded ID token, useful for batch processing.
 - The `kc jwt` command decodes the JWT token.
 
 The response should look like:

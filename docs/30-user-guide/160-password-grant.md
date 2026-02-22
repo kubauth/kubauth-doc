@@ -99,7 +99,7 @@ For batch processing, the `kc token-nui` subcommand also supports `--login` and 
 
 ``` { .bash .copy }
 kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public \
-    --login jim --password jim123 --onlyIDToken
+    --login jim --password jim123 --onlyIdToken
 ```
 ```bash
 eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicHVibGljIl0sImF1dGhfdGltZSI6MTc2MTY2MDYxNywiYXpwIjoicHVibGljIiwiZXhwIjoxNzYxNjY0MjE3LCJncm91cHMiOlsiZGV2cyJdLCJpYXQiOjE3NjE2NjA2MTcsImlzcyI6Imh0dHBzOi8va3ViYXV0aC5pbmdyZXNzLmt1Ym82Lm1icCIsImp0aSI6IjY0YjcwNmQ5LWI1MjgtNGRlMy1iM2M2LTVkMjc3MTZjN2FjZSIsInJhdCI6MTc2MTY2MDYxNywic3ViIjoiamltIn0.G2VkVCsWVG1kNFXLp1lWu1ehXzkMJFWDQVANpR1wC8OGpBnwVaoTwRoTjAUw_yUrJu1u_m-NLWyzLIflJfmrTPTN3iz7Jsqc77iFoOmkOBUkOPvp9q66Uu3cbP3e52cYJcgOb5RcvaAOcBdp32zYotSLAPcRSHhuc1K2sdHg96bhU9dR5zs9Z29iXOzez4Bvq2haJpvjz4slZ2FZjSSkswyUlQQdfxoGC_VZgXyAJOycVK-e_oHJSOT1dtCi2y9QEHHHRRX3XpAqvZ86Q3Xk0Loxb03z6VDwzKeH1tYgplAcXTqb9jMmWFdh31JHZGd82S6v9lwUatrEuqo6ZXJR2A
