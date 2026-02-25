@@ -4,6 +4,10 @@
 
 The `kc token` command obtains OIDC tokens using the authorization code flow. It opens a browser for user authentication and returns access, refresh, and ID tokens.
 
+- The ID token signature is checked against the server key.
+- If Access Token is in JWT form, its signature is checked against the server key.
+- If Access Token is in opaque form, it is checked against server introspection endpoint.
+
 ## Syntax
 
 ```bash
@@ -36,7 +40,7 @@ The client secret (for confidential clients).
 
 **Example:** `--clientSecret mysecret123`
 
-Value may also be fetched from `KC_CLIENT_ID` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
+Value may also be fetched from `KC_CLIENT_SECRET` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
 
 -----
 ### `--insecureSkipVerify`
@@ -69,7 +73,7 @@ Decode and display the JWT OIDC token payload. This is equivalent to `kc token .
 **Example:** `-d`
 
 -----
-### `-d`, `--detailAccessToken`
+### `-a`, `--detailAccessToken`
 Decode and display the JWT Access token payload. This is equivalent to `kc token .... --onlyAccessToken | kc jwt`.
 
 **Example:** `-a`

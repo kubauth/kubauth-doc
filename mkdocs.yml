@@ -37,6 +37,7 @@ nav:
     - kc hash: 70-kc/120-hash.md
     - kc token: 70-kc/130-token.md
     - kc token-nui: 70-kc/140-token-nui.md
+    - kc client: 70-kc/145-client.md
     - kc audit: 70-kc/150-audit.md
     - kc jwt: 70-kc/160-jwt.md
     - kc whoami: 70-kc/170-whoami.md

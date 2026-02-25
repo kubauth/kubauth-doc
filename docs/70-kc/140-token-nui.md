@@ -3,8 +3,12 @@
 ## Overview
 
 The `kc token-nui` command obtains OIDC tokens using the Resource Owner Password Credentials (ROPC) flow. It prompts for username and password in the terminal without requiring a browser, making it suitable for headless environments, SSH sessions, and automation.
+ 
+- The ID token signature is checked against the server key.
+- If Access Token is in JWT form, its signature is checked against the server key.
+- If Access Token is in opaque form, it is checked against server introspection endpoint.
 
-**NUI** stands for "No User Interface" (no browser).
+> **NUI** stands for "No User Interface" (no browser).
 
 ## Syntax
 
@@ -47,7 +51,7 @@ The client secret (for confidential clients).
 
 **Example:** `--clientSecret mysecret123`
 
-Value may also be fetched from `KC_CLIENT_ID` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
+Value may also be fetched from `KC_CLIENT_SECRET` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
 
 -----
 ### `--insecureSkipVerify`
@@ -80,7 +84,7 @@ Decode and display the JWT OIDC token payload. This is equivalent to `kc token .
 **Example:** `-d`
 
 -----
-### `-d`, `--detailAccessToken`
+### `-a`, `--detailAccessToken`
 Decode and display the JWT Access token payload. This is equivalent to `kc token .... --onlyAccessToken | kc jwt`.
 
 **Example:** `-a`
@@ -120,12 +124,14 @@ kc token-nui --issuerURL https://kubauth.example.com --clientId public
 ```
 
 **Interaction:**
+
 ```
 Login: john
 Password: 
 ```
 
 **Output:**
+
 ```
 Access token: ory_at_LAhtO0e8T8-V2wLZ72V0G98jKMJEpYQLH6tm6Aeg_Lw...
 Refresh token: ory_rt_kP1rTr6eF_AgdVvUtzfEKywhIddEK2cjDRC9EmkT0Hw...
