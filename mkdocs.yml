@@ -7,7 +7,8 @@ nav:
   - Home: index.md
   - Installation: 20-installation.md
   - User Guide:
-    - Configuration: 30-user-guide/110-configuration.md
+    - Users Configuration: 30-user-guide/110-users-configuration.md
+    - OIDC Clients Configuration: 30-user-guide/115-oidc-clients-configuration.md
     - Tokens and Claims: 30-user-guide/120-tokens-and-claims.md
     - Audit: 30-user-guide/130-audit.md
     - SSO Session: 30-user-guide/140-sso.md

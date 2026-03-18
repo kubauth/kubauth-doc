@@ -8,3 +8,22 @@ https://squidfunk.github.io/mkdocs-material/reference/admonitions/
 
 
 
+
+## Other Helm configuration variables
+
+
+oidc.allowPasswordGrant
+
+oidc.jwtAccessToken
+
+oidc.clientPrivilegedNamespace
+
+
+```
+
+helm -n kubauth upgrade -i kubauth --values ./values.yaml oci://quay.io/kubauth/charts/kubauth --version 0.2.0-snapshot --create-namespace --wait
+
+helm -n kubauth uninstall kubauth
+
+curl https://kubauth.ingress.kubo2.mbp/.well-known/openid-configuration
+```

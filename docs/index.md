@@ -12,15 +12,16 @@ Kubauth can operate autonomously with its own user database or act as a federati
 
 ## Key Features
 
-- **OIDC Compliance**: Supports standard OIDC flows including Authorization Code and Resource Owner Password Credentials (ROPC)
-- **PKCE Support**: Complete Proof Key for Code Exchange (PKCE) implementation with configurable enforcement
-- **Kubernetes-Native Storage**: All data stored as Kubernetes Custom Resources (CRDs) — no external database required
-- **SSO Capabilities**: Cross-application Single Sign-On with persistent sessions
-- **User & Group Management**: Fine-grained user authentication and group-based authorization
-    - Claims can be defined at user or group level
-    - User profiles can be built from multiple identity sources
-- **Security First**: bcrypt password hashing, JWT signing with persistent keys, secure session management
-- **Production Ready**: Health checks, admission webhooks, and Helm chart deployment
+- **OIDC Compliance**: Supports standard OIDC flows including ***Authorization Code***, ***Client Credentials*** and ***Resource Owner Password Credentials*** (ROPC).
+- **PKCE Support**: Complete Proof Key for Code Exchange (PKCE) implementation with configurable enforcement.
+- **Kubernetes-Native Storage**: All data stored as Kubernetes Custom Resources (CRDs) — no external database required.
+- **SSO Capabilities**: Cross-application Single Sign-On with persistent sessions.
+- **User & Group Management**: Fine-grained user authentication and group-based authorization.
+    - Claims can be defined at user or group level.
+    - User profiles can be built from multiple identity sources.
+- **LDAP integration**: Support for one or several LDAP servers, with 'on the fly' Users and Groups enrichment.
+- **Security First**: bcrypt password hashing, JWT signing with persistent keys, secure session management.
+- **Production Ready**: Health checks, admission webhooks, and Helm chart deployment.
 
 ## Kubauth Components
 

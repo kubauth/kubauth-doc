@@ -8,7 +8,8 @@ Before you begin, ensure the following components are in place:
 
 - **Certificate Manager:** The Certificate Manager must be deployed on your target Kubernetes cluster with a `ClusterIssuer` configured for certificate management.
 
-- **Ingress Controller:** An NGINX ingress controller must be deployed on your target Kubernetes cluster.
+- **Ingress Controller:** An ingress controller must be deployed on your target Kubernetes cluster. The provided Helm Chart assume NGINX as ingress controller. 
+  If needed, you can disable it and configure your own (See [below](./#using-an-alternate-ingress-controller)). 
 
 - **Helm:** Helm must be installed on your local workstation.
 
@@ -27,21 +28,22 @@ In your working directory, create a file with the following content:
 
     ``` { .yaml .copy }
     oidc:
-      issuer: https://kubauth.ingress.kubo6.mbp
-      postLogoutURL: https://kubauth.ingress.kubo6.mbp/index
+      issuer: https://kubauth.mycluster.mycompany.com
+      postLogoutURL: https://kubauth.mycluster.mycompany.com/index
     
       ingress:
-        host: kubauth.ingress.kubo6.mbp
+        enabled: true
+        host: kubauth.mycluster.mycompany.com
     
       server:
-        certificateIssuer: cluster-odp
+        certificateIssuer: my-issuer
     ```
 
 Replace the placeholder values with your environment-specific configuration:
 
-- **`kubauth.ingress.kubo6.mbp`**: The hostname which will be used to access the Kubauth service from outside the cluster.<br>
+- **`kubauth.mycluster.mycompany.com`**: The hostname which will be used to access the Kubauth service from outside the cluster.<br>
   > Ensure this hostname is registered in your DNS.
-- **`cluster-odp`**: The `ClusterIssuer` name from your Certificate Manager for ingress certificate provisioning.
+- **`my-issuer`**: The `ClusterIssuer` name from your Certificate Manager for ingress certificate provisioning.
 
 !!! note
 
@@ -50,8 +52,12 @@ Replace the placeholder values with your environment-specific configuration:
 Deploy Kubauth using the following command:
 
 ``` { .bash .copy }
-helm -n kubauth upgrade -i kubauth --values ./values.yaml oci://quay.io/kubauth/charts/kubauth --version 0.1.2 --create-namespace --wait
+helm -n kubauth upgrade -i kubauth --values ./values.yaml oci://quay.io/kubauth/charts/kubauth --version 0.2.0-snapshot --create-namespace --wait
 ```
+
+> The name of the release (here `kubauth`) is important, as most of created object will use it as base name. 
+  So, if you change it you will need to adjust most of the manifests and commands used in this manual accordingly.
+  Same remarks for the namespace.
 
 After a few seconds, verify that the Kubauth server pod is running:
 
@@ -66,12 +72,15 @@ kubauth-5d4fdc6bc8-7rlb6   3/3     Running   0          55s
 Confirm that the Kubauth issuer URL is accessible:
 
 ```
-curl https://kubauth.ingress.kubo6.mbp/.well-known/openid-configuration
+curl https://kubauth.mycluster.mycompany.com/.well-known/openid-configuration
 ```
+
+
+
 
 ## `kc` CLI Tool Installation
 
-Download the `kc` CLI from the [GitHub releases page](https://github.com/kubauth/kc/releases/tag/0.1.2){:target="_blank"}, rename it to `kc`, make it executable, and move it to your system path:
+Download the `kc` CLI from the [GitHub releases page](https://github.com/kubauth/kc/releases/tag/0.2.0){:target="_blank"}, rename it to `kc`, make it executable, and move it to your system path:
 
 ```{ .bash .copy }
 mv kc_*_* kc
@@ -84,3 +93,29 @@ Verify the installation:
 ```{ .bash .copy }
 kc version
 ```
+
+## Installation options
+
+
+
+
+## Using an alternate ingress controller
+
+If you want to use another ingress controller type:
+
+- Disable the default controller in Helm chart deployment: 
+
+???+ abstract "values.yaml"
+
+    ``` { .yaml .copy }
+    oidc:
+      ...... 
+      ingress:
+        enabled: false
+      ...... 
+    
+    ```
+
+- Configure your controller to use the `kubauth-oidc-server` backend service on port 443/oidc.
+
+- Configure your controller as `ssl-passthrough`, as SSL will be terminated by the `kubauth` pod itself.

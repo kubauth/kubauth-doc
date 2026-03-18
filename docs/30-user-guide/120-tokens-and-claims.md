@@ -11,6 +11,12 @@ Launch the following command after adjusting the issuer URL:
 kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public
 ```
 
+Or, if you want to test the private client defined in previous chapter:
+
+```
+kc token --issuerURL https://kubauth.ingress.kubo2.mbp --clientId private --clientSecret secret1
+```
+
 > Adjust the `issuerURL` to the value set previously in Kubauth configuration  
 
 !!! tip
@@ -44,6 +50,7 @@ Refresh token: ory_rt_nU9NBZs4NtKTxVYVko1aqlJkAMF5MLBYjfiZbhVt9aE.THwsnTlqzIsWo5
 ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiaGNBY2dtdmdBekJlSGgyODlkWHF3USIsImF1ZCI6WyJwdWJsaWMiXSwiYXV0aF90aW1lIjoxNzYxMzI2MDg2LCJhenAiOiJwdWJsaWMiLCJleHAiOjE3NjEzMjk2ODYsImlhdCI6MTc2MTMyNjA4NiwiaXNzIjoiaHR0cHM6Ly9rdWJhdXRoLmluZ3Jlc3Mua3VibzYubWJwIiwianRpIjoiZDZhYjkwODMtYTEzMi00YTNiLTlmMWItMzM2NWFhOTQ5MjQ2IiwicmF0IjoxNzYxMzI2MDg2LCJzdWIiOiJqaW0ifQ.Q8ZkF33jsUJDqLH98uqRgrFa2nwioRP1TO9n6QjX9XFr-1WmsKk9nEeHGAiASb1brQ3cSAmK8ta7fX3lBLBlszxmeVZRzq5Qvg0N8nqvlV3C4CAiv6lEl6_-y6wBoQOWN9OhNhYU6wFjpNNDTx_RW0329i9TYVxaygw58wJGCX_1F5-PY0NG74n_1sdZxYop7s5GnZ0_9S9-DEI-LNR2MMx-oVH4lpGjV5dhGRvZS0l4tMm2C7J6Yx_JoTQoZfWwPI0GGf2smZZ-C2ieB5Wj0b19fgrafuexHW9yeejI51j6WZs_eDqUwvCIf52_yAvokA4SiW4PW8Eod9fX-JuwJQ
 Expire in: 59m59s
 ```
+
 
 Let's try another variant of the command:
 
@@ -154,3 +161,6 @@ The resulting claim set is the result of merging:
 
     In the current version, claims are not filtered by scope. In other words, all user claims are included in the ID token.
 
+##  JWT ACCESS TOKEN
+
+TODO

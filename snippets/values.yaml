@@ -1,10 +1,24 @@
 oidc:
-  issuer: https://kubauth.ingress.kubo6.mbp
-  postLogoutURL: https://kubauth.ingress.kubo6.mbp/index
+  issuer: https://kubauth.ingress.kubo2.mbp
+  postLogoutURL: https://kubauth.ingress.kubo2.mbp/index
   allowPasswordGrant: true
 
   ingress:
-    host: kubauth.ingress.kubo6.mbp
+    enabled: true
+    host: kubauth.ingress.kubo2.mbp
 
   server:
     certificateIssuer: cluster-odp
+
+
+  image:
+    pullPolicy: Always
+
+
+audit:
+  image:
+    pullPolicy: Always
+
+ucrd:
+  image:
+    pullPolicy: Always
