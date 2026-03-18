@@ -27,3 +27,19 @@ helm -n kubauth uninstall kubauth
 
 curl https://kubauth.ingress.kubo2.mbp/.well-known/openid-configuration
 ```
+
+```
+kc token --issuerURL https://kubauth.ingress.kubo2.mbp --clientId public
+
+kc token --issuerURL https://kubauth.ingress.kubo2.mbp --clientId private --clientSecret secret1
+
+
+kc token --issuerURL https://kubauth.ingress.kubo2.mbp --clientId public --onlyIdToken | kc jwt
+
+
+kc token --issuerURL https://kubauth.ingress.kubo2.mbp --clientId public -d
+
+
+
+kc token --issuerURL https://kubauth.ingress.kubo2.mbp --clientId public --onlyAccessToken | kc jwt
+```

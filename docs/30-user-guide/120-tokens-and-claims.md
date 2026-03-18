@@ -8,13 +8,13 @@ The Kubauth companion CLI application `kc` provides an embedded OIDC client. Bey
 Launch the following command after adjusting the issuer URL:
 
 ``` { .bash .copy }
-kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public
+kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public
 ```
 
 Or, if you want to test the private client defined in previous chapter:
 
-```
-kc token --issuerURL https://kubauth.ingress.kubo2.mbp --clientId private --clientSecret secret1
+``` { .bash .copy }
+kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId private --clientSecret secret1
 ```
 
 > Adjust the `issuerURL` to the value set previously in Kubauth configuration  
@@ -55,7 +55,7 @@ Expire in: 59m59s
 Let's try another variant of the command:
 
 ``` { .bash .copy }
-kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --onlyIdToken | kc jwt
+kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public --onlyIdToken | kc jwt
 ```
 
 - The `--onlyIdToken` option instructs the command to output only the base64-encoded ID token, useful for batch processing.
@@ -84,7 +84,7 @@ JWT Payload:
   "exp_human": "2025-10-27 12:30:24 UTC",
   "iat": 1761564624,
   "iat_human": "2025-10-27 11:30:24 UTC",
-  "iss": "https://kubauth.ingress.kubo6.mbp",
+  "iss": "https://kubauth.mycluster.mycompany.com",
   "jti": "be30eeb2-153f-4dec-97b8-c75d23035f81",
   "rat": 1761564624,
   "rat_human": "2025-10-27 11:30:24 UTC",
@@ -99,7 +99,7 @@ JWT Payload:
 There is also a shortcut (`-d`) for this command:
 
 ``` { .bash .copy }
-kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public -d
+kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public -d
 ```
 
 Note: This option skips the JWT header.
@@ -108,7 +108,7 @@ Note: This option skips the JWT header.
 
 A set of 'system' claims are provided by the OIDC server. You can find a [description of most standard claims here](http://openid.net/specs/openid-connect-core-1_0.html#IDToken){:target="_blank"}.
 
-Another important claim is `sub`, which stands for 'subject' and represents the user's login.
+An important claim is `sub`, which stands for 'subject' and represents the user's login.
 
 Now, run the previous command again, but use `john/john123` when prompted for login:
 
@@ -130,7 +130,7 @@ JWT Payload:
   "exp_human": "2025-10-27 15:34:59 UTC",
   "iat": 1761575699,
   "iat_human": "2025-10-27 14:34:59 UTC",
-  "iss": "https://kubauth.ingress.kubo6.mbp",
+  "iss": "https://kubauth.mycluster.mycompany.com",
   "jti": "822ed082-e615-4153-ad7e-d623df491253",
   "name": "John DOE",
   "office": "208G",
@@ -161,6 +161,126 @@ The resulting claim set is the result of merging:
 
     In the current version, claims are not filtered by scope. In other words, all user claims are included in the ID token.
 
-##  JWT ACCESS TOKEN
+##  JWT Access Token
 
-TODO
+In the world of OAuth 2.0, the "Access Token" is your digital key to a protected resource. However, the spec doesn't actually dictate what that key must look like. 
+This flexibility allows developers to choose between two main architectural styles: Opaque and JWT (JSON Web Token).
+
+> This "Access Token" is different from the OIDC JWT token we just described above. 
+
+### Opaque Tokens
+
+An opaque token is just a random string of characters that carries no information on its own. To anyone looking at it, it’s gibberish.
+
+When an application receives an opaque token, it has no idea who the user is or what they are allowed to do. It must send that token back to the Oauth server (Kubauth) to "ask" if it’s valid.
+
+Why use it?
+
+- Privacy: No user data is hidden inside the token string itself.
+- Instant Revocation: If you want to kick a user off, you just delete the token from the server. The next time the RS checks, the token will be invalid immediately.
+- Security: Since the token contains no data, there is nothing for a hacker to "decode."
+
+### JWT Access Token
+
+A JWT token is a self-contained, structured string. It contains "claims" (Like an OIDC token) and is digitally signed by the Oauth Server (Kubauth)
+
+The Resource Server can validate the token locally. It checks the digital signature using a public key. If the signature is valid and the expiration date hasn't passed, 
+the application trusts the data inside without ever talking to Kubauth.
+
+Why use it?
+
+- Performance: No extra network call (introspection) is needed. This makes APIs much faster.
+- Scalability: Since the Authorization Server doesn't have to validate every single request, it doesn't become a bottleneck.
+- Standardization: JWTs follow a strict structure, making them easy to use across different programming languages.
+
+### Configuration
+
+By default, Kubauth is configured to generate Opaque Access Tokens.
+
+This can be changed by setting a Helm chart configuration value:
+
+???+ abstract "values.yaml"
+
+    ``` { .yaml .copy }
+    oidc:
+      issuer: https://kubauth.mycluster.mycompany.com
+      postLogoutURL: https://kubauth.mycluster.mycompany.com/index
+      jwtAccessToken: true
+
+    ......
+    ```
+
+Redeploy Kubauth:
+
+``` { .bash .copy }
+helm -n kubauth upgrade -i kubauth --values ./values.yaml oci://quay.io/kubauth/charts/kubauth --version 0.2.0-snapshot --create-namespace --wait
+```
+
+And you can now test, still using 'public client'
+
+``` { .bash .copy }
+kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public
+```
+
+Log in using `jim/jim123`. 
+
+![tokens](../assets/kubauth-tokens2.png){ .center width="70%" }
+
+You can check the Access Token is longer than the Opaque one.
+
+Same for the CLI response:
+
+```bash
+Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1ODhlNWIyLTIwY2QtNGM3Mi04MGIwLTU0OGJjZDdjNDg0OCIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicHVibGljIl0sImF6cCI6InB1YmxpYyIsImV4cCI6MTc3Mzg1NDQyMSwiaWF0IjoxNzczODUwODIxLCJpc3MiOiJodHRwczovL2t1YmF1dGguaW5ncmVzcy5rdWJvMi5tYnAiLCJqdGkiOiJhNjk2ZDdlMC1iYmJkLTRkNDQtOTY2Ny04NWI4NThmY2I1ZWYiLCJzY3AiOlsib3BlbmlkIiwicHJvZmlsZSIsIm9mZmxpbmUiLCJncm91cHMiXSwic3ViIjoiamltIn0.mQ0Z_aQhAqkdA3fQTo8yNSyl1WLNbpPfJZOUT0J-zyU2BRkaAT_7hcD5TOAmHRH088HGrjWWSOhh8oO1fAzJ_lY50-uLGBGOvtFCFqWspcVLohzsJbbf5Uj0ir4IuOAVMdbW-G341FrCJzD7DiFFw4xHHJ_yc0GDS9JMZUlWgdUbxPtNF-Dt90j_SaOj6dsnZMJ8W08JwKKcTlOGgeQzze_hkPBWbb1HR9f6PShfAVGd1UVmT7fvZDwLs_3RthMR7ui3rX5P7kCR3ZxgKHoQjlbkARfcJ8ggxPxl_tHC7wp570MRslABA25x-c_zTuG5stTkzL3oEgcl8TPxr---Qw
+Refresh token: ory_rt_jvYjlVuq4zRnsXwl3LFXj8pZ1HTj4C7qOZ0ZO-l1UbQ.lawnhz9iMrxQ4dVhwl0JqjSxplbFqr-EVJYWu_TJCgM
+ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1ODhlNWIyLTIwY2QtNGM3Mi04MGIwLTU0OGJjZDdjNDg0OCIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiM1NfTnRXWVVCRHhjN3JaeHBwTnBtUSIsImF1ZCI6WyJwdWJsaWMiXSwiYXV0aF90aW1lIjoxNzczODUwODIxLCJhenAiOiJwdWJsaWMiLCJleHAiOjE3NzM4NTQ0MjEsImlhdCI6MTc3Mzg1MDgyMSwiaXNzIjoiaHR0cHM6Ly9rdWJhdXRoLmluZ3Jlc3Mua3VibzIubWJwIiwianRpIjoiZjM1NDhkNmItYmU5OC00ZWI1LTk3NzktMDAzMmRmYjllYjNiIiwicmF0IjoxNzczODUwODIxLCJzdWIiOiJqaW0ifQ.U-j8bDWbprqTZW1OlLwjo7Y_RlXxJr3tazYukHO5uQ3xMFHKnBNxqJ3GyWrUpsY3NvBD_5xQIX1M67Nz54pV5Mhel2AqTNk1mm8GQcrdTUfCRZd6U3hmJ3LtpeyU5qCh2d2zbf0eZFGh-NtTVFj4zxoaiUWMzMEPD1VY0YV4ByH0oR6VZ22HKCgD3Ehqxdktwy5x9eckoVL1_b5K6hpfFc2O144PiU_c0qb0SCx9NGkHMEbS9Q9YdrkeMBPDt8ytB1L7GAMTS3Ij_Gtjc6wpFCH6AqYCahS_e9541coNOI07jZzsy5lCAGRVHYnfGa5-Ivbus5XkYd9UnI1wIlQpPQ
+Expire in: 59m59s
+```
+
+Now, try:
+
+``` { .bash .copy }
+kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public --onlyAccessToken | kc jwt
+```
+
+- The `--onlyAccessToken` option instructs the command to output only the base64-encoded ID token, useful for batch processing.
+- The `kc jwt` command decodes the JWT Access token.
+
+The response should look like:
+
+
+```
+Token: JWT Header:
+{
+  "alg": "RS256",
+  "kid": "9588e5b2-20cd-4c72-80b0-548bcd7c4848",
+  "typ": "JWT"
+}
+
+Token: JWT Payload:
+{
+  "aud": [
+    "public"
+  ],
+  "azp": "public",
+  "exp": 1773854789,
+  "exp_human": "2026-03-18 17:26:29 UTC",
+  "iat": 1773851189,
+  "iat_human": "2026-03-18 16:26:29 UTC",
+  "iss": "https://kubauth.mycluster.mycompany.com",
+  "jti": "3b7cf9b9-f70a-42bc-9c98-f113a03b104a",
+  "scp": [
+    "openid",
+    "profile",
+    "offline",
+    "groups"
+  ],
+  "sub": "jim"
+}
+```
+
+There is also a shortcut:
+
+```
+kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public  -a
+```
