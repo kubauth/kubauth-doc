@@ -38,8 +38,8 @@ The audit history is cleaned every 5 minutes by removing all records older than 
 
     ``` { .yaml .copy }
     oidc:
-      issuer: https://kubauth.ingress.kubo6.mbp
-      postLogoutURL: https://kubauth.ingress.kubo6.mbp/index
+      issuer: https://kubauth.mycluster.mycompany.com
+      postLogoutURL: https://kubauth.mycluster.mycompany.com/index
       ...
     audit:
       namespace: kubauth-audit

@@ -10,34 +10,45 @@
 
 ## OIDC Client Creation
 
-As described in [Configuration](../30-user-guide/110-configuration.md/#oidc-client-creation), a client application is defined as a Kubernetes Custom Resource.
+As described in [OIDC Clients Configuration](../30-user-guide/115-oidc-clients-configuration.md), a client application is defined as a Kubernetes Custom Resource.
 
 Create a manifest like the following:
 
 ???+ abstract "client-minio.yaml"
 
     ``` { .yaml .copy }
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: minio-oidc-client-secret
+      namespace: kubauth
+    type: Opaque
+    stringData:
+      clientSecret: "minio123"
+    
+    ---
     apiVersion: kubauth.kubotal.io/v1alpha1
     kind: OidcClient
     metadata:
       name: minio
-      namespace: kubauth-oidc
+      namespace: kubauth
     spec:
-      hashedSecret: "$2a$12$mll9UA1oefLGY0KcAbvrG.Jvssjqlt8wSDtb2DNvEK4Oc/YYaJ8iy"
       redirectURIs:
-        - "https://minio-console-minio1.ingress.kubo6.mbp/oauth_callback"
+        - "https://minio-console-minio1.ingress.kubo2.mbp/oauth_callback"
       grantTypes: [ "refresh_token", "authorization_code" ]
       responseTypes: ["id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token"]
       scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access", "address", "phone"]
       # Following are optional
-      displayName: MinIO
+      displayName: Minio
       description: S3 Server
-      entryURL: "https://minio-console-minio1.ingress.kubo6.mbp"
+      entryURL: "https://minio-console-minio1.ingress.kubo2.mbp"
+      secrets:
+        - name: minio-oidc-client-secret
+          key: clientSecret
     ```
 
-
 - Replace `minio-console-minio1.ingress.kubo6.mbp` with your MinIO console entry point (in 2 locations)
-- The sample password is 'minio123'. The `hashedSecret` value is the result of the `kc hash minio123` command.
 - The `scopes` include `address` and `phone`, which appear to be required by MinIO's default configuration.
 - The `displayName`, `description`, and `entryURL` attributes are optional. They enable MinIO to appear in a list of available applications displayed on a specific page (`https://kubauth.ingress.kubo6.mbp/index`) or the logout page.
 

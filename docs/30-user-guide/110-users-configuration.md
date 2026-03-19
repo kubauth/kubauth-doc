@@ -94,8 +94,8 @@ If you need to change the namespace for user resource storage, modify the `ucrd.
 
     ``` { .yaml .copy }
     oidc:
-      issuer: https://kubauth.ingress.kubo6.mbp
-      postLogoutURL: https://kubauth.ingress.kubo6.mbp/index
+      issuer: https://kubauth.mycluster.mycompany.com
+      postLogoutURL: https://kubauth.mycluster.mycompany.com/index
       ....
 
     ucrd:

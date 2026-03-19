@@ -42,4 +42,16 @@ kc token --issuerURL https://kubauth.ingress.kubo2.mbp --clientId public -d
 
 
 kc token --issuerURL https://kubauth.ingress.kubo2.mbp --clientId public --onlyAccessToken | kc jwt
+
+kc logout --issuerURL https://kubauth.ingress.kubo2.mbp
+
+
+
+kc token-nui --issuerURL https://kubauth.ingress.kubo2.mbp --clientId public
+
+kc token-nui --issuerURL https://kubauth.ingress.kubo2.mbp --clientId public \
+    --login jim --password jim123 --onlyIdToken
+
+
+
 ```

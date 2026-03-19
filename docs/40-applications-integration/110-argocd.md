@@ -10,29 +10,40 @@ Create a manifest like the following:
 ???+ abstract "client-argocd.yaml"
 
     ``` { .yaml .copy }
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: argocd-oidc-client-secret
+      namespace: kubauth
+    type: Opaque
+    stringData:
+      clientSecret: "argocd123"
+    
+    ---
     apiVersion: kubauth.kubotal.io/v1alpha1
     kind: OidcClient
     metadata:
       name: argocd
-      namespace: kubauth-oidc
+      namespace: kubauth
     spec:
-      hashedSecret: "$2a$12$.34NOSBLz9cfW9PD/yjj6uhrvys42Xb4euwKy6UFx9YLYEwxIICAK" 
       redirectURIs:
-        - "https://argocd.ingress.kubo6.mbp/auth/callback"
+        - "https://argocd.ingress.kubo8.mbp/auth/callback"
         - "http://localhost:8085/auth/callback"
       grantTypes: [ "refresh_token", "authorization_code" ]
       responseTypes: ["id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token"]
       scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access"]
-      # Following are optional
       displayName: ArgoCD
       description: GitOps continuous delivery tool
-      entryURL: https://argocd.ingress.kubo6.mbp/
+      entryURL: https://argocd.ingress.kubo2.mbp/
+      secrets:
+        - name: argocd-oidc-client-secret
+          key: clientSecret
     ```
 
-- Replace `argocd.ingress.kubo6.mbp` with your ArgoCD entry point (in 2 locations)
-- The sample password is 'argocd123'. The `hashedSecret` value is the result of the `kc hash argocd123` command.
+- Replace `argocd.mycluster.mycompany.com` with your ArgoCD entry point (in 2 locations)
 - The `http://localhost:8085/auth/callback` entry in the `redirectURIs` list is for the `argocd` CLI command
-- The `displayName`, `description`, and `entryURL` attributes are optional. They enable ArgoCD to appear in a list of available applications displayed on a specific page (`https://kubauth.ingress.kubo6.mbp/index`) or the logout page (see below).
+- The `displayName`, `description`, and `entryURL` attributes are optional. They enable ArgoCD to appear in a list of available applications displayed on a specific page (`https://kubauth.mycluster.mycompany.com/index`) or the logout page (see below).
 
 Apply this manifest:
 
@@ -65,15 +76,15 @@ Create a values file like the following to be added to your Helm command when de
     ``` { .yaml .copy }
     configs:
       cm:
-        url: "https://argocd.ingress.kubo6.mbp"
+        url: "https://argocd.mycluster.mycompany.com"
         oidc.config: |
           name: Kubauth
-          issuer: https://kubauth.ingress.kubo6.mbp
+          issuer: https://kubauth.mycluster.mycompany.com
           clientID: argocd
           clientSecret: argocd123 
           requestedScopes: ["openid", "profile", "email", "groups"]
           enablePKCEAuthentication: true
-          # logoutURL: https://kubauth.ingress.kubo6.mbp/oauth2/logout
+          # logoutURL: https://kubauth.mycluster.mycompany.com/oauth2/logout
           rootCA: |
             -----BEGIN CERTIFICATE-----
             MIIGSzCCBDOgAwIBAgIJAN3rPrHNIFfAMA0GCSqGSIb3DQEBCwUAMHUxCzAJBgNV
@@ -92,8 +103,8 @@ Create a values file like the following to be added to your Helm command when de
         policy.csv: |
           g, argocd-admin, role:admin 
     ```
-- Replace `argocd.ingress.kubo6.mbp` with your ArgoCD entry point.
-- Replace `kubauth.ingress.kubo6.mbp` with your Kubauth entry point (in 2 locations).
+- Replace `argocd.mycluster.mycompany.com` with your ArgoCD entry point.
+- Replace `kubauth.mycluster.mycompany.com` with your Kubauth entry point (in 2 locations).
 - We enable PKCE, as it is the safest option and supported by both parties.
 - The `logoutURL` parameter is commented out here. More on this below.
 - The `rootCA` parameter is the CA of the Kubauth issuer. If Kubauth was installed using Certificate Manager as described at the beginning of this manual, it can be retrieved with:
@@ -116,15 +127,15 @@ Modify the values file as follows:
     ``` { .yaml .copy }
     configs:
       cm:
-        url: "https://argocd.ingress.kubo6.mbp"
+        url: "https://argocd.mycluster.mycompany.com"
         oidc.config: |
           name: Kubauth
-          issuer: https://kubauth.ingress.kubo6.mbp
+          issuer: https://kubauth.mycluster.mycompany.com
           clientID: argocd
           clientSecret: $oidc.kubauth.clientSecret
           requestedScopes: ["openid", "profile", "email", "groups"]
           enablePKCEAuthentication: true
-          # logoutURL: https://kubauth.ingress.kubo6.mbp/oauth2/logout
+          # logoutURL: https://kubauth.mycluster.mycompany.com/oauth2/logout
           rootCA: $oidc.kubauth.rootCA
            
       rbac:
@@ -218,11 +229,11 @@ spec:
   .....
   displayName: ArgoCD
   description: GitOps continuous delivery tool
-  entryURL: https://argocd.ingress.kubo6.mbp/
+  entryURL: https://argocd.mycluster.mycompany.com/
 ```
 
 !!! note
 
     Kubauth also exposes this page at the `/index` path:<br> 
-    `https://kubauth.ingress.kubo6.mbp/index`
+    `https://kubauth.mycluster.mycompany.com/index`
 

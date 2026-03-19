@@ -16,12 +16,12 @@ Here is a values file to implement it:
 
     ``` { .yaml .copy }
     oidc:
-      issuer: https://kubauth.ingress.kubo6.mbp
-      postLogoutURL: https://kubauth.ingress.kubo6.mbp/index
+      issuer: https://kubauth.mycluster.mycompany.com
+      postLogoutURL: https://kubauth.mycluster.mycompany.com/index
       allowPasswordGrant: true
     
       ingress:
-        host: kubauth.ingress.kubo6.mbp
+        host: kubauth.mycluster.mycompany.com
     
       server:
         certificateIssuer: cluster-odp
@@ -104,7 +104,7 @@ Test authentication:
 
 
 ``` { .bash .copy }
-kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public -d
+kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public -d
 ```
 
 Run this command twice: once with `bob/bob123` and again with `john/john123`.

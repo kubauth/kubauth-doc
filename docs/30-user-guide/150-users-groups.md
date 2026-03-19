@@ -29,7 +29,8 @@ This associates the user `jim` with the group `devs`. Note that there is no expl
     
     ```shell
     kubectl -n mynamespace create rolebinding missing-integrity --role=unexisting-role --group=unexisting-group
-
+    ```
+    ```
     rolebinding.rbac.authorization.k8s.io/missing-integrity created
     ```
     
@@ -47,7 +48,7 @@ groupbinding.kubauth.kubotal.io/jim-dev created
 Now, log in with the `jim` account:
 
 ``` { .bash .copy }
-kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public -d
+kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public -d
 ```
 
 When inspecting the decoded JWT token, you should now find a `groups` claim:
@@ -70,7 +71,7 @@ JWT Payload:
   ],
   "iat": 1761643474,
   "iat_human": "2025-10-28 09:24:34 UTC",
-  "iss": "https://kubauth.ingress.kubo6.mbp",
+  "iss": "https://kubauth.mycluster.mycompany.com",
   "jti": "4a3aed23-e2df-474c-9c26-d8f275d0f51f",
   "rat": 1761643474,
   "rat_human": "2025-10-28 09:24:34 UTC",
@@ -156,7 +157,7 @@ group.kubauth.kubotal.io/ops created
 Now, log in with the `john` account:
 
 ``` { .bash .copy }
-kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public -d
+kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public -d
 ```
 
 ```bash
@@ -183,7 +184,7 @@ JWT Payload:
   ],
   "iat": 1761647376,
   "iat_human": "2025-10-28 10:29:36 UTC",
-  "iss": "https://kubauth.ingress.kubo6.mbp",
+  "iss": "https://kubauth.mycluster.mycompany.com",
   "jti": "629164c8-75b5-4e16-850f-0975f0afc508",
   "name": "John DOE",
   "office": "208G",

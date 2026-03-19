@@ -27,8 +27,8 @@ First, at the global level, by setting a Helm chart configuration value:
 
     ``` { .yaml .copy }
     oidc:
-      issuer: https://kubauth.ingress.kubo6.mbp
-      postLogoutURL: https://kubauth.ingress.kubo6.mbp/index
+      issuer: https://kubauth.mycluster.mycompany.com
+      postLogoutURL: https://kubauth.mycluster.mycompany.com/index
       ....
       allowPasswordGrant: true
     ```
@@ -42,7 +42,6 @@ Then, at the client definition level. Here is a modified version of our public c
     kind: OidcClient
     metadata:
       name: public
-      namespace: kubauth-oidc
     spec:
       redirectURIs:
         - "http://127.0.0.1:9921/callback"
@@ -52,7 +51,6 @@ Then, at the client definition level. Here is a modified version of our public c
       description: A test OIDC public client
       public: true
     
-      # hashedSecret: "$2a$12$9vdc.xb3Zf4ts/C2pSvIOuGmFiv0EStBJWslaaycavblaIjYZ9Mia"
       # accessTokenLifespan: 1h
       # refreshTokenLifespan: 1h
       # idTokenLifespan: 1h
@@ -73,7 +71,7 @@ Once these two modifications are successfully applied (`helm upgrade ...` and `k
 Similar to the `kc token` subcommand, there is a `kc token-nui` subcommand to generate tokens using the ROPC flow:
 
 ``` { .bash .copy }
-kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public
+kc token-nui --issuerURL https://kubauth.mycluster.mycompany.com --clientId public
 Login:jim
 Password:
 ```
@@ -98,9 +96,45 @@ the configuration steps described above have not been applied successfully.
 For batch processing, the `kc token-nui` subcommand also supports `--login` and `--password` options, along with most of the same options as `kc token`:
 
 ``` { .bash .copy }
-kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public \
+kc token-nui --issuerURL https://kubauth.mycluster.mycompany.com --clientId public \
     --login jim --password jim123 --onlyIdToken
 ```
 ```bash
 eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicHVibGljIl0sImF1dGhfdGltZSI6MTc2MTY2MDYxNywiYXpwIjoicHVibGljIiwiZXhwIjoxNzYxNjY0MjE3LCJncm91cHMiOlsiZGV2cyJdLCJpYXQiOjE3NjE2NjA2MTcsImlzcyI6Imh0dHBzOi8va3ViYXV0aC5pbmdyZXNzLmt1Ym82Lm1icCIsImp0aSI6IjY0YjcwNmQ5LWI1MjgtNGRlMy1iM2M2LTVkMjc3MTZjN2FjZSIsInJhdCI6MTc2MTY2MDYxNywic3ViIjoiamltIn0.G2VkVCsWVG1kNFXLp1lWu1ehXzkMJFWDQVANpR1wC8OGpBnwVaoTwRoTjAUw_yUrJu1u_m-NLWyzLIflJfmrTPTN3iz7Jsqc77iFoOmkOBUkOPvp9q66Uu3cbP3e52cYJcgOb5RcvaAOcBdp32zYotSLAPcRSHhuc1K2sdHg96bhU9dR5zs9Z29iXOzez4Bvq2haJpvjz4slZ2FZjSSkswyUlQQdfxoGC_VZgXyAJOycVK-e_oHJSOT1dtCi2y9QEHHHRRX3XpAqvZ86Q3Xk0Loxb03z6VDwzKeH1tYgplAcXTqb9jMmWFdh31JHZGd82S6v9lwUatrEuqo6ZXJR2A
+```
+
+or:
+
+``` { .bash .copy }
+kc token-nui --issuerURL https://kubauth.mycluster.mycompany.com --clientId public \
+    --login jim --password jim123 -d
+```
+
+```
+Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1ODhlNWIyLTIwY2QtNGM3Mi04MGIwLTU0OGJjZDdjNDg0OCIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicHVibGljIl0sImF6cCI6InB1YmxpYyIsImV4cCI6MTc3Mzg1ODkyNSwiZ3JvdXBzIjpbImRldnMiXSwiaWF0IjoxNzczODU1MzI0LCJpc3MiOiJodHRwczovL2t1YmF1dGguaW5ncmVzcy5rdWJvMi5tYnAiLCJqdGkiOiJlMjA2Zjg4OS01ZjQxLTRiYjUtYThkMi1lYTVjNTYxNjFjNjQiLCJzY3AiOlsib3BlbmlkIiwicHJvZmlsZSIsIm9mZmxpbmUiLCJncm91cHMiXSwic3ViIjoiamltIn0.U_HsGMZzl59OTJ5lGtDoohMDn00uBqJqbvZ10VdEd0TntHk9SPtaeoDQrSG0pD9iEoUoA8wMvIcySNvEgOFhC_ehE6LVMNJeubLo6d8r2Dhr7WfSR3mbkUmihIi1IT0IwnkIKAzwoyVZUbvB9SxrNJe-S5SObMGWce985m2turu45cqYN-K9NaXNyzZxepZz4Imhoe7HWs0tBejabsjETJfjpcEibb4TiQbNqs2zPxFOhjhcWPdv4ZV8AqtVoH-aRKX7BZ4Rubp2JWfbC4mh5E37znZospW8w6E4drfHXbXLnMY3eNBex04QaDBZOeMM07Aqm3ubBle3uQGIMLc3zA
+Refresh token: ory_rt_OVHJ5DNzgqo39bg_s24kcn7vpIneMg8OR19pFPAi_yo.eYIunfSgmkBv-d6oNtNvdMroULDcYsQV2Lhd_wEmFDg
+ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1ODhlNWIyLTIwY2QtNGM3Mi04MGIwLTU0OGJjZDdjNDg0OCIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicHVibGljIl0sImF1dGhfdGltZSI6MTc3Mzg1NTMyNCwiYXpwIjoicHVibGljIiwiZXhwIjoxNzczODU4OTI0LCJncm91cHMiOlsiZGV2cyJdLCJpYXQiOjE3NzM4NTUzMjQsImlzcyI6Imh0dHBzOi8va3ViYXV0aC5pbmdyZXNzLmt1Ym8yLm1icCIsImp0aSI6ImZlOTczYzQ3LTY1NWMtNGZlMS1iODYzLWQ4Nzc4ZjMwYWUxNiIsInJhdCI6MTc3Mzg1NTMyNCwic3ViIjoiamltIn0.Ou7RO2LBRtmfPdZHFxpMKktfNp7VzyH9C-lu83rk1E1HaKmtJSZBsFnstwSRyCCyokji9fQW98eoGCvSTry0p2J-Hul2laEw7rXB1A_ixzdWbSnef4ELDc497LklJ6K4EN-gLwvGG56Y-cs_O3cw3HAdgWZRR6N-Sd91BX18QgZcj3MFlRr8D5O6_W53cFyLuJjuk6IDmMQpg9g6VOcty19__LjLIgeXP1A1WscSvPJxCxHUtbhrRjUYvZKRWYYvC0oN5iDHPS_hRAa_qohkfzVRgHIMc1WdQjGyO2JBLIlN88-5NpxvCB7G1o1wqMzJsfDjv_dA_ngeACchF8H1Mw
+Expire in: 1h0m0s
+IdToken: JWT Payload:
+{
+  "aud": [
+    "public"
+  ],
+  "auth_time": 1773855324,
+  "auth_time_human": "2026-03-18 17:35:24 UTC",
+  "azp": "public",
+  "exp": 1773858924,
+  "exp_human": "2026-03-18 18:35:24 UTC",
+  "groups": [
+    "devs"
+  ],
+  "iat": 1773855324,
+  "iat_human": "2026-03-18 17:35:24 UTC",
+  "iss": "https://kubauth.mycluster.mycompany.com",
+  "jti": "fe973c47-655c-4fe1-b863-d8778f30ae16",
+  "rat": 1773855324,
+  "rat_human": "2026-03-18 17:35:24 UTC",
+  "sub": "jim"
+}
+
 ```

@@ -9,28 +9,38 @@ Create a manifest like the following:
 ???+ abstract "client-harbor.yaml"
 
     ``` { .yaml .copy }
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: harbor-oidc-client-secret
+      namespace: kubauth
+    type: Opaque
+    stringData:
+      clientSecret: "harbor123"
+    
+    ---
     apiVersion: kubauth.kubotal.io/v1alpha1
     kind: OidcClient
     metadata:
       name: harbor
-      namespace: kubauth-oidc
+      namespace: kubauth
     spec:
-      hashedSecret: "$2a$12$5lLVmTBlougPBAQ8h10wR.W9tvZQBRsK1/Sh48yO8WLyXr.P4w3tm"
       redirectURIs:
-        - "https://harbor.ingress.kubo6.mbp/c/oidc/callback"
-      grantTypes: [ "refresh_token", "authorization_code" ]
+        - "https://harbor.mycluster.mycompany.com/c/oidc/callback"
+      grantTypes: [ "implicit", "refresh_token", "authorization_code", "password", "client_credentials" ]
       responseTypes: ["id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token"]
       scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access"]
-      # Following are optional
       displayName: Harbor
       description: Harbor OCI repository
-      entryURL: https://harbor.ingress.kubo6.mbp/
+      entryURL: https://harbor.mycluster.mycompany.com/
+      secrets:
+        - name: harbor-oidc-client-secret
+          key: clientSecret
     ```
 
-
-- Replace `harbor.ingress.kubo6.mbp` with your Harbor entry point (in 2 locations)
-- The sample password is 'harbor123'. The `hashedSecret` value is the result of the `kc hash harbor123` command.
-- The `displayName`, `description`, and `entryURL` attributes are optional. They enable Harbor to appear in a list of available applications displayed on a specific page (`https://kubauth.ingress.kubo6.mbp/index`) or the logout page.
+- Replace `harbor.mycluster.mycompany.com` with your Harbor entry point (in 2 locations)
+- The `displayName`, `description`, and `entryURL` attributes are optional. They enable Harbor to appear in a list of available applications displayed on a specific page (`https://kubauth.mycluster.mycompany.com/index`) or the logout page.
 
 Apply this manifest:
 
@@ -50,7 +60,7 @@ Set the following values:
 
 - Auth Mode: `OIDC`
 - OIDC Provider Name: `KUBAUTH`
-- OIDC Endpoint: `https://kubauth.ingress.kubo6.mbp` <br>(Adjust to your local Kubauth entry point)
+- OIDC Endpoint: `https://kubauth.mycluster.mycompany.com` <br>(Adjust to your local Kubauth entry point)
 - OIDC Client ID: `harbor`
 - OIDC Client Secret: `harbor123`
 - Group Claim Name: `groups`
@@ -75,7 +85,7 @@ If you have installed Harbor using the provided Helm chart, this can be achieved
             {
               "auth_mode": "oidc_auth",
               "oidc_name": "KUBAUTH",
-              "oidc_endpoint": "https://kubauth.ingress.kubo6.mbp",
+              "oidc_endpoint": "https://kubauth.mycluster.mycompany.com",
               "oidc_groups_claim": "groups",
               "oidc_admin_group": "harbor-admins",
               "oidc_client_id": "harbor",
@@ -87,7 +97,7 @@ If you have installed Harbor using the provided Helm chart, this can be achieved
             }
     ```
 
-> Replace `https://kubauth.ingress.kubo6.mbp` with the Kubauth entry point of your installation.
+> Replace `https://kubauth.mycluster.mycompany.com` with the Kubauth entry point of your installation.
 
 ## Admin Rights
 

@@ -61,7 +61,7 @@ kubectl apply -f ldap-addon.yaml
 First, log in as the `bob` user:
 
 ``` { .bash .copy }
-kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login bob --password bob123 -d
+kc token-nui --issuerURL https://kubauth.mycluster.mycompany.com --clientId public --login bob --password bob123 -d
 ```
 
 ```
@@ -87,7 +87,7 @@ JWT Payload:
   ],
   "iat": 1761830106,
   "iat_human": "2025-10-30 13:15:06 UTC",
-  "iss": "https://kubauth.ingress.kubo6.mbp",
+  "iss": "https://kubauth.mycluster.mycompany.com",
   "jti": "39600b39-267b-4f31-9179-3f698418e85c",
   "name": "Bob MORANE",
   "rat": 1761830106,
@@ -125,7 +125,7 @@ This tool looks up the last login for the specified user. It first displays a li
 Now, log in as the `alice` user:
 
 ``` { .bash .copy }
-kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login alice --password alice123 -d
+kc token-nui --issuerURL https://kubauth.mycluster.mycompany.com --clientId public --login alice --password alice123 -d
 ```
 
 ```
@@ -152,7 +152,7 @@ JWT Payload:
   ],
   "iat": 1761834557,
   "iat_human": "2025-10-30 14:29:17 UTC",
-  "iss": "https://kubauth.ingress.kubo6.mbp",
+  "iss": "https://kubauth.mycluster.mycompany.com",
   "jti": "76a841c2-43fa-4635-9702-55c856f75f45",
   "name": "Alice SMITH",
   "office": "312R",
@@ -190,7 +190,7 @@ ucrd       passwordFail      -     Alice SMITH-WESSON   []                 {"off
 Now, let's try to log in with the password defined in the `ucrd` user database:
 
 ``` { .bash .copy }
-kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login alice --password smith123 -d
+kc token-nui --issuerURL https://kubauth.mycluster.mycompany.com --clientId public --login alice --password smith123 -d
 ```
 
 ```
@@ -228,7 +228,7 @@ This also means the password definition in the Kubernetes CR database for `alice
 Now, let's try to log in with the `john` user:
 
 ``` { .bash .copy }
-kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login john --password john123 -d
+kc token-nui --issuerURL https://kubauth.mycluster.mycompany.com --clientId public --login john --password john123 -d
 ```
 
 ```
@@ -363,7 +363,7 @@ we can now verify that:
 
 - Users `jim` and `john` now appear to be non-existent:
     ``` { .bash .copy }
-    kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login john --password john123 -d
+    kc token-nui --issuerURL https://kubauth.mycluster.mycompany.com --clientId public --login john --password john123 -d
     ```
     ```
     token request failed with status 400: {"error":"invalid_grant", ......... Unable to authenticate the provided username and password credentials."}
@@ -372,7 +372,7 @@ we can now verify that:
 
 - Enrichment of LDAP user attributes is still effective, and groups from LDAP have been prefixed:
     ``` { .bash .copy }
-    kc token-nui --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public --login bob --password bob123 -d
+    kc token-nui --issuerURL https://kubauth.mycluster.mycompany.com --clientId public --login bob --password bob123 -d
     ```
     ```
     JWT Payload:

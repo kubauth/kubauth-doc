@@ -69,12 +69,12 @@ The LDAP configuration itself is tailored for an OpenLDAP server deployed as des
 
     ``` { .yaml .copy }
     oidc:
-      issuer: https://kubauth.ingress.kubo6.mbp
-      postLogoutURL: https://kubauth.ingress.kubo6.mbp/index
+      issuer: https://kubauth.mycluster.mycompany.com
+      postLogoutURL: https://kubauth.mycluster.mycompany.com/index
       allowPasswordGrant: true
     
       ingress:
-        host: kubauth.ingress.kubo6.mbp
+        host: kubauth.mycluster.mycompany.com
     
       server:
         certificateIssuer: cluster-odp
@@ -211,7 +211,7 @@ Test authentication:
 
 
 ``` { .bash .copy }
-kc token --issuerURL https://kubauth.ingress.kubo6.mbp --clientId public -d
+kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public -d
 ```
 ```bash
 If browser doesn't open automatically, visit: http://127.0.0.1:9921
@@ -248,7 +248,7 @@ JWT Payload:
   ],
   "iat": 1761674356,
   "iat_human": "2025-10-28 17:59:16 UTC",
-  "iss": "https://kubauth.ingress.kubo6.mbp",
+  "iss": "https://kubauth.mycluster.mycompany.com",
   "jti": "17b41395-582e-437d-9a06-cdaf963567cf",
   "name": "Fred ASTER",
   "rat": 1761674356,
