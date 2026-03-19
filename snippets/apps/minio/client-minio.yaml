@@ -18,14 +18,14 @@ metadata:
   namespace: kubauth
 spec:
   redirectURIs:
-    - "https://minio-console-minio1.ingress.kubo2.mbp/oauth_callback"
+    - "https://minio-console.ingress.kubo2.mbp/oauth_callback"
   grantTypes: [ "refresh_token", "authorization_code" ]
   responseTypes: ["id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token"]
   scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access", "address", "phone"]
   # Following are optional
   displayName: Minio
   description: S3 Server
-  entryURL: "https://minio-console-minio1.ingress.kubo2.mbp"
+  entryURL: "https://minio-console.ingress.kubo2.mbp"
   secrets:
     - name: minio-oidc-client-secret
       key: clientSecret

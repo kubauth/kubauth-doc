@@ -1,6 +1,6 @@
 config:
   oidc:
-    issuerURL: https://kubauth.ingress.kubo6.mbp
+    issuerURL: https://kubauth.ingress.kubo2.mbp
     issuerCaSecretName: certs-bundle  # If we use trust-manager (from certificate-server)
     issuerCaName: ca.crt
     clientId: k8s

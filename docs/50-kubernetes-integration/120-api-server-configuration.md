@@ -22,7 +22,7 @@ In your working directory, create a file like the following:
     ``` { .yaml .copy }
     config:
       oidc:
-        issuerURL: https://kubauth.ingress.kubo6.mbp
+        issuerURL: https://kubauth.mycluster.mycompany.com
         issuerCaSecretName: certs-bundle  # If using trust-manager (from cert-manager)
         issuerCaName: ca.crt
         clientId: k8s
@@ -30,7 +30,7 @@ In your working directory, create a file like the following:
         groupsPrefix: "oidc-" # A prefix is mandatory (default is 'oidc:')
     ```
 
-- Replace `kubauth.ingress.kubo6.mbp` with your Kubauth entry point
+- Replace `kubauth.mycluster.mycompany.com` with your Kubauth entry point
 - `issuerCaSecretName`: A secret hosting the CA of the issuer URL. In this sample, we use [trust-manager](https://cert-manager.io/docs/trust/trust-manager/){:target="_blank"}, which creates such a secret (here `certs-bundle`) in each namespace.
 - `issuerCaName`: The path of the CA certificate inside the secret.
 - `clientId` should match the name of the `OidcClient` declared previously. Note that a `clientSecret` value is not needed, as the API server will not connect to Kubauth.
@@ -58,6 +58,33 @@ helm -n kubauth upgrade -i kubauth-apiserver --values ./values-k8s.yaml oci://qu
 ### Verifying Installation
 
 If your cluster is up and running, there is good chance installation was successful. 
+
+You can have a deeper check by looking at the parameters of the api-server:
+
+``` { .bash .copy }
+kubectl -n kube-system get pod kube-apiserver-node1.mycluster.mycompany.com -o yaml 
+```
+
+Which should look like the following:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  ........
+spec:
+  containers:
+  - command:
+    - kube-apiserver
+    - --oidc-ca-file=/etc/kubernetes/kubauth-kit/ca.crt
+    - --oidc-groups-prefix=oidc-
+    - --oidc-groups-claim=groups
+    - --oidc-username-prefix=-
+    - --oidc-username-claim=sub
+    - --oidc-client-id=k8s
+    - --oidc-issuer-url=https://kubauth.mycluster.mycompany.com
+  ......
+```
 
 If you suspect something went wrong, refer to the manual installation section below to check the configuration.
 
@@ -90,7 +117,7 @@ For each node:
 - Log into it:
 
     ```
-    docker exec -it kubo6-control-plane /bin/bash
+    docker exec -it node1.mycluster.mycompany.com /bin/bash
     ```
 - Create a folder to store the Kubauth issuer URL certificate (`-kit` stands for Kubernetes Integration Toolkit):
 
@@ -124,7 +151,7 @@ For each node:
         - "--oidc-username-prefix=-"
         - --oidc-username-claim=sub
         - --oidc-client-id=k8s
-        - "--oidc-issuer-url=https://kubauth.ingress.kubo6.mbp"
+        - "--oidc-issuer-url=https://kubauth.mycluster.mycompany.com"
         ..........
         ..........
         volumeMounts:
@@ -141,7 +168,7 @@ For each node:
     ```
   
     - Quotes (`"`) are important.
-    - In `--oidc-issuer-url`, replace `kubauth.ingress.kubo6.mbp` with your Kubauth entry point.
+    - In `--oidc-issuer-url`, replace `kubauth.mycluster.mycompany.com` with your Kubauth entry point.
     - `--oidc-client-id` should match the name of the `OidcClient` declared previously. Note that a `clientSecret` value is not needed, as the API server will not connect to Kubauth.
     - `--oidc-username-prefix`: Prefix prepended to username claims to prevent clashes with existing names. A dash value means no prefix.
     - `--oidc-groups-prefix`: Prefix prepended to group claims to prevent clashes with existing names. Cannot be empty for security reasons. The default is `oidc:`, but in this sample, we set it to `oidc-`.

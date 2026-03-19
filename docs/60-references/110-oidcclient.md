@@ -17,9 +17,8 @@ apiVersion: kubauth.kubotal.io/v1alpha1
 kind: OidcClient
 metadata:
   name: my-app
-  namespace: kubauth-oidc
+  namespace: kubauth
 spec:
-  hashedSecret: "$2a$12$..."
   redirectURIs:
     - "https://myapp.example.com/callback"
   grantTypes:
@@ -44,22 +43,36 @@ spec:
   accessTokenLifespan: 1h
   idTokenLifespan: 1h
   refreshTokenLifespan: 8h
+  public: false
+  secrets:
+    - name: oidc-my-app-client-secret
+      key: secretRef
+      hashed: false
 ```
 
 ## Spec Fields
 
+### `secrets`
+[]secretRef - Required if not public
 
-### `hashedSecret`
-string - Required if non public
+A list of kubernetes secret references
 
-The hashed client secret for confidential clients. Use the `kc hash` command to generate the hash from a plain-text secret.
+### secrets[X].name
+string - Required
 
-> Omit this field for public clients (see `public` field).
+The name of the referenced secret
 
-**Example:**
-```yaml
-hashedSecret: "$2a$12$..."
-```
+### secrets[X].key
+string - Required
+
+The key of the secret value in the secret
+
+### secrets[X].hashed
+boolean - Optional. Default: `false`
+
+A flag to set if the secret value is hashed, for more security
+
+Use the `kc hash ....` command to generate the hash from a plain-text secret.
 
 -----
 ### `redirectURIs`

@@ -24,13 +24,22 @@ Create a manifest like the following:
 
     ``` { .yaml .copy }
     ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: k8s-oidc-client-secret
+      namespace: kubauth
+    type: Opaque
+    stringData:
+      clientSecret: "k8s123"
+    
+    ---
     apiVersion: kubauth.kubotal.io/v1alpha1
     kind: OidcClient
     metadata:
       name: k8s
-      namespace: kubauth-oidc
+      namespace: kubauth
     spec:
-      hashedSecret: "$2a$12$Aq5uKhYmMBZ3GDKykgSrT.0Rq1.s81VBwHgQP/cozdP3SBkQAbxv2"
       description: For kubernetes kubectl access
       grantTypes: ["refresh_token", "authorization_code", "password"]
       redirectURIs:
@@ -41,10 +50,14 @@ Create a manifest like the following:
       accessTokenLifespan: 1m0s
       idTokenLifespan: 1m0s
       refreshTokenLifespan: 30m0s
-    ``` 
+      secrets:
+        - name: k8s-oidc-client-secret
+          key: clientSecret
+    ```
 
-- The sample password is 'k8s123'. The `hashedSecret` value is the result of the `kc hash k8s123` command.
-> The client can also be defined as `public`.
+
+- We set a `client_secret`, but client can also be defined as `public`. 
+  > This secret will be stored in plain text in the local user's kubeconfig file.
 - Since the client application will be kubectl/kubelogin running on the user's workstation, `redirectURIs` refers to `localhost`.
 
 

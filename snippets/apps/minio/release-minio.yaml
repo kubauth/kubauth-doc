@@ -1,0 +1,39 @@
+
+---
+apiVersion: kubocd.kubotal.io/v1alpha1
+kind: Release
+metadata:
+  name: minio
+  namespace: kubocd
+spec:
+  description: S3 storage sever
+  protected: false
+  package:
+    repository: quay.io/kubosa/packages/minio
+    tag: 5.4.0-p03
+  targetNamespace: minio
+  createNamespace: true
+  parameters:
+    rootUser: minio
+    rootPassword: minio123
+    deployInControlPlane: false
+    deployInServicePlane: true
+    storage:
+      driveSize: 10G
+    ingresses:
+      public:
+        enabled: true
+      clearText:
+        enabled: true
+    vip:
+      enabled: false
+      host: "{{ .Release.metadata.name }}.{{ .Context.cluster.domain }}"
+    kubauth:
+      enabled: false
+      privateClient: true
+  moduleOverrides:
+    - module: noname
+      specPatch:
+        values:
+          minio:
+            clusterIssuer: cluster-odp

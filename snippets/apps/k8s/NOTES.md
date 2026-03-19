@@ -22,3 +22,8 @@ helm -n kubauth uninstall kubauth-kubeconfig --wait
 kc config https://kubeconfig.ingress.kubo6.mbp/kubeconfig
 
 ```
+
+
+```
+kubectl -n kube-system get pod kube-apiserver-kubo2-control-plane -o yaml 
+```

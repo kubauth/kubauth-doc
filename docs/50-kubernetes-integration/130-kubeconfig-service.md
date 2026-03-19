@@ -11,7 +11,7 @@ This service is deployed using a Helm chart. Since its configuration includes nu
 
     ``` { .yaml .copy }
     ingress:
-      host: kubeconfig.ingress.kubo6.mbp
+      host: kubeconfig.mycluster.mycompany.com
     server:
       tls: true
       certificateIssuer: cluster-odp
@@ -21,12 +21,12 @@ This service is deployed using a Helm chart. Since its configuration includes nu
       default:
         description: Default OIDC client configuration
         cluster:
-          apiServerURL: https://127.0.0.1:5452
+          apiServerURL: https://127.0.0.1:5448
         context:
-          name: oidc-kubo6
+          name: oidc-mycluster
           namespace:  # Left blank to allow default context for users
         oidc:
-          issuerURL: https://kubauth.ingress.kubo6.mbp
+          issuerURL: https://kubauth.mycluster.mycompany.com
           issuerCaSecretName: certs-bundle
           issuerCaName: ca.crt
           clientId: k8s
@@ -53,8 +53,8 @@ Several fields must be adjusted depending on your environment:
 Deploy the Helm chart:
 
 ``` { .shell .copy}
-helm -n kubauth upgrade -i kubauth-kubeconfig --values ./values-kubeconfig.yaml \ 
-    oci://quay.io/kubauth/charts/kubauth-kubeconfig --version 0.1.0-snapshot \
+helm -n kubauth upgrade -i kubauth-kubeconfig --values ./values-kubeconfig.yaml \
+    oci://quay.io/kubauth/charts/kubauth-kubeconfig --version 0.2.0-snapshot \
     --create-namespace --wait
 ```
 
@@ -74,7 +74,7 @@ kubauth-kubeconfig-7d6949666c-zrhvl   1/1     Running   0          36s
 Test the retrieval of information:
 
 ``` { .bash .copy}
-curl  https://kubeconfig.ingress.kubo6.mbp/kubeconfig | jq
+curl  https://kubeconfig.mycluster.mycompany.com/kubeconfig | jq
 ```
 ```json
 {

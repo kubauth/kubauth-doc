@@ -35,22 +35,22 @@ Create a manifest like the following:
       namespace: kubauth
     spec:
       redirectURIs:
-        - "https://minio-console-minio1.ingress.kubo2.mbp/oauth_callback"
+        - "https://minio-console.mycluster.mycompany.com/oauth_callback"
       grantTypes: [ "refresh_token", "authorization_code" ]
       responseTypes: ["id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token"]
       scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access", "address", "phone"]
       # Following are optional
       displayName: Minio
       description: S3 Server
-      entryURL: "https://minio-console-minio1.ingress.kubo2.mbp"
+      entryURL: "https://minio-console.mycluster.mycompany.com"
       secrets:
         - name: minio-oidc-client-secret
           key: clientSecret
     ```
 
-- Replace `minio-console-minio1.ingress.kubo6.mbp` with your MinIO console entry point (in 2 locations)
+- Replace `minio-console.mycluster.mycompany.com` with your MinIO console entry point (in 2 locations)
 - The `scopes` include `address` and `phone`, which appear to be required by MinIO's default configuration.
-- The `displayName`, `description`, and `entryURL` attributes are optional. They enable MinIO to appear in a list of available applications displayed on a specific page (`https://kubauth.ingress.kubo6.mbp/index`) or the logout page.
+- The `displayName`, `description`, and `entryURL` attributes are optional. They enable MinIO to appear in a list of available applications displayed on a specific page (`https://kubauth.mycluster.mycompany.com/index`) or the logout page.
 
 Apply this manifest:
 
@@ -71,16 +71,16 @@ One method to configure an OIDC connection for MinIO is by issuing a specific co
 mc idp openid add myminio kubauth \
     client_id=minio \
     client_secret=minio123 \
-    config_url="https://kubauth.ingress.kubo6.mbp/.well-known/openid-configuration" \
-    redirect_uri="https://minio-console-minio1.ingress.kubo6.mbp/oauth_callback" \
+    config_url="https://kubauth.mycluster.mycompany.com/.well-known/openid-configuration" \
+    redirect_uri="https://minio-console.mycluster.mycompany.com/oauth_callback" \
     scopes="openid,groups,profile,email" \
     claim_name="minio_policies" \
     display_name=KUBAUTH \
     claim_userinfo="off"
 ```
 
-- Replace `minio-console-minio1.ingress.kubo6.mbp` with your MinIO console entry point
-- Replace `kubauth.ingress.kubo6.mbp` with your Kubauth entry point
+- Replace `minio-console.mycluster.mycompany.com` with your MinIO console entry point
+- Replace `kubauth.mycluster.mycompany.com` with your Kubauth entry point
 - The `claim_name` specifies the JWT claim MinIO uses to identify the policies to attach to the authenticated user. 
   The claim can contain one or more comma-separated policy names to attach to the user. 
   The claim must contain at least one policy for the user to have any permissions on the MinIO server. The default value is `policy`, 

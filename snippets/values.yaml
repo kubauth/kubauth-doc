@@ -2,7 +2,7 @@ oidc:
   issuer: https://kubauth.ingress.kubo2.mbp
   postLogoutURL: https://kubauth.ingress.kubo2.mbp/index
   allowPasswordGrant: true
-  jwtAccessToken: true
+  jwtAccessToken: false
 
   ingress:
     enabled: true

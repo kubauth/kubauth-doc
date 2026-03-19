@@ -29,7 +29,7 @@ The next step is to configure your local `kubeconfig`. Kubauth provides a tool t
 The [`kc` CLI](../20-installation.md#kc-cli-tool-installation) tool provides a subcommand to configure your local kubeconfig from the service we previously installed:
 
 ``` { .bash .copy}
-kc config https://kubeconfig.ingress.kubo6.mbp/kubeconfig
+kc config https://kubeconfig.mycluster.mycompany.com/kubeconfig
 ```
 
 > Adjust the URL to your local environment, but keep the `/kubeconfig` path.
@@ -37,7 +37,7 @@ kc config https://kubeconfig.ingress.kubo6.mbp/kubeconfig
 You should see a message like the following:
 
 ```bash
-Setup new context 'oidc-kubo6' in kubeconfig file '/Users/john/.kube/config'
+Setup new context 'oidc-mycluster' in kubeconfig file '/Users/john/.kube/config'
 ```
 
 !!! note
@@ -83,7 +83,7 @@ For reference, here is a sample local config file resulting from this operation:
           args:
           - oidc-login
           - get-token
-          - --oidc-issuer-url=https://kubauth.ingress.kubo6.mbp
+          - --oidc-issuer-url=https://kubauth.mycluster.mycompany.com
           - --oidc-client-id=k8s
           - --oidc-client-secret=k8s123
           - --certificate-authority-data=LS0tLS1CR.........tRU5EIENFUlRJRklDQVRFLS0tLS0=
@@ -216,6 +216,8 @@ spec:
 EOF
 ```
 
+> Of course, you must be logged as cluster administrator to perform these action on RBAC. 
+
 > Remember, in our context, simply referencing a group in a `GroupBinding` makes it exist.
 
 In our cluster, there is an existing role `cluster-admin`. We must bind our newly created group to this role:
@@ -254,7 +256,7 @@ There are cases where launching a browser is impossible, such as when working on
 We can configure a 'no browser' mode when setting up your client, using the `--grantType password` option:
 
 ``` { .bash .copy }
-kc config https://kubeconfig.ingress.kubo6.mbp/kubeconfig --grantType password
+kc config https://kubeconfig.mycluster.mycompany.com/kubeconfig --grantType password
 ```
 
 > Add `--force` to override an existing configuration if needed.
