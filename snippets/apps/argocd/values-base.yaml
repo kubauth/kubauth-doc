@@ -9,4 +9,4 @@ server:
       nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     ingressClassName: nginx
-    hostname: argocd.ingress.kubo6.mbp
+    hostname: argocd.ingress.kubo2.mbp

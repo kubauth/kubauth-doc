@@ -14,9 +14,9 @@ helm dependency build
 
 
 ```
-cd ..../argocd
+cd ..../argocd/kubo2
 
-helm -n argocd upgrade -i argocd --values ./values-base.yaml --values values-kubauth.yaml ../../../../../nih/argo-helm/charts/argo-cd --create-namespace
+helm -n argocd upgrade -i argocd --values ./values-base.yaml --values values-kubauth.yaml ../../../../../../nih/argo-helm/charts/argo-cd --create-namespace
 
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 
