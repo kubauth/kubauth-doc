@@ -16,7 +16,7 @@ This integration consists of several parts:
 
 ## OIDC Client Creation
 
-From the OIDC server's perspective, Kubernetes is perceived as a client application and must be defined as such. As described in [Configuration](../30-user-guide/110-configuration.md/#oidc-client-creation), an OIDC client application is defined as a Kubernetes Custom Resource.
+From the OIDC server's perspective, Kubernetes is perceived as a client application and must be defined as such. As described in [OIDC Clients Configuration](../30-user-guide/115-oidc-clients-configuration.md), an OIDC client application is defined as a Kubernetes Custom Resource.
 
 Create a manifest like the following:
 
@@ -56,7 +56,7 @@ Create a manifest like the following:
     ```
 
 
-- We set a `client_secret`, but client can also be defined as `public`. 
+- We set a `client_secret`, but the client can also be defined as `public`. 
   > This secret will be stored in plain text in the local user's kubeconfig file.
 - Since the client application will be kubectl/kubelogin running on the user's workstation, `redirectURIs` refers to `localhost`.
 

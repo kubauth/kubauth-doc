@@ -55,24 +55,24 @@ spec:
 ### `secrets`
 []secretRef - Required if not public
 
-A list of kubernetes secret references
+A list of Kubernetes Secret references.
 
 ### secrets[X].name
 string - Required
 
-The name of the referenced secret
+The name of the referenced Kubernetes Secret.
 
 ### secrets[X].key
 string - Required
 
-The key of the secret value in the secret
+The key within the Secret that holds the client secret value.
 
 ### secrets[X].hashed
 boolean - Optional. Default: `false`
 
-A flag to set if the secret value is hashed, for more security
+Set to `true` if the secret value is stored as a bcrypt hash for additional security.
 
-Use the `kc hash ....` command to generate the hash from a plain-text secret.
+Use the `kc hash` command to generate a hash from a plain-text secret.
 
 -----
 ### `redirectURIs`

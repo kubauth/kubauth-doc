@@ -161,37 +161,37 @@ The resulting claim set is the result of merging:
 
     In the current version, claims are not filtered by scope. In other words, all user claims are included in the ID token.
 
-##  JWT Access Token
+## JWT Access Token
 
-In the world of OAuth 2.0, the "Access Token" is your digital key to a protected resource. However, the spec doesn't actually dictate what that key must look like. 
-This flexibility allows developers to choose between two main architectural styles: Opaque and JWT (JSON Web Token).
+In OAuth 2.0, the Access Token grants access to a protected resource. However, the specification does not prescribe a specific format for it.
+This flexibility allows two main architectural styles: Opaque tokens and JWT (JSON Web Token).
 
 > This "Access Token" is different from the OIDC JWT token we just described above. 
 
 ### Opaque Tokens
 
-An opaque token is just a random string of characters that carries no information on its own. To anyone looking at it, it’s gibberish.
+An opaque token is a random string that carries no information on its own and is meaningless to anyone who inspects it.
 
-When an application receives an opaque token, it has no idea who the user is or what they are allowed to do. It must send that token back to the Oauth server (Kubauth) to "ask" if it’s valid.
+When an application receives an opaque token, it has no knowledge of the user's identity or permissions. It must send the token back to the OAuth server (Kubauth) to validate it.
 
-Why use it?
+**Advantages:**
 
-- Privacy: No user data is hidden inside the token string itself.
-- Instant Revocation: If you want to kick a user off, you just delete the token from the server. The next time the RS checks, the token will be invalid immediately.
-- Security: Since the token contains no data, there is nothing for a hacker to "decode."
+- **Privacy:** No user data is embedded in the token string.
+- **Instant Revocation:** Deleting the token from the server invalidates it immediately on the next validation check.
+- **Security:** Since the token contains no data, there is nothing for an attacker to decode.
 
 ### JWT Access Token
 
-A JWT token is a self-contained, structured string. It contains "claims" (Like an OIDC token) and is digitally signed by the Oauth Server (Kubauth)
+A JWT Access Token is a self-contained, structured string. Like an OIDC ID token, it contains claims and is digitally signed by the OAuth server (Kubauth).
 
-The Resource Server can validate the token locally. It checks the digital signature using a public key. If the signature is valid and the expiration date hasn't passed, 
-the application trusts the data inside without ever talking to Kubauth.
+The resource server can validate the token locally by checking its digital signature against a public key. If the signature is valid and the token has not expired,
+the application trusts the embedded data without contacting Kubauth.
 
-Why use it?
+**Advantages:**
 
-- Performance: No extra network call (introspection) is needed. This makes APIs much faster.
-- Scalability: Since the Authorization Server doesn't have to validate every single request, it doesn't become a bottleneck.
-- Standardization: JWTs follow a strict structure, making them easy to use across different programming languages.
+- **Performance:** No additional network call (introspection) is required, resulting in faster API responses.
+- **Scalability:** The authorization server does not need to validate every request, eliminating it as a potential bottleneck.
+- **Standardization:** JWTs follow a well-defined structure, making them easy to use across different programming languages and frameworks.
 
 ### Configuration
 
@@ -216,7 +216,7 @@ Redeploy Kubauth:
 helm -n kubauth upgrade -i kubauth --values ./values.yaml oci://quay.io/kubauth/charts/kubauth --version 0.2.0-snapshot --create-namespace --wait
 ```
 
-And you can now test, still using 'public client'
+You can now test, still using the public client:
 
 ``` { .bash .copy }
 kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public
@@ -226,9 +226,9 @@ Log in using `jim/jim123`.
 
 ![tokens](../assets/kubauth-tokens2.png){ .center width="70%" }
 
-You can check the Access Token is longer than the Opaque one.
+Notice that the Access Token is significantly longer than an opaque token.
 
-Same for the CLI response:
+The same applies to the CLI response:
 
 ```bash
 Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1ODhlNWIyLTIwY2QtNGM3Mi04MGIwLTU0OGJjZDdjNDg0OCIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicHVibGljIl0sImF6cCI6InB1YmxpYyIsImV4cCI6MTc3Mzg1NDQyMSwiaWF0IjoxNzczODUwODIxLCJpc3MiOiJodHRwczovL2t1YmF1dGguaW5ncmVzcy5rdWJvMi5tYnAiLCJqdGkiOiJhNjk2ZDdlMC1iYmJkLTRkNDQtOTY2Ny04NWI4NThmY2I1ZWYiLCJzY3AiOlsib3BlbmlkIiwicHJvZmlsZSIsIm9mZmxpbmUiLCJncm91cHMiXSwic3ViIjoiamltIn0.mQ0Z_aQhAqkdA3fQTo8yNSyl1WLNbpPfJZOUT0J-zyU2BRkaAT_7hcD5TOAmHRH088HGrjWWSOhh8oO1fAzJ_lY50-uLGBGOvtFCFqWspcVLohzsJbbf5Uj0ir4IuOAVMdbW-G341FrCJzD7DiFFw4xHHJ_yc0GDS9JMZUlWgdUbxPtNF-Dt90j_SaOj6dsnZMJ8W08JwKKcTlOGgeQzze_hkPBWbb1HR9f6PShfAVGd1UVmT7fvZDwLs_3RthMR7ui3rX5P7kCR3ZxgKHoQjlbkARfcJ8ggxPxl_tHC7wp570MRslABA25x-c_zTuG5stTkzL3oEgcl8TPxr---Qw
@@ -237,14 +237,14 @@ ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1ODhlNWIyLTIwY2QtNGM3Mi04MGIwLTU0OGJjZD
 Expire in: 59m59s
 ```
 
-Now, try:
+Now, try the following:
 
 ``` { .bash .copy }
 kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public --onlyAccessToken | kc jwt
 ```
 
-- The `--onlyAccessToken` option instructs the command to output only the base64-encoded ID token, useful for batch processing.
-- The `kc jwt` command decodes the JWT Access token.
+- The `--onlyAccessToken` option instructs the command to output only the Access Token, useful for piping to other commands.
+- The `kc jwt` command decodes the JWT Access Token.
 
 The response should look like:
 
@@ -279,7 +279,7 @@ Token: JWT Payload:
 }
 ```
 
-There is also a shortcut:
+There is also a shortcut for decoding the Access Token:
 
 ```
 kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public  -a

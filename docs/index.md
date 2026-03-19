@@ -19,7 +19,7 @@ Kubauth can operate autonomously with its own user database or act as a federati
 - **User & Group Management**: Fine-grained user authentication and group-based authorization.
     - Claims can be defined at user or group level.
     - User profiles can be built from multiple identity sources.
-- **LDAP integration**: Support for one or several LDAP servers, with 'on the fly' Users and Groups enrichment.
+- **LDAP Integration**: Support for one or more LDAP servers, with on-the-fly user and group enrichment.
 - **Security First**: bcrypt password hashing, JWT signing with persistent keys, secure session management.
 - **Production Ready**: Health checks, admission webhooks, and Helm chart deployment.
 

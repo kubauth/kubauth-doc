@@ -1,10 +1,10 @@
-# Users configuration
+# Users Configuration
 
 ## User Creation
 
 With Kubauth, users can be defined as Kubernetes Custom Resources.
 
-> With this kind of configuration, Kubauth works in a fully autonomous way. We will see later how to handle users defined on other external Identity Providers
+> With this configuration, Kubauth operates in a fully autonomous mode. Handling users defined in external identity providers is covered in a later chapter.
 
 Here is a sample manifest that creates two users:
 
@@ -82,9 +82,9 @@ Hash: $2a$12$8Ews1KmZO/79WcWzlTjhyOCzCm6G61n1RbpNw5oFlLO0lcnT7RJ7S
 
 Copy and paste the appropriate value into your user manifest.
 
-### User's Groups
+### User Groups
 
-Kubauth can also manage groups of users. This is the subject of a [dedicated chapter](150-users-groups.md)
+Kubauth also supports user group management, which is covered in a [dedicated chapter](150-users-groups.md).
 
 ### Namespace
 

@@ -1,8 +1,8 @@
-# kc token-nui
+# kc client
 
 ## Overview
 
-The `kc client` command obtains an Access token using the Client Credential flow. 
+The `kc client` command obtains an Access Token using the Client Credentials flow. 
 
 - If Access Token is in JWT form, its signature is checked against the server key.
 - If Access Token is in opaque form, it is checked against server introspection endpoint.
@@ -36,7 +36,7 @@ Value may also be fetched from `KC_CLIENT_ID` environment variable, or Kubernete
 -----
 ### `--clientSecret`
 
-The client secret
+The client secret.
 
 **Example:** `--clientSecret mysecret123`
 
@@ -50,7 +50,7 @@ Skip TLS certificate verification. Use only for testing with self-signed certifi
 
 -----
 ### `--caFile`
-Provide a CA file for TLS certificate verification of ìssuerURL
+Provide a CA file for TLS certificate verification of the issuer URL.
 
 **Example:** `--caFile ./CA.crt`
 
@@ -78,7 +78,7 @@ List of OAuth2 scopes to request.
 
 !!! warning
 
-    In its current version, Kubauth does not manage scopes for the Client Credential flow
+    In its current version, Kubauth does not enforce scope restrictions for the Client Credentials flow.
 
 ## Examples
 

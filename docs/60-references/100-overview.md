@@ -121,7 +121,7 @@ rules:
 
 Complete examples for all resources can be found throughout the documentation:
 
-- [User Configuration](../30-user-guide/110-configuration.md)
+- [Users Configuration](../30-user-guide/110-users-configuration.md)
 - [User Groups](../30-user-guide/150-users-groups.md)
 - [Applications Integration](../40-applications-integration/110-argocd.md)
 - [Kubernetes Integration](../50-kubernetes-integration/110-overview.md)

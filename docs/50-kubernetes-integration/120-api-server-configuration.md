@@ -57,15 +57,15 @@ helm -n kubauth upgrade -i kubauth-apiserver --values ./values-k8s.yaml oci://qu
 
 ### Verifying Installation
 
-If your cluster is up and running, there is good chance installation was successful. 
+If your cluster is up and running, there is a good chance the installation was successful. 
 
-You can have a deeper check by looking at the parameters of the api-server:
+For a more thorough verification, inspect the API server parameters:
 
 ``` { .bash .copy }
 kubectl -n kube-system get pod kube-apiserver-node1.mycluster.mycompany.com -o yaml 
 ```
 
-Which should look like the following:
+The output should include the following OIDC parameters:
 
 ```
 apiVersion: v1

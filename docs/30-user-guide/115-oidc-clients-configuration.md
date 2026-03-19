@@ -1,7 +1,7 @@
 
-# OIDC clients configuration
+# OIDC Clients Configuration
 
-## Creation
+## Client Creation
 
 In OIDC terminology, a 'client' is an application that delegates user authentication to an OIDC server. As such, it must be registered with the server.
 
@@ -34,7 +34,7 @@ Here is an initial example:
 - The `grantTypes` list defines which authorization flows are accepted by this client.
 - The `responseTypes` list defines what types of tokens or credentials the client can expect from the authorization endpoint after user authentication.
 - The `scopes` list defines which scopes can be requested by the application.
-- This client is defined as `public`, so no client secret is required. See below for non-public client
+- This client is defined as `public`, so no client secret is required. See below for confidential (non-public) clients.
 
 Apply this manifest in the **Kubauth release namespace** (Here, `kubauth`):
 
@@ -55,15 +55,15 @@ kubauth     public   public      READY    OK        true   A test OIDC public cl
 
 > This client will be used in the next chapter to test tokens and claims.
 
-As you can see, the `CLIENT_ID`, the identifier used by the client application to refer to this client is the name of the k8s resources (`public`)
+As shown above, the `CLIENT_ID` — the identifier used by client applications to refer to this client — is the Kubernetes resource name (`public`).
 
 ### Test it
 
-If you want to test immediately this OIDC client, you can refer to the [next chapter](120-tokens-and-claims.md)
+To test this OIDC client immediately, refer to the [next chapter](120-tokens-and-claims.md).
 
-## OidcClient and K8s namespaces
+## OidcClient and Kubernetes Namespaces
 
-We will now create another client in another namespace. 
+Let's now create another client in a different namespace. 
 
 First create a new namespace:
 
@@ -71,7 +71,7 @@ First create a new namespace:
 kubectl create namespace tenant1
 ```
 
-Then, using the same client manifest, create another OidcClient resource in this namespace
+Then, using the same client manifest, create another OidcClient resource in this namespace:
 
 ``` { .bash .copy }
 kubectl apply -n tenant1 -f client-public.yaml
@@ -89,33 +89,29 @@ kubauth     public   public           READY    OK        true   A test OIDC publ
 tenant1     public   tenant1-public   READY    OK        true   A test OIDC public client                    5s
 ```
 
-We can see the `CLIENT_ID` for our second client is build with the pattern <br>`<namespace>-<k8sResourceName>`. 
+The `CLIENT_ID` for the second client is constructed using the pattern <br>`<namespace>-<k8sResourceName>`. 
 
-This allows to add some kind of namespacing in the unique space of the OIDC CLIENT_IDs.
+This introduces namespace-based scoping into the otherwise flat OIDC CLIENT_ID namespace.
 
-### Multi-tenancy scenario.
+### Multi-Tenancy Scenario
 
-This feature will allow to setup multi-tenancy configuration. 
+This feature enables multi-tenancy configurations. 
 
-In such configuration, a super-admin create a 'tenant', made of one (or several) namespace.  This super-admin will then give some permissions to one or several Subject 
-(User, Group or ServiceAccount) acting as tenant-admin.
+In such a configuration, a super-admin creates a tenant consisting of one or more namespaces, then grants permissions to one or more subjects (User, Group, or ServiceAccount) acting as tenant administrators.
 
-In our case, it will setup a `RoleBinding` to bind the tenant-admin to the ClusterRole `kubauth-oidc-client-admin` to allow tenant-admin to create
-OidcClient resources. 
+In practice, this involves creating a `RoleBinding` that binds the tenant administrator to the `kubauth-oidc-client-admin` ClusterRole, allowing them to create OidcClient resources. 
 
 > The  `kubauth-oidc-client-admin` ClusterRole was created by initial Kubauth installation.
 
-As it is a `RoleBinding`, not a `ClusterRoleBinding`, the tenant-admin will be limited to create OidcClient only in its namespace. 
-And the addition of the namespace in the CLIENT_ID will prevent any clashes with other tenants. 
+Since this is a `RoleBinding` rather than a `ClusterRoleBinding`, the tenant administrator can only create OidcClient resources in their own namespace. The namespace prefix in the CLIENT_ID prevents clashes with other tenants. 
 
-### The 'Privileged' namespace
+### The Privileged Namespace
 
-The first client we created in the chapter don't have it's CLIENT_ID prefixed
+The first client we created in this chapter does not have its CLIENT_ID prefixed.
 
-This is because it was created in a specific `privileged' namespace. Which is by default the Release namespace of the installation.
+This is because it was created in a special 'privileged' namespace, which defaults to the Helm release namespace.
 
-Using only the 'privileged' namespace to define OidcClient will allow a more standard approach, where OidcClient definitions are considered as OIDC configuration operations
-and, as such, reserved to the global system administrator. And also to not be bothered by CLIENT_ID name mangling.
+Using only the privileged namespace to define OidcClient resources provides a more conventional approach, where client definitions are treated as OIDC configuration operations reserved for the global system administrator. This also avoids CLIENT_ID name mangling.
 
 An alternate value of this 'privileged' namespace can be defined at initial installation, in the Helm `values.yaml` file: 
 
@@ -129,13 +125,13 @@ An alternate value of this 'privileged' namespace can be defined at initial inst
 
     ```
 
-## Private client
+## Confidential Client
 
-In most case, for obvious security reasons, the OIDC client must be protected by a secret shared between Kubauth and the application.
+In most cases, OIDC clients must be protected by a shared secret between Kubauth and the application.
 
-This secret value will be stored in a k8s secret. And this secret will be referenced by the OidcClient resource.
+The secret value is stored in a Kubernetes Secret, which is then referenced by the OidcClient resource.
 
-Here is a 'private' variation of our OIDC test client:
+Here is a confidential (non-public) variation of our OIDC test client:
 
 ???+ abstract "client-private.yaml"
 
@@ -158,10 +154,10 @@ Here is a 'private' variation of our OIDC test client:
     
     ```
 
-- The `public: true` attribute has been removed (Or set to `false`) 
-- There is a `secrets` list, which will reference one or several k8s secrets. These secret(s) must be in the same namespace as the OidcClient resources.
+- The `public: true` attribute has been removed (or set to `false`). 
+- A `secrets` list references one or more Kubernetes Secrets. These secrets must reside in the same namespace as the OidcClient resource.
 
-> Being able to have more than one valid secrets allow for easy secret rotation.
+> Supporting multiple valid secrets enables seamless secret rotation.
 
 Apply this manifest:
 
@@ -182,9 +178,9 @@ kubauth     public    public           READY    OK                              
 tenant1     public    tenant1-public   READY    OK                                                    true    A test OIDC public client                     63s
 ```
 
-Obviously, the newly created OidcClient is missing the secret.
+As expected, the newly created OidcClient is in an error state because the referenced secret does not yet exist.
 
-So create and apply it:
+Create and apply the secret:
 
 ???+ abstract "client-secret.yaml"
 
@@ -203,7 +199,7 @@ So create and apply it:
 kubectl apply -n kubauth -f client-secret.yaml
 ```
 
-And check new the OidcClient is in READY state:
+Verify that the OidcClient is now in READY state:
 
 ``` { .bash .copy }
 kubectl get --all-namespaces oidcclients
@@ -217,9 +213,9 @@ tenant1     public    tenant1-public   READY    OK        true    A test OIDC pu
 ```
 
 
-### Alternate secret form
+### Alternative Secret Formats
 
-As with every k8s secret, the value (here `secret2`) can be defined in base64
+As with any Kubernetes Secret, the value (here `secret2`) can be provided in base64 encoding:
 
 ```
 echo -n secret2 | base64
@@ -238,7 +234,7 @@ echo -n secret2 | base64
       clientSecret: c2VjcmV0Mg==  #  echo -n secret2 | base64
     ```
 
-And, to have a better obfuscation, the value could be hashed, with the same tool used for the User password.
+For additional obfuscation, the value can be hashed using the same tool as for user passwords:
 
 ```
 kc hash secret3 -r | base64
@@ -257,7 +253,7 @@ kc hash secret3 -r | base64
       clientSecret: "JDJhJDEyJDZEZC9oVWVwUy9udkNvU2ZsanhDM08xS2R3QU1UM0RabE9abDQuVzU1Mk5NRkVUZ0hxZkZh"  #  kc hash secret3 -r | base64
     ```
 
-In this last case, a `hashed: true` flag must be set in the secret reference:
+In this case, a `hashed: true` flag must be set on the corresponding secret reference:
 
 
 ???+ abstract "client-private.yaml"
@@ -285,12 +281,12 @@ In this last case, a `hashed: true` flag must be set in the secret reference:
           hashed: true
     ```
 
-This OidcClient will accept one of `secret1`, `secret2` or `secret3` as client secret value.  
+This OidcClient will accept any of `secret1`, `secret2`, or `secret3` as the client secret.  
 
 
-## Explicit client_id
+## Explicit Client ID
 
-Kubauth also support the explicit setting of the OIDC `client_id` value:
+Kubauth also supports explicitly setting the OIDC `client_id` value:
 
 ???+ abstract "client-public-prj32.yaml"
 
@@ -313,7 +309,7 @@ Kubauth also support the explicit setting of the OIDC `client_id` value:
 
 !!! warning
 
-    In such case, there is no namespace decoration anymore. It up to all administrators to ensure the global uniqness of the clientId value.
+    In this case, there is no namespace decoration. It is up to administrators to ensure the global uniqueness of the `clientId` value.
 
 Create the `project32` namespace and apply this manifest:
 
@@ -326,7 +322,7 @@ kubectl create namespace project32
 kubectl apply -f client-public-prj32.yaml
 ```
 
-And check the result:
+Verify the result:
 
 ``` { .bash .copy }
 kubectl get --all-namespaces oidcclients

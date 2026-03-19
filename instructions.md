@@ -32,3 +32,9 @@ You removed existing options. Please check the SOURCE CODE
 Seems too verbose. Focus on essential
 
 
+
+This is a technical documentation about an OIDC server named Kubauth.
+Built with mkdocs with some extension, in docs folder
+It has been written in poor globish by a French native.
+It has been rewritten by AI in a previous version
+Could you check and rewrite all modification since tag v0.1.2

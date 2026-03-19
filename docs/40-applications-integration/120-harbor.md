@@ -2,7 +2,7 @@
 
 ## OIDC Client Creation
 
-As described in [Configuration](../30-user-guide/110-configuration.md/#oidc-client-creation), a client application is defined as a Kubernetes Custom Resource.
+As described in [OIDC Clients Configuration](../30-user-guide/115-oidc-clients-configuration.md), a client application is defined as a Kubernetes Custom Resource.
 
 Create a manifest like the following:
 

@@ -216,7 +216,7 @@ spec:
 EOF
 ```
 
-> Of course, you must be logged as cluster administrator to perform these action on RBAC. 
+> You must be logged in as a cluster administrator to perform these RBAC actions. 
 
 > Remember, in our context, simply referencing a group in a `GroupBinding` makes it exist.
 

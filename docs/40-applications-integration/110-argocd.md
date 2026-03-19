@@ -3,7 +3,7 @@
 
 ## OIDC Client Creation
 
-As described in [Configuration](../30-user-guide/110-configuration.md/#oidc-client-creation), an OIDC client application is defined as a Kubernetes Custom Resource.
+As described in [OIDC Clients Configuration](../30-user-guide/115-oidc-clients-configuration.md), an OIDC client application is defined as a Kubernetes Custom Resource.
 
 Create a manifest like the following:
 
@@ -28,14 +28,14 @@ Create a manifest like the following:
       namespace: kubauth
     spec:
       redirectURIs:
-        - "https://argocd.ingress.kubo8.mbp/auth/callback"
+        - "https://argocd.mycluster.mycompany.com/auth/callback"
         - "http://localhost:8085/auth/callback"
       grantTypes: [ "refresh_token", "authorization_code" ]
       responseTypes: ["id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token"]
       scopes: [ "openid", "offline", "profile", "groups", "email", "offline_access"]
       displayName: ArgoCD
       description: GitOps continuous delivery tool
-      entryURL: https://argocd.ingress.kubo2.mbp/
+      entryURL: https://argocd.mycluster.mycompany.com/
       secrets:
         - name: argocd-oidc-client-secret
           key: clientSecret

@@ -100,7 +100,7 @@ kc hash "P@ssw0rd\$pecial!"
 
 ## See Also
 
-- [User Configuration](../30-user-guide/110-configuration.md#password-hash)
+- [Users Configuration](../30-user-guide/110-users-configuration.md#password-hash)
 - [User Reference](../60-references/120-user.md#passwordhash)
-- [OidcClient Reference](../60-references/110-oidcclient.md#hashedsecret)
+- [OidcClient Reference](../60-references/110-oidcclient.md#secrets)
 

@@ -8,8 +8,8 @@ Before you begin, ensure the following components are in place:
 
 - **Certificate Manager:** The Certificate Manager must be deployed on your target Kubernetes cluster with a `ClusterIssuer` configured for certificate management.
 
-- **Ingress Controller:** An ingress controller must be deployed on your target Kubernetes cluster. The provided Helm Chart assume NGINX as ingress controller. 
-  If needed, you can disable it and configure your own (See [below](./#using-an-alternate-ingress-controller)). 
+- **Ingress Controller:** An ingress controller must be deployed on your target Kubernetes cluster. The provided Helm chart assumes NGINX as the ingress controller. 
+  If needed, you can disable it and configure your own (see [below](#using-an-alternate-ingress-controller)). 
 
 - **Helm:** Helm must be installed on your local workstation.
 
@@ -41,7 +41,7 @@ In your working directory, create a file with the following content:
 
 Replace the placeholder values with your environment-specific configuration:
 
-- **`kubauth.mycluster.mycompany.com`**: The hostname which will be used to access the Kubauth service from outside the cluster.<br>
+- **`kubauth.mycluster.mycompany.com`**: The hostname used to access the Kubauth service from outside the cluster.<br>
   > Ensure this hostname is registered in your DNS.
 - **`my-issuer`**: The `ClusterIssuer` name from your Certificate Manager for ingress certificate provisioning.
 
@@ -55,9 +55,9 @@ Deploy Kubauth using the following command:
 helm -n kubauth upgrade -i kubauth --values ./values.yaml oci://quay.io/kubauth/charts/kubauth --version 0.2.0-snapshot --create-namespace --wait
 ```
 
-> The name of the release (here `kubauth`) is important, as most of created object will use it as base name. 
-  So, if you change it you will need to adjust most of the manifests and commands used in this manual accordingly.
-  Same remarks for the namespace.
+> The release name (here `kubauth`) is important, as most created objects use it as a base name. 
+  If you change it, you will need to adjust most of the manifests and commands in this manual accordingly.
+  The same applies to the namespace.
 
 After a few seconds, verify that the Kubauth server pod is running:
 
@@ -94,16 +94,11 @@ Verify the installation:
 kc version
 ```
 
-## Installation options
-
-
-
-
 ## Using an alternate ingress controller
 
-If you want to use another ingress controller type:
+If you need to use a different ingress controller:
 
-- Disable the default controller in Helm chart deployment: 
+- Disable the built-in ingress in the Helm chart values: 
 
 ???+ abstract "values.yaml"
 
@@ -118,4 +113,4 @@ If you want to use another ingress controller type:
 
 - Configure your controller to use the `kubauth-oidc-server` backend service on port 443/oidc.
 
-- Configure your controller as `ssl-passthrough`, as SSL will be terminated by the `kubauth` pod itself.
+- Configure your controller for SSL passthrough, as TLS is terminated by the `kubauth` pod itself.
