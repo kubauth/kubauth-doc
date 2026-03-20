@@ -344,12 +344,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../30-user-guide/110-configuration/" class="md-nav__link">
+      <a href="../../30-user-guide/110-users-configuration/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Configuration
+    Users Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/115-oidc-clients-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OIDC Clients Configuration
     
   </span>
   
@@ -1124,6 +1147,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../145-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc client
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../150-audit/" class="md-nav__link">
         
   
@@ -1865,7 +1911,7 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0...&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>kc<span class="w"> </span>jwt
 </span></code></pre></div>
 <h3 id="pipe-from-kc-token">Pipe from kc token</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIDToken<span class="w"> </span><span class="p">|</span><span class="w"> </span>kc<span class="w"> </span>jwt
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken<span class="w"> </span><span class="p">|</span><span class="w"> </span>kc<span class="w"> </span>jwt
 </span></code></pre></div>
 <h2 id="output">Output</h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>JWT Header:

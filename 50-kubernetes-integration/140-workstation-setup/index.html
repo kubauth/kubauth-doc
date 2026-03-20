@@ -344,12 +344,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../30-user-guide/110-configuration/" class="md-nav__link">
+      <a href="../../30-user-guide/110-users-configuration/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Configuration
+    Users Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/115-oidc-clients-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OIDC Clients Configuration
     
   </span>
   
@@ -1229,6 +1252,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../70-kc/145-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc client
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../70-kc/150-audit/" class="md-nav__link">
         
   
@@ -1538,13 +1584,13 @@
 <p>The next step is to configure your local <code>kubeconfig</code>. Kubauth provides a tool to automate this task.</p>
 <h2 id="configuration">Configuration</h2>
 <p>The <a href="../../20-installation/#kc-cli-tool-installation"><code>kc</code> CLI</a> tool provides a subcommand to configure your local kubeconfig from the service we previously installed:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kc<span class="w"> </span>config<span class="w"> </span>https://kubeconfig.ingress.kubo6.mbp/kubeconfig
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kc<span class="w"> </span>config<span class="w"> </span>https://kubeconfig.mycluster.mycompany.com/kubeconfig
 </span></code></pre></div>
 <blockquote>
 <p>Adjust the URL to your local environment, but keep the <code>/kubeconfig</code> path.</p>
 </blockquote>
 <p>You should see a message like the following:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Setup<span class="w"> </span>new<span class="w"> </span>context<span class="w"> </span><span class="s1">&#39;oidc-kubo6&#39;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>kubeconfig<span class="w"> </span>file<span class="w"> </span><span class="s1">&#39;/Users/john/.kube/config&#39;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Setup<span class="w"> </span>new<span class="w"> </span>context<span class="w"> </span><span class="s1">&#39;oidc-mycluster&#39;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>kubeconfig<span class="w"> </span>file<span class="w"> </span><span class="s1">&#39;/Users/john/.kube/config&#39;</span>
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1586,7 +1632,7 @@
 </span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">      </span><span class="nt">args</span><span class="p">:</span>
 </span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc-login</span>
 </span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">get-token</span>
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--oidc-issuer-url=https://kubauth.ingress.kubo6.mbp</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--oidc-issuer-url=https://kubauth.mycluster.mycompany.com</span>
 </span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--oidc-client-id=k8s</span>
 </span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--oidc-client-secret=k8s123</span>
 </span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--certificate-authority-data=LS0tLS1CR.........tRU5EIENFUlRJRklDQVRFLS0tLS0=</span>
@@ -1684,6 +1730,7 @@ You can also obtain more information by using an option to dump the JWT token:</
 </span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="s">EOF</span>
 </span></code></pre></div>
 <blockquote>
+<p>You must be logged in as a cluster administrator to perform these RBAC actions. </p>
 <p>Remember, in our context, simply referencing a group in a <code>GroupBinding</code> makes it exist.</p>
 </blockquote>
 <p>In our cluster, there is an existing role <code>cluster-admin</code>. We must bind our newly created group to this role:</p>
@@ -1716,7 +1763,7 @@ You can also obtain more information by using an option to dump the JWT token:</
 <h2 id="no-ui-mode">No UI Mode</h2>
 <p>There are cases where launching a browser is impossible, such as when working on a server accessed through SSH.</p>
 <p>We can configure a 'no browser' mode when setting up your client, using the <code>--grantType password</code> option:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kc<span class="w"> </span>config<span class="w"> </span>https://kubeconfig.ingress.kubo6.mbp/kubeconfig<span class="w"> </span>--grantType<span class="w"> </span>password
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kc<span class="w"> </span>config<span class="w"> </span>https://kubeconfig.mycluster.mycompany.com/kubeconfig<span class="w"> </span>--grantType<span class="w"> </span>password
 </span></code></pre></div>
 <blockquote>
 <p>Add <code>--force</code> to override an existing configuration if needed.</p>

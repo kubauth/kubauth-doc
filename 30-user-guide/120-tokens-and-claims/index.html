@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/30-user-guide/120-tokens-and-claims/">
       
       
-        <link rel="prev" href="../110-configuration/">
+        <link rel="prev" href="../115-oidc-clients-configuration/">
       
       
         <link rel="next" href="../130-audit/">
@@ -346,12 +346,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../110-configuration/" class="md-nav__link">
+      <a href="../110-users-configuration/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Configuration
+    Users Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../115-oidc-clients-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OIDC Clients Configuration
     
   </span>
   
@@ -433,6 +456,48 @@
       Claims
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jwt-access-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWT Access Token
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JWT Access Token">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opaque-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opaque Tokens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwt-access-token_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWT Access Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1184,6 +1249,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../70-kc/145-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc client
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../70-kc/150-audit/" class="md-nav__link">
         
   
@@ -1411,6 +1499,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#jwt-access-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWT Access Token
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JWT Access Token">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opaque-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opaque Tokens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwt-access-token_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWT Access Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1434,7 +1564,10 @@
 <h2 id="obtaining-a-token">Obtaining a Token</h2>
 <p>The Kubauth companion CLI application <code>kc</code> provides an embedded OIDC client. Beyond testing the installation, its primary purpose is to fetch access tokens or ID tokens for use in any application.</p>
 <p>Launch the following command after adjusting the issuer URL:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.mycluster.mycompany.com<span class="w"> </span>--clientId<span class="w"> </span>public
+</span></code></pre></div>
+<p>Or, if you want to test the private client defined in previous chapter:</p>
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.mycluster.mycompany.com<span class="w"> </span>--clientId<span class="w"> </span>private<span class="w"> </span>--clientSecret<span class="w"> </span>secret1
 </span></code></pre></div>
 <blockquote>
 <p>Adjust the <code>issuerURL</code> to the value set previously in Kubauth configuration  </p>
@@ -1445,8 +1578,8 @@
 <ul>
 <li>Add the <code>--insecureSkipVerify</code> option to the <code>kc token</code> command. You will also need to configure your browser to accept the certificate.</li>
 <li>Add the CA as a trusted certificate on your local workstation. You can extract it with:
-  <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>kubauth-oidc-server-cert<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.ca\.crt}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;./ca.crt<span class="w"> </span>
+  <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>kubauth-oidc-server-cert<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>-o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.ca\.crt}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;./ca.crt<span class="w"> </span>
 </span></code></pre></div></li>
 <li>Add the <code>--caFile ./ca.crt</code> option to the <code>kc token</code> command.</li>
 </ul>
@@ -1457,83 +1590,83 @@
 <p><img alt="tokens" class="center" src="../../assets/kubauth-tokens.png" width="70%" /></p>
 <p>From this page, you can copy the provided tokens.</p>
 <p>These tokens are also displayed in the CLI response:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Access<span class="w"> </span>token:<span class="w"> </span>ory_at_xLUfAhEGpFVWpMLdNEDZAj94hHFrHWjgOYB5g0Leh_k.0rgIzRGFOiIeGsMKnIZ74QL4Ve5vVOuEZyhA0402u8Y
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Refresh<span class="w"> </span>token:<span class="w"> </span>ory_rt_nU9NBZs4NtKTxVYVko1aqlJkAMF5MLBYjfiZbhVt9aE.THwsnTlqzIsWo5O1NAf1EbDhz7HdaqVHHwSTkWxrkqY
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>ID<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiaGNBY2dtdmdBekJlSGgyODlkWHF3USIsImF1ZCI6WyJwdWJsaWMiXSwiYXV0aF90aW1lIjoxNzYxMzI2MDg2LCJhenAiOiJwdWJsaWMiLCJleHAiOjE3NjEzMjk2ODYsImlhdCI6MTc2MTMyNjA4NiwiaXNzIjoiaHR0cHM6Ly9rdWJhdXRoLmluZ3Jlc3Mua3VibzYubWJwIiwianRpIjoiZDZhYjkwODMtYTEzMi00YTNiLTlmMWItMzM2NWFhOTQ5MjQ2IiwicmF0IjoxNzYxMzI2MDg2LCJzdWIiOiJqaW0ifQ.Q8ZkF33jsUJDqLH98uqRgrFa2nwioRP1TO9n6QjX9XFr-1WmsKk9nEeHGAiASb1brQ3cSAmK8ta7fX3lBLBlszxmeVZRzq5Qvg0N8nqvlV3C4CAiv6lEl6_-y6wBoQOWN9OhNhYU6wFjpNNDTx_RW0329i9TYVxaygw58wJGCX_1F5-PY0NG74n_1sdZxYop7s5GnZ0_9S9-DEI-LNR2MMx-oVH4lpGjV5dhGRvZS0l4tMm2C7J6Yx_JoTQoZfWwPI0GGf2smZZ-C2ieB5Wj0b19fgrafuexHW9yeejI51j6WZs_eDqUwvCIf52_yAvokA4SiW4PW8Eod9fX-JuwJQ
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Expire<span class="w"> </span><span class="k">in</span>:<span class="w"> </span>59m59s
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Access<span class="w"> </span>token:<span class="w"> </span>ory_at_xLUfAhEGpFVWpMLdNEDZAj94hHFrHWjgOYB5g0Leh_k.0rgIzRGFOiIeGsMKnIZ74QL4Ve5vVOuEZyhA0402u8Y
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Refresh<span class="w"> </span>token:<span class="w"> </span>ory_rt_nU9NBZs4NtKTxVYVko1aqlJkAMF5MLBYjfiZbhVt9aE.THwsnTlqzIsWo5O1NAf1EbDhz7HdaqVHHwSTkWxrkqY
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>ID<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiaGNBY2dtdmdBekJlSGgyODlkWHF3USIsImF1ZCI6WyJwdWJsaWMiXSwiYXV0aF90aW1lIjoxNzYxMzI2MDg2LCJhenAiOiJwdWJsaWMiLCJleHAiOjE3NjEzMjk2ODYsImlhdCI6MTc2MTMyNjA4NiwiaXNzIjoiaHR0cHM6Ly9rdWJhdXRoLmluZ3Jlc3Mua3VibzYubWJwIiwianRpIjoiZDZhYjkwODMtYTEzMi00YTNiLTlmMWItMzM2NWFhOTQ5MjQ2IiwicmF0IjoxNzYxMzI2MDg2LCJzdWIiOiJqaW0ifQ.Q8ZkF33jsUJDqLH98uqRgrFa2nwioRP1TO9n6QjX9XFr-1WmsKk9nEeHGAiASb1brQ3cSAmK8ta7fX3lBLBlszxmeVZRzq5Qvg0N8nqvlV3C4CAiv6lEl6_-y6wBoQOWN9OhNhYU6wFjpNNDTx_RW0329i9TYVxaygw58wJGCX_1F5-PY0NG74n_1sdZxYop7s5GnZ0_9S9-DEI-LNR2MMx-oVH4lpGjV5dhGRvZS0l4tMm2C7J6Yx_JoTQoZfWwPI0GGf2smZZ-C2ieB5Wj0b19fgrafuexHW9yeejI51j6WZs_eDqUwvCIf52_yAvokA4SiW4PW8Eod9fX-JuwJQ
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Expire<span class="w"> </span><span class="k">in</span>:<span class="w"> </span>59m59s
 </span></code></pre></div>
 <p>Let's try another variant of the command:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIDToken<span class="w"> </span><span class="p">|</span><span class="w"> </span>kc<span class="w"> </span>jwt
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.mycluster.mycompany.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken<span class="w"> </span><span class="p">|</span><span class="w"> </span>kc<span class="w"> </span>jwt
 </span></code></pre></div>
 <ul>
-<li>The <code>--onlyIDToken</code> option instructs the command to output only the base64-encoded ID token, useful for batch processing.</li>
+<li>The <code>--onlyIdToken</code> option instructs the command to output only the base64-encoded ID token, useful for batch processing.</li>
 <li>The <code>kc jwt</code> command decodes the JWT token.</li>
 </ul>
 <p>The response should look like:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>JWT Header:
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>{
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  &quot;alg&quot;: &quot;RS256&quot;,
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  &quot;kid&quot;: &quot;f4ccd454-f3a8-447f-a7c3-67ff935136b1&quot;,
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  &quot;typ&quot;: &quot;JWT&quot;
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>}
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>JWT Payload:
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>{
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>  &quot;at_hash&quot;: &quot;_GWrC20juEb4Zh39S0ly5w&quot;,
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  &quot;aud&quot;: [
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    &quot;public&quot;
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>  ],
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>  &quot;auth_time&quot;: 1761564624,
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>  &quot;auth_time_human&quot;: &quot;2025-10-27 11:30:24 UTC&quot;,
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>  &quot;azp&quot;: &quot;public&quot;,
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>  &quot;exp&quot;: 1761568224,
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>  &quot;exp_human&quot;: &quot;2025-10-27 12:30:24 UTC&quot;,
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>  &quot;iat&quot;: 1761564624,
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>  &quot;iat_human&quot;: &quot;2025-10-27 11:30:24 UTC&quot;,
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>  &quot;iss&quot;: &quot;https://kubauth.ingress.kubo6.mbp&quot;,
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>  &quot;jti&quot;: &quot;be30eeb2-153f-4dec-97b8-c75d23035f81&quot;,
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>  &quot;rat&quot;: 1761564624,
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>  &quot;rat_human&quot;: &quot;2025-10-27 11:30:24 UTC&quot;,
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>  &quot;sub&quot;: &quot;jim&quot;
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>}
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>JWT Header:
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>{
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  &quot;alg&quot;: &quot;RS256&quot;,
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>  &quot;kid&quot;: &quot;f4ccd454-f3a8-447f-a7c3-67ff935136b1&quot;,
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  &quot;typ&quot;: &quot;JWT&quot;
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>}
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>JWT Payload:
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>{
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>  &quot;at_hash&quot;: &quot;_GWrC20juEb4Zh39S0ly5w&quot;,
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>  &quot;aud&quot;: [
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    &quot;public&quot;
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>  ],
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>  &quot;auth_time&quot;: 1761564624,
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>  &quot;auth_time_human&quot;: &quot;2025-10-27 11:30:24 UTC&quot;,
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>  &quot;azp&quot;: &quot;public&quot;,
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>  &quot;exp&quot;: 1761568224,
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>  &quot;exp_human&quot;: &quot;2025-10-27 12:30:24 UTC&quot;,
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>  &quot;iat&quot;: 1761564624,
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>  &quot;iat_human&quot;: &quot;2025-10-27 11:30:24 UTC&quot;,
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>  &quot;iss&quot;: &quot;https://kubauth.mycluster.mycompany.com&quot;,
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>  &quot;jti&quot;: &quot;be30eeb2-153f-4dec-97b8-c75d23035f81&quot;,
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>  &quot;rat&quot;: 1761564624,
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>  &quot;rat_human&quot;: &quot;2025-10-27 11:30:24 UTC&quot;,
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>  &quot;sub&quot;: &quot;jim&quot;
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>}
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <code>auth_time_human</code>, <code>exp_human</code>, <code>iat_human</code>, and <code>rat_human</code> fields are not actual claims but human-readable values added by the decoder to aid interpretation of the corresponding timestamp values.</p>
 </div>
 <p>There is also a shortcut (<code>-d</code>) for this command:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>-d
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.mycluster.mycompany.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>-d
 </span></code></pre></div>
 <p>Note: This option skips the JWT header.</p>
 <h2 id="claims">Claims</h2>
 <p>A set of 'system' claims are provided by the OIDC server. You can find a <a href="http://openid.net/specs/openid-connect-core-1_0.html#IDToken" target="_blank">description of most standard claims here</a>.</p>
-<p>Another important claim is <code>sub</code>, which stands for 'subject' and represents the user's login.</p>
+<p>An important claim is <code>sub</code>, which stands for 'subject' and represents the user's login.</p>
 <p>Now, run the previous command again, but use <code>john/john123</code> when prompted for login:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>JWT Payload:
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>{
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  &quot;at_hash&quot;: &quot;fdg2po7ht7lBaFFvgXg14A&quot;,
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  &quot;aud&quot;: [
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    &quot;public&quot;
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  ],
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  &quot;auth_time&quot;: 1761575699,
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>  &quot;auth_time_human&quot;: &quot;2025-10-27 14:34:59 UTC&quot;,
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>  &quot;azp&quot;: &quot;public&quot;,
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>  &quot;email&quot;: &quot;johnd@mycompany.com&quot;,
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>  &quot;emails&quot;: [
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    &quot;johnd@mycompany.com&quot;
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>  ],
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>  &quot;exp&quot;: 1761579299,
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>  &quot;exp_human&quot;: &quot;2025-10-27 15:34:59 UTC&quot;,
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>  &quot;iat&quot;: 1761575699,
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>  &quot;iat_human&quot;: &quot;2025-10-27 14:34:59 UTC&quot;,
-</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>  &quot;iss&quot;: &quot;https://kubauth.ingress.kubo6.mbp&quot;,
-</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>  &quot;jti&quot;: &quot;822ed082-e615-4153-ad7e-d623df491253&quot;,
-</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>  &quot;name&quot;: &quot;John DOE&quot;,
-</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>  &quot;office&quot;: &quot;208G&quot;,
-</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>  &quot;rat&quot;: 1761575699,
-</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>  &quot;rat_human&quot;: &quot;2025-10-27 14:34:59 UTC&quot;,
-</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>  &quot;sub&quot;: &quot;john&quot;
-</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>}
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>JWT Payload:
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>{
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  &quot;at_hash&quot;: &quot;fdg2po7ht7lBaFFvgXg14A&quot;,
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  &quot;aud&quot;: [
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    &quot;public&quot;
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>  ],
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>  &quot;auth_time&quot;: 1761575699,
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>  &quot;auth_time_human&quot;: &quot;2025-10-27 14:34:59 UTC&quot;,
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>  &quot;azp&quot;: &quot;public&quot;,
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>  &quot;email&quot;: &quot;johnd@mycompany.com&quot;,
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>  &quot;emails&quot;: [
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    &quot;johnd@mycompany.com&quot;
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>  ],
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>  &quot;exp&quot;: 1761579299,
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>  &quot;exp_human&quot;: &quot;2025-10-27 15:34:59 UTC&quot;,
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>  &quot;iat&quot;: 1761575699,
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>  &quot;iat_human&quot;: &quot;2025-10-27 14:34:59 UTC&quot;,
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>  &quot;iss&quot;: &quot;https://kubauth.mycluster.mycompany.com&quot;,
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>  &quot;jti&quot;: &quot;822ed082-e615-4153-ad7e-d623df491253&quot;,
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>  &quot;name&quot;: &quot;John DOE&quot;,
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>  &quot;office&quot;: &quot;208G&quot;,
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>  &quot;rat&quot;: 1761575699,
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>  &quot;rat_human&quot;: &quot;2025-10-27 14:34:59 UTC&quot;,
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>  &quot;sub&quot;: &quot;john&quot;
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>}
 </span></code></pre></div>
 <p>Kubauth has added several new claims derived from the <code>User</code> resource definition:</p>
 <ul>
@@ -1557,6 +1690,98 @@
 <p class="admonition-title">Warning</p>
 <p>In the current version, claims are not filtered by scope. In other words, all user claims are included in the ID token.</p>
 </div>
+<h2 id="jwt-access-token">JWT Access Token</h2>
+<p>In OAuth 2.0, the Access Token grants access to a protected resource. However, the specification does not prescribe a specific format for it.
+This flexibility allows two main architectural styles: Opaque tokens and JWT (JSON Web Token).</p>
+<blockquote>
+<p>This "Access Token" is different from the OIDC JWT token we just described above. </p>
+</blockquote>
+<h3 id="opaque-tokens">Opaque Tokens</h3>
+<p>An opaque token is a random string that carries no information on its own and is meaningless to anyone who inspects it.</p>
+<p>When an application receives an opaque token, it has no knowledge of the user's identity or permissions. It must send the token back to the OAuth server (Kubauth) to validate it.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li><strong>Privacy:</strong> No user data is embedded in the token string.</li>
+<li><strong>Instant Revocation:</strong> Deleting the token from the server invalidates it immediately on the next validation check.</li>
+<li><strong>Security:</strong> Since the token contains no data, there is nothing for an attacker to decode.</li>
+</ul>
+<h3 id="jwt-access-token_1">JWT Access Token</h3>
+<p>A JWT Access Token is a self-contained, structured string. Like an OIDC ID token, it contains claims and is digitally signed by the OAuth server (Kubauth).</p>
+<p>The resource server can validate the token locally by checking its digital signature against a public key. If the signature is valid and the token has not expired,
+the application trusts the embedded data without contacting Kubauth.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li><strong>Performance:</strong> No additional network call (introspection) is required, resulting in faster API responses.</li>
+<li><strong>Scalability:</strong> The authorization server does not need to validate every request, eliminating it as a potential bottleneck.</li>
+<li><strong>Standardization:</strong> JWTs follow a well-defined structure, making them easy to use across different programming languages and frameworks.</li>
+</ul>
+<h3 id="configuration">Configuration</h3>
+<p>By default, Kubauth is configured to generate Opaque Access Tokens.</p>
+<p>This can be changed by setting a Helm chart configuration value:</p>
+<details class="abstract" open="open">
+<summary>values.yaml</summary>
+<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">oidc</span><span class="p">:</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.mycluster.mycompany.com</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nt">postLogoutURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.mycluster.mycompany.com/index</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="nt">jwtAccessToken</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="l l-Scalar l-Scalar-Plain">......</span>
+</span></code></pre></div>
+</details>
+<p>Redeploy Kubauth:</p>
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth<span class="w"> </span>--values<span class="w"> </span>./values.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.2.0-snapshot<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
+</span></code></pre></div>
+<p>You can now test, still using the public client:</p>
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.mycluster.mycompany.com<span class="w"> </span>--clientId<span class="w"> </span>public
+</span></code></pre></div>
+<p>Log in using <code>jim/jim123</code>. </p>
+<p><img alt="tokens" class="center" src="../../assets/kubauth-tokens2.png" width="70%" /></p>
+<p>Notice that the Access Token is significantly longer than an opaque token.</p>
+<p>The same applies to the CLI response:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Access<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1ODhlNWIyLTIwY2QtNGM3Mi04MGIwLTU0OGJjZDdjNDg0OCIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicHVibGljIl0sImF6cCI6InB1YmxpYyIsImV4cCI6MTc3Mzg1NDQyMSwiaWF0IjoxNzczODUwODIxLCJpc3MiOiJodHRwczovL2t1YmF1dGguaW5ncmVzcy5rdWJvMi5tYnAiLCJqdGkiOiJhNjk2ZDdlMC1iYmJkLTRkNDQtOTY2Ny04NWI4NThmY2I1ZWYiLCJzY3AiOlsib3BlbmlkIiwicHJvZmlsZSIsIm9mZmxpbmUiLCJncm91cHMiXSwic3ViIjoiamltIn0.mQ0Z_aQhAqkdA3fQTo8yNSyl1WLNbpPfJZOUT0J-zyU2BRkaAT_7hcD5TOAmHRH088HGrjWWSOhh8oO1fAzJ_lY50-uLGBGOvtFCFqWspcVLohzsJbbf5Uj0ir4IuOAVMdbW-G341FrCJzD7DiFFw4xHHJ_yc0GDS9JMZUlWgdUbxPtNF-Dt90j_SaOj6dsnZMJ8W08JwKKcTlOGgeQzze_hkPBWbb1HR9f6PShfAVGd1UVmT7fvZDwLs_3RthMR7ui3rX5P7kCR3ZxgKHoQjlbkARfcJ8ggxPxl_tHC7wp570MRslABA25x-c_zTuG5stTkzL3oEgcl8TPxr---Qw
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Refresh<span class="w"> </span>token:<span class="w"> </span>ory_rt_jvYjlVuq4zRnsXwl3LFXj8pZ1HTj4C7qOZ0ZO-l1UbQ.lawnhz9iMrxQ4dVhwl0JqjSxplbFqr-EVJYWu_TJCgM
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>ID<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1ODhlNWIyLTIwY2QtNGM3Mi04MGIwLTU0OGJjZDdjNDg0OCIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiM1NfTnRXWVVCRHhjN3JaeHBwTnBtUSIsImF1ZCI6WyJwdWJsaWMiXSwiYXV0aF90aW1lIjoxNzczODUwODIxLCJhenAiOiJwdWJsaWMiLCJleHAiOjE3NzM4NTQ0MjEsImlhdCI6MTc3Mzg1MDgyMSwiaXNzIjoiaHR0cHM6Ly9rdWJhdXRoLmluZ3Jlc3Mua3VibzIubWJwIiwianRpIjoiZjM1NDhkNmItYmU5OC00ZWI1LTk3NzktMDAzMmRmYjllYjNiIiwicmF0IjoxNzczODUwODIxLCJzdWIiOiJqaW0ifQ.U-j8bDWbprqTZW1OlLwjo7Y_RlXxJr3tazYukHO5uQ3xMFHKnBNxqJ3GyWrUpsY3NvBD_5xQIX1M67Nz54pV5Mhel2AqTNk1mm8GQcrdTUfCRZd6U3hmJ3LtpeyU5qCh2d2zbf0eZFGh-NtTVFj4zxoaiUWMzMEPD1VY0YV4ByH0oR6VZ22HKCgD3Ehqxdktwy5x9eckoVL1_b5K6hpfFc2O144PiU_c0qb0SCx9NGkHMEbS9Q9YdrkeMBPDt8ytB1L7GAMTS3Ij_Gtjc6wpFCH6AqYCahS_e9541coNOI07jZzsy5lCAGRVHYnfGa5-Ivbus5XkYd9UnI1wIlQpPQ
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>Expire<span class="w"> </span><span class="k">in</span>:<span class="w"> </span>59m59s
+</span></code></pre></div>
+<p>Now, try the following:</p>
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.mycluster.mycompany.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyAccessToken<span class="w"> </span><span class="p">|</span><span class="w"> </span>kc<span class="w"> </span>jwt
+</span></code></pre></div>
+<ul>
+<li>The <code>--onlyAccessToken</code> option instructs the command to output only the Access Token, useful for piping to other commands.</li>
+<li>The <code>kc jwt</code> command decodes the JWT Access Token.</li>
+</ul>
+<p>The response should look like:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Token: JWT Header:
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>{
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  &quot;alg&quot;: &quot;RS256&quot;,
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>  &quot;kid&quot;: &quot;9588e5b2-20cd-4c72-80b0-548bcd7c4848&quot;,
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>  &quot;typ&quot;: &quot;JWT&quot;
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>}
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>Token: JWT Payload:
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>{
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>  &quot;aud&quot;: [
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>    &quot;public&quot;
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>  ],
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>  &quot;azp&quot;: &quot;public&quot;,
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>  &quot;exp&quot;: 1773854789,
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>  &quot;exp_human&quot;: &quot;2026-03-18 17:26:29 UTC&quot;,
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>  &quot;iat&quot;: 1773851189,
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>  &quot;iat_human&quot;: &quot;2026-03-18 16:26:29 UTC&quot;,
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>  &quot;iss&quot;: &quot;https://kubauth.mycluster.mycompany.com&quot;,
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>  &quot;jti&quot;: &quot;3b7cf9b9-f70a-42bc-9c98-f113a03b104a&quot;,
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>  &quot;scp&quot;: [
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>    &quot;openid&quot;,
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>    &quot;profile&quot;,
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>    &quot;offline&quot;,
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>    &quot;groups&quot;
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>  ],
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>  &quot;sub&quot;: &quot;jim&quot;
+</span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>}
+</span></code></pre></div>
+<p>There is also a shortcut for decoding the Access Token:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kc token --issuerURL https://kubauth.mycluster.mycompany.com --clientId public  -a
+</span></code></pre></div>
 
 
 
@@ -1586,7 +1811,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../110-configuration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configuration">
+          <a href="../115-oidc-clients-configuration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: OIDC Clients Configuration">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1596,7 +1821,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Configuration
+                OIDC Clients Configuration
               </div>
             </div>
           </a>

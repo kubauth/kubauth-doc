@@ -411,12 +411,35 @@
   
   
     <li class="md-nav__item">
-      <a href="30-user-guide/110-configuration/" class="md-nav__link">
+      <a href="30-user-guide/110-users-configuration/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Configuration
+    Users Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-user-guide/115-oidc-clients-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OIDC Clients Configuration
     
   </span>
   
@@ -1189,6 +1212,29 @@
   
   
     <li class="md-nav__item">
+      <a href="70-kc/145-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc client
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="70-kc/150-audit/" class="md-nav__link">
         
   
@@ -1452,17 +1498,18 @@
 <p>Kubauth can operate autonomously with its own user database or act as a federation gateway for external identity providers such as LDAP.</p>
 <h2 id="key-features">Key Features</h2>
 <ul>
-<li><strong>OIDC Compliance</strong>: Supports standard OIDC flows including Authorization Code and Resource Owner Password Credentials (ROPC)</li>
-<li><strong>PKCE Support</strong>: Complete Proof Key for Code Exchange (PKCE) implementation with configurable enforcement</li>
-<li><strong>Kubernetes-Native Storage</strong>: All data stored as Kubernetes Custom Resources (CRDs) — no external database required</li>
-<li><strong>SSO Capabilities</strong>: Cross-application Single Sign-On with persistent sessions</li>
-<li><strong>User &amp; Group Management</strong>: Fine-grained user authentication and group-based authorization<ul>
-<li>Claims can be defined at user or group level</li>
-<li>User profiles can be built from multiple identity sources</li>
+<li><strong>OIDC Compliance</strong>: Supports standard OIDC flows including <strong><em>Authorization Code</em></strong>, <strong><em>Client Credentials</em></strong> and <strong><em>Resource Owner Password Credentials</em></strong> (ROPC).</li>
+<li><strong>PKCE Support</strong>: Complete Proof Key for Code Exchange (PKCE) implementation with configurable enforcement.</li>
+<li><strong>Kubernetes-Native Storage</strong>: All data stored as Kubernetes Custom Resources (CRDs) — no external database required.</li>
+<li><strong>SSO Capabilities</strong>: Cross-application Single Sign-On with persistent sessions.</li>
+<li><strong>User &amp; Group Management</strong>: Fine-grained user authentication and group-based authorization.<ul>
+<li>Claims can be defined at user or group level.</li>
+<li>User profiles can be built from multiple identity sources.</li>
 </ul>
 </li>
-<li><strong>Security First</strong>: bcrypt password hashing, JWT signing with persistent keys, secure session management</li>
-<li><strong>Production Ready</strong>: Health checks, admission webhooks, and Helm chart deployment</li>
+<li><strong>LDAP Integration</strong>: Support for one or more LDAP servers, with on-the-fly user and group enrichment.</li>
+<li><strong>Security First</strong>: bcrypt password hashing, JWT signing with persistent keys, secure session management.</li>
+<li><strong>Production Ready</strong>: Health checks, admission webhooks, and Helm chart deployment.</li>
 </ul>
 <h2 id="kubauth-components">Kubauth Components</h2>
 <p>Kubauth consists of several subprojects:</p>

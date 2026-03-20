@@ -12,13 +12,13 @@
         <meta name="author" content="Kubauth Project">
       
       
-        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/30-user-guide/110-configuration/">
+        <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/70-kc/145-client/">
       
       
-        <link rel="prev" href="../../20-installation/">
+        <link rel="prev" href="../140-token-nui/">
       
       
-        <link rel="next" href="../120-tokens-and-claims/">
+        <link rel="next" href="../150-audit/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Configuration - Kubauth</title>
+        <title>kc client - Kubauth</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configuration" class="md-skip">
+        <a href="#kc-client" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configuration
+              kc client
             
           </span>
         </div>
@@ -303,20 +303,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -332,7 +330,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             User Guide
@@ -343,119 +341,20 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Configuration
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/110-users-configuration/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Configuration
+    Users Configuration
     
   </span>
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#user-creation" class="md-nav__link">
-    <span class="md-ellipsis">
-      User Creation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="User Creation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#password-hash" class="md-nav__link">
-    <span class="md-ellipsis">
-      Password Hash
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#namespace" class="md-nav__link">
-    <span class="md-ellipsis">
-      Namespace
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#oidc-client-creation" class="md-nav__link">
-    <span class="md-ellipsis">
-      OIDC Client Creation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="OIDC Client Creation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#namespace_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Namespace
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -468,7 +367,30 @@
   
   
     <li class="md-nav__item">
-      <a href="../120-tokens-and-claims/" class="md-nav__link">
+      <a href="../../30-user-guide/115-oidc-clients-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OIDC Clients Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/120-tokens-and-claims/" class="md-nav__link">
         
   
   
@@ -491,7 +413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../130-audit/" class="md-nav__link">
+      <a href="../../30-user-guide/130-audit/" class="md-nav__link">
         
   
   
@@ -514,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../140-sso/" class="md-nav__link">
+      <a href="../../30-user-guide/140-sso/" class="md-nav__link">
         
   
   
@@ -537,7 +459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../150-users-groups/" class="md-nav__link">
+      <a href="../../30-user-guide/150-users-groups/" class="md-nav__link">
         
   
   
@@ -560,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../160-password-grant/" class="md-nav__link">
+      <a href="../../30-user-guide/160-password-grant/" class="md-nav__link">
         
   
   
@@ -583,7 +505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../170-ldap-connector/" class="md-nav__link">
+      <a href="../../30-user-guide/170-ldap-connector/" class="md-nav__link">
         
   
   
@@ -606,7 +528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../180-several-id-providers/" class="md-nav__link">
+      <a href="../../30-user-guide/180-several-id-providers/" class="md-nav__link">
         
   
   
@@ -629,7 +551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../190-identity-merging/" class="md-nav__link">
+      <a href="../../30-user-guide/190-identity-merging/" class="md-nav__link">
         
   
   
@@ -1067,18 +989,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1094,7 +1018,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             kc CLI Tool
@@ -1108,7 +1032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/100-overview/" class="md-nav__link">
+      <a href="../100-overview/" class="md-nav__link">
         
   
   
@@ -1131,7 +1055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/110-version/" class="md-nav__link">
+      <a href="../110-version/" class="md-nav__link">
         
   
   
@@ -1154,7 +1078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/120-hash/" class="md-nav__link">
+      <a href="../120-hash/" class="md-nav__link">
         
   
   
@@ -1177,7 +1101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/130-token/" class="md-nav__link">
+      <a href="../130-token/" class="md-nav__link">
         
   
   
@@ -1200,7 +1124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/140-token-nui/" class="md-nav__link">
+      <a href="../140-token-nui/" class="md-nav__link">
         
   
   
@@ -1220,10 +1144,213 @@
                 
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    kc client
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc client
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syntax
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-issuerurl" class="md-nav__link">
+    <span class="md-ellipsis">
+      --issuerURL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-clientid" class="md-nav__link">
+    <span class="md-ellipsis">
+      --clientId
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-clientsecret" class="md-nav__link">
+    <span class="md-ellipsis">
+      --clientSecret
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-insecureskipverify" class="md-nav__link">
+    <span class="md-ellipsis">
+      --insecureSkipVerify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-cafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      --caFile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-onlyaccesstoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --onlyAccessToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-a-detailaccesstoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      -a, --detailAccessToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      --scope
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opaque-access-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opaque Access Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwt-access-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWT Access Token
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/150-audit/" class="md-nav__link">
+      <a href="../150-audit/" class="md-nav__link">
         
   
   
@@ -1246,7 +1373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/160-jwt/" class="md-nav__link">
+      <a href="../160-jwt/" class="md-nav__link">
         
   
   
@@ -1269,7 +1396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/170-whoami/" class="md-nav__link">
+      <a href="../170-whoami/" class="md-nav__link">
         
   
   
@@ -1292,7 +1419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/180-logout/" class="md-nav__link">
+      <a href="../180-logout/" class="md-nav__link">
         
   
   
@@ -1315,7 +1442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../70-kc/190-config/" class="md-nav__link">
+      <a href="../190-config/" class="md-nav__link">
         
   
   
@@ -1433,28 +1560,100 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#user-creation" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      User Creation
+      Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="User Creation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syntax
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flags">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#password-hash" class="md-nav__link">
+  <a href="#-issuerurl" class="md-nav__link">
     <span class="md-ellipsis">
-      Password Hash
+      --issuerURL
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#namespace" class="md-nav__link">
+  <a href="#-clientid" class="md-nav__link">
     <span class="md-ellipsis">
-      Namespace
+      --clientId
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-clientsecret" class="md-nav__link">
+    <span class="md-ellipsis">
+      --clientSecret
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-insecureskipverify" class="md-nav__link">
+    <span class="md-ellipsis">
+      --insecureSkipVerify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-cafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      --caFile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-onlyaccesstoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --onlyAccessToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-a-detailaccesstoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      -a, --detailAccessToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      --scope
     </span>
   </a>
   
@@ -1466,19 +1665,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#oidc-client-creation" class="md-nav__link">
+  <a href="#examples" class="md-nav__link">
     <span class="md-ellipsis">
-      OIDC Client Creation
+      Examples
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="OIDC Client Creation">
+    <nav class="md-nav" aria-label="Examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#namespace_1" class="md-nav__link">
+  <a href="#opaque-access-token" class="md-nav__link">
     <span class="md-ellipsis">
-      Namespace
+      Opaque Access Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwt-access-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      JWT Access Token
     </span>
   </a>
   
@@ -1508,167 +1716,94 @@
   
 
 
-<h1 id="configuration">Configuration</h1>
-<p>Kubauth configuration is based on:</p>
+<h1 id="kc-client">kc client</h1>
+<h2 id="overview">Overview</h2>
+<p>The <code>kc client</code> command obtains an Access Token using the Client Credentials flow. </p>
 <ul>
-<li>Helm chart variables</li>
-<li>Users and Groups defined as Kubernetes Custom Resources</li>
-<li>Client Applications defined as Kubernetes Custom Resources</li>
+<li>If Access Token is in JWT form, its signature is checked against the server key.</li>
+<li>If Access Token is in opaque form, it is checked against server introspection endpoint.</li>
 </ul>
-<p>We recommend applying the sample configuration described below, as it will be referenced in subsequent chapters.</p>
-<h2 id="user-creation">User Creation</h2>
-<p>With Kubauth, users can be defined as Kubernetes Custom Resources.</p>
-<p>Here is a sample manifest that creates two users:</p>
-<details class="abstract" open="open">
-<summary>users.yaml</summary>
-<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nn">---</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jim</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-users</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">passwordHash</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$2a$12$yJEo9EoYn/ylGS4PCamfNe8PReYH9IPumsw7rMTDi3glZjuA7dXMm&quot;</span><span class="w">  </span><span class="c1"># jim123</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nn">---</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">john</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-users</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">passwordHash</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$2a$12$YjalsuGc6uuWtQqVuU/O.eW9L6QGU/vHk2wpvle4dsS7hC2Ic1F.q&quot;</span><span class="w">  </span><span class="c1"># john123</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">John DOE</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="nt">claims</span><span class="p">:</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="nt">office</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">208G</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="nt">emails</span><span class="p">:</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">johnd@mycompany.com</span>
+<h2 id="syntax">Syntax</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span>client<span class="w"> </span>--issuerURL<span class="w"> </span>&lt;url&gt;<span class="w"> </span>--clientId<span class="w"> </span>&lt;id&gt;<span class="w"> </span>--clientSecret<span class="w"> </span>&lt;secret&gt;<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
 </span></code></pre></div>
-</details>
-<ul>
-<li>The resource name is the user login.</li>
-<li>Users must be defined in a specific namespace (<code>kubauth-users</code>) to enable access control using Kubernetes RBAC.</li>
-<li>The only mandatory user attribute is the password, provided as a bcrypt hash.</li>
-<li>A <code>name</code> attribute can be set to specify the user's full name.</li>
-<li>A list of email addresses can be associated with each user.</li>
-<li>Each user can have a set of supplementary OIDC claims defined in <code>spec.claims</code>, which will be merged with system-provided claims. More details on this below.</li>
-</ul>
-<p>Deploy the manifest on your cluster:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>users.yaml<span class="w"> </span>
-</span></code></pre></div>
-<p>List the newly created users:</p>
-<p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-users<span class="w"> </span>get<span class="w"> </span>users.kubauth.kubotal.io
-</span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>NAME   USERNAME   EMAILS                    UID   COMMENT   DISABLED   AGE
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>jim                                                                    82m
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>john   John DOE   [&quot;johnd@mycompany.com&quot;]                              67m
-</span></code></pre></div></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>We provide the fully qualified resource name, as <code>user</code> may refer to other CRD types.<br>
-For convenience, an alias (<code>kuser</code>) has also been defined for Kubauth users:
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-users<span class="w"> </span>get<span class="w"> </span>kusers
-</span></code></pre></div></p>
-</div>
-<h3 id="password-hash">Password Hash</h3>
-<p>The <code>kc</code> CLI tool provides a subcommand to generate password hashes:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kc hash jim123
-</span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Secret: jim123
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Hash: $2a$12$nSplFbbsGoI7LXdhJrKx0erRmIv.zkTftG82sQZA0.v3l1eCf.ey.
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Use this hash in your User &#39;passwordHash&#39; field
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Example:
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  apiVersion: kubauth.kubotal.io/v1alpha1
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>  kind: User
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>  .....
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>  spec:
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    passwordHash: &quot;$2a$12$nSplFbbsGoI7LXdhJrKx0erRmIv.zkTftG82sQZA0.v3l1eCf.ey.&quot;
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>Or in your OidcClient &#39;hashedSecret&#39; field
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>Example:
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>  apiVersion: kubauth.kubotal.io/v1alpha1
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>  kind: OidcClient
-</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>  .....
-</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>  spec:
-</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>    hashedSecret: &quot;$2a$12$nSplFbbsGoI7LXdhJrKx0erRmIv.zkTftG82sQZA0.v3l1eCf.ey.&quot;
-</span></code></pre></div>
-<p>Copy and paste the appropriate line into your user manifest.</p>
-<h3 id="namespace">Namespace</h3>
-<p>If you need to change the namespace for user resource storage, modify the Helm chart configuration:</p>
-<details class="abstract" open="open">
-<summary>values.yaml</summary>
-<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">oidc</span><span class="p">:</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">postLogoutURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp/index</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">....</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nt">ucrd</span><span class="p">:</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-users</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="nt">createNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span></code></pre></div>
-</details>
-<h2 id="oidc-client-creation">OIDC Client Creation</h2>
-<p>In OIDC terminology, a 'client' is an application that delegates user authentication to an OIDC server. As such, it must be registered with the server.</p>
-<p>With Kubauth, client applications are defined as Kubernetes Custom Resources.</p>
-<p>Here is an initial example:</p>
-<details class="abstract" open="open">
-<summary>client-public.yaml</summary>
-<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OidcClient</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">public</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-oidc</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="nt">redirectURIs</span><span class="p">:</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;http://127.0.0.1:9921/callback&quot;</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span><span class="nt">grantTypes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;refresh_token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;authorization_code&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span><span class="nt">responseTypes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;id_token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;id_token</span><span class="nv"> </span><span class="s">token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">id_token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">token&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">id_token</span><span class="nv"> </span><span class="s">token&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span><span class="nt">scopes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;openid&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;offline&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;profile&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;groups&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;email&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;offline_access&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A test OIDC public client</span>
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">  </span><span class="nt">public</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
-</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">  </span><span class="c1"># hashedSecret: &quot;$2a$12$9vdc.xb3Zf4ts/C2pSvIOuGmFiv0EStBJWslaaycavblaIjYZ9Mia&quot;</span>
-</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">  </span><span class="c1"># accessTokenLifespan: 1h</span>
-</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">  </span><span class="c1"># refreshTokenLifespan: 1h</span>
-</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">  </span><span class="c1"># idTokenLifespan: 1h</span>
-</span></code></pre></div>
-</details>
-<ul>
-<li>The resource name is the client ID.</li>
-<li>The <code>redirectURIs</code> list must be configured for each application. The value shown here is specific to the test client included in the <code>kc</code> CLI (see below).</li>
-<li>The <code>grantTypes</code> list defines which authorization flows are accepted by this client.</li>
-<li>The <code>responseTypes</code> list defines what types of tokens or credentials the client can expect from the authorization endpoint after user authentication.</li>
-<li>The <code>scopes</code> list defines which scopes can be requested by the application.</li>
-<li>This client is defined as <code>public</code>, so no client secret is required.<br>For confidential clients, a hashed <code>secret</code> must be provided, as shown in the commented line. Use the <code>kc hash</code> command described above to generate it.</li>
-</ul>
-<p>Apply this manifest:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>client-public.yaml
-</span></code></pre></div>
-<p>List existing OIDC clients:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-oidc<span class="w"> </span>get<span class="w"> </span>oidcclients
-</span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>NAME     PUB.   DISPLAY   DESCRIPTION                 LINK   AGE
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>public   true             A test OIDC public client          25m
-</span></code></pre></div>
+<h2 id="flags">Flags</h2>
+<h3 id="-issuerurl"><code>--issuerURL</code></h3>
+<p>The Kubauth OIDC issuer URL.</p>
+<p><strong>Example:</strong> <code>--issuerURL https://kubauth.example.com</code></p>
+<p>Value may also be fetched from <code>KC_ISSUER_URL</code> environment variable, or Kubernetes kubeconfig if <code>kc init ....</code> has been used.</p>
+<hr />
+<h3 id="-clientid"><code>--clientId</code></h3>
+<p>The OIDC client ID to use for authentication.</p>
+<p><strong>Example:</strong> <code>--clientId private</code></p>
+<p>Value may also be fetched from <code>KC_CLIENT_ID</code> environment variable, or Kubernetes kubeconfig if <code>kc init ....</code> has been used.</p>
+<hr />
+<h3 id="-clientsecret"><code>--clientSecret</code></h3>
+<p>The client secret.</p>
+<p><strong>Example:</strong> <code>--clientSecret mysecret123</code></p>
+<p>Value may also be fetched from <code>KC_CLIENT_SECRET</code> environment variable, or Kubernetes kubeconfig if <code>kc init ....</code> has been used.</p>
+<hr />
+<h3 id="-insecureskipverify"><code>--insecureSkipVerify</code></h3>
+<p>Skip TLS certificate verification. Use only for testing with self-signed certificates.</p>
+<p><strong>Example:</strong> <code>--insecureSkipVerify</code></p>
+<hr />
+<h3 id="-cafile"><code>--caFile</code></h3>
+<p>Provide a CA file for TLS certificate verification of the issuer URL.</p>
+<p><strong>Example:</strong> <code>--caFile ./CA.crt</code></p>
+<hr />
+<h3 id="-onlyaccesstoken"><code>--onlyAccessToken</code></h3>
+<p>Output only the access token (base64-encoded). Useful for piping to other commands or scripts.</p>
+<p><strong>Example:</strong> <code>--onlyAccessToken</code></p>
+<hr />
+<h3 id="-a-detailaccesstoken"><code>-a</code>, <code>--detailAccessToken</code></h3>
+<p>Decode and display the JWT Access token payload. This is equivalent to <code>kc token .... --onlyAccessToken | kc jwt</code>.</p>
+<p><strong>Example:</strong> <code>-a</code></p>
 <blockquote>
-<p>This client will be used in the next chapter to test tokens and claims.</p>
+<p>The Kubauth server must be configured to generate AccessToken in JWT form.</p>
 </blockquote>
-<h3 id="namespace_1">Namespace</h3>
-<p>If you need to change the namespace for client resource storage, modify the Helm chart configuration:</p>
-<details class="abstract" open="open">
-<summary>values.yaml</summary>
-<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">oidc</span><span class="p">:</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="nt">postLogoutURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp/index</span>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">....</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="nt">clients</span><span class="p">:</span>
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="nt">createNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-oidc</span>
+<hr />
+<h3 id="-scope"><code>--scope</code></h3>
+<p>List of OAuth2 scopes to request.</p>
+<p><strong>Default:</strong> <code>openid profile groups offline</code></p>
+<p><strong>Example:</strong> <code>--scope "openid" --scope "profile" --scope "email" --scope "groups"</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In its current version, Kubauth does not enforce scope restrictions for the Client Credentials flow.</p>
+</div>
+<h2 id="examples">Examples</h2>
+<h3 id="opaque-access-token">Opaque Access Token</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kc<span class="w"> </span>client<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w">  </span>--clientId<span class="o">=</span>private<span class="w"> </span>--clientSecret<span class="o">=</span>private-secret
 </span></code></pre></div>
-</details>
+<p><strong>Output:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Access token: ory_at_Jr45qPvItBKA8TRy-kYcrfE96ayosKwSmkTp1kVctAk.A1Asl0v_Qb9vXHaYDx8QlAhHT301QiY4xl8zdfHjXyw
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Refresh token: null
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>ID token: null
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Expire in: 4m59s
+</span></code></pre></div>
+<h3 id="jwt-access-token">JWT Access Token</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kc<span class="w"> </span>client<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w">  </span>--clientId<span class="o">=</span>private<span class="w"> </span>--clientSecret<span class="o">=</span>private-secret<span class="w"> </span>-a
+</span></code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg4MDdjNzUzLTU3MTYtNDIzYi1hZWFmLTNiODRiYTIxOWY2NyIsInR5cCI6IkpXVCJ9.eyJhdWQiOltdLCJleHAiOjE3NzIwMTgzMDEsImlhdCI6MTc3MjAxODAwMSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo2ODAxIiwianRpIjoiYjEyYTdiMWItZjk3Ni00MjIwLWE4MjYtNDljMjVlOGE4ZWM0Iiwic2NwIjpbIm9wZW5pZCIsInByb2ZpbGUiLCJvZmZsaW5lIiwiZ3JvdXBzIl19.Wl2nFhxXKzeABPSNIwaNPPJ9qhQUDffY340kfh_3vGaHrXeRQEPG_UWs9dx_4e0B2uGvRkDzp3-R5pM7c9_C_yzmypgt3jLPKxtgAP2sSxuNkk7iMTJXTee-BRCI43a8vR7LqucHCT2rnl_Yw4Y137YUWpUtXkemm1HXwbyOR9dz8oWw96RJN23TsvNFpS6IA-W71RINmph97wccxMV7PrjLaq_X4FryHqon4TU_7wBQGT_2w5sTY972p0lbhEjDtm3dhIJXoBP4u7XPReIDVRjCcKhJZrHT_7EanubfFPpOF3zoOheMnRLpKOmzcU-Vl7CjFL944JRvJtS0zVrh-Q
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Refresh token: null
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>ID token: null
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Expire in: 4m59s
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>AccessToken: JWT Payload:
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>{
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>  &quot;aud&quot;: [],
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>  &quot;exp&quot;: 1772018301,
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  &quot;exp_human&quot;: &quot;2026-02-25 11:18:21 UTC&quot;,
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>  &quot;iat&quot;: 1772018001,
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  &quot;iat_human&quot;: &quot;2026-02-25 11:13:21 UTC&quot;,
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>  &quot;iss&quot;: &quot;http://localhost:6801&quot;,
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>  &quot;jti&quot;: &quot;b12a7b1b-f976-4220-a826-49c25e8a8ec4&quot;,
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>  &quot;scp&quot;: [
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    &quot;openid&quot;,
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    &quot;profile&quot;,
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    &quot;offline&quot;,
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>    &quot;groups&quot;
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>  ]
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>}
+</span></code></pre></div>
 
 
 
@@ -1698,7 +1833,7 @@ For convenience, an alias (<code>kuser</code>) has also been defined for Kubauth
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../20-installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation">
+          <a href="../140-token-nui/" class="md-footer__link md-footer__link--prev" aria-label="Previous: kc token-nui">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1708,20 +1843,20 @@ For convenience, an alias (<code>kuser</code>) has also been defined for Kubauth
                 Previous
               </span>
               <div class="md-ellipsis">
-                Installation
+                kc token-nui
               </div>
             </div>
           </a>
         
         
           
-          <a href="../120-tokens-and-claims/" class="md-footer__link md-footer__link--next" aria-label="Next: Tokens and Claims">
+          <a href="../150-audit/" class="md-footer__link md-footer__link--next" aria-label="Next: kc audit">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Tokens and Claims
+                kc audit
               </div>
             </div>
             <div class="md-footer__button md-icon">

@@ -346,12 +346,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../110-configuration/" class="md-nav__link">
+      <a href="../110-users-configuration/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Configuration
+    Users Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../115-oidc-clients-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OIDC Clients Configuration
     
   </span>
   
@@ -1193,6 +1216,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../70-kc/145-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc client
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../70-kc/150-audit/" class="md-nav__link">
         
   
@@ -1458,17 +1504,17 @@
 <h3 id="logout">Logout</h3>
 <p>What if you want to log in with different user credentials?</p>
 <p>You must first log out. This can be accomplished with another <code>kc</code> subcommand:</p>
-<p><div class="language-shell copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>
+<p><div class="language-shell copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.mycluster.mycompany.com
 </span></code></pre></div>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>No<span class="w"> </span>OIDC<span class="w"> </span>configuration<span class="w"> </span>found<span class="w"> </span><span class="k">in</span><span class="w"> </span>kubeconfig
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Opening<span class="w"> </span>browser<span class="w"> </span>to<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>endpoint:<span class="w"> </span>https://kubauth.ingress.kubo6.mbp/oauth2/logout
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Opening<span class="w"> </span>browser<span class="w"> </span>to<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>endpoint:<span class="w"> </span>https://kubauth.mycluster.mycompany.com/oauth2/logout
 </span></code></pre></div></p>
 <p>Disregard the first message about kubeconfig. This will be explained later in the <a href="../../50-kubernetes-integration/140-workstation-setup/">Kubernetes integration</a> section.</p>
 <p>As indicated, a browser should open to call the logout URL.</p>
 <p><img alt="logout" class="center" src="../../assets/kubauth-logout1.png" width="80%" /></p>
 <h2 id="session-storage">Session Storage</h2>
 <p>Sessions are persisted as Kubernetes resources:</p>
-<p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-sso<span class="w"> </span>get<span class="w"> </span>ssosessions
+<p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>ssosessions
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>NAME<span class="w">                                                                 </span>LOGIN<span class="w">   </span>NAME<span class="w">       </span>DEADLINE<span class="w">               </span>AGE
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>h-6d4d8f33c407a727857ba335d257a04d6d0116c40fa81c26903bb9469139563c<span class="w">   </span>john<span class="w">    </span>John<span class="w"> </span>DOE<span class="w">   </span><span class="m">2025</span>-10-28T00:19:44Z<span class="w">   </span>34s
@@ -1480,18 +1526,18 @@
 <details class="abstract" open="open">
 <summary>values.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">oidc</span><span class="p">:</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">postLogoutURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp/index</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.mycluster.mycompany.com</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">postLogoutURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.mycluster.mycompany.com/index</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">sso</span><span class="p">:</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-sso</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">sessionNamespace</span><span class="p">:</span><span class="w"> </span><span class="c1"># Default to .Release.namespace (kubauth)</span>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nt">createNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nt">lifeTime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8h&quot;</span>
 </span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="nt">sticky</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></code></pre></div>
 </details>
 <ul>
-<li><code>namespace</code>: Specifies the namespace where SSO sessions are persisted, and enables its creation during Kubauth deployment.</li>
+<li><code>sessionNamespace</code>: Specifies the namespace where SSO sessions are persisted, and enables its creation during Kubauth deployment.</li>
 <li><code>lifeTime</code>: Sets the session duration. This is an absolute duration with no idle timeout.</li>
 <li><code>sticky</code>: When true, the session cookie is persistent. When false, the session expires when the browser is closed.</li>
 </ul>

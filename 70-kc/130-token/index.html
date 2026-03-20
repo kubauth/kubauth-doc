@@ -344,12 +344,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../30-user-guide/110-configuration/" class="md-nav__link">
+      <a href="../../30-user-guide/110-users-configuration/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Configuration
+    Users Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/115-oidc-clients-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OIDC Clients Configuration
     
   </span>
   
@@ -1203,7 +1226,7 @@
           <li class="md-nav__item">
   <a href="#-onlyidtoken" class="md-nav__link">
     <span class="md-ellipsis">
-      --onlyIDToken
+      --onlyIdToken
     </span>
   </a>
   
@@ -1221,16 +1244,25 @@
           <li class="md-nav__item">
   <a href="#-d-detailidtoken" class="md-nav__link">
     <span class="md-ellipsis">
-      -d, --detailIDToken
+      -d, --detailIdToken
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-scopes" class="md-nav__link">
+  <a href="#-a-detailaccesstoken" class="md-nav__link">
     <span class="md-ellipsis">
-      --scopes
+      -a, --detailAccessToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      --scope
     </span>
   </a>
   
@@ -1443,6 +1475,29 @@
   
   <span class="md-ellipsis">
     kc token-nui
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../145-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc client
     
   </span>
   
@@ -1745,7 +1800,7 @@
           <li class="md-nav__item">
   <a href="#-onlyidtoken" class="md-nav__link">
     <span class="md-ellipsis">
-      --onlyIDToken
+      --onlyIdToken
     </span>
   </a>
   
@@ -1763,16 +1818,25 @@
           <li class="md-nav__item">
   <a href="#-d-detailidtoken" class="md-nav__link">
     <span class="md-ellipsis">
-      -d, --detailIDToken
+      -d, --detailIdToken
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-scopes" class="md-nav__link">
+  <a href="#-a-detailaccesstoken" class="md-nav__link">
     <span class="md-ellipsis">
-      --scopes
+      -a, --detailAccessToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      --scope
     </span>
   </a>
   
@@ -1985,6 +2049,11 @@
 <h1 id="kc-token">kc token</h1>
 <h2 id="overview">Overview</h2>
 <p>The <code>kc token</code> command obtains OIDC tokens using the authorization code flow. It opens a browser for user authentication and returns access, refresh, and ID tokens.</p>
+<ul>
+<li>The ID token signature is checked against the server key.</li>
+<li>If Access Token is in JWT form, its signature is checked against the server key.</li>
+<li>If Access Token is in opaque form, it is checked against server introspection endpoint.</li>
+</ul>
 <h2 id="syntax">Syntax</h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>&lt;url&gt;<span class="w"> </span>--clientId<span class="w"> </span>&lt;id&gt;<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
 </span></code></pre></div>
@@ -2002,7 +2071,7 @@
 <h3 id="-clientsecret"><code>--clientSecret</code></h3>
 <p>The client secret (for confidential clients).</p>
 <p><strong>Example:</strong> <code>--clientSecret mysecret123</code></p>
-<p>Value may also be fetched from <code>KC_CLIENT_ID</code> environment variable, or Kubernetes kubeconfig if <code>kc init ....</code> has been used.</p>
+<p>Value may also be fetched from <code>KC_CLIENT_SECRET</code> environment variable, or Kubernetes kubeconfig if <code>kc init ....</code> has been used.</p>
 <hr />
 <h3 id="-insecureskipverify"><code>--insecureSkipVerify</code></h3>
 <p>Skip TLS certificate verification. Use only for testing with self-signed certificates.</p>
@@ -2012,22 +2081,29 @@
 <p>Provide a CA file for TLS certificate verification of ìssuerURL</p>
 <p><strong>Example:</strong> <code>--caFile ./CA.crt</code></p>
 <hr />
-<h3 id="-onlyidtoken"><code>--onlyIDToken</code></h3>
+<h3 id="-onlyidtoken"><code>--onlyIdToken</code></h3>
 <p>Output only the ID token (base64-encoded JWT). Useful for piping to other commands or scripts.</p>
-<p><strong>Example:</strong> <code>--onlyIDToken</code></p>
+<p><strong>Example:</strong> <code>--onlyIdToken</code></p>
 <hr />
 <h3 id="-onlyaccesstoken"><code>--onlyAccessToken</code></h3>
 <p>Output only the access token (base64-encoded). Useful for piping to other commands or scripts.</p>
 <p><strong>Example:</strong> <code>--onlyAccessToken</code></p>
 <hr />
-<h3 id="-d-detailidtoken"><code>-d</code>, <code>--detailIDToken</code></h3>
-<p>Decode and display the JWT token payload. This is a shortcut for <code>| kc jwt</code>.</p>
+<h3 id="-d-detailidtoken"><code>-d</code>, <code>--detailIdToken</code></h3>
+<p>Decode and display the JWT OIDC token payload. This is equivalent to <code>kc token .... --onlyIdToken | kc jwt</code>.</p>
 <p><strong>Example:</strong> <code>-d</code></p>
 <hr />
-<h3 id="-scopes"><code>--scopes</code></h3>
-<p>Comma-separated list of OAuth2 scopes to request.</p>
-<p><strong>Default:</strong> <code>openid,profile,groups,offline</code></p>
-<p><strong>Example:</strong> <code>--scopes openid,profile,email,groups</code></p>
+<h3 id="-a-detailaccesstoken"><code>-a</code>, <code>--detailAccessToken</code></h3>
+<p>Decode and display the JWT Access token payload. This is equivalent to <code>kc token .... --onlyAccessToken | kc jwt</code>.</p>
+<p><strong>Example:</strong> <code>-a</code></p>
+<blockquote>
+<p>The Kubauth server must be configured to generate AccessToken in JWT form.</p>
+</blockquote>
+<hr />
+<h3 id="-scope"><code>--scope</code></h3>
+<p>List of OAuth2 scopes to request.</p>
+<p><strong>Default:</strong> <code>openid profile groups offline</code></p>
+<p><strong>Example:</strong> <code>--scope "openid" --scope "profile" --scope "email" --scope "groups"</code></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>In its current version, Kubauth does not manage scopes. All claims are included in the JWT token.</p>
@@ -2087,13 +2163,13 @@
 </span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>}
 </span></code></pre></div></p>
 <h3 id="only-id-token-for-piping">Only ID Token (for Piping)</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIDToken
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken
 </span></code></pre></div>
 <p><strong>Output:</strong>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiaGNBY2dtdmdBekJlSGgyODlkWHF3USIsImF1ZCI6WyJwdWJsaWMiXSwi...
 </span></code></pre></div></p>
 <h3 id="pipe-to-jwt-decoder">Pipe to JWT Decoder</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIDToken<span class="w"> </span><span class="p">|</span><span class="w"> </span>kc<span class="w"> </span>jwt
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken<span class="w"> </span><span class="p">|</span><span class="w"> </span>kc<span class="w"> </span>jwt
 </span></code></pre></div>
 <h2 id="behavior">Behavior</h2>
 <h3 id="browser-flow">Browser Flow</h3>
@@ -2108,10 +2184,10 @@
 <h3 id="token-storage">Token Storage</h3>
 <p>Tokens are displayed but not automatically stored. If you need to save them:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Save ID token to variable</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nv">ID_TOKEN</span><span class="o">=</span><span class="k">$(</span>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIDToken<span class="k">)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nv">ID_TOKEN</span><span class="o">=</span><span class="k">$(</span>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken<span class="k">)</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Save to file</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIDToken<span class="w"> </span>&gt;<span class="w"> </span>token.txt
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken<span class="w"> </span>&gt;<span class="w"> </span>token.txt
 </span></code></pre></div>
 <h3 id="sso-session">SSO Session</h3>
 <p>If you previously checked "Remember me" on the login page, subsequent <code>kc token</code> commands will complete automatically without requiring you to log in again (SSO session active).</p>

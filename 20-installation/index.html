@@ -18,7 +18,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../30-user-guide/110-configuration/">
+        <link rel="next" href="../30-user-guide/110-users-configuration/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -360,6 +360,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-an-alternate-ingress-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using an alternate ingress controller
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -413,12 +422,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../30-user-guide/110-configuration/" class="md-nav__link">
+      <a href="../30-user-guide/110-users-configuration/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Configuration
+    Users Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../30-user-guide/115-oidc-clients-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OIDC Clients Configuration
     
   </span>
   
@@ -1191,6 +1223,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../70-kc/145-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc client
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../70-kc/150-audit/" class="md-nav__link">
         
   
@@ -1427,6 +1482,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-an-alternate-ingress-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using an alternate ingress controller
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1457,7 +1521,8 @@
 <p><strong>Certificate Manager:</strong> The Certificate Manager must be deployed on your target Kubernetes cluster with a <code>ClusterIssuer</code> configured for certificate management.</p>
 </li>
 <li>
-<p><strong>Ingress Controller:</strong> An NGINX ingress controller must be deployed on your target Kubernetes cluster.</p>
+<p><strong>Ingress Controller:</strong> An ingress controller must be deployed on your target Kubernetes cluster. The provided Helm chart assumes NGINX as the ingress controller. 
+  If needed, you can disable it and configure your own (see <a href="#using-an-alternate-ingress-controller">below</a>). </p>
 </li>
 <li>
 <p><strong>Helm:</strong> Helm must be installed on your local workstation.</p>
@@ -1474,31 +1539,37 @@
 <details class="abstract" open="open">
 <summary>values.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">oidc</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">postLogoutURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.ingress.kubo6.mbp/index</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.mycluster.mycompany.com</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">postLogoutURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.mycluster.mycompany.com/index</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">ingress</span><span class="p">:</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.ingress.kubo6.mbp</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">server</span><span class="p">:</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">certificateIssuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-odp</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.mycluster.mycompany.com</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">server</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">certificateIssuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-issuer</span>
 </span></code></pre></div>
 </details>
 <p>Replace the placeholder values with your environment-specific configuration:</p>
 <ul>
-<li><strong><code>kubauth.ingress.kubo6.mbp</code></strong>: The hostname which will be used to access the Kubauth service from outside the cluster.<br><blockquote>
+<li><strong><code>kubauth.mycluster.mycompany.com</code></strong>: The hostname used to access the Kubauth service from outside the cluster.<br><blockquote>
 <p>Ensure this hostname is registered in your DNS.</p>
 </blockquote>
 </li>
-<li><strong><code>cluster-odp</code></strong>: The <code>ClusterIssuer</code> name from your Certificate Manager for ingress certificate provisioning.</li>
+<li><strong><code>my-issuer</code></strong>: The <code>ClusterIssuer</code> name from your Certificate Manager for ingress certificate provisioning.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This <code>values.yaml</code> represents the minimum required configuration. Additional parameters may be introduced in subsequent chapters.</p>
 </div>
 <p>Deploy Kubauth using the following command:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth<span class="w"> </span>--values<span class="w"> </span>./values.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.2<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth<span class="w"> </span>--values<span class="w"> </span>./values.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.2.0-snapshot<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
 </span></code></pre></div>
+<blockquote>
+<p>The release name (here <code>kubauth</code>) is important, as most created objects use it as a base name. 
+  If you change it, you will need to adjust most of the manifests and commands in this manual accordingly.
+  The same applies to the namespace.</p>
+</blockquote>
 <p>After a few seconds, verify that the Kubauth server pod is running:</p>
 <p><div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>pods
 </span></code></pre></div>
@@ -1506,10 +1577,10 @@
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>kubauth-5d4fdc6bc8-7rlb6<span class="w">   </span><span class="m">3</span>/3<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>55s
 </span></code></pre></div></p>
 <p>Confirm that the Kubauth issuer URL is accessible:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl https://kubauth.ingress.kubo6.mbp/.well-known/openid-configuration
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl https://kubauth.mycluster.mycompany.com/.well-known/openid-configuration
 </span></code></pre></div>
 <h2 id="kc-cli-tool-installation"><code>kc</code> CLI Tool Installation</h2>
-<p>Download the <code>kc</code> CLI from the <a href="https://github.com/kubauth/kc/releases/tag/0.1.2" target="_blank">GitHub releases page</a>, rename it to <code>kc</code>, make it executable, and move it to your system path:</p>
+<p>Download the <code>kc</code> CLI from the <a href="https://github.com/kubauth/kc/releases/tag/0.2.0" target="_blank">GitHub releases page</a>, rename it to <code>kc</code>, make it executable, and move it to your system path:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mv<span class="w"> </span>kc_*_*<span class="w"> </span>kc
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>kc
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>sudo<span class="w"> </span>mv<span class="w"> </span>kc<span class="w"> </span>/usr/local/bin/
@@ -1517,6 +1588,28 @@
 <p>Verify the installation:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span>version
 </span></code></pre></div>
+<h2 id="using-an-alternate-ingress-controller">Using an alternate ingress controller</h2>
+<p>If you need to use a different ingress controller:</p>
+<ul>
+<li>Disable the built-in ingress in the Helm chart values: </li>
+</ul>
+<details class="abstract" open="open">
+<summary>values.yaml</summary>
+<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">oidc</span><span class="p">:</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">......</span><span class="w"> </span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ingress</span><span class="p p-Indicator">:</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">......</span><span class="w"> </span>
+</span></code></pre></div>
+</details>
+<ul>
+<li>
+<p>Configure your controller to use the <code>kubauth-oidc-server</code> backend service on port 443/oidc.</p>
+</li>
+<li>
+<p>Configure your controller for SSL passthrough, as TLS is terminated by the <code>kubauth</code> pod itself.</p>
+</li>
+</ul>
 
 
 
@@ -1563,13 +1656,13 @@
         
         
           
-          <a href="../30-user-guide/110-configuration/" class="md-footer__link md-footer__link--next" aria-label="Next: Configuration">
+          <a href="../30-user-guide/110-users-configuration/" class="md-footer__link md-footer__link--next" aria-label="Next: Users Configuration">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Configuration
+                Users Configuration
               </div>
             </div>
             <div class="md-footer__button md-icon">

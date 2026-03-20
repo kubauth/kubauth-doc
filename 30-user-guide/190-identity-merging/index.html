@@ -346,12 +346,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../110-configuration/" class="md-nav__link">
+      <a href="../110-users-configuration/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Configuration
+    Users Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../115-oidc-clients-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OIDC Clients Configuration
     
   </span>
   
@@ -1259,6 +1282,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../70-kc/145-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    kc client
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../70-kc/150-audit/" class="md-nav__link">
         
   
@@ -1633,7 +1679,7 @@
 </blockquote>
 <h3 id="bob">Bob</h3>
 <p>First, log in as the <code>bob</code> user:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>bob<span class="w"> </span>--password<span class="w"> </span>bob123<span class="w"> </span>-d
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.mycluster.mycompany.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>bob<span class="w"> </span>--password<span class="w"> </span>bob123<span class="w"> </span>-d
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>JWT Payload:
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>{
@@ -1657,7 +1703,7 @@
 </span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>  ],
 </span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>  &quot;iat&quot;: 1761830106,
 </span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>  &quot;iat_human&quot;: &quot;2025-10-30 13:15:06 UTC&quot;,
-</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>  &quot;iss&quot;: &quot;https://kubauth.ingress.kubo6.mbp&quot;,
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>  &quot;iss&quot;: &quot;https://kubauth.mycluster.mycompany.com&quot;,
 </span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>  &quot;jti&quot;: &quot;39600b39-267b-4f31-9179-3f698418e85c&quot;,
 </span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>  &quot;name&quot;: &quot;Bob MORANE&quot;,
 </span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>  &quot;rat&quot;: 1761830106,
@@ -1685,7 +1731,7 @@
 <p>This tool looks up the last login for the specified user. It first displays a line in the same format as the <code>kc audit logins</code> command. Then it displays a table showing what information each provider contributed.</p>
 <h3 id="alice">alice</h3>
 <p>Now, log in as the <code>alice</code> user:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>alice<span class="w"> </span>--password<span class="w"> </span>alice123<span class="w"> </span>-d
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.mycluster.mycompany.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>alice<span class="w"> </span>--password<span class="w"> </span>alice123<span class="w"> </span>-d
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>.....
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>JWT Payload:
@@ -1710,7 +1756,7 @@
 </span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>  ],
 </span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>  &quot;iat&quot;: 1761834557,
 </span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>  &quot;iat_human&quot;: &quot;2025-10-30 14:29:17 UTC&quot;,
-</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>  &quot;iss&quot;: &quot;https://kubauth.ingress.kubo6.mbp&quot;,
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>  &quot;iss&quot;: &quot;https://kubauth.mycluster.mycompany.com&quot;,
 </span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>  &quot;jti&quot;: &quot;76a841c2-43fa-4635-9702-55c856f75f45&quot;,
 </span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>  &quot;name&quot;: &quot;Alice SMITH&quot;,
 </span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>  &quot;office&quot;: &quot;312R&quot;,
@@ -1739,7 +1785,7 @@
 </span></code></pre></div></p>
 <h3 id="alice-2">alice (2)</h3>
 <p>Now, let's try to log in with the password defined in the <code>ucrd</code> user database:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>alice<span class="w"> </span>--password<span class="w"> </span>smith123<span class="w"> </span>-d
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.mycluster.mycompany.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>alice<span class="w"> </span>--password<span class="w"> </span>smith123<span class="w"> </span>-d
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>token request failed with status 400: {&quot;error&quot;:&quot;invalid_grant&quot;,&quot;error_description&quot;:&quot;The provided authorization grant \
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>(e.g., authorization code, resource owner credentials) or refresh token is invalid, expired, revoked, \
@@ -1764,7 +1810,7 @@
 <p>This also means the password definition in the Kubernetes CR database for <code>alice</code> is unused.</p>
 <h3 id="john">john</h3>
 <p>Now, let's try to log in with the <code>john</code> user:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>john<span class="w"> </span>--password<span class="w"> </span>john123<span class="w"> </span>-d
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.mycluster.mycompany.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>john<span class="w"> </span>--password<span class="w"> </span>john123<span class="w"> </span>-d
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>.......
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>JWT Payload:
@@ -1877,14 +1923,14 @@
 <ul>
 <li>
 <p>Users <code>jim</code> and <code>john</code> now appear to be non-existent:
-    <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>john<span class="w"> </span>--password<span class="w"> </span>john123<span class="w"> </span>-d
+    <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.mycluster.mycompany.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>john<span class="w"> </span>--password<span class="w"> </span>john123<span class="w"> </span>-d
 </span></code></pre></div>
     <div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>token request failed with status 400: {&quot;error&quot;:&quot;invalid_grant&quot;, ......... Unable to authenticate the provided username and password credentials.&quot;}
 </span></code></pre></div></p>
 </li>
 <li>
 <p>Enrichment of LDAP user attributes is still effective, and groups from LDAP have been prefixed:
-    <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.ingress.kubo6.mbp<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>bob<span class="w"> </span>--password<span class="w"> </span>bob123<span class="w"> </span>-d
+    <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.mycluster.mycompany.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--login<span class="w"> </span>bob<span class="w"> </span>--password<span class="w"> </span>bob123<span class="w"> </span>-d
 </span></code></pre></div>
     <div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>JWT Payload:
 </span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>{
