@@ -1563,7 +1563,7 @@
 <p>This <code>values.yaml</code> represents the minimum required configuration. Additional parameters may be introduced in subsequent chapters.</p>
 </div>
 <p>Deploy Kubauth using the following command:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth<span class="w"> </span>--values<span class="w"> </span>./values.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.2.0-snapshot<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth<span class="w"> </span>--values<span class="w"> </span>./values.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.2.0<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
 </span></code></pre></div>
 <blockquote>
 <p>The release name (here <code>kubauth</code>) is important, as most created objects use it as a base name. 
