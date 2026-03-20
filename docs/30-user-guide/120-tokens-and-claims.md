@@ -213,7 +213,7 @@ This can be changed by setting a Helm chart configuration value:
 Redeploy Kubauth:
 
 ``` { .bash .copy }
-helm -n kubauth upgrade -i kubauth --values ./values.yaml oci://quay.io/kubauth/charts/kubauth --version 0.2.0-snapshot --create-namespace --wait
+helm -n kubauth upgrade -i kubauth --values ./values.yaml oci://quay.io/kubauth/charts/kubauth --version 0.2.0 --create-namespace --wait
 ```
 
 You can now test, still using the public client:

@@ -54,7 +54,7 @@ Deploy the Helm chart:
 
 ``` { .shell .copy}
 helm -n kubauth upgrade -i kubauth-kubeconfig --values ./values-kubeconfig.yaml \
-    oci://quay.io/kubauth/charts/kubauth-kubeconfig --version 0.2.0-snapshot \
+    oci://quay.io/kubauth/charts/kubauth-kubeconfig --version 0.2.0 \
     --create-namespace --wait
 ```
 

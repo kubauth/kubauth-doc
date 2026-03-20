@@ -44,7 +44,7 @@ In your working directory, create a file like the following:
 You can now proceed with the configuration using the dedicated Helm chart:
 
 ``` { .bash .copy }
-helm -n kubauth upgrade -i kubauth-apiserver --values ./values-k8s.yaml oci://quay.io/kubauth/charts/kubauth-apiserver --version 0.1.0-snapshot --create-namespace --wait
+helm -n kubauth upgrade -i kubauth-apiserver --values ./values-k8s.yaml oci://quay.io/kubauth/charts/kubauth-apiserver --version 0.2.0 --create-namespace --wait
 ```
 
 !!! note
