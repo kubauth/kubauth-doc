@@ -80,7 +80,7 @@ curl https://kubauth.mycluster.mycompany.com/.well-known/openid-configuration
 
 ## `kc` CLI Tool Installation
 
-Download the `kc` CLI from the [GitHub releases page](https://github.com/kubauth/kc/releases/tag/0.2.0){:target="_blank"}, rename it to `kc`, make it executable, and move it to your system path:
+Download the `kc` CLI from the [GitHub releases page](https://github.com/kubauth/kc/releases/tag/v0.2.0){:target="_blank"}, rename it to `kc`, make it executable, and move it to your system path:
 
 ```{ .bash .copy }
 mv kc_*_* kc
