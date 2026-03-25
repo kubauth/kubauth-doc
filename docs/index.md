@@ -32,3 +32,12 @@ Kubauth consists of several subprojects:
 - Two subprojects designed to authenticate `kubectl` users with OIDC:
     - **kubauth-apiserver**: A Kubernetes configuration tool to automate the `apiserver` OIDC configuration
     - **kubauth-kubeconfig**: A tool to automate `kubectl` client configuration
+
+## Versions
+
+| COMPONENT          | VERSION |
+|--------------------|---------|
+| kubauth            | v0.2.1  |
+| kc                 | v0.2.0  |
+| kubauth-apiserver  | v0.2.0 |
+| kubauth-kubeconfig | v0.2.0 |

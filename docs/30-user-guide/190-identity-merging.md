@@ -356,7 +356,7 @@ This can be achieved by modifying the `merger` configuration in the Helm values 
 After applying the Helm update:
 
 ``` { .bash .copy }
-helm -n kubauth upgrade -i kubauth --values ./values-merger.yaml oci://quay.io/kubauth/charts/kubauth --version 0.2.0 --create-namespace --wait
+helm -n kubauth upgrade -i kubauth --values ./values-merger.yaml oci://quay.io/kubauth/charts/kubauth --version 0.2.1 --create-namespace --wait
 ```
 
 we can now verify that:

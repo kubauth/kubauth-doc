@@ -52,7 +52,7 @@ Replace the placeholder values with your environment-specific configuration:
 Deploy Kubauth using the following command:
 
 ``` { .bash .copy }
-helm -n kubauth upgrade -i kubauth --values ./values.yaml oci://quay.io/kubauth/charts/kubauth --version 0.2.0 --create-namespace --wait
+helm -n kubauth upgrade -i kubauth --values ./values.yaml oci://quay.io/kubauth/charts/kubauth --version 0.2.1 --create-namespace --wait
 ```
 
 > The release name (here `kubauth`) is important, as most created objects use it as a base name. 
