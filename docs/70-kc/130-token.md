@@ -113,7 +113,23 @@ Override default browser. Possible values:
 - `firefox`
 - `safari`
 
+---
+### `--ttl` 
 
+Instead of ending immediately, the command enter a loop ending after this duration value. 
+
+During this period, it will exercise the renewal of the Access Token
+
+**Default:** 0
+
+**Example**: `--ttl 30m`
+
+---
+### `--renewAt`
+
+The threshold percentage of the token's life before renewal is initiated.
+
+**Example**: `--renewAt 50`  # Renewal will be triggered halfway through the access token's lifespan.
 
 ## Examples
 
@@ -183,6 +199,60 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIs
 ```bash
 kc token --issuerURL https://kubauth.example.com --clientId public --onlyIdToken | kc jwt
 ```
+
+### Renewal
+
+The OIDC client is configured with:
+
+- `accessTokenLifespan: 30s`
+- `refreshTokenLifespan: 30s`
+
+```bash
+kc token --issuerURL https://kubauth.example.com --clientId kc-test --ttl 1m10s
+```
+
+**output:**
+
+```bash
+If browser doesn't open automatically, visit: http://127.0.0.1:9921
+Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1N.............
+Refresh token: ory_rt_L5R5G3kTb5sEZOTCxz_J121GA59ogeYoe1xJXJXSyAM.YCfxq0uc4YVQ566WPPEwaXh-_YL5pAiy6xa7a79GHFw
+ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3.............
+Expire in: 29s
+
+Renewal loop started (ttl: 1m10s, renewAt: 60%, deadline: 2026-03-31T17:36:15+02:00)
+Token lifetime: 29s, renewal in: 17s (at 17:35:22), expires at: 17:35:34
+Waiting 17s before next renewal...
+
+--- Renewal #1 at 2026-03-31T17:35:22+02:00 ---
+Renewal #1 successful
+Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1N.............
+Refresh token: ory_rt_oQybFhJPQO-eI0xuu77kdCS9rpY8xAcoExFJODMyNvo.Fydp0sV5beCqLwG1MA11FN2yzi2PtRAWhFoPO6BB0Vw
+ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M..............
+Expire in: 30s
+Token lifetime: 30s, renewal in: 18s (at 17:35:40), expires at: 17:35:52
+Waiting 18s before next renewal...
+
+--- Renewal #2 at 2026-03-31T17:35:40+02:00 ---
+Renewal #2 successful
+Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1L.............
+Refresh token: ory_rt_qcpmGnDVMU8NvLEzjOl24xzGRx3MUca87QAjLHzDBnM.LPb0LDWuLNPxQrquv2dqrRq1onnBY4wE_IXGMAN55Hg
+ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1LTU4Z.............
+Expire in: 30s
+Token lifetime: 30s, renewal in: 18s (at 17:35:58), expires at: 17:36:10
+Waiting 18s before next renewal...
+
+--- Renewal #3 at 2026-03-31T17:35:58+02:00 ---
+Renewal #3 successful
+Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3.............
+Refresh token: ory_rt_m3OcpGHUkBf651qUFCzuqm-7y7Q17852QQzHOl3fOZE.vD7m3vu13p_TKf9VK5c5iekB3CZUxkhzMv82Nilhrdw
+ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M.............
+Expire in: 30s
+Token lifetime: 30s, renewal in: 18s (at 17:36:16), expires at: 17:36:28
+Next renewal would be past deadline, waiting 16s for TTL to expire...
+TTL reached, exiting renewal loop
+```
+
 
 ## Behavior
 
