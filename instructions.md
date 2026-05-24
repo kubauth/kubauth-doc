@@ -90,3 +90,21 @@ Also improve look for Common Options, in Overview
 
 
 In user guide, add a page about kubauth helm chart describing the important velues in value file.
+
+
+Could you write a page in user guide describing how to add a new style or template layout.
+- How to build a new docker image with:
+    - For light modification: Just add a new theme in the shared.css
+    - For deeper modification. Duplicate the 'resources' folder and modify the templates
+- Document the description of the data model for templating for index.gohtml (line 63 in handle-index), login.gohtml (LoginModel struct in display-login.go) 
+and upstream-welcome.html (UpstreamWelcomeModel struct in handle-upstream-welcome.go)
+- How to deploy with helm with the modified image and modified resourcesFolder value
+
+For Path A — CSS-Only Tweak, is it possible (and simpler) to mount a configMap, instead of rebulding an image
+
+
+Secret was used because extraConfigMaps was not exposed in helm chart. But I think configMap is more appropriate. 
+So, modify the helm chart to add extraConfigMaps. The helm chart is here: /Users/sa/dev/d1/git/kubauth/helm/kubauth
+and adjust this doc.
+
+Path A/Method 2 seems similar to Path B
