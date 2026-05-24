@@ -7,7 +7,10 @@ Kubauth provides a Helm chart that spawns appropriate jobs to perform this confi
 
 This process assumes that the API Server is managed by the Kubelet as a static pod. If your API Server is managed by another system, such as systemd, you should fall back to the manual configuration.
 
-Additionally, this process assumes a 'standard' folder layout for the Kubernetes installation, such as those used by [kind](https://kind.sigs.k8s.io/){:target="_blank"} or [kubespray](https://github.com/kubernetes-sigs/kubespray){:target="_blank"}. If this is not the case, adjustments can be made by overriding values in the Helm chart. Refer to its [values file](https://github.com/kubauth/kubauth-apiserver/blob/main/helm/kubauth-apiserver/values.yaml){:target="_blank"}.
+Additionally, this process assumes a 'standard' folder layout for the Kubernetes installation, such as those used by [kind](https://kind.sigs.k8s.io/){:target="_blank"} 
+or [kubespray](https://github.com/kubernetes-sigs/kubespray){:target="_blank"}. 
+If this is not the case, adjustments can be made by overriding values in the Helm chart. Refer to 
+its [values file](https://github.com/kubauth/kubauth-apiserver/blob/main/helm/kubauth-apiserver/values.yaml){:target="_blank"}.
 
 !!! danger
 

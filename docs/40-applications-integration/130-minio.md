@@ -58,6 +58,28 @@ Apply this manifest:
 kubectl apply -f client-minio.yaml
 ```
 
+### Per-Client Customization
+
+Two optional fields on the OidcClient resource help tailor the Kubauth pages displayed during a MinIO login. They are especially useful when several applications share the same Kubauth instance:
+
+- **`style`** — selects a CSS theme for this client's login, index and logout pages. See [OidcClient / style](../60-references/110-oidcclient.md#style).
+- **`upstreamProviders`** — restricts the list of upstream identity providers offered to MinIO users. With a single entry, the provider chooser is bypassed and the user is redirected straight to that provider. See [Upstream Providers](../30-user-guide/200-upstream-providers.md).
+
+???+ abstract "client-minio.yaml (extract)"
+
+    ``` { .yaml .copy }
+    apiVersion: kubauth.kubotal.io/v1alpha1
+    kind: OidcClient
+    metadata:
+      name: minio
+      namespace: kubauth
+    spec:
+      ....
+      style: corporate
+      upstreamProviders:
+        - corp-okta
+    ```
+
 ## MinIO Configuration
 
 We assume you have a fully functional MinIO deployment.

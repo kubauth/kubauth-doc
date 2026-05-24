@@ -6,7 +6,7 @@ help: ## Display this help.
 
 .PHONY: serve
 serve: ## Setup local server
-	. ./setup/activate.sh && mkdocs serve
+	. ./setup/activate.sh && mkdocs serve --dev-addr localhost:8001
 
 #.PHONY: publish
 #publish: ## Publish documentation

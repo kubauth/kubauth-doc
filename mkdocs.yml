@@ -17,6 +17,7 @@ nav:
     - LDAP Connector: 30-user-guide/170-ldap-connector.md
     - Multiple Identity Providers: 30-user-guide/180-several-id-providers.md
     - Identity Merging: 30-user-guide/190-identity-merging.md
+    - Upstream Providers: 30-user-guide/200-upstream-providers.md
   - Applications Integration:
     - ArgoCD: 40-applications-integration/110-argocd.md
     - Harbor: 40-applications-integration/120-harbor.md
@@ -32,6 +33,7 @@ nav:
     - User: 60-references/120-user.md
     - Group: 60-references/130-group.md
     - GroupBinding: 60-references/140-groupbinding.md
+    - UpstreamProvider: 60-references/150-upstreamprovider.md
   - kc CLI Tool:
     - Overview: 70-kc/100-overview.md
     - kc version: 70-kc/110-version.md

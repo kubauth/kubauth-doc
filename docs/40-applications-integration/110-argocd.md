@@ -51,6 +51,30 @@ Apply this manifest:
 kubectl apply -f client-argocd.yaml
 ```
 
+### Per-Client Customization
+
+When the same Kubauth instance serves multiple applications, two optional fields on the OidcClient resource help tailor the user experience for ArgoCD:
+
+- **`style`** — selects a CSS theme for the login, index and logout pages displayed during this client's flow, allowing per-app branding. See [OidcClient / style](../60-references/110-oidcclient.md#style).
+- **`upstreamProviders`** — restricts which upstream identity providers are offered to the user when signing in through this client. If exactly one entry is listed, the provider chooser is bypassed entirely. See [Upstream Providers](../30-user-guide/200-upstream-providers.md).
+
+For example, to brand the ArgoCD login pages and send users straight to the corporate identity provider:
+
+???+ abstract "client-argocd.yaml (extract)"
+
+    ``` { .yaml .copy }
+    apiVersion: kubauth.kubotal.io/v1alpha1
+    kind: OidcClient
+    metadata:
+      name: argocd
+      namespace: kubauth
+    spec:
+      ....
+      style: corporate
+      upstreamProviders:
+        - corp-okta
+    ```
+
 ## ArgoCD Configuration
 
 We assume ArgoCD is installed using the [community-provided Helm chart](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd){:target="_blank"}.

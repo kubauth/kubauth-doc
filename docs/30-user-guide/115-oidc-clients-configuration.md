@@ -284,6 +284,89 @@ In this case, a `hashed: true` flag must be set on the corresponding secret refe
 This OidcClient will accept any of `secret1`, `secret2`, or `secret3` as the client secret.  
 
 
+## Enabling and Disabling a Client
+
+Each OidcClient can be temporarily disabled without deleting the resource by setting `spec.enabled: false`:
+
+???+ abstract "client-public.yaml"
+
+    ``` { .yaml .copy }
+    apiVersion: kubauth.kubotal.io/v1alpha1
+    kind: OidcClient
+    metadata:
+      name: public
+    spec:
+      enabled: false
+      ....
+    ```
+
+When the flag is omitted, the default value is `true`.
+
+A disabled client appears in the `OFF` status, and Kubauth will reject any OIDC request that uses its `client_id`:
+
+```
+NAMESPACE   NAME     CLIENT_ID   STATUS   MESSAGE      PUB.   DESCRIPTION                 DISPLAY   LINK   AGE
+kubauth     public   public      OFF      Disabled     true   A test OIDC public client                    1m
+```
+
+This is convenient for maintenance windows, when revoking access to a single application without touching the rest of the platform.
+
+## Visual Style
+
+Kubauth ships with a small set of CSS themes that drive the appearance of the login, index and logout pages. The active theme can be controlled per OidcClient using the `spec.style` attribute:
+
+???+ abstract "client-public.yaml"
+
+    ``` { .yaml .copy }
+    apiVersion: kubauth.kubotal.io/v1alpha1
+    kind: OidcClient
+    metadata:
+      name: public
+    spec:
+      style: light
+      ....
+    ```
+
+When `spec.style` is omitted, Kubauth uses the value of `oidc.defaultStyle` from the Helm chart (`dark` by default).
+
+???+ abstract "values.yaml"
+
+    ``` { .yaml .copy }
+    oidc:
+      ....
+      defaultStyle: light
+      ....
+    ```
+
+This is useful when the same Kubauth instance serves multiple applications that need a distinct look and feel (e.g. corporate identity, tenant branding).
+
+## Upstream Providers
+
+By default, an OidcClient accepts every upstream identity provider known to Kubauth (see the [Upstream Providers](200-upstream-providers.md) chapter).
+
+To restrict a client to a subset of providers, set the `spec.upstreamProviders` list to the names of the desired `UpstreamProvider` resources:
+
+???+ abstract "client-corporate.yaml"
+
+    ``` { .yaml .copy }
+    apiVersion: kubauth.kubotal.io/v1alpha1
+    kind: OidcClient
+    metadata:
+      name: corporate
+    spec:
+      upstreamProviders:
+        - corp-okta
+        - internal
+      ....
+    ```
+
+- Only the listed providers will be offered to the user when they reach the Kubauth login page through this client.
+- Unknown or disabled entries are skipped and logged as Kubernetes events on the OidcClient resource.
+- If the list contains exactly one entry, the login page is bypassed and the user is redirected straight to that provider.
+- If the list is empty (or absent), every active and non-`clientSpecific` provider is presented.
+
+This mechanism enables fine-grained control: a tenant administrator can declare an OidcClient that uses only the corporate IdP, while another client of the same Kubauth instance keeps the standard login form.
+
 ## Explicit Client ID
 
 Kubauth also supports explicitly setting the OIDC `client_id` value:

@@ -67,4 +67,26 @@ Apply this manifest:
 kubectl apply -f client-k8s.yaml
 ```
 
+### Per-Client Customization
+
+Two optional fields on the OidcClient resource are particularly useful for kubectl access:
+
+- **`upstreamProviders`** — restricts which upstream identity providers are offered to the user when authenticating through kubectl. When the list contains exactly one entry, the Kubauth login page is **bypassed entirely** and the user is redirected straight to that provider, which is the typical desired behavior in a corporate setup where kubectl users only authenticate against a single IdP. See [Upstream Providers](../30-user-guide/200-upstream-providers.md).
+- **`style`** — selects a CSS theme for the login, index and logout pages displayed during this client's flow. Useful when several applications share the same Kubauth instance. See [OidcClient / style](../60-references/110-oidcclient.md#style).
+
+???+ abstract "client-k8s.yaml (extract)"
+
+    ``` { .yaml .copy }
+    apiVersion: kubauth.kubotal.io/v1alpha1
+    kind: OidcClient
+    metadata:
+      name: k8s
+      namespace: kubauth
+    spec:
+      ....
+      style: corporate
+      upstreamProviders:
+        - corp-okta
+    ```
+
 You can now proceed to the API Server configuration.

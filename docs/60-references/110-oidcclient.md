@@ -8,7 +8,7 @@ An `OidcClient` represents an OIDC client application that can authenticate user
 
 **Kind:** `OidcClient`
 
-**Namespaced:** Yes (typically `kubauth-oidc`)
+**Namespaced:** Yes (typically the Kubauth release namespace `kubauth`, or any tenant namespace — see [Usage Notes](#namespacing))
 
 ## Example
 
@@ -19,6 +19,7 @@ metadata:
   name: my-app
   namespace: kubauth
 spec:
+  enabled: true
   redirectURIs:
     - "https://myapp.example.com/callback"
   grantTypes:
@@ -31,7 +32,7 @@ spec:
     - "id_token token"
     - "code id_token"
     - "code token"
-    - "code id_token token"      
+    - "code id_token token"
   scopes:
     - "openid"
     - "profile"
@@ -40,45 +41,76 @@ spec:
   description: "My Application"
   displayName: "My App"
   entryURL: "https://myapp.example.com"
+  style: dark
   accessTokenLifespan: 1h
   idTokenLifespan: 1h
   refreshTokenLifespan: 8h
   public: false
   secrets:
     - name: oidc-my-app-client-secret
-      key: secretRef
+      key: clientSecret
       hashed: false
+  upstreamProviders:
+    - internal
+    - corp-okta
 ```
 
 ## Spec Fields
 
+### `enabled`
+boolean - optional - default: `true`
+
+Whether the client is active. When set to `false`, the resource is kept in etcd but Kubauth rejects every OIDC request that uses this `client_id`. The client appears in `OFF` status.
+
+**Example:**
+```yaml
+enabled: false
+```
+
+-----
 ### `secrets`
-[]secretRef - Required if not public
+[]secretRef - required if not `public`
 
-A list of Kubernetes Secret references.
+A list of Kubernetes Secret references holding the `client_secret` value(s) accepted by the OIDC server.
 
-### secrets[X].name
-string - Required
+The referenced Secrets must live in the **same namespace** as the OidcClient resource. Supporting multiple entries enables seamless secret rotation.
+
+#### `secrets[].name`
+string - required
 
 The name of the referenced Kubernetes Secret.
 
-### secrets[X].key
-string - Required
+#### `secrets[].key`
+string - required
 
 The key within the Secret that holds the client secret value.
 
-### secrets[X].hashed
-boolean - Optional. Default: `false`
+#### `secrets[].hashed`
+boolean - optional - default: `false`
 
-Set to `true` if the secret value is stored as a bcrypt hash for additional security.
+Set to `true` if the secret value is stored as a bcrypt hash instead of clear-text.
 
-Use the `kc hash` command to generate a hash from a plain-text secret.
+Use the `kc hash <value> -r | base64` command to generate the hash from a plain-text secret.
+
+**Example:**
+```yaml
+secrets:
+  - name: oidc-my-app-client-secret-current
+    key: clientSecret
+  - name: oidc-my-app-client-secret-previous
+    key: clientSecret
+  - name: oidc-my-app-client-secret-hashed
+    key: clientSecret
+    hashed: true
+```
 
 -----
 ### `redirectURIs`
-[]string - Required
+[]string - required
 
 List of allowed redirect URIs for the OAuth2 authorization flow. After successful authentication, the authorization server will redirect the user back to one of these URIs.
+
+For ROPC-only clients, this list may be empty but the field must be declared as `redirectURIs: []`.
 
 **Example:**
 ```yaml
@@ -89,7 +121,7 @@ redirectURIs:
 
 -----
 ### `grantTypes`
-[]string - Required
+[]string - required
 
 List of OAuth2 grant types that this client is allowed to use.
 
@@ -97,7 +129,8 @@ List of OAuth2 grant types that this client is allowed to use.
 
 - `authorization_code` - Standard OAuth2 authorization code flow
 - `refresh_token` - Allows using refresh tokens to obtain new access tokens
-- `password` - Resource Owner Password Credentials (ROPC) flow (must be explicitly enabled)
+- `client_credentials` - Machine-to-machine flow
+- `password` - Resource Owner Password Credentials (ROPC) flow (must also be allowed globally with `oidc.allowPasswordGrant: true`)
 
 **Example:**
 ```yaml
@@ -108,7 +141,7 @@ grantTypes:
 
 -----
 ### `responseTypes`
-[]string - Required
+[]string - required
 
 List of response types the client can expect from the authorization endpoint.
 
@@ -129,7 +162,7 @@ responseTypes: [ "id_token", "code", "token", "id_token token", "code id_token",
 
 -----
 ### `scopes`
-[]string - Required
+[]string - required
 
 List of OAuth2 scopes that this client can request.
 
@@ -150,32 +183,101 @@ scopes:
   - "email"
   - "offline_access"
 ```
+
 -----
 ### `public`
-boolean -  Optional. Default: `false`
+boolean - optional - default: `false`
 
 Indicates whether this is a public client. Public clients do not require a client secret.
 
-**Use for:** Browser-based applications, native mobile apps, CLI tools
+**Use for:** Browser-based applications, native mobile apps, CLI tools.
 
 **Example:**
 ```yaml
 public: true
 ```
+
+-----
+### `audiences`
+[]string - optional
+
+Additional audiences (`aud` claim values) accepted for this client. The `client_id` is always implicitly included as an audience.
+
+**Example:**
+```yaml
+audiences:
+  - https://api.myapp.example.com
+```
+
 -----
 ### `forceOpenIdScope`
-boolean - Optional. Default: `false`
+boolean - optional - default: `false`
 
-Force openid scope even if not requested by the client application.
+Force the `openid` scope even if the client application did not explicitly request it. Useful for clients that perform OAuth 2.0 flows but still expect an ID token.
 
 -----
-### `postLogoutURL` 
-boolean - Optional. Default: `false`
+### `style`
+string - optional - default: value of `oidc.defaultStyle` (Helm chart, defaults to `dark`)
 
-Where to redirected user on logout.
+Name of the CSS theme to apply to the login, index and logout pages displayed during this client's flow. Allows per-client visual branding.
 
-- Will take precedence on the same global configuration value.
-- May be overridden by a query parameter on the logout url
+**Example:**
+```yaml
+style: light
+```
+
+-----
+### `upstreamProviders`
+[]string - optional
+
+Names of the `UpstreamProvider` resources that should be offered to the user when signing in through this client.
+
+Behavior:
+
+- Empty / absent: every active, non-`clientSpecific` provider is presented (default).
+- One entry: the login page is bypassed and the user is redirected straight to that provider.
+- Multiple entries: only the listed providers are presented.
+- Unknown or disabled entries are skipped and an event is recorded on the OidcClient resource.
+
+See the [Upstream Providers](../30-user-guide/200-upstream-providers.md) chapter for the full picture.
+
+**Example:**
+```yaml
+upstreamProviders:
+  - internal
+  - corp-okta
+```
+
+-----
+### `postLogoutURL`
+string - optional
+
+Where to redirect the user after logout. Takes precedence over the global `oidc.postLogoutURL` Helm value. May still be overridden by a `post_logout_redirect_uri` query parameter on the logout URL.
+
+**Example:**
+```yaml
+postLogoutURL: "https://myapp.example.com/logged-out"
+```
+
+-----
+### `clientId`
+string - optional
+
+Explicit value of the OIDC `client_id`. When omitted, Kubauth derives a value automatically:
+
+- The resource name, if the resource is defined in the **privileged namespace** (Helm value `oidc.clientPrivilegedNamespace`, defaults to the release namespace).
+- `<namespace>-<resourceName>` in any other namespace, to prevent collisions across tenants.
+
+!!! warning
+
+    When you set `clientId` explicitly, no namespace decoration is applied. It is up to administrators to ensure uniqueness of the value across the cluster.
+
+The **effective** client_id is always exposed in `.status.clientId`.
+
+**Example:**
+```yaml
+clientId: prj32-public
+```
 
 -----
 ### `displayName`
@@ -189,8 +291,8 @@ displayName: "Employee Portal"
 ```
 
 -----
-### `description` (string)
-Optional 
+### `description`
+string - optional
 
 A short description of the client application. This is displayed on the Kubauth index page and logout page.
 
@@ -205,7 +307,9 @@ string - optional
 
 The main entry URL for the application. Used to provide a link to the application on the Kubauth index page and logout page.
 
-**Note:** Requires `displayName` and `description` to be set for the application to appear in the application list.
+!!! note
+
+    Requires `displayName` and `description` to be set for the application to appear in the application list.
 
 **Example:**
 ```yaml
@@ -214,37 +318,33 @@ entryURL: "https://portal.example.com"
 
 -----
 ### `accessTokenLifespan`
-duration - optional - default: 1 Hour
+duration - optional - default: 1 hour
 
 The lifespan of access tokens issued to this client.
 
-**Format:** Duration string (e.g., `1m0s`, `1h`, `30m`)
+**Format:** Duration string (e.g. `1m0s`, `1h`, `30m`).
 
 **Example:**
 ```yaml
 accessTokenLifespan: 15m
 ```
 
----
+-----
 ### `idTokenLifespan`
-duration - optional - default: 1 Hour
+duration - optional - default: 1 hour
 
 The lifespan of ID tokens issued to this client.
-
-**Format:** Duration string (e.g., `1m0s`, `1h`, `30m`)
 
 **Example:**
 ```yaml
 idTokenLifespan: 1h
 ```
 
----
+-----
 ### `refreshTokenLifespan`
 duration - optional - default: 30 days
 
 The lifespan of refresh tokens issued to this client.
-
-**Format:** Duration string (e.g., `1h`, `8h`, `24h`)
 
 **Example:**
 ```yaml
@@ -253,35 +353,60 @@ refreshTokenLifespan: 8h
 
 ## Status Fields
 
-The `OidcClient` resource does not currently expose status fields. The resource is ready to use immediately after creation.
+The controller maintains a small status block on every OidcClient resource. These fields are also surfaced as columns in `kubectl get oidcclients`.
+
+### `phase`
+string
+
+Lifecycle phase of the client. One of:
+
+| Phase   | Meaning                                                                                          |
+|---------|--------------------------------------------------------------------------------------------------|
+| `READY` | The client is loaded and ready to serve OIDC requests.                                           |
+| `OFF`   | The client is disabled (`spec.enabled: false`) and Kubauth will reject any request using it.    |
+| `ERROR` | The client could not be loaded (e.g. missing client secret, invalid configuration).             |
+
+### `clientId`
+string
+
+The effective `client_id`, as derived from `spec.clientId`, the resource name and the privileged namespace rules described above. This is the value client applications must use.
+
+### `message`
+string
+
+Human-readable explanation for the current phase. Set to `OK` when the client is ready, otherwise contains an error description (e.g. `unable to fetch secret 'kubauth:oidc-client-secret'`).
 
 ## Usage Notes
 
 ### Client ID
 
-The client ID is derived from the resource name in the metadata section. This is what client applications use to identify themselves to the OIDC server.
+By default the OIDC `client_id` is derived from the resource name and the namespace, as described in the [`clientId`](#clientid) field above. The exact rule depends on the **privileged namespace**:
+
+- Resources created in the privileged namespace (the Helm release namespace by default) use the bare resource name.
+- Resources created in any other namespace are prefixed with `<namespace>-`.
 
 ### Namespacing
 
-`OidcClient` resources are typically created in the `kubauth-oidc` namespace, though this can be configured via Helm chart values.
+OidcClient resources can live in any namespace. The chart pre-creates the `kubauth-oidc-client-admin` ClusterRole, which allows tenant administrators to manage OidcClients restricted to their own namespace through a `RoleBinding`.
+
+See the [OIDC Clients Configuration](../30-user-guide/115-oidc-clients-configuration.md) chapter for the multi-tenancy pattern.
 
 ### Security Considerations
 
 **Public vs Confidential Clients:**
 
-   - Use `public: true` for applications that cannot securely store a secret (browsers, mobile apps, CLIs)
-   - Use `hashedSecret` for server-side applications that can securely store credentials
+- Use `public: true` for applications that cannot securely store a secret (browsers, mobile apps, CLIs).
+- Use the `secrets` list for server-side applications. Prefer `hashed: true` and rotate secrets by appending a new entry before removing the old one.
 
 **Token Lifespans:**
 
-   - Shorter access token lifespans increase security but may impact performance
-   - Balance security requirements with user experience
-   - For kubectl integration, consider very short access tokens (1-5 minutes) with longer refresh tokens
+- Shorter access token lifespans increase security but may impact performance.
+- For kubectl integration, consider very short access tokens (1–5 minutes) with longer refresh tokens.
 
 **Grant Types:**
-   
-   - Only enable the grant types your application actually needs
-   - The `password` grant type is deprecated and disabled by default - use only for specific use cases
+
+- Only enable the grant types your application actually needs.
+- The `password` grant type is deprecated. It must additionally be allowed globally with `oidc.allowPasswordGrant: true`.
 
 ### Application List Display
 
@@ -300,7 +425,7 @@ apiVersion: kubauth.kubotal.io/v1alpha1
 kind: OidcClient
 metadata:
   name: public
-  namespace: kubauth-oidc
+  namespace: kubauth
 spec:
   redirectURIs:
     - "http://127.0.0.1:9921/callback"
@@ -323,13 +448,26 @@ spec:
 ### Confidential Client (Server Application)
 
 ```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: webapp-client-secret
+  namespace: kubauth
+type: Opaque
+stringData:
+  clientSecret: "aGoodSecret"
+
+---
 apiVersion: kubauth.kubotal.io/v1alpha1
 kind: OidcClient
 metadata:
   name: webapp
-  namespace: kubauth-oidc
+  namespace: kubauth
 spec:
-  hashedSecret: "$2a$12$..."
+  secrets:
+    - name: webapp-client-secret
+      key: clientSecret
   redirectURIs:
     - "https://webapp.example.com/callback"
   grantTypes:
@@ -353,13 +491,26 @@ spec:
 ### Kubernetes kubectl Client
 
 ```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: k8s-client-secret
+  namespace: kubauth
+type: Opaque
+stringData:
+  clientSecret: "aGoodSecret"
+
+---
 apiVersion: kubauth.kubotal.io/v1alpha1
 kind: OidcClient
 metadata:
   name: k8s
-  namespace: kubauth-oidc
+  namespace: kubauth
 spec:
-  hashedSecret: "$2a$12$..."
+  secrets:
+    - name: k8s-client-secret
+      key: clientSecret
   description: "For kubernetes kubectl access"
   grantTypes:
     - "refresh_token"
@@ -381,4 +532,31 @@ spec:
   accessTokenLifespan: 1m
   idTokenLifespan: 1m
   refreshTokenLifespan: 30m
+```
+
+### Client Restricted to a Single Upstream Provider
+
+```yaml
+apiVersion: kubauth.kubotal.io/v1alpha1
+kind: OidcClient
+metadata:
+  name: corporate
+  namespace: kubauth
+spec:
+  redirectURIs:
+    - "https://corporate.example.com/callback"
+  grantTypes:
+    - "refresh_token"
+    - "authorization_code"
+  responseTypes:
+    - "code"
+  scopes:
+    - "openid"
+    - "profile"
+    - "groups"
+    - "email"
+  description: "Corporate-only application"
+  public: true
+  upstreamProviders:
+    - corp-okta
 ```

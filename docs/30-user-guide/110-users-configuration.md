@@ -103,3 +103,69 @@ If you need to change the namespace for user resource storage, modify the `ucrd.
       createNamespace: true
 
     ```
+
+## Helm Companion Chart
+
+For convenience, the `kubauth-users` Helm chart packages `User`, `Group`, `GroupBinding`, `RoleBinding` and `ClusterRoleBinding` resources behind a single values file. This is well suited to GitOps workflows where the user catalog must be versioned alongside the rest of the cluster configuration.
+
+A typical values file looks like:
+
+???+ abstract "values-users.yaml"
+
+    ``` { .yaml .copy }
+    users:
+      - login: jim
+        passwordHash: "$2a$12$8Ews1KmZO/79WcWzlTjhyOCzCm6G61n1RbpNw5oFlLO0lcnT7RJ7S"  # jim123
+    
+      - login: john
+        name: John DOE
+        passwordHash: "$2a$12$YjalsuGc6uuWtQqVuU/O.eW9L6QGU/vHk2wpvle4dsS7hC2Ic1F.q"  # john123
+        emails:
+          - johnd@mycompany.com
+        claims:
+          office: 208G
+        comment: "The CEO"
+    
+    groups:
+      - name: ops
+        comment: "Operations team"
+        claims:
+          accessProfile: p24x7
+    
+    groupBindings:
+      - user: jim
+        group: devs
+      - user: john
+        group: devs
+      - user: john
+        group: ops
+    
+    roleBindings:
+      - name: john-tenant1-admin
+        namespace: tenant1
+        clusterRole: admin
+        users:
+          - john
+    
+    clusterRoleBindings:
+      - name: ops-cluster-readers
+        clusterRole: view
+        groups:
+          - ops
+    ```
+
+Each `users`, `groups` and `groupBindings` entry generates the corresponding Kubauth Custom Resource in the release namespace. `roleBindings` and `clusterRoleBindings` produce standard Kubernetes `RoleBinding` and `ClusterRoleBinding` objects, with their `subjects` populated from the listed `users` and `groups`. This lets you tie a Kubauth identity to cluster permissions in the very same file.
+
+Deploy it with:
+
+``` { .bash .copy }
+helm -n kubauth-users upgrade -i kubauth-users \
+    --values ./values-users.yaml \
+    oci://quay.io/kubauth/charts/kubauth-users \
+    --version 0.3.0 \
+    --create-namespace --wait
+```
+
+!!! note
+
+    The chart targets the namespace passed to `helm` (here `kubauth-users`). Make sure this matches the value of `ucrd.namespace` configured for the Kubauth main chart, otherwise the resources will be created in a namespace the OIDC controller does not watch.
