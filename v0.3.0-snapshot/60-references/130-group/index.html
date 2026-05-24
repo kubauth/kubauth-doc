@@ -571,6 +571,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/200-upstream-providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upstream Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/210-helm-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm Chart Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/220-ui-customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Customizing the Login UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1179,6 +1248,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../150-upstreamprovider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UpstreamProvider
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1758,9 +1850,36 @@
 <li>Define claims that are inherited by all group members</li>
 <li>Centralize group-level permissions and attributes</li>
 </ul>
-<p><strong>API Group:</strong> <code>kubauth.kubotal.io/v1alpha1</code></p>
-<p><strong>Kind:</strong> <code>Group</code></p>
-<p><strong>Namespaced:</strong> Yes (typically <code>kubauth-users</code>)</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API Group</td>
+<td><code>kubauth.kubotal.io</code></td>
+</tr>
+<tr>
+<td>API Version</td>
+<td><code>v1alpha1</code></td>
+</tr>
+<tr>
+<td>Kind</td>
+<td><code>Group</code></td>
+</tr>
+<tr>
+<td>Scope</td>
+<td>Namespaced (typically <code>kubauth-users</code>)</td>
+</tr>
+<tr>
+<td>Short names</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
 <h2 id="example">Example</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Group</span>
@@ -1776,41 +1895,48 @@
 </span></code></pre></div>
 <h2 id="spec-fields">Spec Fields</h2>
 <p>All fields in the Group spec are optional. A Group can exist with an empty spec.</p>
-<hr />
 <h3 id="comment"><code>comment</code></h3>
-<p>string - optional</p>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
+
 <p>A description or comment about the group for administrative purposes. Not included in OIDC tokens.</p>
-<p><strong>Example:</strong>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">comment</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Development</span><span class="nv"> </span><span class="s">team</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">access</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">staging</span><span class="nv"> </span><span class="s">environments&quot;</span>
-</span></code></pre></div></p>
-<hr />
+</span></code></pre></div>
+<hr class="api-field-separator">
+
 <h3 id="claims"><code>claims</code></h3>
-<p>map[string]any - optional</p>
+<p class="api-meta">
+<span class="api-badge api-type">map[string]any</span>
+<span class="api-badge api-optional">optional</span>
+</p>
+
 <p>Custom OIDC claims that are inherited by all members of this group. Can contain any valid JSON values.</p>
-<p><strong>Behavior:</strong> When a user is a member of this group (via GroupBinding), these claims are merged into the user's ID token.</p>
-<p><strong>Use Cases:</strong>
-- Application-specific permissions
-- Role indicators
-- Policy assignments
-- Common attributes for all group members</p>
-<p><strong>Example:</strong>
+<p><strong>Behavior:</strong> when a user is a member of this group (via a GroupBinding), these claims are merged into the user's ID token.</p>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li>Application-specific permissions</li>
+<li>Role indicators</li>
+<li>Policy assignments</li>
+<li>Common attributes for all group members</li>
+</ul>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">claims</span><span class="p">:</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">accessProfile</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;business-hours&quot;</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">cost_center</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ENG-001&quot;</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">security_clearance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
-</span></code></pre></div></p>
-<p><strong>JWT Token for a member:</strong>
+</span></code></pre></div>
+<p>Resulting JWT token for a member:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;accessProfile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;business-hours&quot;</span><span class="p">,</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;cost_center&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ENG-001&quot;</span><span class="p">,</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;security_clearance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="err">...</span>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">}</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h2 id="group-existence">Group Existence</h2>
 <h3 id="implicit-groups">Implicit Groups</h3>
 <p>Groups can exist without an explicit Group resource. Simply referencing a group name in a GroupBinding creates an implicit group.</p>
-<p><strong>Example:</strong>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GroupBinding</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1819,14 +1945,13 @@
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alice</span>
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">developers</span><span class="w">  </span><span class="c1"># Group &#39;developers&#39; now exists implicitly</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h3 id="explicit-groups">Explicit Groups</h3>
 <p>Creating a Group resource makes the group explicit and allows you to:</p>
 <ul>
 <li>Add a description via the <code>comment</code> field</li>
 <li>Define claims that all members inherit</li>
 </ul>
-<p><strong>Example:</strong>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nn">---</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Group</span>
@@ -1847,7 +1972,7 @@
 </span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alice</span>
 </span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">developers</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h2 id="claim-inheritance">Claim Inheritance</h2>
 <p>When a user belongs to multiple groups, claims from all groups are merged. If multiple groups define the same claim key, the behavior depends on the identity provider configuration and group ordering.</p>
 <h2 id="usage-notes">Usage Notes</h2>
@@ -1859,8 +1984,7 @@
 </ul>
 <h3 id="kubernetes-rbac-integration">Kubernetes RBAC Integration</h3>
 <p>When integrating with Kubernetes RBAC, be aware of the group name prefix configured in the API server OIDC settings.</p>
-<p><strong>Example:</strong>
-If your API server is configured with <code>--oidc-groups-prefix=oidc-</code>, a group named <code>cluster-admin</code> in Kubauth will appear as <code>oidc-cluster-admin</code> in Kubernetes RBAC.</p>
+<p>For example, if your API server is configured with <code>--oidc-groups-prefix=oidc-</code>, a group named <code>cluster-admin</code> in Kubauth will appear as <code>oidc-cluster-admin</code> in Kubernetes RBAC.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nn">---</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Kubauth Group</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
@@ -1887,19 +2011,19 @@ If your API server is configured with <code>--oidc-groups-prefix=oidc-</code>, a
 </span></code></pre></div>
 <h3 id="application-specific-claims">Application-Specific Claims</h3>
 <p>Groups are ideal for centralizing application-specific permissions and policies.</p>
-<p><strong>Best Practice:</strong> Create dedicated groups for each application or permission level rather than adding application-specific claims to individual users.</p>
+<p><strong>Best practice:</strong> create dedicated groups for each application or permission level rather than adding application-specific claims to individual users.</p>
 <h2 id="deletion-behavior">Deletion Behavior</h2>
 <p>Deleting a Group resource:</p>
 <ul>
-<li>Removes the explicit group definition</li>
-<li>Does <strong>not</strong> automatically delete associated GroupBindings</li>
-<li>Does <strong>not</strong> automatically remove users from the group</li>
+<li>Removes the explicit group definition.</li>
+<li>Does <strong>not</strong> automatically delete associated GroupBindings.</li>
+<li>Does <strong>not</strong> automatically remove users from the group.</li>
 </ul>
 <p>If GroupBindings still reference the deleted group, the group continues to exist implicitly through those bindings, but without any group-level claims or comments.</p>
 <p>To fully remove a group:</p>
 <ol>
-<li>Delete all GroupBindings that reference the group</li>
-<li>Delete the Group resource (if it exists)</li>
+<li>Delete all GroupBindings that reference the group.</li>
+<li>Delete the Group resource (if it exists).</li>
 </ol>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Find all bindings for a group</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-users<span class="w"> </span>get<span class="w"> </span>groupbindings<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
@@ -1913,8 +2037,8 @@ If your API server is configured with <code>--oidc-groups-prefix=oidc-</code>, a
 </span></code></pre></div>
 <h2 id="related-resources">Related Resources</h2>
 <ul>
-<li><a href="../140-groupbinding/">GroupBinding</a> - Associates users with groups</li>
-<li><a href="../120-user/">User</a> - User accounts that can be members of groups</li>
+<li><a href="../140-groupbinding/">GroupBinding</a> — Associates users with groups</li>
+<li><a href="../120-user/">User</a> — User accounts that can be members of groups</li>
 </ul>
 
 

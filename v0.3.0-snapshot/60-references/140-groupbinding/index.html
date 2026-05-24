@@ -18,7 +18,7 @@
         <link rel="prev" href="../130-group/">
       
       
-        <link rel="next" href="../../70-kc/100-overview/">
+        <link rel="next" href="../150-upstreamprovider/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -571,6 +571,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/200-upstream-providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upstream Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/210-helm-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm Chart Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/220-ui-customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Customizing the Login UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1052,8 +1121,7 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="user">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#group" class="md-nav__link">
@@ -1061,11 +1129,6 @@
       group
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1138,6 +1201,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../150-upstreamprovider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UpstreamProvider
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1577,8 +1663,7 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="user">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#group" class="md-nav__link">
@@ -1586,11 +1671,6 @@
       group
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1680,10 +1760,37 @@
 
 <h1 id="groupbinding-reference">GroupBinding Reference</h1>
 <h2 id="overview">Overview</h2>
-<p>A <code>GroupBinding</code> associates a user with a group. Groups are used to organize users and apply common claims and permissions. With Kubauth, a group exists simply by being referenced in a <code>GroupBinding</code> - explicit Group creation is optional.</p>
-<p><strong>API Group:</strong> <code>kubauth.kubotal.io/v1alpha1</code></p>
-<p><strong>Kind:</strong> <code>GroupBinding</code></p>
-<p><strong>Namespaced:</strong> Yes (typically <code>kubauth-users</code>)</p>
+<p>A <code>GroupBinding</code> associates a user with a group. Groups are used to organize users and apply common claims and permissions. With Kubauth, a group exists simply by being referenced in a <code>GroupBinding</code> — explicit Group creation is optional.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API Group</td>
+<td><code>kubauth.kubotal.io</code></td>
+</tr>
+<tr>
+<td>API Version</td>
+<td><code>v1alpha1</code></td>
+</tr>
+<tr>
+<td>Kind</td>
+<td><code>GroupBinding</code></td>
+</tr>
+<tr>
+<td>Scope</td>
+<td>Namespaced (typically <code>kubauth-users</code>)</td>
+</tr>
+<tr>
+<td>Short names</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
 <h2 id="example">Example</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GroupBinding</span>
@@ -1695,22 +1802,28 @@
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">developers</span>
 </span></code></pre></div>
 <h2 id="spec-fields">Spec Fields</h2>
-<hr />
 <h3 id="user"><code>user</code></h3>
-<p>string - required</p>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required</span>
+</p>
+
 <p>The name of the user to bind to the group. This must match the <code>metadata.name</code> of an existing User resource.</p>
-<hr />
-<h4 id="group"><code>group</code></h4>
-<p>string - required</p>
-<p>The name of the group to bind the user to. The group does not need to exist as a Group resource - it will be created implicitly by the GroupBinding.</p>
+<hr class="api-field-separator">
+
+<h3 id="group"><code>group</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required</span>
+</p>
+
+<p>The name of the group to bind the user to. The group does not need to exist as a Group resource — it will be created implicitly by the GroupBinding.</p>
 <h2 id="behavior">Behavior</h2>
 <h3 id="implicit-group-creation">Implicit Group Creation</h3>
-<p>Creating a GroupBinding automatically makes the referenced group exist, even if no explicit Group resource is defined. 
-This follows Kubernetes' pattern of weak referential integrity.</p>
+<p>Creating a GroupBinding automatically makes the referenced group exist, even if no explicit Group resource is defined. This follows Kubernetes' pattern of weak referential integrity.</p>
 <h3 id="group-claims-in-tokens">Group Claims in Tokens</h3>
 <p>When a user authenticates, all groups they belong to (via GroupBinding resources) are included in the <code>groups</code> claim in the OIDC ID token.</p>
-<p><strong>Example:</strong>
-User <code>john</code> has two GroupBindings:
+<p><strong>Example:</strong> user <code>john</code> has two GroupBindings:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nn">---</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GroupBinding</span>
@@ -1729,32 +1842,36 @@ User <code>john</code> has two GroupBindings:
 </span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">john</span>
 </span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">team-leads</span>
-</span></code></pre></div></p>
-<p><strong>JWT Token for user <code>john</code>:</strong>
+</span></code></pre></div>
+<p>Resulting JWT token for user <code>john</code>:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;john&quot;</span><span class="p">,</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;developers&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;team-leads&quot;</span><span class="p">],</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="err">...</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">}</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h2 id="naming-convention">Naming Convention</h2>
 <p>While the <code>metadata.name</code> can be any valid Kubernetes resource name, we recommend a naming convention that makes the binding easy to understand:</p>
 <p><strong>Pattern:</strong> <code>&lt;username&gt;-&lt;groupname&gt;</code></p>
-<p><strong>Examples:</strong>
-- <code>john-developers</code>
-- <code>alice-cluster-admins</code>
-- <code>bob-ops-team</code></p>
-<p>This makes it easy to identify what each binding does and find all bindings for a specific user or group using kubectl.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><code>john-developers</code></li>
+<li><code>alice-cluster-admins</code></li>
+<li><code>bob-ops-team</code></li>
+</ul>
+<p>This makes it easy to identify what each binding does and find all bindings for a specific user or group using <code>kubectl</code>.</p>
 <h2 id="deletion-behavior">Deletion Behavior</h2>
 <p>Deleting a GroupBinding removes the user from the group immediately. The user will no longer have the group in their <code>groups</code> claim or inherit any group-level claims on the next authentication.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>groupbinding<span class="w"> </span>john-developers<span class="w"> </span>-n<span class="w"> </span>kubauth-users
 </span></code></pre></div>
-<p><strong>Note:</strong> Deleting the last GroupBinding that references a group does not delete the group itself if an explicit Group resource exists. 
-Only implicit groups (those that exist solely through GroupBindings) cease to exist when all their bindings are deleted.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Deleting the last GroupBinding that references a group does <strong>not</strong> delete the group itself if an explicit Group resource exists. Only implicit groups (those that exist solely through GroupBindings) cease to exist when all their bindings are deleted.</p>
+</div>
 <h2 id="related-resources">Related Resources</h2>
 <ul>
-<li><a href="../120-user/">User</a> - User accounts that can be bound to groups</li>
-<li><a href="../130-group/">Group</a> - Optional explicit group definitions with claims</li>
+<li><a href="../120-user/">User</a> — User accounts that can be bound to groups</li>
+<li><a href="../130-group/">Group</a> — Optional explicit group definitions with claims</li>
 </ul>
 
 
@@ -1802,13 +1919,13 @@ Only implicit groups (those that exist solely through GroupBindings) cease to ex
         
         
           
-          <a href="../../70-kc/100-overview/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+          <a href="../150-upstreamprovider/" class="md-footer__link md-footer__link--next" aria-label="Next: UpstreamProvider">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Overview
+                UpstreamProvider
               </div>
             </div>
             <div class="md-footer__button md-icon">

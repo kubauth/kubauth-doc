@@ -571,6 +571,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/200-upstream-providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upstream Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/210-helm-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm Chart Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/220-ui-customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Customizing the Login UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -972,6 +1041,29 @@
   
   <span class="md-ellipsis">
     GroupBinding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/150-upstreamprovider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UpstreamProvider
     
   </span>
   
@@ -1905,8 +1997,12 @@
 </span></code></pre></div>
 <h2 id="arguments">Arguments</h2>
 <h3 id="token"><code>[token]</code></h3>
-<p>string - optional</p>
-<p>The JWT token to decode. If not provided as an argument, reads from stdin.</p>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
+
+<p>The JWT token to decode. If not provided as an argument, the token is read from stdin.</p>
 <h2 id="examples">Examples</h2>
 <h3 id="decode-token-from-argument">Decode Token from Argument</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kc<span class="w"> </span>jwt<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiaGNBY2dtdmdBekJlSGgyODlkWHF3USIsImF1ZCI6WyJwdWJsaWMiXSwi...
@@ -1914,7 +2010,7 @@
 <h3 id="decode-token-from-stdin">Decode Token from Stdin</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0...&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>kc<span class="w"> </span>jwt
 </span></code></pre></div>
-<h3 id="pipe-from-kc-token">Pipe from kc token</h3>
+<h3 id="pipe-from-kc-token">Pipe from <code>kc token</code></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken<span class="w"> </span><span class="p">|</span><span class="w"> </span>kc<span class="w"> </span>jwt
 </span></code></pre></div>
 <h2 id="output">Output</h2>
@@ -1949,12 +2045,12 @@
 </span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>}
 </span></code></pre></div>
 <h3 id="human-readable-timestamps">Human-Readable Timestamps</h3>
-<p>The decoder adds <code>_human</code> suffixed fields for timestamp claims:</p>
+<p>The decoder adds <code>_human</code>-suffixed fields for timestamp claims:</p>
 <ul>
-<li><code>auth_time_human</code> - When user authenticated</li>
-<li><code>exp_human</code> - When token expires</li>
-<li><code>iat_human</code> - When token was issued  </li>
-<li><code>rat_human</code> - Token refresh time</li>
+<li><code>auth_time_human</code> — when the user authenticated.</li>
+<li><code>exp_human</code> — when the token expires.</li>
+<li><code>iat_human</code> — when the token was issued.</li>
+<li><code>rat_human</code> — token refresh time.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1964,57 +2060,57 @@
 <h3 id="header">Header</h3>
 <p>Contains token metadata:</p>
 <ul>
-<li><code>alg</code> - Signing algorithm (e.g., RS256)</li>
-<li><code>kid</code> - Key ID used for signing</li>
-<li><code>typ</code> - Token type (JWT)</li>
+<li><code>alg</code> — signing algorithm (e.g. RS256).</li>
+<li><code>kid</code> — key ID used for signing.</li>
+<li><code>typ</code> — token type (JWT).</li>
 </ul>
 <h3 id="payload">Payload</h3>
 <p>Contains claims (user information):</p>
-<p><strong>Standard OIDC Claims:</strong></p>
+<p><strong>Standard OIDC claims:</strong></p>
 <ul>
-<li><code>sub</code> - Subject (username)</li>
-<li><code>iss</code> - Issuer URL</li>
-<li><code>aud</code> - Audience (client ID)</li>
-<li><code>exp</code> - Expiration time</li>
-<li><code>iat</code> - Issued at time</li>
-<li><code>auth_time</code> - Authentication time</li>
+<li><code>sub</code> — subject (username).</li>
+<li><code>iss</code> — issuer URL.</li>
+<li><code>aud</code> — audience (client ID).</li>
+<li><code>exp</code> — expiration time.</li>
+<li><code>iat</code> — issued-at time.</li>
+<li><code>auth_time</code> — authentication time.</li>
 </ul>
-<p><strong>Kubauth-Added Claims:</strong></p>
+<p><strong>Kubauth-added claims:</strong></p>
 <ul>
-<li><code>name</code> - User's full name</li>
-<li><code>email</code> - Primary email</li>
-<li><code>emails</code> - All emails</li>
-<li><code>groups</code> - Group memberships</li>
+<li><code>name</code> — user's full name.</li>
+<li><code>email</code> — primary email.</li>
+<li><code>emails</code> — all emails.</li>
+<li><code>groups</code> — group memberships.</li>
 </ul>
-<p><strong>Custom Claims:</strong></p>
+<p><strong>Custom claims:</strong></p>
 <ul>
-<li>Any claims from User or Group <code>spec.claims</code></li>
+<li>Any claims from User or Group <code>spec.claims</code>.</li>
 </ul>
 <h2 id="limitations">Limitations</h2>
 <h3 id="no-signature-verification">No Signature Verification</h3>
-<p>The <code>kc jwt</code> command only decodes the token; it does not verify the signature. </p>
+<p>The <code>kc jwt</code> command only decodes the token; it does not verify the signature.</p>
 <h3 id="base64-decoding-only">Base64 Decoding Only</h3>
-<p>This command simply base64-decodes the JWT parts. It doesn't validate:</p>
+<p>This command simply base64-decodes the JWT parts. It does not validate:</p>
 <ul>
-<li>Token expiration</li>
-<li>Issuer authenticity</li>
-<li>Signature validity</li>
+<li>Token expiration.</li>
+<li>Issuer authenticity.</li>
+<li>Signature validity.</li>
 </ul>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <h3 id="invalid-token-format">Invalid Token Format</h3>
-<p><strong>Error:</strong>
+<p>Error:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Error: invalid JWT format
-</span></code></pre></div></p>
-<p><strong>Solution:</strong> Ensure the token is a complete JWT with three dot-separated parts:
+</span></code></pre></div>
+<p>Solution: ensure the token is a complete JWT with three dot-separated parts:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>header.payload.signature
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h3 id="malformed-json">Malformed JSON</h3>
 <p>If the output shows malformed JSON, the token may be corrupted or incomplete.</p>
 <h2 id="related-commands">Related Commands</h2>
 <ul>
-<li><a href="../130-token/"><code>kc token</code></a> - Get tokens with <code>-d</code> flag for automatic decoding</li>
-<li><a href="../140-token-nui/"><code>kc token-nui</code></a> - Get tokens in terminal</li>
-<li><a href="../170-whoami/"><code>kc whoami</code></a> - With -d option, display decoded token from kubectl context</li>
+<li><a href="../130-token/"><code>kc token</code></a> — Get tokens with the <code>-d</code> flag for automatic decoding</li>
+<li><a href="../140-token-nui/"><code>kc token-nui</code></a> — Get tokens in the terminal</li>
+<li><a href="../170-whoami/"><code>kc whoami</code></a> — With <code>-d</code>, displays the decoded token from kubectl context</li>
 </ul>
 <h2 id="see-also">See Also</h2>
 <ul>

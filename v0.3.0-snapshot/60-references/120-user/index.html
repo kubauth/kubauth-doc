@@ -571,6 +571,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/200-upstream-providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upstream Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/210-helm-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm Chart Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/220-ui-customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Customizing the Login UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1260,6 +1329,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../150-upstreamprovider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UpstreamProvider
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1915,10 +2007,36 @@
 <h1 id="user-reference">User Reference</h1>
 <h2 id="overview">Overview</h2>
 <p>A <code>User</code> represents a user account in Kubauth. Users are stored as Kubernetes Custom Resources, providing a cloud-native, scalable authentication solution.</p>
-<p><strong>API Group:</strong> <code>kubauth.kubotal.io/v1alpha1</code></p>
-<p><strong>Kind:</strong> <code>User</code></p>
-<p><strong>Namespaced:</strong> Yes (typically <code>kubauth-users</code>)</p>
-<p><strong>Aliases:</strong> <code>kuser</code> (for easier kubectl access)</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API Group</td>
+<td><code>kubauth.kubotal.io</code></td>
+</tr>
+<tr>
+<td>API Version</td>
+<td><code>v1alpha1</code></td>
+</tr>
+<tr>
+<td>Kind</td>
+<td><code>User</code></td>
+</tr>
+<tr>
+<td>Scope</td>
+<td>Namespaced (typically <code>kubauth-users</code>)</td>
+</tr>
+<tr>
+<td>Short names</td>
+<td><code>kuser</code>, <code>kusers</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="example">Example</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.kubotal.io/v1alpha1</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User</span>
@@ -1940,70 +2058,89 @@
 </span></code></pre></div>
 <h2 id="spec-fields">Spec Fields</h2>
 <h3 id="name"><code>name</code></h3>
-<p>string - optional</p>
-<p>The full name of the user. This appears in the <code>name</code> claim in OIDC ID tokens.</p>
-<p><strong>Example:</strong>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
+
+<p>The full name of the user. This appears as the <code>name</code> claim in OIDC ID tokens.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;John</span><span class="nv"> </span><span class="s">DOE&quot;</span>
 </span></code></pre></div>
-<strong>Resulting JWT Token Claim:</strong>
+<p>Resulting JWT token claim:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John DOE&quot;</span><span class="p">,</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="err">...</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
-</span></code></pre></div></p>
-<hr />
+</span></code></pre></div>
+<hr class="api-field-separator">
+
 <h3 id="emails"><code>emails</code></h3>
-<p>[]string - optional</p>
+<p class="api-meta">
+<span class="api-badge api-type">[]string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
+
 <p>List of email addresses associated with the user.</p>
-<p><strong>Behavior:</strong>
-- The <code>emails</code> claim in the ID token contains the complete list
-- The <code>email</code> claim contains the first email in the list</p>
-<p><strong>Example:</strong>
+<p>Behavior:</p>
+<ul>
+<li>The <code>emails</code> claim in the ID token contains the complete list.</li>
+<li>The <code>email</code> claim contains the first email in the list.</li>
+</ul>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">emails</span><span class="p">:</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">john.doe@example.com</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">j.doe@example.com</span>
-</span></code></pre></div></p>
-<p><strong>JWT Token Claims:</strong>
+</span></code></pre></div>
+<p>Resulting JWT token claims:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;john.doe@example.com&quot;</span><span class="p">,</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">&quot;emails&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;john.doe@example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;j.doe@example.com&quot;</span><span class="p">],</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="err">...</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
-</span></code></pre></div></p>
-<hr />
+</span></code></pre></div>
+<hr class="api-field-separator">
+
 <h3 id="passwordhash"><code>passwordHash</code></h3>
-<p>string - optional</p>
-<p>The bcrypt hash of the user's password. </p>
-<p><strong>Generation:</strong> Use the <code>kc hash &lt;password&gt;</code> command to generate the hash from a plain-text password.</p>
-<p><strong>Security:</strong> Passwords are stored as bcrypt hashes (never in plain text), providing strong protection against password database compromise.</p>
-<p><strong>Behavior:</strong> A user definition without password is useful on case of multiple Identity Providers.</p>
-<p><strong>Example:</strong>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
+
+<p>The bcrypt hash of the user's password.</p>
+<ul>
+<li><strong>Generation:</strong> use the <code>kc hash &lt;password&gt;</code> command to generate the hash from a plain-text password.</li>
+<li><strong>Security:</strong> passwords are stored as bcrypt hashes (never in plain text), providing strong protection against password database compromise.</li>
+<li><strong>Behavior:</strong> a user definition without a password is useful in case of multiple identity providers.</li>
+</ul>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">passwordHash</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$2a$12$yJEo9EoYn/ylGS4PCamfNe8PReYH9IPumsw7rMTDi3glZjuA7dXMm&quot;</span>
-</span></code></pre></div></p>
-<p><strong>Generating a hash:</strong>
+</span></code></pre></div>
+<p>Generating a hash:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>kc<span class="w"> </span><span class="nb">hash</span><span class="w"> </span>mypassword123
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Secret:<span class="w"> </span>mypassword123
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Hash:<span class="w"> </span><span class="nv">$2</span>a<span class="nv">$12$yJEo9EoYn</span>/ylGS4PCamfNe8PReYH9IPumsw7rMTDi3glZjuA7dXMm
-</span></code></pre></div></p>
-<p>Use this hash in your User 'passwordHash' field</p>
-<hr />
+</span></code></pre></div>
+<p>Use this hash in your User's <code>passwordHash</code> field.</p>
+<hr class="api-field-separator">
+
 <h3 id="claims"><code>claims</code></h3>
-<p>map[string]any - required</p>
+<p class="api-meta">
+<span class="api-badge api-type">map[string]any</span>
+<span class="api-badge api-required">required</span>
+</p>
+
 <p>Custom OIDC claims to include in ID tokens for this user. Can contain any valid JSON values.</p>
-<p><strong>Use Cases:</strong></p>
+<p><strong>Use cases:</strong></p>
 <ul>
 <li>Application-specific user attributes</li>
 <li>Custom authorization data</li>
 <li>Integration with downstream systems</li>
 </ul>
-<p><strong>Example:</strong>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">claims</span><span class="p">:</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">office</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;208G&quot;</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">department</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Engineering&quot;</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">clearance_level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 </span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">minio_policies</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;consoleAdmin&quot;</span>
-</span></code></pre></div></p>
-<p><strong>JWT Token Claims:</strong>
+</span></code></pre></div>
+<p>Resulting JWT token claims:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">{</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">&quot;office&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;208G&quot;</span><span class="p">,</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nt">&quot;department&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Engineering&quot;</span><span class="p">,</span>
@@ -2011,26 +2148,39 @@
 </span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="nt">&quot;minio_policies&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;consoleAdmin&quot;</span><span class="p">,</span>
 </span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="err">...</span>
 </span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">}</span>
-</span></code></pre></div></p>
-<hr />
+</span></code></pre></div>
+<hr class="api-field-separator">
+
 <h3 id="uid"><code>uid</code></h3>
-<p>integer - optional</p>
-<p>A user numerical ID. May be useful in some Linux context</p>
-<hr />
+<p class="api-meta">
+<span class="api-badge api-type">integer</span>
+<span class="api-badge api-optional">optional</span>
+</p>
+
+<p>A user numerical ID. May be useful in some Linux contexts.</p>
+<hr class="api-field-separator">
+
 <h3 id="comment"><code>comment</code></h3>
-<p>string - optional</p>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
+
 <p>Administrative comment or description for the user. Not included in OIDC tokens.</p>
-<p><strong>Example:</strong>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">comment</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;External</span><span class="nv"> </span><span class="s">consultant</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">expires</span><span class="nv"> </span><span class="s">2025-12-31&quot;</span>
-</span></code></pre></div></p>
-<hr />
+</span></code></pre></div>
+<hr class="api-field-separator">
+
 <h3 id="disabled"><code>disabled</code></h3>
-<p>boolean - optional default false</p>
+<p class="api-meta">
+<span class="api-badge api-type">boolean</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
 <p>Whether the user account is disabled. Disabled users cannot authenticate.</p>
-<p><strong>Default:</strong> <code>false</code></p>
-<p><strong>Example:</strong>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">disabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h2 id="status-fields">Status Fields</h2>
 <p>The <code>User</code> resource does not currently expose status fields. The resource is ready to use immediately after creation.</p>
 <h2 id="identity-information">Identity Information</h2>
@@ -2039,16 +2189,15 @@
 <li>The <code>sub</code> (subject) claim in OIDC tokens</li>
 <li>The login for authentication</li>
 </ul>
-<p><strong>Example:</strong>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">metadata</span><span class="p">:</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">john</span><span class="w">  </span><span class="c1"># This is the login username</span>
-</span></code></pre></div></p>
-<p><strong>JWT Token:</strong>
+</span></code></pre></div>
+<p>Resulting JWT token:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">{</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;john&quot;</span><span class="p">,</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="err">...</span>
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="p">}</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h2 id="usage-notes">Usage Notes</h2>
 <h3 id="namespacing">Namespacing</h3>
 <p>Users are typically created in the <code>kubauth-users</code> namespace, though this can be configured via Helm chart values.</p>
@@ -2072,9 +2221,9 @@
 <h3 id="identity-provider-integration">Identity Provider Integration</h3>
 <p>When using external identity providers (like LDAP), user properties can be merged:</p>
 <ul>
-<li>Password validation may come from LDAP</li>
-<li>Additional attributes (claims, group memberships) can be defined in the User CRD</li>
-<li>See <a href="../../30-user-guide/190-identity-merging/">Identity Merging</a> for details</li>
+<li>Password validation may come from LDAP.</li>
+<li>Additional attributes (claims, group memberships) can be defined in the User CRD.</li>
+<li>See <a href="../../30-user-guide/190-identity-merging/">Identity Merging</a> for details.</li>
 </ul>
 <h2 id="examples">Examples</h2>
 <h3 id="minimal-user">Minimal User</h3>
@@ -2139,8 +2288,8 @@
 </span></code></pre></div>
 <h2 id="related-resources">Related Resources</h2>
 <ul>
-<li><a href="../130-group/">Group</a> - Define groups with shared claims</li>
-<li><a href="../140-groupbinding/">GroupBinding</a> - Associate users with groups</li>
+<li><a href="../130-group/">Group</a> — Define groups with shared claims</li>
+<li><a href="../140-groupbinding/">GroupBinding</a> — Associate users with groups</li>
 </ul>
 
 

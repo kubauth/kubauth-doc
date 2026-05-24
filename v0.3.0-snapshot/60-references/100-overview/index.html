@@ -571,6 +571,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/200-upstream-providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upstream Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/210-helm-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm Chart Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/220-ui-customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Customizing the Login UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1012,9 +1081,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-aliases" class="md-nav__link">
+  <a href="#using-short-names-and-aliases" class="md-nav__link">
     <span class="md-ellipsis">
-      Using Aliases
+      Using Short Names and Aliases
     </span>
   </a>
   
@@ -1214,6 +1283,29 @@
   
   <span class="md-ellipsis">
     GroupBinding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../150-upstreamprovider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UpstreamProvider
     
   </span>
   
@@ -1710,9 +1802,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-aliases" class="md-nav__link">
+  <a href="#using-short-names-and-aliases" class="md-nav__link">
     <span class="md-ellipsis">
-      Using Aliases
+      Using Short Names and Aliases
     </span>
   </a>
   
@@ -1850,6 +1942,7 @@
 <li><strong><a href="../120-user/">User</a></strong> - User account definitions with authentication credentials</li>
 <li><strong><a href="../130-group/">Group</a></strong> - Group definitions with shared claims</li>
 <li><strong><a href="../140-groupbinding/">GroupBinding</a></strong> - User-to-group associations</li>
+<li><strong><a href="../150-upstreamprovider/">UpstreamProvider</a></strong> - External OIDC providers and the internal login form</li>
 </ul>
 <h2 id="api-group-and-version">API Group and Version</h2>
 <p>All Kubauth resources use the following API group and version:</p>
@@ -1865,47 +1958,62 @@
 <tr>
 <th>Resource Type</th>
 <th>Default Namespace</th>
-<th>Configurable</th>
+<th>Configurable via</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>OidcClient</td>
-<td><code>kubauth-oidc</code></td>
-<td>Yes</td>
+<td><code>OidcClient</code></td>
+<td>Helm release namespace (<code>kubauth</code>)</td>
+<td><code>oidc.clientPrivilegedNamespace</code></td>
 </tr>
 <tr>
-<td>User</td>
+<td><code>User</code></td>
 <td><code>kubauth-users</code></td>
-<td>Yes</td>
+<td><code>ucrd.namespace</code></td>
 </tr>
 <tr>
-<td>Group</td>
+<td><code>Group</code></td>
 <td><code>kubauth-users</code></td>
-<td>Yes</td>
+<td><code>ucrd.namespace</code></td>
 </tr>
 <tr>
-<td>GroupBinding</td>
+<td><code>GroupBinding</code></td>
 <td><code>kubauth-users</code></td>
-<td>Yes</td>
+<td><code>ucrd.namespace</code></td>
+</tr>
+<tr>
+<td><code>UpstreamProvider</code></td>
+<td>Helm release namespace (<code>kubauth</code>)</td>
+<td><code>oidc.upstreamProviderNamespace</code></td>
 </tr>
 </tbody>
 </table>
-<p>Namespace configuration can be adjusted via Helm chart values during Kubauth deployment.</p>
+<p><code>OidcClient</code> and <code>UpstreamProvider</code> are watched in <strong>one specific namespace</strong> for cluster-wide effect; <code>User</code>, <code>Group</code> and <code>GroupBinding</code> are watched in the namespace pointed at by <code>ucrd.namespace</code>.</p>
+<p><code>OidcClient</code> is the exception: it can be created in <strong>any</strong> namespace. Clients defined outside the privileged namespace simply get their <code>client_id</code> prefixed with the namespace name (see the <a href="../../30-user-guide/115-oidc-clients-configuration/">OIDC Clients Configuration</a> chapter for the multi-tenancy pattern).</p>
 <h2 id="common-patterns">Common Patterns</h2>
 <h3 id="accessing-resources">Accessing Resources</h3>
 <h4 id="fully-qualified-names">Fully Qualified Names</h4>
 <p>Since some resource names (like <code>User</code>) are common and may conflict with other CRDs, use fully qualified names:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-users<span class="w"> </span>get<span class="w"> </span>users.kubauth.kubotal.io
 </span></code></pre></div>
-<h4 id="using-aliases">Using Aliases</h4>
-<p>For convenience, Kubauth provides aliases:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># User alias</span>
+<h4 id="using-short-names-and-aliases">Using Short Names and Aliases</h4>
+<p>For convenience, Kubauth provides several shortcuts:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># User</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-users<span class="w"> </span>get<span class="w"> </span>kusers
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Group</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-users<span class="w"> </span>get<span class="w"> </span>kgroups
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># GroupBinding</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-users<span class="w"> </span>get<span class="w"> </span>gb
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># UpstreamProvider</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>upstreams
 </span></code></pre></div>
 <h3 id="listing-resources">Listing Resources</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># List all OIDC clients</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-oidc<span class="w"> </span>get<span class="w"> </span>oidcclients
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># List all OIDC clients in every namespace (multi-tenancy view)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>--all-namespaces<span class="w"> </span>oidcclients
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># List all users</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-users<span class="w"> </span>get<span class="w"> </span>users.kubauth.kubotal.io
@@ -1915,48 +2023,75 @@
 </span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># List all group bindings</span>
 </span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-users<span class="w"> </span>get<span class="w"> </span>groupbindings
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1"># List all upstream providers</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>upstreams
 </span></code></pre></div>
 <h3 id="describing-resources">Describing Resources</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Describe an OIDC client</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-oidc<span class="w"> </span>describe<span class="w"> </span>oidcclient<span class="w"> </span>myapp
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>describe<span class="w"> </span>oidcclient<span class="w"> </span>myapp
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Describe a user</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-users<span class="w"> </span>describe<span class="w"> </span>user<span class="w"> </span>john
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Describe a group</span>
 </span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth-users<span class="w"> </span>describe<span class="w"> </span>group<span class="w"> </span>developers
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># Describe an upstream provider</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>describe<span class="w"> </span>upstream<span class="w"> </span>keycloak
 </span></code></pre></div>
 <h2 id="security-considerations">Security Considerations</h2>
 <h3 id="access-control">Access Control</h3>
-<p>Use Kubernetes RBAC to control access to Kubauth resources:</p>
+<p>Use Kubernetes RBAC to control access to Kubauth resources. Kubauth pre-creates the following ClusterRoles to make this easier:</p>
+<table>
+<thead>
+<tr>
+<th>ClusterRole</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubauth-oidc-client-admin</code></td>
+<td>Manage <code>OidcClient</code> resources in a given namespace (tenant administrators).</td>
+</tr>
+<tr>
+<td><code>kubauth-oidc-client-controller</code></td>
+<td>Used internally by the OIDC controller to watch clients (do not bind manually).</td>
+</tr>
+</tbody>
+</table>
+<p>A typical RBAC snippet for a user manager:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Role</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">metadata</span><span class="p">:</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-user-manager</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth-users</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nt">rules</span><span class="p">:</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiGroups</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;kubauth.kubotal.io&quot;</span><span class="p p-Indicator">]</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;users&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;groupbindings&quot;</span><span class="p p-Indicator">]</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;get&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;list&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;create&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;update&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;patch&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;delete&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiGroups</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;kubauth.kubotal.io&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;users&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;groupbindings&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;get&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;list&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;create&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;update&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;patch&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;delete&quot;</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
 <h3 id="secret-management">Secret Management</h3>
 <ul>
-<li><strong>User Passwords:</strong> Always stored as bcrypt hashes, never in plain text</li>
-<li><strong>Client Secrets:</strong> Stored as bcrypt hashes in OidcClient resources</li>
-<li><strong>Use <code>kc hash</code> command:</strong> Generate hashes for passwords and secrets</li>
+<li><strong>User passwords</strong> are always stored as bcrypt hashes through the <code>User.spec.passwordHash</code> field. Use <code>kc hash &lt;password&gt;</code> to generate the value.</li>
+<li><strong>OIDC client secrets</strong> are stored in standard Kubernetes <code>Secret</code> objects referenced by <code>OidcClient.spec.secrets</code>. Multiple entries enable rotation, and the optional <code>hashed: true</code> flag lets you store bcrypt hashes instead of clear-text values.</li>
+<li><strong>Upstream client secrets</strong> are stored in standard Kubernetes <code>Secret</code> objects referenced by <code>UpstreamProvider.spec.clientSecret</code>.</li>
 </ul>
 <h2 id="best-practices">Best Practices</h2>
 <h3 id="resource-naming">Resource Naming</h3>
 <ul>
-<li>Use descriptive, lowercase names with hyphens</li>
-<li>Follow consistent naming conventions across your organization</li>
-<li>For GroupBindings, use pattern: <code>&lt;username&gt;-&lt;groupname&gt;</code></li>
+<li>Use descriptive, lowercase names with hyphens.</li>
+<li>For <code>GroupBinding</code>, follow the pattern <code>&lt;username&gt;-&lt;groupname&gt;</code> to make bindings easy to find.</li>
+<li>For <code>OidcClient</code>, remember that the resource name becomes part of the <code>client_id</code> (with a namespace prefix when created outside the privileged namespace).</li>
 </ul>
 <h2 id="examples-repository">Examples Repository</h2>
-<p>Complete examples for all resources can be found throughout the documentation:</p>
+<p>Complete walkthrough examples for every resource can be found throughout the documentation:</p>
 <ul>
 <li><a href="../../30-user-guide/110-users-configuration/">Users Configuration</a></li>
+<li><a href="../../30-user-guide/115-oidc-clients-configuration/">OIDC Clients Configuration</a></li>
 <li><a href="../../30-user-guide/150-users-groups/">User Groups</a></li>
+<li><a href="../../30-user-guide/200-upstream-providers/">Upstream Providers</a></li>
 <li><a href="../../40-applications-integration/110-argocd/">Applications Integration</a></li>
 <li><a href="../../50-kubernetes-integration/110-overview/">Kubernetes Integration</a></li>
 </ul>

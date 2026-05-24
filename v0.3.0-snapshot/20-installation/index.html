@@ -365,11 +365,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-an-alternate-ingress-controller" class="md-nav__link">
+  <a href="#ingress-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Using an alternate ingress controller
+      Ingress Configuration
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Ingress Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingress-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingress Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-passthrough-vs-ssl-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSL Passthrough vs SSL Backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-a-different-ingress-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using a Different Ingress Controller
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -639,6 +672,75 @@
   
   <span class="md-ellipsis">
     Identity Merging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../30-user-guide/200-upstream-providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upstream Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../30-user-guide/210-helm-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm Chart Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../30-user-guide/220-ui-customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Customizing the Login UI
     
   </span>
   
@@ -1050,6 +1152,29 @@
   
   <span class="md-ellipsis">
     GroupBinding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../60-references/150-upstreamprovider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UpstreamProvider
     
   </span>
   
@@ -1487,11 +1612,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-an-alternate-ingress-controller" class="md-nav__link">
+  <a href="#ingress-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Using an alternate ingress controller
+      Ingress Configuration
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Ingress Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingress-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingress Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-passthrough-vs-ssl-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSL Passthrough vs SSL Backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-a-different-ingress-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using a Different Ingress Controller
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1525,8 +1683,8 @@
 <p><strong>Certificate Manager:</strong> The Certificate Manager must be deployed on your target Kubernetes cluster with a <code>ClusterIssuer</code> configured for certificate management.</p>
 </li>
 <li>
-<p><strong>Ingress Controller:</strong> An ingress controller must be deployed on your target Kubernetes cluster. The provided Helm chart assumes NGINX as the ingress controller. 
-  If needed, you can disable it and configure your own (see <a href="#using-an-alternate-ingress-controller">below</a>). </p>
+<p><strong>Ingress Controller:</strong> An ingress controller must be deployed on your target Kubernetes cluster. The provided Helm chart can configure an ingress for either NGINX or HAProxy.
+  If you use another controller, you can disable the built-in ingress and bring your own (see <a href="#ingress-configuration">below</a>).</p>
 </li>
 <li>
 <p><strong>Helm:</strong> Helm must be installed on your local workstation.</p>
@@ -1567,7 +1725,7 @@
 <p>This <code>values.yaml</code> represents the minimum required configuration. Additional parameters may be introduced in subsequent chapters.</p>
 </div>
 <p>Deploy Kubauth using the following command:</p>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth<span class="w"> </span>--values<span class="w"> </span>./values.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.2.1<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
+<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>helm<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>kubauth<span class="w"> </span>--values<span class="w"> </span>./values.yaml<span class="w"> </span>oci://quay.io/kubauth/charts/kubauth<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.3.0<span class="w"> </span>--create-namespace<span class="w"> </span>--wait
 </span></code></pre></div>
 <blockquote>
 <p>The release name (here <code>kubauth</code>) is important, as most created objects use it as a base name. 
@@ -1584,7 +1742,7 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl https://kubauth.mycluster.mycompany.com/.well-known/openid-configuration
 </span></code></pre></div>
 <h2 id="kc-cli-tool-installation"><code>kc</code> CLI Tool Installation</h2>
-<p>Download the <code>kc</code> CLI from the <a href="https://github.com/kubauth/kc/releases/tag/v0.2.0" target="_blank">GitHub releases page</a>, rename it to <code>kc</code>, make it executable, and move it to your system path:</p>
+<p>Download the <code>kc</code> CLI from the <a href="https://github.com/kubauth/kc/releases/tag/v0.2.1" target="_blank">GitHub releases page</a>, rename it to <code>kc</code>, make it executable, and move it to your system path:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mv<span class="w"> </span>kc_*_*<span class="w"> </span>kc
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>kc
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>sudo<span class="w"> </span>mv<span class="w"> </span>kc<span class="w"> </span>/usr/local/bin/
@@ -1592,27 +1750,56 @@
 <p>Verify the installation:</p>
 <div class="language-bash copy highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span>version
 </span></code></pre></div>
-<h2 id="using-an-alternate-ingress-controller">Using an alternate ingress controller</h2>
-<p>If you need to use a different ingress controller:</p>
-<ul>
-<li>Disable the built-in ingress in the Helm chart values: </li>
-</ul>
+<h2 id="ingress-configuration">Ingress Configuration</h2>
+<p>The Helm chart can generate the <code>Ingress</code> resource for either NGINX or HAProxy. When this is not enough, you can disable the built-in ingress and configure your own.</p>
+<h3 id="ingress-class">Ingress Class</h3>
+<p>By default, the chart targets the <code>nginx</code> ingress class. To target HAProxy instead, override <code>oidc.ingress.class</code>:</p>
 <details class="abstract" open="open">
 <summary>values.yaml</summary>
 <div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">oidc</span><span class="p">:</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">......</span><span class="w"> </span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">......</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ingress</span><span class="p p-Indicator">:</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">......</span><span class="w"> </span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">haproxy</span><span class="w">        </span><span class="c1"># nginx (default) or haproxy</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.mycluster.mycompany.com</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">......</span>
 </span></code></pre></div>
 </details>
+<h3 id="ssl-passthrough-vs-ssl-backend">SSL Passthrough vs SSL Backend</h3>
+<p>Kubauth terminates TLS inside the pod, so the chart configures the ingress in <strong>SSL passthrough</strong> mode by default. The relevant annotations are emitted automatically for both <code>nginx</code> and <code>haproxy</code>.</p>
+<p>If your controller cannot run in passthrough mode, set <code>oidc.ingress.passthrough: false</code>. The ingress will then terminate TLS itself and forward HTTPS traffic to the Kubauth backend:</p>
+<details class="abstract" open="open">
+<summary>values.yaml</summary>
+<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">oidc</span><span class="p">:</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">......</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ingress</span><span class="p p-Indicator">:</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span><span class="w">          </span><span class="c1"># or haproxy</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubauth.mycluster.mycompany.com</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="nt">passthrough</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">......</span>
+</span></code></pre></div>
+</details>
+<p>In this mode the chart automatically:</p>
 <ul>
-<li>
-<p>Configure your controller to use the <code>kubauth-oidc-server</code> backend service on port 443/oidc.</p>
-</li>
-<li>
-<p>Configure your controller for SSL passthrough, as TLS is terminated by the <code>kubauth</code> pod itself.</p>
-</li>
+<li>adds the <code>nginx.ingress.kubernetes.io/backend-protocol: HTTPS</code> and <code>haproxy.org/server-ssl: "true"</code> annotations,</li>
+<li>declares a <code>spec.tls</code> entry pointing at the certificate issued for the Kubauth host (so the controller can present a valid certificate at the edge).</li>
+</ul>
+<h3 id="using-a-different-ingress-controller">Using a Different Ingress Controller</h3>
+<p>For any other ingress controller (Traefik, Contour, ...), disable the built-in ingress:</p>
+<details class="abstract" open="open">
+<summary>values.yaml</summary>
+<div class="language-yaml copy highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">oidc</span><span class="p">:</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">......</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ingress</span><span class="p p-Indicator">:</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">......</span>
+</span></code></pre></div>
+</details>
+<p>Then configure your controller to:</p>
+<ul>
+<li>route traffic to the <code>kubauth-oidc-server</code> Service on port <code>443</code>,</li>
+<li>use SSL passthrough, since TLS is terminated by the Kubauth pod itself.</li>
 </ul>
 
 

@@ -571,6 +571,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/200-upstream-providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upstream Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/210-helm-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm Chart Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/220-ui-customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Customizing the Login UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1068,6 +1137,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/150-upstreamprovider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UpstreamProvider
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1532,7 +1624,10 @@
 <h2 id="automated-configuration">Automated Configuration</h2>
 <p>Kubauth provides a Helm chart that spawns appropriate jobs to perform this configuration in a fully automated manner.</p>
 <p>This process assumes that the API Server is managed by the Kubelet as a static pod. If your API Server is managed by another system, such as systemd, you should fall back to the manual configuration.</p>
-<p>Additionally, this process assumes a 'standard' folder layout for the Kubernetes installation, such as those used by <a href="https://kind.sigs.k8s.io/" target="_blank">kind</a> or <a href="https://github.com/kubernetes-sigs/kubespray" target="_blank">kubespray</a>. If this is not the case, adjustments can be made by overriding values in the Helm chart. Refer to its <a href="https://github.com/kubauth/kubauth-apiserver/blob/main/helm/kubauth-apiserver/values.yaml" target="_blank">values file</a>.</p>
+<p>Additionally, this process assumes a 'standard' folder layout for the Kubernetes installation, such as those used by <a href="https://kind.sigs.k8s.io/" target="_blank">kind</a> 
+or <a href="https://github.com/kubernetes-sigs/kubespray" target="_blank">kubespray</a>. 
+If this is not the case, adjustments can be made by overriding values in the Helm chart. Refer to 
+its <a href="https://github.com/kubauth/kubauth-apiserver/blob/main/helm/kubauth-apiserver/values.yaml" target="_blank">values file</a>.</p>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
 <p>If you are performing this task on a critical cluster, we strongly recommend reading the Manual Configuration section below. This will help you fully understand what happens under the hood, enabling you to roll back manually in case of problems.</p>

@@ -571,6 +571,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/200-upstream-providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upstream Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/210-helm-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm Chart Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/220-ui-customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Customizing the Login UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -982,6 +1051,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/150-upstreamprovider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UpstreamProvider
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1173,62 +1265,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#flags" class="md-nav__link">
+  <a href="#connection-flags" class="md-nav__link">
     <span class="md-ellipsis">
-      Flags
+      Connection Flags
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Flags">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Flags">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-issuerurl" class="md-nav__link">
-    <span class="md-ellipsis">
-      --issuerURL
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-clientid" class="md-nav__link">
-    <span class="md-ellipsis">
-      --clientId
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-clientsecret" class="md-nav__link">
-    <span class="md-ellipsis">
-      --clientSecret
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-insecureskipverify" class="md-nav__link">
-    <span class="md-ellipsis">
-      --insecureSkipVerify
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-cafile" class="md-nav__link">
-    <span class="md-ellipsis">
-      --caFile
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-onlyidtoken" class="md-nav__link">
+  <a href="#onlyidtoken" class="md-nav__link">
     <span class="md-ellipsis">
       --onlyIdToken
     </span>
@@ -1237,7 +1293,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-onlyaccesstoken" class="md-nav__link">
+  <a href="#onlyaccesstoken" class="md-nav__link">
     <span class="md-ellipsis">
       --onlyAccessToken
     </span>
@@ -1246,43 +1302,58 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-d-detailidtoken" class="md-nav__link">
+  <a href="#detailidtoken" class="md-nav__link">
     <span class="md-ellipsis">
-      -d, --detailIdToken
+      --detailIdToken, -d
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-a-detailaccesstoken" class="md-nav__link">
+  <a href="#detailaccesstoken" class="md-nav__link">
     <span class="md-ellipsis">
-      -a, --detailAccessToken
+      --detailAccessToken, -a
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-scope" class="md-nav__link">
+  <a href="#userinfo" class="md-nav__link">
     <span class="md-ellipsis">
-      --scope
+      --userInfo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flow-specific-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flow-Specific Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flow-Specific Flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bindport" class="md-nav__link">
+    <span class="md-ellipsis">
+      --bindPort, -p
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-p-bindport" class="md-nav__link">
-    <span class="md-ellipsis">
-      -p, bindPort
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-pkce" class="md-nav__link">
+  <a href="#pkce" class="md-nav__link">
     <span class="md-ellipsis">
       --pkce
     </span>
@@ -1291,7 +1362,16 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-browser" class="md-nav__link">
+  <a href="#prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      --prompt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browser" class="md-nav__link">
     <span class="md-ellipsis">
       --browser
     </span>
@@ -1300,16 +1380,40 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ttl" class="md-nav__link">
+  <a href="#dumpserverexchanges" class="md-nav__link">
     <span class="md-ellipsis">
-      --ttl
+      --dumpServerExchanges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#token-renewal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Renewal
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Token Renewal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ttl" class="md-nav__link">
+    <span class="md-ellipsis">
+      --ttl, -t
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-renewat" class="md-nav__link">
+  <a href="#renewat" class="md-nav__link">
     <span class="md-ellipsis">
       --renewAt
     </span>
@@ -1342,36 +1446,54 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#with-decoded-token" class="md-nav__link">
+  <a href="#decoded-id-token" class="md-nav__link">
     <span class="md-ellipsis">
-      With Decoded Token
+      Decoded ID Token
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#only-id-token-for-piping" class="md-nav__link">
+  <a href="#only-the-id-token-for-piping" class="md-nav__link">
     <span class="md-ellipsis">
-      Only ID Token (for Piping)
+      Only the ID Token (for piping)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#pipe-to-jwt-decoder" class="md-nav__link">
+  <a href="#pipe-to-the-jwt-decoder" class="md-nav__link">
     <span class="md-ellipsis">
-      Pipe to JWT Decoder
+      Pipe to the JWT Decoder
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#renewal" class="md-nav__link">
+  <a href="#force-re-authentication-no-sso-short-circuit" class="md-nav__link">
     <span class="md-ellipsis">
-      Renewal
+      Force Re-Authentication (no SSO short-circuit)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pkce-recommended-for-public-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      PKCE (recommended for public clients)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renewal-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renewal Loop
     </span>
   </a>
   
@@ -1774,62 +1896,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#flags" class="md-nav__link">
+  <a href="#connection-flags" class="md-nav__link">
     <span class="md-ellipsis">
-      Flags
+      Connection Flags
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Flags">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Flags">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-issuerurl" class="md-nav__link">
-    <span class="md-ellipsis">
-      --issuerURL
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-clientid" class="md-nav__link">
-    <span class="md-ellipsis">
-      --clientId
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-clientsecret" class="md-nav__link">
-    <span class="md-ellipsis">
-      --clientSecret
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-insecureskipverify" class="md-nav__link">
-    <span class="md-ellipsis">
-      --insecureSkipVerify
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-cafile" class="md-nav__link">
-    <span class="md-ellipsis">
-      --caFile
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-onlyidtoken" class="md-nav__link">
+  <a href="#onlyidtoken" class="md-nav__link">
     <span class="md-ellipsis">
       --onlyIdToken
     </span>
@@ -1838,7 +1924,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-onlyaccesstoken" class="md-nav__link">
+  <a href="#onlyaccesstoken" class="md-nav__link">
     <span class="md-ellipsis">
       --onlyAccessToken
     </span>
@@ -1847,43 +1933,58 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-d-detailidtoken" class="md-nav__link">
+  <a href="#detailidtoken" class="md-nav__link">
     <span class="md-ellipsis">
-      -d, --detailIdToken
+      --detailIdToken, -d
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-a-detailaccesstoken" class="md-nav__link">
+  <a href="#detailaccesstoken" class="md-nav__link">
     <span class="md-ellipsis">
-      -a, --detailAccessToken
+      --detailAccessToken, -a
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-scope" class="md-nav__link">
+  <a href="#userinfo" class="md-nav__link">
     <span class="md-ellipsis">
-      --scope
+      --userInfo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flow-specific-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flow-Specific Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flow-Specific Flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bindport" class="md-nav__link">
+    <span class="md-ellipsis">
+      --bindPort, -p
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-p-bindport" class="md-nav__link">
-    <span class="md-ellipsis">
-      -p, bindPort
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-pkce" class="md-nav__link">
+  <a href="#pkce" class="md-nav__link">
     <span class="md-ellipsis">
       --pkce
     </span>
@@ -1892,7 +1993,16 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-browser" class="md-nav__link">
+  <a href="#prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      --prompt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browser" class="md-nav__link">
     <span class="md-ellipsis">
       --browser
     </span>
@@ -1901,16 +2011,40 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ttl" class="md-nav__link">
+  <a href="#dumpserverexchanges" class="md-nav__link">
     <span class="md-ellipsis">
-      --ttl
+      --dumpServerExchanges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#token-renewal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Renewal
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Token Renewal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ttl" class="md-nav__link">
+    <span class="md-ellipsis">
+      --ttl, -t
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-renewat" class="md-nav__link">
+  <a href="#renewat" class="md-nav__link">
     <span class="md-ellipsis">
       --renewAt
     </span>
@@ -1943,36 +2077,54 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#with-decoded-token" class="md-nav__link">
+  <a href="#decoded-id-token" class="md-nav__link">
     <span class="md-ellipsis">
-      With Decoded Token
+      Decoded ID Token
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#only-id-token-for-piping" class="md-nav__link">
+  <a href="#only-the-id-token-for-piping" class="md-nav__link">
     <span class="md-ellipsis">
-      Only ID Token (for Piping)
+      Only the ID Token (for piping)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#pipe-to-jwt-decoder" class="md-nav__link">
+  <a href="#pipe-to-the-jwt-decoder" class="md-nav__link">
     <span class="md-ellipsis">
-      Pipe to JWT Decoder
+      Pipe to the JWT Decoder
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#renewal" class="md-nav__link">
+  <a href="#force-re-authentication-no-sso-short-circuit" class="md-nav__link">
     <span class="md-ellipsis">
-      Renewal
+      Force Re-Authentication (no SSO short-circuit)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pkce-recommended-for-public-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      PKCE (recommended for public clients)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renewal-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renewal Loop
     </span>
   </a>
   
@@ -2106,247 +2258,354 @@
 
 <h1 id="kc-token">kc token</h1>
 <h2 id="overview">Overview</h2>
-<p>The <code>kc token</code> command obtains OIDC tokens using the authorization code flow. It opens a browser for user authentication and returns access, refresh, and ID tokens.</p>
+<p>The <code>kc token</code> command obtains OIDC tokens using the <strong>Authorization Code</strong> flow. It starts a local HTTP server, opens a browser on the Kubauth login page, exchanges the resulting authorization code for tokens, and prints them on the terminal. The browser then displays a success page with the decoded tokens (formatted as JSON, with copy buttons).</p>
+<p>After issuance, <code>kc token</code> always verifies the returned tokens:</p>
 <ul>
-<li>The ID token signature is checked against the server key.</li>
-<li>If Access Token is in JWT form, its signature is checked against the server key.</li>
-<li>If Access Token is in opaque form, it is checked against server introspection endpoint.</li>
+<li>The ID token signature is verified against the server's signing keys (JWKS).</li>
+<li>A JWT access token is verified the same way (with the audience check relaxed).</li>
+<li>An opaque access token is verified via the OAuth2 introspection endpoint.</li>
 </ul>
+<p>A warning is printed on stderr if any of these verifications fail.</p>
 <h2 id="syntax">Syntax</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>&lt;url&gt;<span class="w"> </span>--clientId<span class="w"> </span>&lt;id&gt;<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span>token<span class="w"> </span><span class="o">[</span>--issuerURL<span class="w"> </span>&lt;url&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--clientId<span class="w"> </span>&lt;id&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
 </span></code></pre></div>
-<h2 id="flags">Flags</h2>
-<h3 id="-issuerurl"><code>--issuerURL</code></h3>
-<p>The Kubauth OIDC issuer URL.</p>
-<p><strong>Example:</strong> <code>--issuerURL https://kubauth.example.com</code></p>
-<p>Value may also be fetched from <code>KC_ISSUER_URL</code> environment variable, or Kubernetes kubeconfig if <code>kc init ....</code> has been used.</p>
-<hr />
-<h3 id="-clientid"><code>--clientId</code></h3>
-<p>The OIDC client ID to use for authentication.</p>
-<p><strong>Example:</strong> <code>--clientId public</code></p>
-<p>Value may also be fetched from <code>KC_CLIENT_ID</code> environment variable, or Kubernetes kubeconfig if <code>kc init ....</code> has been used.</p>
-<hr />
-<h3 id="-clientsecret"><code>--clientSecret</code></h3>
-<p>The client secret (for confidential clients).</p>
-<p><strong>Example:</strong> <code>--clientSecret mysecret123</code></p>
-<p>Value may also be fetched from <code>KC_CLIENT_SECRET</code> environment variable, or Kubernetes kubeconfig if <code>kc init ....</code> has been used.</p>
-<hr />
-<h3 id="-insecureskipverify"><code>--insecureSkipVerify</code></h3>
-<p>Skip TLS certificate verification. Use only for testing with self-signed certificates.</p>
-<p><strong>Example:</strong> <code>--insecureSkipVerify</code></p>
-<hr />
-<h3 id="-cafile"><code>--caFile</code></h3>
-<p>Provide a CA file for TLS certificate verification of ìssuerURL</p>
-<p><strong>Example:</strong> <code>--caFile ./CA.crt</code></p>
-<hr />
-<h3 id="-onlyidtoken"><code>--onlyIdToken</code></h3>
-<p>Output only the ID token (base64-encoded JWT). Useful for piping to other commands or scripts.</p>
-<p><strong>Example:</strong> <code>--onlyIdToken</code></p>
-<hr />
-<h3 id="-onlyaccesstoken"><code>--onlyAccessToken</code></h3>
-<p>Output only the access token (base64-encoded). Useful for piping to other commands or scripts.</p>
-<p><strong>Example:</strong> <code>--onlyAccessToken</code></p>
-<hr />
-<h3 id="-d-detailidtoken"><code>-d</code>, <code>--detailIdToken</code></h3>
-<p>Decode and display the JWT OIDC token payload. This is equivalent to <code>kc token .... --onlyIdToken | kc jwt</code>.</p>
-<p><strong>Example:</strong> <code>-d</code></p>
-<hr />
-<h3 id="-a-detailaccesstoken"><code>-a</code>, <code>--detailAccessToken</code></h3>
-<p>Decode and display the JWT Access token payload. This is equivalent to <code>kc token .... --onlyAccessToken | kc jwt</code>.</p>
-<p><strong>Example:</strong> <code>-a</code></p>
-<blockquote>
-<p>The Kubauth server must be configured to generate AccessToken in JWT form.</p>
-</blockquote>
-<hr />
-<h3 id="-scope"><code>--scope</code></h3>
-<p>List of OAuth2 scopes to request.</p>
-<p><strong>Default:</strong> <code>openid profile groups offline</code></p>
-<p><strong>Example:</strong> <code>--scope "openid" --scope "profile" --scope "email" --scope "groups"</code></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>In its current version, Kubauth does not manage scopes. All claims are included in the JWT token.</p>
+<p>When <code>--issuerURL</code> and/or <code>--clientId</code> are omitted, <code>kc</code> falls back to the corresponding <code>KC_*</code> environment variable, then to the current kubeconfig (see <a href="../100-overview/#kubeconfig-integration">Kubeconfig integration</a>).</p>
+<h2 id="connection-flags">Connection Flags</h2>
+<p>These flags are shared with <code>kc token-nui</code> and <code>kc client</code>. See <a href="../100-overview/#common-options">Common Options</a> for the full description.</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Env var</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--issuerURL</code>, <code>-i</code></td>
+<td>string</td>
+<td>—</td>
+<td><code>KC_ISSUER_URL</code></td>
+</tr>
+<tr>
+<td><code>--clientId</code>, <code>-c</code></td>
+<td>string</td>
+<td>—</td>
+<td><code>KC_CLIENT_ID</code></td>
+</tr>
+<tr>
+<td><code>--clientSecret</code>, <code>-s</code></td>
+<td>string</td>
+<td>—</td>
+<td><code>KC_CLIENT_SECRET</code></td>
+</tr>
+<tr>
+<td><code>--insecureSkipVerify</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>--caFile</code> <small>(repeatable)</small></td>
+<td>string</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>--kubeconfig</code></td>
+<td>string</td>
+<td><code>$KUBECONFIG</code> or <code>$HOME/.kube/config</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>--context</code></td>
+<td>string</td>
+<td>kubeconfig <code>current-context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>--scope</code> <small>(repeatable)</small></td>
+<td>string</td>
+<td><code>openid</code>, <code>profile</code>, <code>groups</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>--logMode</code></td>
+<td>string</td>
+<td><code>text</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>--logLevel</code>, <code>-l</code></td>
+<td>string</td>
+<td><code>INFO</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>--dumpClientExchanges</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">About <code>--scope</code></p>
+<p><code>offline_access</code> is appended automatically when <a href="#ttl"><code>--ttl</code></a> is used, so the server returns a refresh token.</p>
 </div>
-<hr />
-<h3 id="-p-bindport"><code>-p</code>, <code>bindPort</code></h3>
-<p>Local web server bind port.</p>
-<p><strong>Default:</strong> 9921</p>
-<hr />
-<h3 id="-pkce"><code>--pkce</code></h3>
-<p>Use PKCE (Proof Key for Code Exchange) for enhanced security.</p>
-<hr />
-<h3 id="-browser"><code>--browser</code></h3>
-<p>Override default browser. Possible values: </p>
-<ul>
-<li><code>chrome</code></li>
-<li><code>firefox</code></li>
-<li><code>safari</code></li>
-</ul>
-<hr />
-<h3 id="-ttl"><code>--ttl</code></h3>
-<p>Instead of ending immediately, the command enter a loop ending after this duration value. </p>
-<p>During this period, it will exercise the renewal of the Access Token</p>
-<p><strong>Default:</strong> 0</p>
-<p><strong>Example</strong>: <code>--ttl 30m</code></p>
-<hr />
-<h3 id="-renewat"><code>--renewAt</code></h3>
-<p>The threshold percentage of the token's life before renewal is initiated.</p>
-<p><strong>Example</strong>: <code>--renewAt 50</code>  # Renewal will be triggered halfway through the access token's lifespan.</p>
+<h2 id="output-flags">Output Flags</h2>
+<h3 id="onlyidtoken"><code>--onlyIdToken</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Print only the ID token on stdout. Convenient for piping into another command.</p>
+<hr class="api-field-separator">
+
+<h3 id="onlyaccesstoken"><code>--onlyAccessToken</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Print only the access token on stdout.</p>
+<hr class="api-field-separator">
+
+<h3 id="detailidtoken"><code>--detailIdToken</code>, <code>-d</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>In addition to the regular output, print the decoded ID token (header + payload).</p>
+<hr class="api-field-separator">
+
+<h3 id="detailaccesstoken"><code>--detailAccessToken</code>, <code>-a</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>In addition to the regular output, print the decoded access token (or a notice when the access token is opaque).</p>
+<hr class="api-field-separator">
+
+<h3 id="userinfo"><code>--userInfo</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Call the provider <code>userinfo</code> endpoint with the obtained access token and print the result.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The browser success page <strong>always</strong> shows the decoded tokens regardless of <code>-d</code> and <code>-a</code>. These two flags only affect what is printed on the terminal.</p>
+</div>
+<h2 id="flow-specific-flags">Flow-Specific Flags</h2>
+<h3 id="bindport"><code>--bindPort</code>, <code>-p</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">int</span>
+<span class="api-badge api-default">default: <code>9921</code></span>
+</p>
+
+<p>Port of the local HTTP server used to receive the authorization callback.</p>
+<p>The server listens on <code>127.0.0.1</code> and the redirect URI is computed as <code>http://127.0.0.1:&lt;bindPort&gt;/callback</code>. This redirect URI must be allowed by the OIDC client (Kubauth ships with a sensible default for <code>localhost</code>).</p>
+<hr class="api-field-separator">
+
+<h3 id="pkce"><code>--pkce</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Enable <a href="https://datatracker.ietf.org/doc/html/rfc7636">PKCE</a> (Proof Key for Code Exchange, <code>S256</code>). Recommended for public clients.</p>
+<hr class="api-field-separator">
+
+<h3 id="prompt"><code>--prompt</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+</p>
+
+<p>Value forwarded as the OAuth2 <code>prompt</code> parameter in the authorization request. Valid OIDC values are <code>none</code>, <code>login</code>, <code>consent</code>, <code>select_account</code> (space-separated for several).</p>
+<p>When the flag is omitted (default), <code>kc</code> does not include any <code>prompt</code> parameter in the request. Use <code>--prompt=login</code> to force the user to re-authenticate even when an SSO session is active, or <code>--prompt=none</code> to require silent re-authentication.</p>
+<hr class="api-field-separator">
+
+<h3 id="browser"><code>--browser</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: OS-level default browser</span>
+</p>
+
+<p>Pick a specific browser to open. Possible values: <code>chrome</code>, <code>firefox</code>, <code>safari</code>.</p>
+<hr class="api-field-separator">
+
+<h3 id="dumpserverexchanges"><code>--dumpServerExchanges</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">int</span>
+<span class="api-badge api-default">default: <code>0</code></span>
+</p>
+
+<p>Dump HTTP requests/responses received by the local callback HTTP server. One of <code>0</code> (off), <code>1</code>, <code>2</code>, <code>3</code> (increasing verbosity).</p>
+<h2 id="token-renewal">Token Renewal</h2>
+<h3 id="ttl"><code>--ttl</code>, <code>-t</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">duration</span>
+<span class="api-badge api-default">default: <code>0</code> (disabled)</span>
+</p>
+
+<p>Instead of exiting immediately after retrieving tokens, enter a renewal loop that ends after this duration. During this period, <code>kc</code> exercises the OIDC refresh-token flow.</p>
+<p>When <code>--ttl</code> is non-zero, <code>offline_access</code> is automatically added to the requested scopes (so the server returns a refresh token).</p>
+<p><strong>Example:</strong> <code>--ttl 30m</code></p>
+<hr class="api-field-separator">
+
+<h3 id="renewat"><code>--renewAt</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">int</span>
+<span class="api-badge api-default">default: <code>60</code></span>
+</p>
+
+<p>Percentage of the access token's lifetime after which a renewal is triggered.</p>
+<p><strong>Example:</strong> <code>--renewAt 50</code> triggers a renewal halfway through the access token's lifespan.</p>
 <h2 id="examples">Examples</h2>
 <h3 id="basic-usage">Basic Usage</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public
 </span></code></pre></div>
-<p><strong>output:</strong>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>if browser doesn&#39;t open automatically, visit: http://127.0.0.1:9921
-</span></code></pre></div></p>
-<p><strong>Output:</strong> (After successful login)
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Access token: ory_at_xLUfAhEGpFVWpMLdNEDZAj94hHFrHWjgOYB5g0Leh_k...
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Refresh token: ory_rt_nU9NBZs4NtKTxVYVko1aqlJkAMF5MLBYjfiZbhVt9aE...
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY...
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Expire in: 59m59s
-</span></code></pre></div></p>
-<h3 id="with-decoded-token">With Decoded Token</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>-d
+<p>Output (after successful login in the browser):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>If browser doesn&#39;t open automatically, visit: http://127.0.0.1:9921
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Access token: ory_at_xLUfAhEGpFVWpMLdNEDZAj94hHFrHWjgOYB5g0Leh_k...
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Refresh token: null
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY...
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Expire in: 59m59s
 </span></code></pre></div>
-<p><strong>Output:</strong>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Access token: ory_at_...
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Refresh token: ory_rt_...
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>ID token: eyJhbG...
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Expire in: 59m59s
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>JWT Payload:
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>{
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>  &quot;aud&quot;: [&quot;public&quot;],
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>  &quot;auth_time&quot;: 1763573723,
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>  &quot;auth_time_human&quot;: &quot;2025-11-19 17:35:23 UTC&quot;,
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>  &quot;azp&quot;: &quot;public&quot;,
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>  &quot;email&quot;: &quot;john@example.com&quot;,
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>  &quot;emails&quot;: [&quot;john@example.com&quot;],
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>  &quot;exp&quot;: 1763577323,
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>  &quot;exp_human&quot;: &quot;2025-11-19 18:35:23 UTC&quot;,
-</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>  &quot;groups&quot;: [&quot;developers&quot;, &quot;ops&quot;],
-</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>  &quot;iat&quot;: 1763573723,
-</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>  &quot;iat_human&quot;: &quot;2025-11-19 17:35:23 UTC&quot;,
-</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>  &quot;iss&quot;: &quot;https://kubauth.example.com&quot;,
-</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>  &quot;name&quot;: &quot;John DOE&quot;,
-</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>  &quot;sub&quot;: &quot;john&quot;
-</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>}
-</span></code></pre></div></p>
-<h3 id="only-id-token-for-piping">Only ID Token (for Piping)</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken
+<h3 id="decoded-id-token">Decoded ID Token</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>-d
 </span></code></pre></div>
-<p><strong>Output:</strong>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiaGNBY2dtdmdBekJlSGgyODlkWHF3USIsImF1ZCI6WyJwdWJsaWMiXSwi...
-</span></code></pre></div></p>
-<h3 id="pipe-to-jwt-decoder">Pipe to JWT Decoder</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken<span class="w"> </span><span class="p">|</span><span class="w"> </span>kc<span class="w"> </span>jwt
+<p>The decoded payload is printed after the regular output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>...
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>IdToken: JWT Payload:
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>{
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  &quot;aud&quot;: [&quot;public&quot;],
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  &quot;auth_time&quot;: 1763573723,
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>  &quot;auth_time_human&quot;: &quot;2025-11-19 17:35:23 UTC&quot;,
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>  &quot;azp&quot;: &quot;public&quot;,
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>  &quot;email&quot;: &quot;john@example.com&quot;,
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  &quot;emails&quot;: [&quot;john@example.com&quot;],
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>  &quot;exp&quot;: 1763577323,
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  &quot;exp_human&quot;: &quot;2025-11-19 18:35:23 UTC&quot;,
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>  &quot;groups&quot;: [&quot;developers&quot;, &quot;ops&quot;],
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>  &quot;iat&quot;: 1763573723,
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>  &quot;iat_human&quot;: &quot;2025-11-19 17:35:23 UTC&quot;,
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>  &quot;iss&quot;: &quot;https://kubauth.example.com&quot;,
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>  &quot;name&quot;: &quot;John DOE&quot;,
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>  &quot;sub&quot;: &quot;john&quot;
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>}
 </span></code></pre></div>
-<h3 id="renewal">Renewal</h3>
-<p>The OIDC client is configured with:</p>
-<ul>
-<li><code>accessTokenLifespan: 30s</code></li>
-<li><code>refreshTokenLifespan: 30s</code></li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>kc-test<span class="w"> </span>--ttl<span class="w"> </span>1m10s
+<h3 id="only-the-id-token-for-piping">Only the ID Token (for piping)</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken
 </span></code></pre></div>
-<p><strong>output:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>If<span class="w"> </span>browser<span class="w"> </span>doesn<span class="err">&#39;</span>t<span class="w"> </span>open<span class="w"> </span>automatically,<span class="w"> </span>visit:<span class="w"> </span>http://127.0.0.1:9921
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Access<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1N.............
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Refresh<span class="w"> </span>token:<span class="w"> </span>ory_rt_L5R5G3kTb5sEZOTCxz_J121GA59ogeYoe1xJXJXSyAM.YCfxq0uc4YVQ566WPPEwaXh-_YL5pAiy6xa7a79GHFw
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>ID<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3.............
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>Expire<span class="w"> </span><span class="k">in</span>:<span class="w"> </span>29s
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>Renewal<span class="w"> </span>loop<span class="w"> </span>started<span class="w"> </span><span class="o">(</span>ttl:<span class="w"> </span>1m10s,<span class="w"> </span>renewAt:<span class="w"> </span><span class="m">60</span>%,<span class="w"> </span>deadline:<span class="w"> </span><span class="m">2026</span>-03-31T17:36:15+02:00<span class="o">)</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>Token<span class="w"> </span>lifetime:<span class="w"> </span>29s,<span class="w"> </span>renewal<span class="w"> </span><span class="k">in</span>:<span class="w"> </span>17s<span class="w"> </span><span class="o">(</span>at<span class="w"> </span><span class="m">17</span>:35:22<span class="o">)</span>,<span class="w"> </span>expires<span class="w"> </span>at:<span class="w"> </span><span class="m">17</span>:35:34
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>Waiting<span class="w"> </span>17s<span class="w"> </span>before<span class="w"> </span>next<span class="w"> </span>renewal...
-</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
-</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>---<span class="w"> </span>Renewal<span class="w"> </span><span class="c1">#1 at 2026-03-31T17:35:22+02:00 ---</span>
-</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>Renewal<span class="w"> </span><span class="c1">#1 successful</span>
-</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>Access<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1N.............
-</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>Refresh<span class="w"> </span>token:<span class="w"> </span>ory_rt_oQybFhJPQO-eI0xuu77kdCS9rpY8xAcoExFJODMyNvo.Fydp0sV5beCqLwG1MA11FN2yzi2PtRAWhFoPO6BB0Vw
-</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>ID<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M..............
-</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>Expire<span class="w"> </span><span class="k">in</span>:<span class="w"> </span>30s
-</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>Token<span class="w"> </span>lifetime:<span class="w"> </span>30s,<span class="w"> </span>renewal<span class="w"> </span><span class="k">in</span>:<span class="w"> </span>18s<span class="w"> </span><span class="o">(</span>at<span class="w"> </span><span class="m">17</span>:35:40<span class="o">)</span>,<span class="w"> </span>expires<span class="w"> </span>at:<span class="w"> </span><span class="m">17</span>:35:52
-</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>Waiting<span class="w"> </span>18s<span class="w"> </span>before<span class="w"> </span>next<span class="w"> </span>renewal...
-</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>
-</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>---<span class="w"> </span>Renewal<span class="w"> </span><span class="c1">#2 at 2026-03-31T17:35:40+02:00 ---</span>
-</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>Renewal<span class="w"> </span><span class="c1">#2 successful</span>
-</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>Access<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1L.............
-</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>Refresh<span class="w"> </span>token:<span class="w"> </span>ory_rt_qcpmGnDVMU8NvLEzjOl24xzGRx3MUca87QAjLHzDBnM.LPb0LDWuLNPxQrquv2dqrRq1onnBY4wE_IXGMAN55Hg
-</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>ID<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1LTU4Z.............
-</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>Expire<span class="w"> </span><span class="k">in</span>:<span class="w"> </span>30s
-</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>Token<span class="w"> </span>lifetime:<span class="w"> </span>30s,<span class="w"> </span>renewal<span class="w"> </span><span class="k">in</span>:<span class="w"> </span>18s<span class="w"> </span><span class="o">(</span>at<span class="w"> </span><span class="m">17</span>:35:58<span class="o">)</span>,<span class="w"> </span>expires<span class="w"> </span>at:<span class="w"> </span><span class="m">17</span>:36:10
-</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>Waiting<span class="w"> </span>18s<span class="w"> </span>before<span class="w"> </span>next<span class="w"> </span>renewal...
-</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>
-</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>---<span class="w"> </span>Renewal<span class="w"> </span><span class="c1">#3 at 2026-03-31T17:35:58+02:00 ---</span>
-</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>Renewal<span class="w"> </span><span class="c1">#3 successful</span>
-</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>Access<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3.............
-</span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>Refresh<span class="w"> </span>token:<span class="w"> </span>ory_rt_m3OcpGHUkBf651qUFCzuqm-7y7Q17852QQzHOl3fOZE.vD7m3vu13p_TKf9VK5c5iekB3CZUxkhzMv82Nilhrdw
-</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>ID<span class="w"> </span>token:<span class="w"> </span>eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M.............
-</span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a>Expire<span class="w"> </span><span class="k">in</span>:<span class="w"> </span>30s
-</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>Token<span class="w"> </span>lifetime:<span class="w"> </span>30s,<span class="w"> </span>renewal<span class="w"> </span><span class="k">in</span>:<span class="w"> </span>18s<span class="w"> </span><span class="o">(</span>at<span class="w"> </span><span class="m">17</span>:36:16<span class="o">)</span>,<span class="w"> </span>expires<span class="w"> </span>at:<span class="w"> </span><span class="m">17</span>:36:28
-</span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a>Next<span class="w"> </span>renewal<span class="w"> </span>would<span class="w"> </span>be<span class="w"> </span>past<span class="w"> </span>deadline,<span class="w"> </span>waiting<span class="w"> </span>16s<span class="w"> </span><span class="k">for</span><span class="w"> </span>TTL<span class="w"> </span>to<span class="w"> </span>expire...
-</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a>TTL<span class="w"> </span>reached,<span class="w"> </span>exiting<span class="w"> </span>renewal<span class="w"> </span>loop
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiaGNBY2dtdmdBekJlSGgyODlkWHF3USIsImF1ZCI6WyJwdWJsaWMiXSwi...
+</span></code></pre></div>
+<h3 id="pipe-to-the-jwt-decoder">Pipe to the JWT Decoder</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken<span class="w"> </span><span class="p">|</span><span class="w"> </span>kc<span class="w"> </span>jwt
+</span></code></pre></div>
+<h3 id="force-re-authentication-no-sso-short-circuit">Force Re-Authentication (no SSO short-circuit)</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--prompt<span class="w"> </span>login
+</span></code></pre></div>
+<h3 id="pkce-recommended-for-public-clients">PKCE (recommended for public clients)</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--pkce
+</span></code></pre></div>
+<h3 id="renewal-loop">Renewal Loop</h3>
+<p>The OIDC client is configured with <code>accessTokenLifespan: 30s</code> and <code>refreshTokenLifespan: 30s</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>kc-test<span class="w"> </span>--ttl<span class="w"> </span>1m10s
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>If browser doesn&#39;t open automatically, visit: http://127.0.0.1:9921
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1N.............
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>Refresh token: ory_rt_L5R5G3kTb5sEZOTCxz_J121GA59ogeYoe1xJXJXSyAM...
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3.............
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>Expire in: 29s
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>Renewal loop started (ttl: 1m10s, renewAt: 60%, deadline: 2026-03-31T17:36:15+02:00)
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>Token lifetime: 29s, renewal in: 17s (at 17:35:22), expires at: 17:35:34
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>Waiting 17s before next renewal...
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>--- Renewal #1 at 2026-03-31T17:35:22+02:00 ---
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>Renewal #1 successful
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1N.............
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>Refresh token: ory_rt_oQybFhJPQO-eI0xuu77kdCS9rpY8xAcoExFJODMyNvo...
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M..............
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>Expire in: 30s
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>Token lifetime: 30s, renewal in: 18s (at 17:35:40), expires at: 17:35:52
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>Waiting 18s before next renewal...
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>--- Renewal #2 at 2026-03-31T17:35:40+02:00 ---
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>Renewal #2 successful
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>...
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>Next renewal would be past deadline, waiting 16s for TTL to expire...
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>TTL reached, exiting renewal loop
 </span></code></pre></div>
 <h2 id="behavior">Behavior</h2>
 <h3 id="browser-flow">Browser Flow</h3>
 <ol>
-<li><strong>Local Server Started</strong> - <code>kc</code> starts a local HTTP server on a localhost port</li>
-<li><strong>Browser Opens</strong> - Your default browser opens to the Kubauth login page</li>
-<li><strong>User Authenticates</strong> - You log in with your credentials</li>
-<li><strong>Callback Received</strong> - Kubauth redirects back to the local server with an authorization code</li>
-<li><strong>Token Exchange</strong> - <code>kc</code> exchanges the code for tokens</li>
-<li><strong>Display Results</strong> - Tokens are displayed in the terminal</li>
+<li><strong>Local server started</strong> — <code>kc</code> starts an HTTP server on <code>127.0.0.1:&lt;bindPort&gt;</code>.</li>
+<li><strong>Browser opens</strong> — Your default browser is launched on the authorization URL.</li>
+<li><strong>User authenticates</strong> — You log in with your credentials in Kubauth.</li>
+<li><strong>Callback received</strong> — Kubauth redirects to <code>http://127.0.0.1:&lt;bindPort&gt;/callback</code> with an authorization code.</li>
+<li><strong>Token exchange</strong> — <code>kc</code> exchanges the code for tokens.</li>
+<li><strong>Success page</strong> — A success page is rendered in the browser, with the decoded tokens (and optionally userinfo) formatted as JSON.</li>
+<li><strong>Terminal output</strong> — Tokens are printed in the terminal according to <code>--onlyIdToken</code> / <code>--onlyAccessToken</code> / <code>-d</code> / <code>-a</code> / <code>--userInfo</code>.</li>
 </ol>
 <h3 id="token-storage">Token Storage</h3>
-<p>Tokens are displayed but not automatically stored. If you need to save them:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Save ID token to variable</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nv">ID_TOKEN</span><span class="o">=</span><span class="k">$(</span>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken<span class="k">)</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Save to file</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken<span class="w"> </span>&gt;<span class="w"> </span>token.txt
+<p>Tokens are displayed but never written to disk by <code>kc token</code>. To save them:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Save the ID token to a variable</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nv">ID_TOKEN</span><span class="o">=</span><span class="k">$(</span>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken<span class="k">)</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Save to a file</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public<span class="w"> </span>--onlyIdToken<span class="w"> </span>&gt;<span class="w"> </span>token.txt
 </span></code></pre></div>
 <h3 id="sso-session">SSO Session</h3>
-<p>If you previously checked "Remember me" on the login page, subsequent <code>kc token</code> commands will complete automatically without requiring you to log in again (SSO session active).</p>
-<p>To clear the SSO session:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>kc<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com
-</span></code></pre></div>
+<p>If you previously checked "Remember me" on the Kubauth login page, subsequent <code>kc token</code> calls complete without prompting (SSO session active). Use <code>--prompt login</code> to force re-authentication, or <code>kc logout --sso</code> to drop the SSO cookie entirely.</p>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <h3 id="browser-doesnt-open">Browser Doesn't Open</h3>
 <p>If the browser doesn't open automatically:</p>
 <ol>
-<li>Check the terminal output for the URL</li>
-<li>Manually copy and paste it into your browser</li>
-<li>Or use <a href="../140-token-nui/"><code>kc token-nui</code></a> for terminal-based authentication</li>
+<li>Read the terminal output for the URL.</li>
+<li>Copy/paste it into your browser.</li>
+<li>Or use <a href="../140-token-nui/"><code>kc token-nui</code></a> when no browser is available.</li>
 </ol>
-<p><strong>Example:</strong>
+<p>Example:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>If browser doesn&#39;t open automatically, visit: http://127.0.0.1:9921
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h3 id="tls-certificate-errors">TLS Certificate Errors</h3>
-<p><strong>Error:</strong>
+<p>Error:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Error: x509: certificate signed by unknown authority
-</span></code></pre></div></p>
-<p><strong>Solutions:</strong></p>
+</span></code></pre></div>
+<p>Solutions:</p>
 <ul>
-<li>Use <code>--insecureSkipVerify</code> for testing (not recommended for production)</li>
-<li>Use <code>--caFile ./ca.crt</code>. To extract the CA:
+<li>Use <code>--insecureSkipVerify</code> for testing (not recommended for production).</li>
+<li>Provide a CA: <code>--caFile ./ca.crt</code>. To extract the issuer CA from the cluster:
    <div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>kubauth-oidc-server-cert<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span>-o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.ca\.crt}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;<span class="w"> </span>ca.crt
 </span></code></pre></div></li>
-<li>Add this CA certificate to system trust store.</li>
+<li>Or add this CA certificate to the system trust store.</li>
 </ul>
 <h2 id="security-considerations">Security Considerations</h2>
 <ol>
-<li><strong>Don't Expose Tokens</strong> - Be careful when displaying or logging tokens</li>
-<li><strong>Use HTTPS</strong> - Always use HTTPS for the issuer URL in production</li>
-<li><strong>Verify Certificates</strong> - Only use <code>--insecureSkipVerify</code> for testing</li>
-<li><strong>Token Lifetime</strong> - Tokens expire quickly by design; request new ones as needed</li>
-<li><strong>Client Secrets</strong> - Never commit client secrets to version control</li>
+<li><strong>Don't expose tokens</strong> — be careful when displaying or logging tokens.</li>
+<li><strong>Use HTTPS</strong> — always use HTTPS for the issuer URL in production.</li>
+<li><strong>Verify certificates</strong> — only use <code>--insecureSkipVerify</code> for testing.</li>
+<li><strong>Use PKCE</strong> — pass <code>--pkce</code> for public clients.</li>
+<li><strong>Client secrets</strong> — never commit client secrets to version control.</li>
 </ol>
 <h2 id="related-commands">Related Commands</h2>
 <ul>
-<li><a href="../140-token-nui/"><code>kc token-nui</code></a> - Non-interactive authentication (no browser)</li>
-<li><a href="../160-jwt/"><code>kc jwt</code></a> - Decode JWT tokens</li>
-<li><a href="../180-logout/"><code>kc logout</code></a> - Clear SSO session</li>
-<li><a href="../170-whoami/"><code>kc whoami</code></a> - Display current user information</li>
+<li><a href="../140-token-nui/"><code>kc token-nui</code></a> — Non-interactive authentication (no browser)</li>
+<li><a href="../145-client/"><code>kc client</code></a> — Client Credentials flow</li>
+<li><a href="../160-jwt/"><code>kc jwt</code></a> — Decode arbitrary JWTs</li>
+<li><a href="../180-logout/"><code>kc logout</code></a> — Clear SSO session and/or local kubectl OIDC cache</li>
+<li><a href="../170-whoami/"><code>kc whoami</code></a> — Display current user</li>
 </ul>
 <h2 id="see-also">See Also</h2>
 <ul>

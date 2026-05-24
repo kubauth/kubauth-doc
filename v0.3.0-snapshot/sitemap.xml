@@ -49,6 +49,18 @@
          <lastmod>2026-05-24</lastmod>
     </url>
     <url>
+         <loc>https://kubauth.github.io/kubauth-doc/v0.3.0-snapshot/30-user-guide/200-upstream-providers/</loc>
+         <lastmod>2026-05-24</lastmod>
+    </url>
+    <url>
+         <loc>https://kubauth.github.io/kubauth-doc/v0.3.0-snapshot/30-user-guide/210-helm-chart/</loc>
+         <lastmod>2026-05-24</lastmod>
+    </url>
+    <url>
+         <loc>https://kubauth.github.io/kubauth-doc/v0.3.0-snapshot/30-user-guide/220-ui-customization/</loc>
+         <lastmod>2026-05-24</lastmod>
+    </url>
+    <url>
          <loc>https://kubauth.github.io/kubauth-doc/v0.3.0-snapshot/40-applications-integration/110-argocd/</loc>
          <lastmod>2026-05-24</lastmod>
     </url>
@@ -94,6 +106,10 @@
     </url>
     <url>
          <loc>https://kubauth.github.io/kubauth-doc/v0.3.0-snapshot/60-references/140-groupbinding/</loc>
+         <lastmod>2026-05-24</lastmod>
+    </url>
+    <url>
+         <loc>https://kubauth.github.io/kubauth-doc/v0.3.0-snapshot/60-references/150-upstreamprovider/</loc>
          <lastmod>2026-05-24</lastmod>
     </url>
     <url>

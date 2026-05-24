@@ -571,6 +571,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/200-upstream-providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upstream Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/210-helm-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm Chart Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/220-ui-customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Customizing the Login UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -982,6 +1051,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/150-upstreamprovider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UpstreamProvider
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1311,55 +1403,61 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#flags" class="md-nav__link">
+  <a href="#action-flags" class="md-nav__link">
     <span class="md-ellipsis">
-      Flags
+      Action Flags
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Flags">
+    <nav class="md-nav" aria-label="Action Flags">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-issuerurl" class="md-nav__link">
+  <a href="#sso" class="md-nav__link">
     <span class="md-ellipsis">
-      --issuerURL
+      --sso, -s
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-insecureskipverify" class="md-nav__link">
+  <a href="#k8s" class="md-nav__link">
     <span class="md-ellipsis">
-      --insecureSkipVerify
+      --k8s, -k
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#-cafile" class="md-nav__link">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection-flags" class="md-nav__link">
     <span class="md-ellipsis">
-      --caFile
+      Connection Flags
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#browser-flag" class="md-nav__link">
+    <span class="md-ellipsis">
+      Browser Flag
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Browser Flag">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-browser" class="md-nav__link">
+  <a href="#browser" class="md-nav__link">
     <span class="md-ellipsis">
       --browser
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-sso" class="md-nav__link">
-    <span class="md-ellipsis">
-      --sso
     </span>
   </a>
   
@@ -1376,6 +1474,48 @@
       Examples
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#full-logout-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full logout (default)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sso-logout-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSO logout only
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubectl-logout-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubectl logout only
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issuer-url-inferred-from-kubeconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      Issuer URL inferred from kubeconfig
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1398,12 +1538,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#sso-session-vs-local-cache" class="md-nav__link">
     <span class="md-ellipsis">
       SSO Session vs Local Cache
@@ -1416,18 +1551,23 @@
           <li class="md-nav__item">
   <a href="#sso-session-server-side-cross-application" class="md-nav__link">
     <span class="md-ellipsis">
-      SSO Session (Server-Side, cross application)
+      SSO session (server-side, cross-application)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#local-cache-client-side-for-kubectl-authentication" class="md-nav__link">
+  <a href="#local-cache-client-side-kubectl-only" class="md-nav__link">
     <span class="md-ellipsis">
-      Local Cache (Client-Side, for kubectl authentication)
+      Local cache (client-side, kubectl only)
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1639,55 +1779,61 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#flags" class="md-nav__link">
+  <a href="#action-flags" class="md-nav__link">
     <span class="md-ellipsis">
-      Flags
+      Action Flags
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Flags">
+    <nav class="md-nav" aria-label="Action Flags">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-issuerurl" class="md-nav__link">
+  <a href="#sso" class="md-nav__link">
     <span class="md-ellipsis">
-      --issuerURL
+      --sso, -s
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-insecureskipverify" class="md-nav__link">
+  <a href="#k8s" class="md-nav__link">
     <span class="md-ellipsis">
-      --insecureSkipVerify
+      --k8s, -k
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#-cafile" class="md-nav__link">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection-flags" class="md-nav__link">
     <span class="md-ellipsis">
-      --caFile
+      Connection Flags
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#browser-flag" class="md-nav__link">
+    <span class="md-ellipsis">
+      Browser Flag
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Browser Flag">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-browser" class="md-nav__link">
+  <a href="#browser" class="md-nav__link">
     <span class="md-ellipsis">
       --browser
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-sso" class="md-nav__link">
-    <span class="md-ellipsis">
-      --sso
     </span>
   </a>
   
@@ -1704,6 +1850,48 @@
       Examples
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#full-logout-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full logout (default)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sso-logout-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSO logout only
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubectl-logout-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubectl logout only
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issuer-url-inferred-from-kubeconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      Issuer URL inferred from kubeconfig
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1726,12 +1914,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#sso-session-vs-local-cache" class="md-nav__link">
     <span class="md-ellipsis">
       SSO Session vs Local Cache
@@ -1744,18 +1927,23 @@
           <li class="md-nav__item">
   <a href="#sso-session-server-side-cross-application" class="md-nav__link">
     <span class="md-ellipsis">
-      SSO Session (Server-Side, cross application)
+      SSO session (server-side, cross-application)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#local-cache-client-side-for-kubectl-authentication" class="md-nav__link">
+  <a href="#local-cache-client-side-kubectl-only" class="md-nav__link">
     <span class="md-ellipsis">
-      Local Cache (Client-Side, for kubectl authentication)
+      Local cache (client-side, kubectl only)
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1836,88 +2024,183 @@
 
 <h1 id="kc-logout">kc logout</h1>
 <h2 id="overview">Overview</h2>
-<p>The <code>kc logout</code> command clears your authentication session with Kubauth. It performs two actions: clears local token cache and terminates the SSO session on the Kubauth server.</p>
-<h2 id="syntax">Syntax</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span><span class="nb">logout</span><span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
-</span></code></pre></div>
-<h2 id="flags">Flags</h2>
-<h3 id="-issuerurl"><code>--issuerURL</code></h3>
-<p>The Kubauth OIDC issuer URL.</p>
-<p><strong>Example:</strong> <code>--issuerURL https://kubauth.example.com</code></p>
-<p>Value may also be fetched from <code>KC_ISSUER_URL</code> environment variable, or Kubernetes kubeconfig if <code>kc init ....</code> has been used.</p>
-<hr />
-<h3 id="-insecureskipverify"><code>--insecureSkipVerify</code></h3>
-<p>Skip TLS certificate verification. Use only for testing with self-signed certificates.</p>
-<p><strong>Example:</strong> <code>--insecureSkipVerify</code></p>
-<hr />
-<h3 id="-cafile"><code>--caFile</code></h3>
-<p>Provide a CA file for TLS certificate verification of ìssuerURL</p>
-<p><strong>Example:</strong> <code>--caFile ./CA.crt</code></p>
-<hr />
-<h3 id="-browser"><code>--browser</code></h3>
-<p>Override default browser. Possible values:</p>
+<p>The <code>kc logout</code> command clears your authentication state with Kubauth. It can perform two independent actions:</p>
 <ul>
-<li><code>chrome</code></li>
-<li><code>firefox</code></li>
-<li><code>safari</code></li>
+<li><strong>SSO logout</strong> — open the browser on the Kubauth <code>end_session_endpoint</code> to drop the cross-application "Remember me" cookie.</li>
+<li><strong>Kubernetes logout</strong> — clear the local kubectl OIDC cache (<code>kubelogin</code> cache for exec-plugin contexts, or the <code>id-token</code>/<code>refresh-token</code> fields of the <code>oidc</code> auth provider for standalone contexts).</li>
 </ul>
-<hr />
-<h3 id="-sso"><code>--sso</code></h3>
-<p>Only clear the SSO session on Kubauth server. Does not logout of <code>kubectl</code> session, if any</p>
+<p>If neither <code>--sso</code> nor <code>--k8s</code> is given, <strong>both</strong> actions are performed.</p>
+<h2 id="syntax">Syntax</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span><span class="nb">logout</span><span class="w"> </span><span class="o">[</span>--sso<span class="o">]</span><span class="w"> </span><span class="o">[</span>--k8s<span class="o">]</span><span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+</span></code></pre></div>
+<h2 id="action-flags">Action Flags</h2>
+<h3 id="sso"><code>--sso</code>, <code>-s</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Perform only the SSO logout (opens a browser on the Kubauth <code>end_session_endpoint</code>).</p>
+<hr class="api-field-separator">
+
+<h3 id="k8s"><code>--k8s</code>, <code>-k</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Perform only the kubectl/Kubernetes logout (clears the local kubectl OIDC cache).</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>When neither <code>--sso</code> nor <code>--k8s</code> is set, both actions are performed.</p>
+</div>
+<h2 id="connection-flags">Connection Flags</h2>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Env var</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--issuerURL</code>, <code>-i</code></td>
+<td>string</td>
+<td>from kubeconfig</td>
+<td><code>KC_ISSUER_URL</code></td>
+</tr>
+<tr>
+<td><code>--insecureSkipVerify</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>--caFile</code> <small>(repeatable)</small></td>
+<td>string</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>--kubeconfig</code></td>
+<td>string</td>
+<td><code>$KUBECONFIG</code> or <code>$HOME/.kube/config</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>--context</code></td>
+<td>string</td>
+<td>kubeconfig <code>current-context</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>--logMode</code></td>
+<td>string</td>
+<td><code>text</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>--logLevel</code>, <code>-l</code></td>
+<td>string</td>
+<td><code>INFO</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>--dumpClientExchanges</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">About <code>--issuerURL</code></p>
+<p>The issuer URL is required for the SSO logout (used to discover the <code>end_session_endpoint</code>). When omitted, <code>kc</code> falls back to the issuer URL recorded in the current kubeconfig.</p>
+</div>
+<h2 id="browser-flag">Browser Flag</h2>
+<h3 id="browser"><code>--browser</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: OS-level default browser</span>
+</p>
+
+<p>Override the default browser used for the SSO logout. Possible values: <code>chrome</code>, <code>firefox</code>, <code>safari</code>.</p>
 <h2 id="examples">Examples</h2>
+<h3 id="full-logout-default">Full logout (default)</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kc<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com
 </span></code></pre></div>
-<p><strong>Output:</strong>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>No OIDC configuration found in kubeconfig
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Opening browser to logout endpoint: https://kubauth.example.com/oauth2/logout
-</span></code></pre></div></p>
+<p>If a kubectl OIDC context is configured:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>CLeaning kubelogin OIDC configuration if any
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Opening browser to logout endpoint: https://kubauth.example.com/oauth2/sessions/logout
+</span></code></pre></div>
+<p>If no kubectl OIDC context is configured:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>No OIDC configuration found in kubeconfig
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Opening browser to logout endpoint: https://kubauth.example.com/oauth2/sessions/logout
+</span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The "No OIDC configuration found" means <code>kubectl</code> has not being configured with <code>kc init ....</code>. Use <code>--sso</code> option to remove the message</p>
+<p>The "No OIDC configuration found in kubeconfig" message simply means kubectl has not been configured via <code>kc config</code> / <code>kc init</code>. Pass <code>--sso</code> to skip the kubectl-side logout entirely (and suppress that message).</p>
 </div>
+<h3 id="sso-logout-only">SSO logout only</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kc<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--sso
+</span></code></pre></div>
+<h3 id="kubectl-logout-only">Kubectl logout only</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kc<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>--k8s
+</span></code></pre></div>
+<p>This does not open a browser. It uses the current kubeconfig to locate the OIDC configuration and clears the local cached tokens.</p>
+<h3 id="issuer-url-inferred-from-kubeconfig">Issuer URL inferred from kubeconfig</h3>
+<p>When kubectl was previously configured with <code>kc config</code> / <code>kc init</code>, the issuer URL can be omitted:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span><span class="nb">logout</span>
+</span></code></pre></div>
 <h2 id="behavior">Behavior</h2>
 <h3 id="what-it-does">What It Does</h3>
 <ol>
-<li><strong>Clears local cache</strong> - Removes cached tokens from the <code>kubelogin</code> plugin, if installed</li>
-<li><strong>Opens browser</strong> - Navigates to Kubauth's logout endpoint. This will terminates SSO session by clearing the "Remember me" session cookie</li>
-</ol>
-<h2 id="sso-session-vs-local-cache">SSO Session vs Local Cache</h2>
-<h3 id="sso-session-server-side-cross-application">SSO Session (Server-Side, cross application)</h3>
-<ul>
-<li>Stored on Kubauth server</li>
-<li>Managed by "Remember me" checkbox</li>
-<li>Shared across all OIDC clients</li>
-<li>Cleared by <code>kc logout</code></li>
+<li><strong>kubectl logout</strong> (<code>--k8s</code>, default) — based on the kind of OIDC context:<ul>
+<li><strong>Exec-plugin context (default mode):</strong> runs <code>kubectl oidc-login clean</code> to drop the <code>kubelogin</code> cache.</li>
+<li><strong>Standalone context (<code>kc config --standalone</code>):</strong> removes the <code>id-token</code> and <code>refresh-token</code> fields from the kubeconfig <code>oidc</code> auth provider entry.</li>
 </ul>
-<h3 id="local-cache-client-side-for-kubectl-authentication">Local Cache (Client-Side, for <code>kubectl</code> authentication)</h3>
+</li>
+<li><strong>SSO logout</strong> (<code>--sso</code>, default) — discovers the <code>end_session_endpoint</code> from <code>/.well-known/openid-configuration</code> and opens it in the browser. This clears the cross-application Kubauth SSO session cookie.</li>
+</ol>
+<h3 id="sso-session-vs-local-cache">SSO Session vs Local Cache</h3>
+<h4 id="sso-session-server-side-cross-application">SSO session (server-side, cross-application)</h4>
 <ul>
-<li>Need a <code>kc init ....</code> client configuration</li>
-<li>Stored by <code>kubelogin</code> plugin</li>
-<li>Also cleared by <code>kc logout</code></li>
+<li>Stored as a cookie on the Kubauth domain.</li>
+<li>Created when the user ticks "Remember me".</li>
+<li>Shared by all OIDC clients of the same Kubauth server.</li>
+<li>Cleared by <code>kc logout --sso</code>.</li>
+</ul>
+<h4 id="local-cache-client-side-kubectl-only">Local cache (client-side, kubectl only)</h4>
+<ul>
+<li>Stored locally (kubelogin cache or kubeconfig fields).</li>
+<li>Only used by <code>kubectl</code> exec-plugin.</li>
+<li>Cleared by <code>kc logout --k8s</code>.</li>
 </ul>
 <h2 id="logout-page">Logout Page</h2>
-<p>After logout, you'll see a page listing available applications:</p>
+<p>After SSO logout, Kubauth displays a page listing available applications:</p>
 <p><img alt="Kubauth Logout Page" src="../../assets/kubauth-logout2.png" /></p>
-<p>This page shows OIDC clients with <code>displayName</code>, <code>description</code>, and <code>entryURL</code> configured.</p>
+<p>This page lists the OIDC clients that have <code>displayName</code>, <code>description</code>, and <code>entryURL</code> configured.</p>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <h3 id="tls-certificate-errors">TLS Certificate Errors</h3>
-<p><strong>Error:</strong>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Error: x509: certificate signed by unknown authority
-</span></code></pre></div></p>
-<p><strong>Solutions:</strong></p>
+<p>Error:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Error: x509: certificate signed by unknown authority
+</span></code></pre></div>
+<p>Solutions:</p>
 <ul>
-<li>Use <code>--insecureSkipVerify</code> for testing (not recommended for production)</li>
-<li>Use <code>--caFile ./ca.crt</code>. To extract the CA:
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>kubauth-oidc-server-cert<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>-o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.ca\.crt}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;<span class="w"> </span>ca.crt
+<li>Use <code>--insecureSkipVerify</code> for testing (not recommended for production).</li>
+<li>Provide a CA: <code>--caFile ./ca.crt</code>. To extract it:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>kubauth<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>kubauth-oidc-server-cert<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>-o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.ca\.crt}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;<span class="w"> </span>ca.crt
 </span></code></pre></div></li>
-<li>Add this CA certificate to system trust store.</li>
+<li>Or add the CA to the system trust store.</li>
 </ul>
 <h2 id="related-commands">Related Commands</h2>
 <ul>
-<li><a href="../130-token/"><code>kc token</code></a> - Authenticate and get tokens</li>
-<li><a href="../170-whoami/"><code>kc whoami</code></a> - Check current authentication</li>
-<li><a href="../190-config/"><code>kc config</code></a> - Configure kubectl</li>
+<li><a href="../130-token/"><code>kc token</code></a> — Authenticate and get tokens</li>
+<li><a href="../170-whoami/"><code>kc whoami</code></a> — Check current authentication</li>
+<li><a href="../190-config/"><code>kc config</code></a> — Configure kubectl</li>
 </ul>
 <h2 id="see-also">See Also</h2>
 <ul>

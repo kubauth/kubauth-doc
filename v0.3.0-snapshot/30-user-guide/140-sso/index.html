@@ -510,6 +510,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sso-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSO Modes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Configuration
@@ -632,6 +641,75 @@
   
   <span class="md-ellipsis">
     Identity Merging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../200-upstream-providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upstream Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../210-helm-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm Chart Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../220-ui-customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Customizing the Login UI
     
   </span>
   
@@ -1043,6 +1121,29 @@
   
   <span class="md-ellipsis">
     GroupBinding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/150-upstreamprovider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UpstreamProvider
     
   </span>
   
@@ -1471,6 +1572,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sso-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSO Modes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Configuration
@@ -1525,6 +1635,39 @@
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>h-d13bc676b003a200aca5051558b2cd21eccb44f557bee058df00aa3eb6d2bd22<span class="w">   </span>jim<span class="w">                </span><span class="m">2025</span>-10-28T00:19:13Z<span class="w">   </span>65s
 </span></code></pre></div></p>
 <p>Manually deleting a session resource is an alternative method to terminate a session.</p>
+<h2 id="sso-modes">SSO Modes</h2>
+<p>The behavior described above corresponds to the default <code>onDemand</code> mode, where the user decides on a per-login basis whether a session should be persisted.</p>
+<p>Kubauth supports three SSO modes, configured globally through the <code>oidc.sso.mode</code> Helm value:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>"Remember me" checkbox</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onDemand</code></td>
+<td>Displayed</td>
+<td>An SSO session is created only when the user checks the box (the default).</td>
+</tr>
+<tr>
+<td><code>always</code></td>
+<td>Hidden</td>
+<td>An SSO session is always created after a successful login. Subsequent logins reuse it without any user prompt.</td>
+</tr>
+<tr>
+<td><code>never</code></td>
+<td>Hidden</td>
+<td>No SSO session is ever created. The user must enter credentials for every login.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These modes apply to the internal login form. When the user authenticates through an <a href="../200-upstream-providers/">upstream provider</a>, an additional welcome screen is presented in <code>onDemand</code> mode to let the user decide whether to persist the session.</p>
+</div>
 <h2 id="configuration">Configuration</h2>
 <p>SSO configuration can be modified using Helm chart values:</p>
 <details class="abstract" open="open">
@@ -1534,15 +1677,18 @@
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">postLogoutURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubauth.mycluster.mycompany.com/index</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">sso</span><span class="p">:</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">sessionNamespace</span><span class="p">:</span><span class="w"> </span><span class="c1"># Default to .Release.namespace (kubauth)</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nt">createNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">onDemand</span><span class="w">       </span><span class="c1"># always | never | onDemand</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nt">sessionNamespace</span><span class="p">:</span><span class="w">    </span><span class="c1"># Default to .Release.namespace (kubauth)</span>
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nt">lifeTime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8h&quot;</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="nt">sticky</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="nt">cleanupPeriod</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;5m&quot;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="nt">sticky</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></code></pre></div>
 </details>
 <ul>
-<li><code>sessionNamespace</code>: Specifies the namespace where SSO sessions are persisted, and enables its creation during Kubauth deployment.</li>
+<li><code>mode</code>: Selects the SSO behavior (<code>always</code>, <code>never</code> or <code>onDemand</code>, see the table above). Defaults to <code>onDemand</code>.</li>
+<li><code>sessionNamespace</code>: Specifies the namespace where SSO sessions are persisted. Defaults to the Helm release namespace.</li>
 <li><code>lifeTime</code>: Sets the session duration. This is an absolute duration with no idle timeout.</li>
+<li><code>cleanupPeriod</code>: How often the controller scans for expired sessions and deletes them.</li>
 <li><code>sticky</code>: When true, the session cookie is persistent. When false, the session expires when the browser is closed.</li>
 </ul>
 

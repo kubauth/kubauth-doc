@@ -571,6 +571,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/200-upstream-providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upstream Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/210-helm-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm Chart Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/220-ui-customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Customizing the Login UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -982,6 +1051,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/150-upstreamprovider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UpstreamProvider
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1288,19 +1380,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#optional-flags" class="md-nav__link">
+  <a href="#flags" class="md-nav__link">
     <span class="md-ellipsis">
-      Optional Flags
+      Flags
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Optional Flags">
+    <nav class="md-nav" aria-label="Flags">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-d-detailed" class="md-nav__link">
+  <a href="#detailed" class="md-nav__link">
     <span class="md-ellipsis">
-      -d, --detailed
+      --detailed, -d
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubeconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      --kubeconfig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      --context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      --logMode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loglevel" class="md-nav__link">
+    <span class="md-ellipsis">
+      --logLevel, -l
     </span>
   </a>
   
@@ -1579,19 +1707,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#optional-flags" class="md-nav__link">
+  <a href="#flags" class="md-nav__link">
     <span class="md-ellipsis">
-      Optional Flags
+      Flags
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Optional Flags">
+    <nav class="md-nav" aria-label="Flags">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-d-detailed" class="md-nav__link">
+  <a href="#detailed" class="md-nav__link">
     <span class="md-ellipsis">
-      -d, --detailed
+      --detailed, -d
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubeconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      --kubeconfig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      --context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      --logMode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loglevel" class="md-nav__link">
+    <span class="md-ellipsis">
+      --logLevel, -l
     </span>
   </a>
   
@@ -1716,66 +1880,112 @@
 
 <h1 id="kc-whoami">kc whoami</h1>
 <h2 id="overview">Overview</h2>
-<p>The <code>kc whoami</code> command displays the currently authenticated user information from your kubectl configuration. It extracts and shows the username and optionally the full JWT token payload.</p>
+<p>The <code>kc whoami</code> command displays the currently authenticated user, as recorded in your kubectl configuration. It reads the cached ID token (either from the <code>kubelogin</code> cache or from the <code>oidc</code> auth provider entry when using standalone mode) and shows the <code>sub</code> claim — and, optionally, the full decoded JWT payload.</p>
+<p>If no OIDC configuration is found, the command prints <code>unknown</code>.</p>
 <h2 id="syntax">Syntax</h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kc<span class="w"> </span>whoami<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
 </span></code></pre></div>
-<h2 id="optional-flags">Optional Flags</h2>
-<h3 id="-d-detailed"><code>-d, --detailed</code></h3>
-<p>Display the full decoded JWT token payload with all claims.</p>
+<h2 id="flags">Flags</h2>
+<h3 id="detailed"><code>--detailed</code>, <code>-d</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Display the full decoded JWT payload (all claims) in addition to the username.</p>
+<hr class="api-field-separator">
+
+<h3 id="kubeconfig"><code>--kubeconfig</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>$KUBECONFIG</code> or <code>$HOME/.kube/config</code></span>
+</p>
+
+<p>Path to the kubeconfig file to read from.</p>
+<hr class="api-field-separator">
+
+<h3 id="context"><code>--context</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: kubeconfig <code>current-context</code></span>
+</p>
+
+<p>Override the kubeconfig context.</p>
+<hr class="api-field-separator">
+
+<h3 id="logmode"><code>--logMode</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>text</code></span>
+</p>
+
+<p>Logging output mode. One of <code>text</code>, <code>json</code>.</p>
+<hr class="api-field-separator">
+
+<h3 id="loglevel"><code>--logLevel</code>, <code>-l</code></h3>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>INFO</code></span>
+</p>
+
+<p>Logging verbosity. One of <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, <code>ERROR</code>.</p>
 <h2 id="examples">Examples</h2>
 <h3 id="basic-usage">Basic Usage</h3>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kc<span class="w"> </span>whoami
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kc<span class="w"> </span>whoami
 </span></code></pre></div>
-<p><strong>Output:</strong>
+<p>Output:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>john
-</span></code></pre></div></p>
-<h3 id="with-token-decoding">With Token Decoding</h3>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kc<span class="w"> </span>whoami<span class="w"> </span>-d
 </span></code></pre></div>
-<p><strong>Output:</strong>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>john
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>JWT Payload:
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>{
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  &quot;accessProfile&quot;: &quot;p24x7&quot;,
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  &quot;at_hash&quot;: &quot;xevWqv4MaZ_ft1nYs-wCcg&quot;,
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>  &quot;aud&quot;: [&quot;k8s&quot;],
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>  &quot;auth_time&quot;: 1763573723,
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>  &quot;auth_time_human&quot;: &quot;2025-11-19 17:35:23 UTC&quot;,
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  &quot;authority&quot;: &quot;ucrd&quot;,
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>  &quot;azp&quot;: &quot;k8s&quot;,
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  &quot;email&quot;: &quot;john@example.com&quot;,
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>  &quot;emails&quot;: [&quot;john@example.com&quot;],
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>  &quot;exp&quot;: 1763577323,
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>  &quot;exp_human&quot;: &quot;2025-11-19 18:35:23 UTC&quot;,
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>  &quot;groups&quot;: [&quot;developers&quot;, &quot;ops&quot;],
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>  &quot;iat&quot;: 1763573723,
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>  &quot;iat_human&quot;: &quot;2025-11-19 17:35:23 UTC&quot;,
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>  &quot;iss&quot;: &quot;https://kubauth.example.com&quot;,
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>  &quot;name&quot;: &quot;John DOE&quot;,
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>  &quot;office&quot;: &quot;208G&quot;,
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>  &quot;rat&quot;: 1763573723,
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>  &quot;rat_human&quot;: &quot;2025-11-19 17:35:23 UTC&quot;,
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>  &quot;sub&quot;: &quot;john&quot;
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>}
-</span></code></pre></div></p>
+<p>If the cached ID token is expired, the username is suffixed with <code>(expired)</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>john  (expired)
+</span></code></pre></div>
+<h3 id="with-token-decoding">With Token Decoding</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kc<span class="w"> </span>whoami<span class="w"> </span>-d
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>john
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>JWT Payload:
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>{
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>  &quot;accessProfile&quot;: &quot;p24x7&quot;,
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  &quot;at_hash&quot;: &quot;xevWqv4MaZ_ft1nYs-wCcg&quot;,
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  &quot;aud&quot;: [&quot;k8s&quot;],
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>  &quot;auth_time&quot;: 1763573723,
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>  &quot;auth_time_human&quot;: &quot;2025-11-19 17:35:23 UTC&quot;,
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>  &quot;authority&quot;: &quot;ucrd&quot;,
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>  &quot;azp&quot;: &quot;k8s&quot;,
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>  &quot;email&quot;: &quot;john@example.com&quot;,
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>  &quot;emails&quot;: [&quot;john@example.com&quot;],
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>  &quot;exp&quot;: 1763577323,
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>  &quot;exp_human&quot;: &quot;2025-11-19 18:35:23 UTC&quot;,
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>  &quot;groups&quot;: [&quot;developers&quot;, &quot;ops&quot;],
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>  &quot;iat&quot;: 1763573723,
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>  &quot;iat_human&quot;: &quot;2025-11-19 17:35:23 UTC&quot;,
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>  &quot;iss&quot;: &quot;https://kubauth.example.com&quot;,
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>  &quot;name&quot;: &quot;John DOE&quot;,
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>  &quot;office&quot;: &quot;208G&quot;,
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>  &quot;rat&quot;: 1763573723,
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>  &quot;rat_human&quot;: &quot;2025-11-19 17:35:23 UTC&quot;,
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>  &quot;sub&quot;: &quot;john&quot;
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>}
+</span></code></pre></div>
 <h2 id="prerequisites">Prerequisites</h2>
 <h3 id="kubectl-configuration">kubectl Configuration</h3>
 <p>The <code>kc whoami</code> command requires:</p>
 <ol>
-<li><strong>kubectl configured</strong> - With valid kubeconfig</li>
-<li><strong>OIDC authentication</strong> - Configured via <code>kc config</code></li>
-<li><strong>Active session</strong> - You must have authenticated at least once</li>
+<li><strong>kubectl configured</strong> — with valid kubeconfig.</li>
+<li><strong>OIDC authentication</strong> — configured via <code>kc config</code>.</li>
+<li><strong>Active session</strong> — you must have authenticated at least once.</li>
 </ol>
 <h3 id="setup">Setup</h3>
-<div class="language-bash copy highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Configure kubectl for OIDC</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>kc<span class="w"> </span>config<span class="w"> </span>https://kubeconfig.example.com/kubeconfig
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Trigger initial authentication</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Now whoami will work</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>kc<span class="w"> </span>whoami
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Configure kubectl for OIDC</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>kc<span class="w"> </span>config<span class="w"> </span>https://kubeconfig.example.com/kubeconfig
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># (or equivalently: kc init https://kubeconfig.example.com/kubeconfig)</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># Trigger initial authentication</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># Now whoami will work</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>kc<span class="w"> </span>whoami
 </span></code></pre></div>
 <h2 id="comparison-with-kubectl">Comparison with kubectl</h2>
 <table>
@@ -1806,10 +2016,10 @@
 </table>
 <h2 id="related-commands">Related Commands</h2>
 <ul>
-<li><a href="../190-config/"><code>kc config</code></a> - Configure kubectl for OIDC</li>
-<li><a href="../180-logout/"><code>kc logout</code></a> - Clear authentication session</li>
-<li><a href="../130-token/"><code>kc token</code></a> - Get OIDC tokens</li>
-<li><a href="../160-jwt/"><code>kc jwt</code></a> - Decode JWT tokens</li>
+<li><a href="../190-config/"><code>kc config</code></a> — Configure kubectl for OIDC</li>
+<li><a href="../180-logout/"><code>kc logout</code></a> — Clear authentication session</li>
+<li><a href="../130-token/"><code>kc token</code></a> — Get OIDC tokens</li>
+<li><a href="../160-jwt/"><code>kc jwt</code></a> — Decode JWT tokens</li>
 </ul>
 <h2 id="see-also">See Also</h2>
 <ul>

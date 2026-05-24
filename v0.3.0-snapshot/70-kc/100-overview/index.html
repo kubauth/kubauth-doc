@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://kubauth.github.io/kubauth-doc/v0.3.0-snapshot/70-kc/100-overview/">
       
       
-        <link rel="prev" href="../../60-references/140-groupbinding/">
+        <link rel="prev" href="../../60-references/150-upstreamprovider/">
       
       
         <link rel="next" href="../110-version/">
@@ -571,6 +571,75 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/200-upstream-providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Upstream Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/210-helm-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm Chart Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-user-guide/220-ui-customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Customizing the Login UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -982,6 +1051,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-references/150-upstreamprovider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UpstreamProvider
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1200,7 +1292,7 @@
           <li class="md-nav__item">
   <a href="#1-test-authentication" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Test Authentication
+      1. Test authentication
     </span>
   </a>
   
@@ -1209,7 +1301,7 @@
           <li class="md-nav__item">
   <a href="#2-generate-a-password-hash" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Generate a Password Hash
+      2. Generate a password hash
     </span>
   </a>
   
@@ -1227,7 +1319,7 @@
           <li class="md-nav__item">
   <a href="#4-check-who-you-are" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Check Who You Are
+      4. Check who you are
     </span>
   </a>
   
@@ -1236,7 +1328,7 @@
           <li class="md-nav__item">
   <a href="#5-view-audit-logs" class="md-nav__link">
     <span class="md-ellipsis">
-      5. View Audit Logs
+      5. View audit logs
     </span>
   </a>
   
@@ -1258,25 +1350,44 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-issuerurl-string" class="md-nav__link">
+  <a href="#connection-flags" class="md-nav__link">
     <span class="md-ellipsis">
-      --issuerURL (string)
+      Connection Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connection Flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issuerurl" class="md-nav__link">
+    <span class="md-ellipsis">
+      --issuerURL, -i
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-clientid-string" class="md-nav__link">
+  <a href="#clientid" class="md-nav__link">
     <span class="md-ellipsis">
-      --clientId (string)
+      --clientId, -c
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-insecureskipverify" class="md-nav__link">
+  <a href="#clientsecret" class="md-nav__link">
+    <span class="md-ellipsis">
+      --clientSecret, -s
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insecureskipverify" class="md-nav__link">
     <span class="md-ellipsis">
       --insecureSkipVerify
     </span>
@@ -1285,7 +1396,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-cafile" class="md-nav__link">
+  <a href="#cafile" class="md-nav__link">
     <span class="md-ellipsis">
       --caFile
     </span>
@@ -1294,9 +1405,27 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-d-detailed" class="md-nav__link">
+  <a href="#kubeconfig-flag" class="md-nav__link">
     <span class="md-ellipsis">
-      -d, --detailed
+      --kubeconfig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      --context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      --scope
     </span>
   </a>
   
@@ -1306,11 +1435,118 @@
     </nav>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#output-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#onlyidtoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --onlyIdToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onlyaccesstoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --onlyAccessToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailidtoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --detailIdToken, -d
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailaccesstoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --detailAccessToken, -a
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      --userInfo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging Flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      --logMode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loglevel" class="md-nav__link">
+    <span class="md-ellipsis">
+      --logLevel, -l
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dumpclientexchanges" class="md-nav__link">
+    <span class="md-ellipsis">
+      --dumpClientExchanges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#kubeconfig-configuration-file" class="md-nav__link">
+  <a href="#kubeconfig-integration" class="md-nav__link">
     <span class="md-ellipsis">
-      Kubeconfig configuration File
+      Kubeconfig Integration
     </span>
   </a>
   
@@ -1873,7 +2109,7 @@
           <li class="md-nav__item">
   <a href="#1-test-authentication" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Test Authentication
+      1. Test authentication
     </span>
   </a>
   
@@ -1882,7 +2118,7 @@
           <li class="md-nav__item">
   <a href="#2-generate-a-password-hash" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Generate a Password Hash
+      2. Generate a password hash
     </span>
   </a>
   
@@ -1900,7 +2136,7 @@
           <li class="md-nav__item">
   <a href="#4-check-who-you-are" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Check Who You Are
+      4. Check who you are
     </span>
   </a>
   
@@ -1909,7 +2145,7 @@
           <li class="md-nav__item">
   <a href="#5-view-audit-logs" class="md-nav__link">
     <span class="md-ellipsis">
-      5. View Audit Logs
+      5. View audit logs
     </span>
   </a>
   
@@ -1931,25 +2167,44 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-issuerurl-string" class="md-nav__link">
+  <a href="#connection-flags" class="md-nav__link">
     <span class="md-ellipsis">
-      --issuerURL (string)
+      Connection Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connection Flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issuerurl" class="md-nav__link">
+    <span class="md-ellipsis">
+      --issuerURL, -i
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-clientid-string" class="md-nav__link">
+  <a href="#clientid" class="md-nav__link">
     <span class="md-ellipsis">
-      --clientId (string)
+      --clientId, -c
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-insecureskipverify" class="md-nav__link">
+  <a href="#clientsecret" class="md-nav__link">
+    <span class="md-ellipsis">
+      --clientSecret, -s
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insecureskipverify" class="md-nav__link">
     <span class="md-ellipsis">
       --insecureSkipVerify
     </span>
@@ -1958,7 +2213,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-cafile" class="md-nav__link">
+  <a href="#cafile" class="md-nav__link">
     <span class="md-ellipsis">
       --caFile
     </span>
@@ -1967,9 +2222,27 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-d-detailed" class="md-nav__link">
+  <a href="#kubeconfig-flag" class="md-nav__link">
     <span class="md-ellipsis">
-      -d, --detailed
+      --kubeconfig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      --context
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      --scope
     </span>
   </a>
   
@@ -1979,11 +2252,118 @@
     </nav>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#output-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#onlyidtoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --onlyIdToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onlyaccesstoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --onlyAccessToken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailidtoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --detailIdToken, -d
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailaccesstoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      --detailAccessToken, -a
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      --userInfo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging Flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      --logMode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loglevel" class="md-nav__link">
+    <span class="md-ellipsis">
+      --logLevel, -l
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dumpclientexchanges" class="md-nav__link">
+    <span class="md-ellipsis">
+      --dumpClientExchanges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#kubeconfig-configuration-file" class="md-nav__link">
+  <a href="#kubeconfig-integration" class="md-nav__link">
     <span class="md-ellipsis">
-      Kubeconfig configuration File
+      Kubeconfig Integration
     </span>
   </a>
   
@@ -2112,20 +2492,20 @@
 
 <h1 id="kc-cli-tool">kc CLI Tool</h1>
 <h2 id="overview">Overview</h2>
-<p><code>kc</code> is the companion CLI tool for Kubauth, providing essential utilities for working with the Kubauth OIDC server and Kubernetes authentication.</p>
+<p><code>kc</code> is the companion CLI tool for Kubauth. It exercises OIDC flows against a Kubauth server, manages kubectl OIDC configuration, and provides a few utilities to ease day-to-day operations.</p>
 <p><strong>GitHub Repository:</strong> <a href="https://github.com/kubauth/kc">https://github.com/kubauth/kc</a></p>
+<p><strong>Documented version:</strong> <code>v0.2.1</code></p>
 <h2 id="purpose">Purpose</h2>
 <p>The <code>kc</code> CLI tool serves multiple purposes:</p>
 <ol>
-<li><strong>Authentication Testing</strong> - Quickly test OIDC authentication flows</li>
-<li><strong>Token Management</strong> - Obtain and inspect OIDC tokens</li>
-<li><strong>Kubeconfig Setup</strong> - Automate kubectl configuration for OIDC authentication</li>
-<li><strong>User Management</strong> - Generate password hashes for users and clients</li>
-<li><strong>Audit Queries</strong> - View authentication attempts and user details</li>
-<li><strong>JWT Inspection</strong> - Decode and display JWT token contents</li>
+<li><strong>OIDC flow testing</strong> — Exercise Authorization Code, ROPC and Client Credentials flows</li>
+<li><strong>Token inspection</strong> — Obtain, decode and verify ID/access tokens</li>
+<li><strong>Kubeconfig setup</strong> — Automate kubectl configuration for OIDC authentication</li>
+<li><strong>Audit queries</strong> — List login attempts and inspect per-provider authentication details</li>
+<li><strong>Utilities</strong> — Generate bcrypt hashes, decode arbitrary JWTs, logout, etc.</li>
 </ol>
 <h2 id="installation">Installation</h2>
-<p>Download the latest release from the <a href="https://github.com/kubauth/kc/releases">GitHub releases page</a> and install it on your system.</p>
+<p>Download the latest release from the <a href="https://github.com/kubauth/kc/releases/tag/v0.2.1" target="_blank">GitHub releases page</a> and install it on your system.</p>
 <h3 id="macos-and-linux">macOS and Linux</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Download the appropriate binary for your system</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># For example, on macOS:</span>
@@ -2144,75 +2524,251 @@
 <h2 id="available-commands">Available Commands</h2>
 <h3 id="authentication-tokens">Authentication &amp; Tokens</h3>
 <ul>
-<li><strong><a href="../130-token/"><code>kc token</code></a></strong> - Obtain OIDC tokens using the authorization code flow (with browser)</li>
-<li><strong><a href="../140-token-nui/"><code>kc token-nui</code></a></strong> - Obtain OIDC tokens using password grant (no browser required)</li>
-<li><strong><a href="../160-jwt/"><code>kc jwt</code></a></strong> - Decode and display JWT token contents</li>
-<li><strong><a href="../180-logout/"><code>kc logout</code></a></strong> - Clear SSO session and local token cache</li>
+<li><strong><a href="../130-token/"><code>kc token</code></a></strong> — Authorization Code flow (browser-based)</li>
+<li><strong><a href="../140-token-nui/"><code>kc token-nui</code></a></strong> — Resource Owner Password Credentials flow (no browser)</li>
+<li><strong><a href="../145-client/"><code>kc client</code></a></strong> — Client Credentials flow (machine-to-machine)</li>
+<li><strong><a href="../160-jwt/"><code>kc jwt</code></a></strong> — Decode and pretty-print a JWT</li>
+<li><strong><a href="../180-logout/"><code>kc logout</code></a></strong> — Clear the Kubauth SSO session and/or the local kubectl OIDC cache</li>
 </ul>
 <h3 id="kubernetes-configuration">Kubernetes Configuration</h3>
 <ul>
-<li><strong><a href="../190-config/"><code>kc config</code></a></strong> - Configure kubectl for OIDC authentication with Kubauth</li>
-<li><strong><a href="../170-whoami/"><code>kc whoami</code></a></strong> - Display current authenticated user information</li>
+<li><strong><a href="../190-config/"><code>kc config</code></a></strong> (alias <strong><code>kc init</code></strong>) — Configure kubectl for OIDC authentication</li>
+<li><strong><a href="../170-whoami/"><code>kc whoami</code></a></strong> — Display the current authenticated user (from kubeconfig)</li>
 </ul>
 <h3 id="utilities">Utilities</h3>
 <ul>
-<li><strong><a href="../120-hash/"><code>kc hash</code></a></strong> - Generate bcrypt hashes for passwords and secrets</li>
-<li><strong><a href="../150-audit/"><code>kc audit</code></a></strong> - Query authentication audit logs</li>
-<li><strong><a href="../110-version/"><code>kc version</code></a></strong> - Display version information</li>
+<li><strong><a href="../120-hash/"><code>kc hash</code></a></strong> — Generate a bcrypt hash for a User password</li>
+<li><strong><a href="../150-audit/"><code>kc audit</code></a></strong> — Query Kubauth authentication audit logs</li>
+<li><strong><a href="../110-version/"><code>kc version</code></a></strong> — Display version information</li>
 </ul>
 <h2 id="quick-start">Quick Start</h2>
-<h3 id="1-test-authentication">1. Test Authentication</h3>
+<h3 id="1-test-authentication">1. Test authentication</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span>--clientId<span class="w"> </span>public
 </span></code></pre></div>
-<h3 id="2-generate-a-password-hash">2. Generate a Password Hash</h3>
+<h3 id="2-generate-a-password-hash">2. Generate a password hash</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kc<span class="w"> </span><span class="nb">hash</span><span class="w"> </span>mypassword123
 </span></code></pre></div>
 <h3 id="3-configure-kubectl">3. Configure kubectl</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kc<span class="w"> </span>config<span class="w"> </span>https://kubeconfig.example.com/kubeconfig
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># Same as: kc init https://kubeconfig.example.com/kubeconfig</span>
 </span></code></pre></div>
-<h3 id="4-check-who-you-are">4. Check Who You Are</h3>
+<h3 id="4-check-who-you-are">4. Check who you are</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kc<span class="w"> </span>whoami
 </span></code></pre></div>
-<h3 id="5-view-audit-logs">5. View Audit Logs</h3>
+<h3 id="5-view-audit-logs">5. View audit logs</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kc<span class="w"> </span>audit<span class="w"> </span>logins
 </span></code></pre></div>
 <h2 id="common-options">Common Options</h2>
-<p>Many <code>kc</code> commands share common options:</p>
-<h3 id="-issuerurl-string"><code>--issuerURL</code> (string)</h3>
+<p><code>kc token</code>, <code>kc token-nui</code> and <code>kc client</code> share a common set of OIDC connection flags. <code>kc logout</code> and <code>kc whoami</code> share most of them too.</p>
+<p>This page is the canonical reference for these flags. Per-command pages link back here for the full description.</p>
+<h3 id="connection-flags">Connection Flags</h3>
+<h4 id="issuerurl"><code>--issuerURL</code>, <code>-i</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-env">env: <code>KC_ISSUER_URL</code></span>
+</p>
+
 <p>The Kubauth OIDC issuer URL.</p>
 <p><strong>Example:</strong> <code>--issuerURL https://kubauth.example.com</code></p>
-<h3 id="-clientid-string"><code>--clientId</code> (string)</h3>
+<p>May also be set via the <code>KC_ISSUER_URL</code> environment variable, or fetched automatically from kubeconfig (see <a href="#kubeconfig-integration">Kubeconfig integration</a>).</p>
+<hr class="api-field-separator">
+
+<h4 id="clientid"><code>--clientId</code>, <code>-c</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-env">env: <code>KC_CLIENT_ID</code></span>
+</p>
+
 <p>The OIDC client ID.</p>
-<p><strong>Example:</strong> <code>--clientId public</code></p>
-<h3 id="-insecureskipverify"><code>--insecureSkipVerify</code></h3>
-<p>Skip TLS certificate verification for <code>ìssuerURL</code> (useful for testing with self-signed certificates).</p>
-<p><strong>Example:</strong> <code>--insecureSkipVerify</code></p>
-<h3 id="-cafile"><code>--caFile</code></h3>
-<p>Provide a CA file for TLS certificate verification of <code>ìssuerURL</code></p>
-<h3 id="-d-detailed"><code>-d, --detailed</code></h3>
-<p>Decode and display JWT token contents (shortcut for piping to <code>kc jwt</code>).</p>
-<p><strong>Example:</strong> <code>kc token --issuerURL https://kubauth.example.com --clientId public -d</code></p>
-<h2 id="kubeconfig-configuration-file">Kubeconfig configuration File</h2>
-<p>The <code>kc</code> tool can read OIDC configuration from your kubectl config file when available. This eliminates the need to specify <code>--issuerURL</code> and <code>--clientId</code> for many commands after you've run <code>kc config</code>.</p>
+<hr class="api-field-separator">
+
+<h4 id="clientsecret"><code>--clientSecret</code>, <code>-s</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-env">env: <code>KC_CLIENT_SECRET</code></span>
+</p>
+
+<p>Client secret. Only required for confidential clients.</p>
+<hr class="api-field-separator">
+
+<h4 id="insecureskipverify"><code>--insecureSkipVerify</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Skip TLS certificate verification of the issuer URL.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Use only for testing with self-signed certificates.</p>
+</div>
+<hr class="api-field-separator">
+
+<h4 id="cafile"><code>--caFile</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-repeatable">repeatable</span>
+</p>
+
+<p>Path to a root CA certificate used to validate the issuer URL. May be repeated to supply several CAs.</p>
+<hr class="api-field-separator">
+
+<h4 id="kubeconfig-flag"><code>--kubeconfig</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>$KUBECONFIG</code> or <code>$HOME/.kube/config</code></span>
+</p>
+
+<p>kubeconfig file used to look up the issuer URL and CA when they are not provided explicitly.</p>
+<hr class="api-field-separator">
+
+<h4 id="context"><code>--context</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: kubeconfig <code>current-context</code></span>
+</p>
+
+<p>Override the kubeconfig context.</p>
+<hr class="api-field-separator">
+
+<h4 id="scope"><code>--scope</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-repeatable">repeatable</span>
+<span class="api-badge api-default">default: <code>openid</code>, <code>profile</code>, <code>groups</code></span>
+</p>
+
+<p>OAuth2 scope requested in the authorization/token request. Repeat the flag for multiple scopes.</p>
+<p>When <code>--ttl</code> is used (token renewal loop), <code>offline_access</code> is automatically appended if missing.</p>
+<h3 id="output-flags">Output Flags</h3>
+<h4 id="onlyidtoken"><code>--onlyIdToken</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Print only the ID token on stdout (everything else goes to stderr). Useful for piping.</p>
+<hr class="api-field-separator">
+
+<h4 id="onlyaccesstoken"><code>--onlyAccessToken</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Print only the access token on stdout (everything else goes to stderr). Useful for piping.</p>
+<hr class="api-field-separator">
+
+<h4 id="detailidtoken"><code>--detailIdToken</code>, <code>-d</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Print the decoded JWT (header + payload) of the ID token in addition to the regular output.</p>
+<hr class="api-field-separator">
+
+<h4 id="detailaccesstoken"><code>--detailAccessToken</code>, <code>-a</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Print the decoded JWT (header + payload) of the access token in addition to the regular output. When the access token is opaque, a notice is printed instead.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <code>kc token</code> (browser flow), the success page in the browser always shows token details regardless of <code>-d</code> and <code>-a</code>. These flags only control the <strong>terminal</strong> output.</p>
+</div>
+<hr class="api-field-separator">
+
+<h4 id="userinfo"><code>--userInfo</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Call the provider <code>userinfo</code> endpoint with the obtained access token and print the result. Output goes to the terminal for all subcommands; for <code>kc token</code>, it is also shown on the browser success page.</p>
+<h3 id="logging-flags">Logging Flags</h3>
+<h4 id="logmode"><code>--logMode</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>text</code></span>
+</p>
+
+<p>Logging output mode. One of <code>text</code>, <code>json</code>.</p>
+<hr class="api-field-separator">
+
+<h4 id="loglevel"><code>--logLevel</code>, <code>-l</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>INFO</code></span>
+</p>
+
+<p>Logging verbosity. One of <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, <code>ERROR</code>.</p>
+<hr class="api-field-separator">
+
+<h4 id="dumpclientexchanges"><code>--dumpClientExchanges</code></h4>
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+<p>Dump every outgoing HTTP request and incoming response performed by the <code>kc</code> HTTP client. Intended for debugging.</p>
+<h2 id="kubeconfig-integration">Kubeconfig Integration</h2>
+<p>When <code>--issuerURL</code> (and/or the root CA) is omitted, <code>kc</code> automatically tries to fetch it from the current kubeconfig (the file pointed to by <code>--kubeconfig</code>, the <code>KUBECONFIG</code> environment variable, or <code>$HOME/.kube/config</code>, in that order). The context defaults to the kubeconfig <code>current-context</code>; use <code>--context</code> to pick another one.</p>
+<p>This works when the kubeconfig was previously initialized with <code>kc config</code> / <code>kc init</code>, so that the OIDC issuer URL and CA are recorded in the <code>user</code> entry.</p>
+<p>The <a href="#kubeconfig-flag"><code>--kubeconfig</code></a> and <a href="#context"><code>--context</code></a> flags are accepted on <code>kc token</code>, <code>kc token-nui</code>, <code>kc client</code>, <code>kc logout</code> and <code>kc whoami</code>.</p>
 <h2 id="environment-variables">Environment Variables</h2>
-<p>Some commands support environment variables for configuration:</p>
-<ul>
-<li><code>KC_ISSUER_URL</code> - Default issuer URL</li>
-<li><code>KC_CLIENT_ID</code> - Default client ID</li>
-<li><code>KC_CLIENT_SECRET</code> - Default client secret</li>
-<li><code>KC_USER_LOGIN</code> - Default user login for <code>token-nui</code></li>
-<li><code>KC_USER_PASSWORD</code> - Default user password for <code>token-nui</code></li>
-</ul>
-<p><strong>Example:</strong>
+<p>Several commands honor the following environment variables when their command-line flag is not explicitly set:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Equivalent flag</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>KC_ISSUER_URL</code></td>
+<td><code>--issuerURL</code> / <code>-i</code></td>
+<td><code>kc token</code>, <code>token-nui</code>, <code>client</code>, <code>logout</code></td>
+</tr>
+<tr>
+<td><code>KC_CLIENT_ID</code></td>
+<td><code>--clientId</code> / <code>-c</code></td>
+<td><code>kc token</code>, <code>token-nui</code>, <code>client</code></td>
+</tr>
+<tr>
+<td><code>KC_CLIENT_SECRET</code></td>
+<td><code>--clientSecret</code> / <code>-s</code></td>
+<td><code>kc token</code>, <code>token-nui</code>, <code>client</code></td>
+</tr>
+<tr>
+<td><code>KC_USER_LOGIN</code></td>
+<td><code>--login</code> / <code>-u</code></td>
+<td><code>kc token-nui</code></td>
+</tr>
+<tr>
+<td><code>KC_USER_PASSWORD</code></td>
+<td><code>--password</code> / <code>-p</code></td>
+<td><code>kc token-nui</code></td>
+</tr>
+<tr>
+<td><code>KUBECONFIG</code></td>
+<td><code>--kubeconfig</code></td>
+<td>every subcommand that reads kubeconfig</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">KC_ISSUER_URL</span><span class="o">=</span>https://kubauth.example.com
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">KC_CLIENT_ID</span><span class="o">=</span>public
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Now you can omit these flags</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>kc<span class="w"> </span>token
-</span></code></pre></div></p>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>kc<span class="w"> </span>token<span class="w">   </span><span class="c1"># Both --issuerURL and --clientId are now optional</span>
+</span></code></pre></div>
 <h2 id="getting-help">Getting Help</h2>
-<p>For help with any command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># General help</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Top-level help</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>kc<span class="w"> </span>--help
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Command-specific help</span>
@@ -2225,19 +2781,19 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Quick authentication test</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.local<span class="w"> </span>--clientId<span class="w"> </span><span class="nb">test</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Decode token to inspect claims</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.local<span class="w"> </span>--clientId<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-d
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Decode the resulting ID and access tokens</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>kc<span class="w"> </span>token<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.local<span class="w"> </span>--clientId<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-d<span class="w"> </span>-a
 </span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Test with different users</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Same with a non-browser flow</span>
 </span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.local<span class="w"> </span>--clientId<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">  </span>--login<span class="w"> </span>alice<span class="w"> </span>--password<span class="w"> </span>alice123<span class="w"> </span>-d
 </span></code></pre></div>
 <h3 id="user-management">User Management</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Generate password hash for a new user</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Generate a bcrypt hash for a User password</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>kc<span class="w"> </span><span class="nb">hash</span><span class="w"> </span>strongpassword456
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Check user&#39;s groups and claims</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>kc<span class="w"> </span>audit<span class="w"> </span>detail<span class="w"> </span>username
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Inspect the user&#39;s last login and merged identity</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>kc<span class="w"> </span>audit<span class="w"> </span>detail<span class="w"> </span>alice
 </span></code></pre></div>
 <h3 id="kubernetes-integration">Kubernetes Integration</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Configure kubectl for OIDC</span>
@@ -2246,20 +2802,20 @@
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Verify configuration</span>
 </span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>kc<span class="w"> </span>whoami
 </span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
-</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># Log out to switch users</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># Log out everywhere (SSO session + local kubectl OIDC cache)</span>
 </span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>kc<span class="w"> </span><span class="nb">logout</span>
 </span></code></pre></div>
 <h3 id="cicd-automation">CI/CD &amp; Automation</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Non-interactive authentication for scripts</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Non-interactive authentication for scripts (ROPC must be allowed)</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>kc<span class="w"> </span>token-nui<span class="w"> </span>--issuerURL<span class="w"> </span>https://kubauth.example.com<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span>--clientId<span class="w"> </span>automation<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span>--login<span class="w"> </span>serviceaccount<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span>--password<span class="w"> </span><span class="nv">$SERVICE_PASSWORD</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span>--password<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE_PASSWORD</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span>--onlyIdToken
 </span></code></pre></div>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <h3 id="certificate-errors">Certificate Errors</h3>
-<p>If you encounter TLS certificate errors:</p>
+<p>If you encounter TLS certificate errors against the issuer URL:</p>
 <ul>
 <li>
 <p>Option 1: Skip verification (not recommended for production)
@@ -2267,20 +2823,23 @@
 </span></code></pre></div></p>
 </li>
 <li>
-<p>Option 2: Add CA certificate to your system trust store</p>
-<p>Extract CA certificate
+<p>Option 2: Provide the CA explicitly</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl -n kubauth get secret kubauth-oidc-server-cert \
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>  -o=jsonpath=&#39;{.data.ca\.crt}&#39; | base64 -d &gt; kubauth-ca.crt
-</span></code></pre></div></p>
-<p>Add to system trust store (OS-specific)</p>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>kc token --issuerURL https://kubauth.local --clientId public --caFile ./kubauth-ca.crt
+</span></code></pre></div>
+</li>
+<li>
+<p>Option 3: Add the CA to the system trust store (OS-specific).</p>
 </li>
 </ul>
 <h3 id="browser-not-opening">Browser Not Opening</h3>
 <p>If the browser doesn't open automatically with <code>kc token</code>:</p>
 <ol>
-<li>Check the console output for the localhost URL</li>
-<li>Manually open the URL in your browser</li>
-<li>Or use <code>kc token-nui</code> for terminal-based authentication</li>
+<li>Check the terminal output for the localhost URL.</li>
+<li>Manually open the URL in your browser.</li>
+<li>Or use <code>kc token-nui</code> for terminal-based authentication.</li>
 </ol>
 
 
@@ -2311,7 +2870,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../60-references/140-groupbinding/" class="md-footer__link md-footer__link--prev" aria-label="Previous: GroupBinding">
+          <a href="../../60-references/150-upstreamprovider/" class="md-footer__link md-footer__link--prev" aria-label="Previous: UpstreamProvider">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2321,7 +2880,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                GroupBinding
+                UpstreamProvider
               </div>
             </div>
           </a>
