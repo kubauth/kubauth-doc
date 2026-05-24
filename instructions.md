@@ -87,3 +87,6 @@ Implements on 110-oidcclient for a first look.
 I think the 70-kc chapter deserve the same type of visual improvement. Test it on 'kc token' first
 
 Also improve look for Common Options, in Overview 
+
+
+In user guide, add a page about kubauth helm chart describing the important velues in value file.

@@ -18,6 +18,7 @@ nav:
     - Multiple Identity Providers: 30-user-guide/180-several-id-providers.md
     - Identity Merging: 30-user-guide/190-identity-merging.md
     - Upstream Providers: 30-user-guide/200-upstream-providers.md
+    - Helm Chart Reference: 30-user-guide/210-helm-chart.md
   - Applications Integration:
     - ArgoCD: 40-applications-integration/110-argocd.md
     - Harbor: 40-applications-integration/120-harbor.md
