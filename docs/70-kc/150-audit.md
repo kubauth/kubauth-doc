@@ -4,17 +4,18 @@
 
 The `kc audit` command queries Kubauth authentication audit logs. It provides two subcommands to view login attempts and detailed user authentication information.
 
-## Common flags
+## Common Flags
 
-### `-n`, `--namespace` (string)
+### `--namespace`, `-n` { #namespace }
 
-The namespace storing the audit logs.
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>kubauth-audit</code></span>
+</p>
 
-**Default:** `kubauth-audit`
+The namespace storing the audit logs. Applies to both `kc audit logins` and `kc audit detail`.
 
-This flag applies to both `kc audit logins` and `kc audit detail`.
-
-## kc audit logins
+## `kc audit logins`
 
 Display all login attempts with status, user information, and authentication source.
 
@@ -26,13 +27,23 @@ kc audit logins [<login>] [options]
 
 ### Arguments
 
-#### `<login>` (string, optional)
+#### `<login>` { #logins-login }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
 If provided, only show attempts for that specific login.
 
 ### Flags
 
-#### `-l`, `--byLogin`
+#### `--byLogin`, `-l` { #bylogin }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 Sort the output by login name. By default attempts are sorted chronologically.
 
@@ -40,11 +51,12 @@ Sort the output by login name. By default attempts are sorted chronologically.
 
 #### View All Login Attempts
 
-``` { .bash .copy }
+```bash
 kc audit logins
 ```
 
-**Output:**
+Output:
+
 ```
 WHEN           LOGIN   STATUS            UID   NAME         GROUPS             CLAIMS                                      EMAILS                  AUTH
 Mon 12:22:31   jim     passwordChecked   -                  []                 {}                                          []                      
@@ -56,32 +68,32 @@ Tue 19:02:20   jim     userNotFound      -                  []                 {
 
 #### Filter by Login
 
-``` { .bash .copy }
+```bash
 kc audit logins john
 ```
 
 #### Sort by Login
 
-``` { .bash .copy }
+```bash
 kc audit logins -l
 ```
 
 ### Output Fields
 
-- **WHEN** - Timestamp of the login attempt
-- **LOGIN** - Username attempted
-- **STATUS** - Authentication status:
-    - `passwordChecked` - Successful authentication
-    - `passwordFail` - Invalid password
-    - `userNotFound` - User doesn't exist
-- **UID** - Numerical user ID
-- **NAME** - User's full name
-- **GROUPS** - User's group memberships
-- **CLAIMS** - Custom claims from User/Group resources
-- **EMAILS** - User's email addresses
-- **AUTH** - Authentication authority (identity provider name)
+| Column   | Meaning                                                                                |
+|----------|----------------------------------------------------------------------------------------|
+| `WHEN`   | Timestamp of the login attempt.                                                        |
+| `LOGIN`  | Username attempted.                                                                    |
+| `STATUS` | Authentication status: `passwordChecked`, `passwordFail`, `userNotFound`.              |
+| `UID`    | Numerical user ID.                                                                     |
+| `NAME`   | User's full name.                                                                      |
+| `GROUPS` | User's group memberships.                                                              |
+| `CLAIMS` | Custom claims from User/Group resources.                                               |
+| `EMAILS` | User's email addresses.                                                                |
+| `AUTH`   | Authentication authority (identity provider name).                                     |
 
-## kc audit detail
+## `kc audit detail`
+
 Display detailed authentication information for a specific user's last login, including per-provider breakdown.
 
 ### Syntax
@@ -92,8 +104,12 @@ kc audit detail <username>
 
 ### Arguments
 
-#### `<username>` 
-string - required)
+#### `<username>` { #detail-username }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 The username to query detailed information for.
 
@@ -101,11 +117,12 @@ The username to query detailed information for.
 
 #### View Single Provider Authentication
 
-``` { .bash .copy }
+```bash
 kc audit detail john
 ```
 
-**Output:**
+Output:
+
 ```
 WHEN           LOGIN   STATUS            UID   NAME       GROUPS       CLAIMS                                      EMAILS                  AUTH
 Thu 16:14:04   john    passwordChecked   -     John DOE   [devs,ops]   {"accessProfile":"p24x7","office":"208G"}   [johnd@mycompany.com]   ucrd
@@ -117,11 +134,12 @@ ucrd       passwordChecked   -     John DOE   [devs,ops]   {"accessProfile":"p24
 
 #### View Merged Identity
 
-``` { .bash .copy }
+```bash
 kc audit detail bob
 ```
 
-**Output:**
+Output:
+
 ```
 WHEN           LOGIN   STATUS            UID   NAME         GROUPS        CLAIMS                      EMAILS                AUTH
 Thu 14:15:06   bob     passwordChecked   -     Bob MORANE   [ops,staff]   {"accessProfile":"p24x7"}   [bob@mycompany.com]   ldap
@@ -133,33 +151,35 @@ ucrd       userNotFound      -                  [ops]     {"accessProfile":"p24x
 
 This shows that:
 
-- User authenticated via LDAP
-- Groups include `staff` from LDAP and `ops` from local CRD
-- Claims `accessProfile` comes from local Group definition
+- User authenticated via LDAP.
+- Groups include `staff` from LDAP and `ops` from local CRD.
+- Claim `accessProfile` comes from local Group definition.
 
 ### Understanding the Detail Output
 
 The detail view shows:
 
-1. **Summary line** - Overall authentication result after merging all providers
-2. **Per-provider breakdown** - What each identity provider contributed:
-   - **STATUS** - Provider's authentication result
-   - **Attributes** - What information each provider supplied
+1. **Summary line** — overall authentication result after merging all providers.
+2. **Per-provider breakdown** — what each identity provider contributed:
+    - **STATUS** — provider's authentication result.
+    - **Attributes** — what information each provider supplied.
 
 This helps understand:
-- Which provider authenticated the user
-- How identity information is merged
-- Where specific claims originate
+
+- Which provider authenticated the user.
+- How identity information is merged.
+- Where specific claims originate.
 
 ## Data Source
 
 Audit data is stored as Kubernetes `LoginAttempt` resources:
 
-``` { .bash .copy }
+```bash
 kubectl -n kubauth-audit get loginattempts
 ```
 
-**Output:**
+Output:
+
 ```
 NAME                           LOGIN   NAME       STATUS            AUTHORITY   AGE
 jim-2025-10-27-11-22-31-017    jim                passwordChecked               3h41m
@@ -169,7 +189,7 @@ john-2025-10-27-14-34-59-923   john    John DOE   passwordChecked               
 
 ### Retention
 
-Login attempts are automatically cleaned up based on Kubauth configuration, from helm chart:
+Login attempts are automatically cleaned up based on Kubauth configuration, from the Helm chart:
 
 ```yaml
 audit:
@@ -194,8 +214,8 @@ Audit logs are retained for a limited time (default 8 hours). For longer-term au
 
 The `kc audit` commands query Kubernetes resources, so you need:
 
-- kubectl configured and authenticated
-- Read access to the `kubauth-audit` namespace
+- kubectl configured and authenticated.
+- Read access to the `kubauth-audit` namespace.
 
 ## Troubleshooting
 
@@ -204,25 +224,27 @@ The `kc audit` commands query Kubernetes resources, so you need:
 If `kc audit logins` shows no data:
 
 1. **Check audit namespace:**
-   ``` { .bash .copy }
+   ```bash
    kubectl -n kubauth-audit get loginattempts
    ```
 
 2. **Verify Kubauth audit module is enabled:**
-   ``` { .bash .copy }
+   ```bash
    kubectl -n kubauth get pod -l app.kubernetes.io/instance=kubauth -o jsonpath='{range .items[0].spec.containers[*]}{.name}{"\n"}{end}'
    ```
 
-3. **Check retention settings** - Data may have been cleaned up
+3. **Check retention settings** — data may have been cleaned up.
 
 ### Permission Denied
 
-**Error:**
+Error:
+
 ```
 Error from server (Forbidden): loginattempts.kubauth.kubotal.io is forbidden: User "john" cannot list resource "loginattempts"
 ```
 
-**Solution:** Grant read access to audit resources:
+Solution: grant read access to audit resources:
+
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -237,13 +259,12 @@ rules:
 
 ## Related Commands
 
-- [`kc token`](130-token.md) - Generate login attempts to view
-- [`kc token-nui`](140-token-nui.md) - Test authentication
-- [`kc whoami`](170-whoami.md) - Check current user
+- [`kc token`](130-token.md) — Generate login attempts to view
+- [`kc token-nui`](140-token-nui.md) — Test authentication
+- [`kc whoami`](170-whoami.md) — Check current user
 
 ## See Also
 
 - [Audit Documentation](../30-user-guide/130-audit.md)
 - [Identity Merging](../30-user-guide/190-identity-merging.md)
 - [Multiple Identity Providers](../30-user-guide/180-several-id-providers.md)
-

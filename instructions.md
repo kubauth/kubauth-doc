@@ -80,4 +80,10 @@ This doc is in sync with
   feat: --prompt option added. If set, value is added in authorization request
 ---------
 
+In the reference part, the way spec fields are displayed, using simple markdown does not render nicely and is not very readable. Could you suggest another way to display theses reference information. 
+Implements on 110-oidcclient for a first look.
 
+
+I think the 70-kc chapter deserve the same type of visual improvement. Test it on 'kc token' first
+
+Also improve look for Common Options, in Overview 

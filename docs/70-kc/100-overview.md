@@ -102,9 +102,18 @@ kc audit logins
 
 ## Common Options
 
-`kc token`, `kc token-nui` and `kc client` share a common set of OIDC connection flags (and `kc logout` and `kc whoami` share most of them too).
+`kc token`, `kc token-nui` and `kc client` share a common set of OIDC connection flags. `kc logout` and `kc whoami` share most of them too.
 
-### `-i, --issuerURL` (string)
+This page is the canonical reference for these flags. Per-command pages link back here for the full description.
+
+### Connection Flags
+
+#### `--issuerURL`, `-i` { #issuerurl }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-env">env: <code>KC_ISSUER_URL</code></span>
+</p>
 
 The Kubauth OIDC issuer URL.
 
@@ -112,76 +121,202 @@ The Kubauth OIDC issuer URL.
 
 May also be set via the `KC_ISSUER_URL` environment variable, or fetched automatically from kubeconfig (see [Kubeconfig integration](#kubeconfig-integration)).
 
-### `-c, --clientId` (string)
+<hr class="api-field-separator">
 
-The OIDC client ID. May also be set via `KC_CLIENT_ID`.
+#### `--clientId`, `-c` { #clientid }
 
-### `-s, --clientSecret` (string)
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-env">env: <code>KC_CLIENT_ID</code></span>
+</p>
 
-Client secret for confidential clients. May also be set via `KC_CLIENT_SECRET`.
+The OIDC client ID.
 
-### `--insecureSkipVerify`
+<hr class="api-field-separator">
+
+#### `--clientSecret`, `-s` { #clientsecret }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-env">env: <code>KC_CLIENT_SECRET</code></span>
+</p>
+
+Client secret. Only required for confidential clients.
+
+<hr class="api-field-separator">
+
+#### `--insecureSkipVerify` { #insecureskipverify }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 Skip TLS certificate verification of the issuer URL.
 
-> Use only for testing with self-signed certificates.
+!!! warning
 
-### `--caFile` (string, repeatable)
+    Use only for testing with self-signed certificates.
 
-Path to a root CA certificate used to validate the issuer URL. Can be repeated.
+<hr class="api-field-separator">
 
-### `--scope` (string, repeatable)
+#### `--caFile` { #cafile }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-repeatable">repeatable</span>
+</p>
+
+Path to a root CA certificate used to validate the issuer URL. May be repeated to supply several CAs.
+
+<hr class="api-field-separator">
+
+#### `--kubeconfig` { #kubeconfig-flag }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>$KUBECONFIG</code> or <code>$HOME/.kube/config</code></span>
+</p>
+
+kubeconfig file used to look up the issuer URL and CA when they are not provided explicitly.
+
+<hr class="api-field-separator">
+
+#### `--context` { #context }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: kubeconfig <code>current-context</code></span>
+</p>
+
+Override the kubeconfig context.
+
+<hr class="api-field-separator">
+
+#### `--scope` { #scope }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-repeatable">repeatable</span>
+<span class="api-badge api-default">default: <code>openid</code>, <code>profile</code>, <code>groups</code></span>
+</p>
 
 OAuth2 scope requested in the authorization/token request. Repeat the flag for multiple scopes.
 
-**Default:** `openid`, `profile`, `groups`
-
 When `--ttl` is used (token renewal loop), `offline_access` is automatically appended if missing.
 
-### `--onlyIdToken` / `--onlyAccessToken`
+### Output Flags
 
-Print only the corresponding token on stdout (everything else goes to stderr). Useful for piping.
+#### `--onlyIdToken` { #onlyidtoken }
 
-### `-d, --detailIdToken` / `-a, --detailAccessToken`
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
-Print the decoded JWT (header + payload) of the ID token / access token, in addition to the regular output. With `kc token` (browser flow), the success page in the browser always shows token details regardless of these flags; `-d` / `-a` only control the terminal output.
+Print only the ID token on stdout (everything else goes to stderr). Useful for piping.
 
-### `--userInfo`
+<hr class="api-field-separator">
 
-Call the provider `userinfo` endpoint with the obtained access token and print the result (terminal output for all subcommands; the browser success page for `kc token`).
+#### `--onlyAccessToken` { #onlyaccesstoken }
 
-### `--logMode` (string), `-l, --logLevel` (string)
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
-Logging configuration.
+Print only the access token on stdout (everything else goes to stderr). Useful for piping.
 
-- `--logMode`: `text` (default) or `json`
-- `--logLevel`: `DEBUG`, `INFO` (default), `WARN`, `ERROR`
+<hr class="api-field-separator">
 
-### `--dumpClientExchanges`
+#### `--detailIdToken`, `-d` { #detailidtoken }
 
-Dump every outgoing HTTP request and incoming response performed by the `kc` HTTP client (useful for debugging).
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
-## Kubeconfig integration
+Print the decoded JWT (header + payload) of the ID token in addition to the regular output.
+
+<hr class="api-field-separator">
+
+#### `--detailAccessToken`, `-a` { #detailaccesstoken }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+Print the decoded JWT (header + payload) of the access token in addition to the regular output. When the access token is opaque, a notice is printed instead.
+
+!!! note
+
+    For `kc token` (browser flow), the success page in the browser always shows token details regardless of `-d` and `-a`. These flags only control the **terminal** output.
+
+<hr class="api-field-separator">
+
+#### `--userInfo` { #userinfo }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+Call the provider `userinfo` endpoint with the obtained access token and print the result. Output goes to the terminal for all subcommands; for `kc token`, it is also shown on the browser success page.
+
+### Logging Flags
+
+#### `--logMode` { #logmode }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>text</code></span>
+</p>
+
+Logging output mode. One of `text`, `json`.
+
+<hr class="api-field-separator">
+
+#### `--logLevel`, `-l` { #loglevel }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>INFO</code></span>
+</p>
+
+Logging verbosity. One of `DEBUG`, `INFO`, `WARN`, `ERROR`.
+
+<hr class="api-field-separator">
+
+#### `--dumpClientExchanges` { #dumpclientexchanges }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+Dump every outgoing HTTP request and incoming response performed by the `kc` HTTP client. Intended for debugging.
+
+## Kubeconfig Integration
 
 When `--issuerURL` (and/or the root CA) is omitted, `kc` automatically tries to fetch it from the current kubeconfig (the file pointed to by `--kubeconfig`, the `KUBECONFIG` environment variable, or `$HOME/.kube/config`, in that order). The context defaults to the kubeconfig `current-context`; use `--context` to pick another one.
 
 This works when the kubeconfig was previously initialized with `kc config` / `kc init`, so that the OIDC issuer URL and CA are recorded in the `user` entry.
 
-The flags are accepted on `kc token`, `kc token-nui`, `kc client`, `kc logout` and `kc whoami`:
-
-- `--kubeconfig <path>` — Override the kubeconfig file to read from
-- `--context <name>` — Override the kubeconfig context
+The [`--kubeconfig`](#kubeconfig-flag) and [`--context`](#context) flags are accepted on `kc token`, `kc token-nui`, `kc client`, `kc logout` and `kc whoami`.
 
 ## Environment Variables
 
 Several commands honor the following environment variables when their command-line flag is not explicitly set:
 
-- `KC_ISSUER_URL` — Default issuer URL
-- `KC_CLIENT_ID` — Default client ID
-- `KC_CLIENT_SECRET` — Default client secret
-- `KC_USER_LOGIN` — Default user login (`kc token-nui`)
-- `KC_USER_PASSWORD` — Default user password (`kc token-nui`)
-- `KUBECONFIG` — kubeconfig file location
+| Variable             | Equivalent flag      | Used by                            |
+|----------------------|----------------------|------------------------------------|
+| `KC_ISSUER_URL`      | `--issuerURL` / `-i` | `kc token`, `token-nui`, `client`, `logout` |
+| `KC_CLIENT_ID`       | `--clientId` / `-c`  | `kc token`, `token-nui`, `client`  |
+| `KC_CLIENT_SECRET`   | `--clientSecret` / `-s` | `kc token`, `token-nui`, `client` |
+| `KC_USER_LOGIN`      | `--login` / `-u`     | `kc token-nui`                     |
+| `KC_USER_PASSWORD`   | `--password` / `-p`  | `kc token-nui`                     |
+| `KUBECONFIG`         | `--kubeconfig`       | every subcommand that reads kubeconfig |
 
 **Example:**
 

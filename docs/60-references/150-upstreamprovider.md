@@ -11,13 +11,13 @@ When at least one `UpstreamProvider` exists, the Kubauth login page becomes a *p
 
 See the [Upstream Providers](../30-user-guide/200-upstream-providers.md) chapter for end-to-end usage.
 
-**API Group:** `kubauth.kubotal.io/v1alpha1`
-
-**Kind:** `UpstreamProvider`
-
-**Short names:** `upstreams`
-
-**Namespaced:** Yes — resources are only watched in the namespace pointed at by the Helm value `oidc.upstreamProviderNamespace` (defaults to the Kubauth release namespace).
+| Property      | Value                                                                                              |
+|---------------|----------------------------------------------------------------------------------------------------|
+| API Group     | `kubauth.kubotal.io`                                                                               |
+| API Version   | `v1alpha1`                                                                                         |
+| Kind          | `UpstreamProvider`                                                                                 |
+| Scope         | Namespaced — only the namespace pointed at by `oidc.upstreamProviderNamespace` is watched          |
+| Short names   | `upstreams`                                                                                        |
 
 ## Example
 
@@ -70,59 +70,96 @@ spec:
 ## Spec Fields
 
 ### `enabled`
-boolean - optional - default: `true`
+
+<p class="api-meta">
+<span class="api-badge api-type">boolean</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>true</code></span>
+</p>
 
 Whether the provider is active. When set to `false`, the provider is hidden from the login page and rejected by the upstream callback. The resource appears in `OFF` status.
 
------
+<hr class="api-field-separator">
+
 ### `type`
-string - required
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 Provider type. One of:
 
 - `oidc` — external OIDC server, fully described by `issuerURL`, `clientId`, `clientSecret` and friends.
 - `internal` — the built-in login form, backed by the configured internal identity providers (`ucrd`, `ldap`, `merger`).
 
------
+<hr class="api-field-separator">
+
 ### `displayName`
-string - optional (required for `oidc` providers in practice)
 
-Label shown to the user on the login page. For `oidc` providers this appears on the provider button (*"Sign in with ..."*). For `internal` providers this overrides the default form label (which otherwise comes from the Helm value `oidc.defaultLoginLabel`).
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
------
+Label shown to the user on the login page. For `oidc` providers, this appears on the provider button (*"Sign in with ..."*) and is required in practice. For `internal` providers, this overrides the default form label (which otherwise comes from the Helm value `oidc.defaultLoginLabel`).
+
+<hr class="api-field-separator">
+
 ### `clientSpecific`
-boolean - optional - default: `false`
+
+<p class="api-meta">
+<span class="api-badge api-type">boolean</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 When `true`, the provider does not appear on the default login page. Only `OidcClient` resources that explicitly list it in [`spec.upstreamProviders`](110-oidcclient.md#upstreamproviders) will offer it to their users.
 
------
+<hr class="api-field-separator">
+
 ### `issuerURL`
-string - optional (required for `oidc` providers)
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required for <code>oidc</code></span>
+</p>
 
 OIDC issuer URL. Kubauth performs the standard OIDC discovery on `${issuerURL}/.well-known/openid-configuration` unless `explicitConfig` is provided.
 
-**Example:**
 ```yaml
 issuerURL: "https://keycloak.mycompany.com/realms/default"
 ```
 
------
+<hr class="api-field-separator">
+
 ### `certificateAuthority`
-object - optional
+
+<p class="api-meta">
+<span class="api-badge api-type">object</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
 PEM-encoded CA bundle used to verify TLS to the upstream issuer. Must reference a `ConfigMap` or `Secret` in the **same namespace** as the UpstreamProvider. Exactly one of `configMap` or `secret` must be set.
 
 #### `certificateAuthority.configMap.name` / `.key`
-string - required when `configMap` is used
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required when <code>configMap</code> is used</span>
+</p>
 
 Name of the `ConfigMap` and the key inside it holding the PEM bundle.
 
 #### `certificateAuthority.secret.name` / `.key`
-string - required when `secret` is used
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required when <code>secret</code> is used</span>
+</p>
 
 Name of the `Secret` and the key inside it holding the PEM bundle.
 
-**Example:**
 ```yaml
 certificateAuthority:
   secret:
@@ -130,15 +167,26 @@ certificateAuthority:
     key: ca.crt
 ```
 
------
+<hr class="api-field-separator">
+
 ### `insecureSkipVerify`
-boolean - optional - default: `false`
+
+<p class="api-meta">
+<span class="api-badge api-type">boolean</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 Skips TLS verification for the upstream issuer. For development environments only.
 
------
+<hr class="api-field-separator">
+
 ### `redirectURL`
-string - optional (required for `oidc` providers)
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required for <code>oidc</code></span>
+</p>
 
 URL the upstream provider must redirect back to once the user has authenticated. Must match the redirect URI registered on the upstream side and is typically:
 
@@ -146,42 +194,63 @@ URL the upstream provider must redirect back to once the user has authenticated.
 https://<kubauth-host>/upstream/callback
 ```
 
------
+<hr class="api-field-separator">
+
 ### `clientId`
-string - optional (required for `oidc` providers)
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required for <code>oidc</code></span>
+</p>
 
 `client_id` registered on the upstream OIDC server for Kubauth.
 
------
+<hr class="api-field-separator">
+
 ### `clientSecret`
-secretRef - optional (required for non-public `oidc` providers)
+
+<p class="api-meta">
+<span class="api-badge api-type">secretRef</span>
+<span class="api-badge api-required">required for non-public <code>oidc</code></span>
+</p>
 
 Reference to a Kubernetes `Secret` in the same namespace, holding the upstream client secret.
 
 #### `clientSecret.name`
-string - required
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 Name of the `Secret`.
 
 #### `clientSecret.key`
-string - required
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 Key inside the `Secret`.
 
-**Example:**
 ```yaml
 clientSecret:
   name: upstream-keycloak
   key: clientSecret
 ```
 
------
+<hr class="api-field-separator">
+
 ### `scopes`
-[]string - optional
+
+<p class="api-meta">
+<span class="api-badge api-type">[]string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
 OIDC scopes requested when sending the user to the upstream provider.
 
-**Example:**
 ```yaml
 scopes:
   - openid
@@ -190,37 +259,60 @@ scopes:
   - email
 ```
 
------
+<hr class="api-field-separator">
+
 ### `useUserInfo`
-boolean - optional - default: `false`
+
+<p class="api-meta">
+<span class="api-badge api-type">boolean</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 When `true`, Kubauth calls the upstream `userinfo` endpoint after the token exchange and merges its claims with the ID token claims. Useful for providers that put extra claims in `userinfo` rather than in the ID token (Keycloak with certain mappers, for example).
 
------
+<hr class="api-field-separator">
+
 ### `claimRenamings`
-[]ClaimRenamingSpec - optional
+
+<p class="api-meta">
+<span class="api-badge api-type">[]ClaimRenamingSpec</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
 List of claim rename/copy operations applied to the upstream payload.
 
 #### `claimRenamings[].oldName`
-string - required
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 Source claim name.
 
 #### `claimRenamings[].newName`
-string - required
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 Target claim name.
 
 #### `claimRenamings[].operation`
-string - optional - default: `rename`
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>rename</code></span>
+</p>
 
 One of:
 
 - `rename` — remove `oldName` and write the value under `newName`.
 - `copy` — keep `oldName` *and* write the value under `newName`. Useful to derive a stable `sub` from `preferred_username`, for instance.
 
-**Example:**
 ```yaml
 claimRenamings:
   - oldName: preferred_username
@@ -230,30 +322,45 @@ claimRenamings:
     newName: roles
 ```
 
------
+<hr class="api-field-separator">
+
 ### `claimRemovals`
-[]string - optional
+
+<p class="api-meta">
+<span class="api-badge api-type">[]string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
 List of upstream claim names to drop before merging.
 
 In addition, Kubauth always strips the "technical" OIDC ID-Token claims (`iss`, `aud`, `exp`, `iat`, `auth_time`, `nonce`, `acr`, `amr`, `azp`, `at_hash`, `c_hash`) from the upstream payload. The `sub` claim is preserved as the user identifier.
 
-**Example:**
 ```yaml
 claimRemovals:
   - email_verified
   - session_state
 ```
 
------
+<hr class="api-field-separator">
+
 ### `localEnrichment`
-boolean - optional - default: `true`
+
+<p class="api-meta">
+<span class="api-badge api-type">boolean</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>true</code></span>
+</p>
 
 When `true`, Kubauth matches the upstream `sub` claim against a local `User` resource and merges any extra information found there (groups, emails, claims, ...). Set to `false` to suppress local enrichment for this provider.
 
------
+<hr class="api-field-separator">
+
 ### `explicitConfig`
-UpstreamProviderConfig - optional
+
+<p class="api-meta">
+<span class="api-badge api-type">UpstreamProviderConfig</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
 When set, OIDC discovery is **disabled** for this provider and the values below are used instead. Useful for providers with broken discovery documents or for environments where the discovery endpoint is not reachable.
 
@@ -270,7 +377,6 @@ All fields are individually optional but the block is "all or nothing": if `expl
 | `introspection_endpoint`                 | Introspection URL                                     |
 | `end_session_endpoint`                   | End-session URL (RP-initiated logout)                 |
 
-**Example:**
 ```yaml
 explicitConfig:
   authorization_endpoint: https://keycloak.mycompany.com/realms/master/protocol/openid-connect/auth
@@ -282,9 +388,15 @@ explicitConfig:
     - RS256
 ```
 
------
+<hr class="api-field-separator">
+
 ### `dumpExchanges`
-boolean - optional - default: `false`
+
+<p class="api-meta">
+<span class="api-badge api-type">boolean</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 When `true`, every HTTP exchange between Kubauth and this upstream is dumped to the controller logs. Intended for debugging only.
 
@@ -293,7 +405,10 @@ When `true`, every HTTP exchange between Kubauth and this upstream is dumped to 
 The controller maintains a status block exposing the result of the discovery / load process.
 
 ### `phase`
-string
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+</p>
 
 Lifecycle phase. One of:
 
@@ -303,13 +418,23 @@ Lifecycle phase. One of:
 | `OFF`   | The provider is disabled (`spec.enabled: false`).                                    |
 | `ERROR` | The provider could not be loaded (e.g. unreachable issuer, invalid secret).          |
 
+<hr class="api-field-separator">
+
 ### `message`
-string
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+</p>
 
 Human-readable explanation for the current phase (`OK` when ready, otherwise an error string).
 
+<hr class="api-field-separator">
+
 ### `effectiveConfig`
-UpstreamProviderConfig
+
+<p class="api-meta">
+<span class="api-badge api-type">UpstreamProviderConfig</span>
+</p>
 
 The resulting endpoint configuration, either as discovered through `${issuerURL}/.well-known/openid-configuration` or as supplied via `spec.explicitConfig`. Convenient when troubleshooting upstream discovery.
 
@@ -473,6 +598,6 @@ spec:
 
 ## Related Resources
 
-- [OidcClient](110-oidcclient.md) - References upstream providers through `spec.upstreamProviders`
-- [User](120-user.md) - Targets of the `localEnrichment` lookup
-- [Upstream Providers user guide](../30-user-guide/200-upstream-providers.md) - End-to-end walkthrough
+- [OidcClient](110-oidcclient.md) — References upstream providers through `spec.upstreamProviders`
+- [User](120-user.md) — Targets of the `localEnrichment` lookup
+- [Upstream Providers user guide](../30-user-guide/200-upstream-providers.md) — End-to-end walkthrough

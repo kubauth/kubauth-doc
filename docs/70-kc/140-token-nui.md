@@ -10,7 +10,9 @@ After issuance, `kc token-nui` verifies the returned tokens, exactly like [`kc t
 - A JWT access token is verified the same way.
 - An opaque access token is verified via the OAuth2 introspection endpoint.
 
-> **NUI** stands for "No User Interface" (no browser).
+!!! note
+
+    **NUI** stands for *No User Interface* (no browser).
 
 ## Syntax
 
@@ -22,58 +24,137 @@ kc token-nui [--issuerURL <url>] [--clientId <id>] [--login <user>] [--password 
 
 The ROPC/Password Grant must be enabled in Kubauth:
 
-1. **Global configuration:** Set `allowPasswordGrant: true` in Kubauth Helm values.
-2. **Client configuration:** Add `"password"` to the client's `grantTypes` list.
+1. **Global configuration:** set `allowPasswordGrant: true` in Kubauth Helm values.
+2. **Client configuration:** add `"password"` to the client's `grantTypes` list.
 
 See [Password Grant Configuration](../30-user-guide/160-password-grant.md#configuration) for details.
 
-## Connection flags
+## Connection Flags
 
-These flags are shared with [`kc token`](130-token.md) — see [Common Options](100-overview.md#common-options):
+These flags are shared with [`kc token`](130-token.md). See [Common Options](100-overview.md#common-options) for the full description.
 
-- `-i, --issuerURL` (string) — Kubauth OIDC issuer URL (env `KC_ISSUER_URL`)
-- `-c, --clientId` (string) — OIDC client ID (env `KC_CLIENT_ID`)
-- `-s, --clientSecret` (string) — Client secret, for confidential clients (env `KC_CLIENT_SECRET`)
-- `--insecureSkipVerify` — Skip TLS verification of the issuer URL
-- `--caFile <path>` (repeatable) — Trusted CA certificate(s) for the issuer URL
-- `--kubeconfig <path>` / `--context <name>` — Look up the issuer URL/CA from a kubeconfig
-- `--scope <name>` (repeatable) — Requested scope(s). **Default:** `openid`, `profile`, `groups` (`offline_access` is added automatically when `--ttl` is used)
-- `--logMode <text|json>`, `-l, --logLevel <DEBUG|INFO|WARN|ERROR>` — Logging
-- `--dumpClientExchanges` — Dump every HTTP request/response made by `kc`
+| Flag                                   | Type   | Default                               | Env var             |
+|----------------------------------------|--------|---------------------------------------|---------------------|
+| `--issuerURL`, `-i`                    | string | —                                     | `KC_ISSUER_URL`     |
+| `--clientId`, `-c`                     | string | —                                     | `KC_CLIENT_ID`      |
+| `--clientSecret`, `-s`                 | string | —                                     | `KC_CLIENT_SECRET`  |
+| `--insecureSkipVerify`                 | bool   | `false`                               | —                   |
+| `--caFile` <small>(repeatable)</small> | string | —                                     | —                   |
+| `--kubeconfig`                         | string | `$KUBECONFIG` or `$HOME/.kube/config` | —                   |
+| `--context`                            | string | kubeconfig `current-context`          | —                   |
+| `--scope` <small>(repeatable)</small>  | string | `openid`, `profile`, `groups`         | —                   |
+| `--logMode`                            | string | `text`                                | —                   |
+| `--logLevel`, `-l`                     | string | `INFO`                                | —                   |
+| `--dumpClientExchanges`                | bool   | `false`                               | —                   |
 
-## Output flags
+!!! info "About `--scope`"
 
-- `--onlyIdToken` — Print only the ID token on stdout
-- `--onlyAccessToken` — Print only the access token on stdout
-- `-d, --detailIdToken` — Print the decoded ID token after the regular output
-- `-a, --detailAccessToken` — Print the decoded access token (or a notice if opaque)
-- `--userInfo` — Call the provider `userinfo` endpoint and print the response
+    `offline_access` is appended automatically when [`--ttl`](#ttl) is used, so the server returns a refresh token.
 
-## ROPC-specific flags
+## Output Flags
 
-### `-u, --login` (string)
+### `--onlyIdToken` { #onlyidtoken }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+Print only the ID token on stdout. Convenient for piping into another command.
+
+<hr class="api-field-separator">
+
+### `--onlyAccessToken` { #onlyaccesstoken }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+Print only the access token on stdout.
+
+<hr class="api-field-separator">
+
+### `--detailIdToken`, `-d` { #detailidtoken }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+In addition to the regular output, print the decoded ID token (header + payload).
+
+<hr class="api-field-separator">
+
+### `--detailAccessToken`, `-a` { #detailaccesstoken }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+In addition to the regular output, print the decoded access token (or a notice when the access token is opaque).
+
+<hr class="api-field-separator">
+
+### `--userInfo` { #userinfo }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+Call the provider `userinfo` endpoint with the obtained access token and print the result.
+
+## ROPC-Specific Flags
+
+### `--login`, `-u` { #login }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-env">env: <code>KC_USER_LOGIN</code></span>
+</p>
 
 Username. If not provided, `kc` reads `KC_USER_LOGIN`; if still empty, it prompts on stderr.
 
-### `-p, --password` (string)
+<hr class="api-field-separator">
+
+### `--password`, `-p` { #password }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-env">env: <code>KC_USER_PASSWORD</code></span>
+</p>
 
 Password. If not provided, `kc` reads `KC_USER_PASSWORD`; if still empty, it prompts on stderr with hidden input.
 
-## Token renewal
+## Token Renewal
 
-### `-t, --ttl` (duration)
+### `--ttl`, `-t` { #ttl }
+
+<p class="api-meta">
+<span class="api-badge api-type">duration</span>
+<span class="api-badge api-default">default: <code>0</code> (disabled)</span>
+</p>
 
 Instead of exiting immediately after retrieving tokens, enter a renewal loop that ends after this duration. During this period, `kc` exercises the OIDC refresh-token flow.
 
 When `--ttl` is non-zero, `offline_access` is automatically added to the requested scopes (so the server returns a refresh token).
 
-**Default:** `0` (disabled)
+**Example:** `--ttl 30m`
 
-### `--renewAt` (int)
+<hr class="api-field-separator">
+
+### `--renewAt` { #renewat }
+
+<p class="api-meta">
+<span class="api-badge api-type">int</span>
+<span class="api-badge api-default">default: <code>60</code></span>
+</p>
 
 Percentage of the access token's lifetime after which a renewal is triggered.
 
-**Default:** `60`
+**Example:** `--renewAt 50` triggers a renewal halfway through the access token's lifespan.
 
 ## Examples
 
@@ -83,14 +164,14 @@ Percentage of the access token's lifetime after which a renewal is triggered.
 kc token-nui --issuerURL https://kubauth.example.com --clientId public
 ```
 
-**Interaction:**
+Interaction:
 
 ```
 Login: john
 Password:
 ```
 
-**Output:**
+Output:
 
 ```
 Access token: ory_at_LAhtO0e8T8-V2wLZ72V0G98jKMJEpYQLH6tm6Aeg_Lw...
@@ -159,7 +240,7 @@ The OIDC client is configured with `accessTokenLifespan: 30s` and `refreshTokenL
 kc token-nui --issuerURL https://kubauth.example.com --clientId kc-test --ttl 1m
 ```
 
-**Output:**
+Output:
 
 ```
 Login:admin
@@ -185,9 +266,9 @@ TTL reached, exiting renewal loop
 !!! warning "Password Grant Security"
     The password grant flow is deprecated in OAuth 2.1 due to security concerns:
 
-    - Credentials are exposed to the client application
-    - Cannot support phishing-resistant MFA
-    - Users may be trained to enter passwords in third-party applications
+    - Credentials are exposed to the client application.
+    - Cannot support phishing-resistant MFA.
+    - Users may be trained to enter passwords in third-party applications.
 
     Use only when browser-based flows are impossible.
 
@@ -195,23 +276,23 @@ TTL reached, exiting renewal loop
 
 ### Password Grant Not Allowed
 
-**Error:**
+Error:
 
 ```
 token request failed with status 403: {"error":"request_forbidden","error_description":"The request is not allowed. This server does not allow to use authorization grant 'password'. Check server configuration"}
 ```
 
-**Solution:** Enable password grant in both the Kubauth Helm configuration and the OidcClient. See [Password Grant Configuration](../30-user-guide/160-password-grant.md#configuration).
+Solution: enable password grant in both the Kubauth Helm configuration and the OidcClient. See [Password Grant Configuration](../30-user-guide/160-password-grant.md#configuration).
 
 ### TLS Certificate Errors
 
-**Error:**
+Error:
 
 ```
 Error: x509: certificate signed by unknown authority
 ```
 
-**Solutions:**
+Solutions:
 
 - Use `--insecureSkipVerify` for testing (not recommended for production).
 - Provide a CA: `--caFile ./ca.crt`. To extract it:
@@ -223,13 +304,13 @@ Error: x509: certificate signed by unknown authority
 
 ### Authentication Failed
 
-**Error:**
+Error:
 
 ```
 token request failed with status 400: {"error":"invalid_grant","error_description":"...Unable to authenticate the provided username and password credentials."}
 ```
 
-**Solutions:**
+Solutions:
 
 - Verify the username and password.
 - Check the user is not disabled: `kubectl -n kubauth-users get user <username>`.

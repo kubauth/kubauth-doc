@@ -4,11 +4,13 @@
 
 An `OidcClient` represents an OIDC client application that can authenticate users through Kubauth. In OIDC terminology, a client is an application that delegates user authentication to an OIDC server.
 
-**API Group:** `kubauth.kubotal.io/v1alpha1`
-
-**Kind:** `OidcClient`
-
-**Namespaced:** Yes (typically the Kubauth release namespace `kubauth`, or any tenant namespace — see [Usage Notes](#namespacing))
+| Property      | Value                                                                                         |
+|---------------|-----------------------------------------------------------------------------------------------|
+| API Group     | `kubauth.kubotal.io`                                                                          |
+| API Version   | `v1alpha1`                                                                                    |
+| Kind          | `OidcClient`                                                                                  |
+| Scope         | Namespaced (typically the Kubauth release namespace, or any tenant namespace)                 |
+| Short names   | —                                                                                             |
 
 ## Example
 
@@ -58,41 +60,60 @@ spec:
 ## Spec Fields
 
 ### `enabled`
-boolean - optional - default: `true`
+
+<p class="api-meta">
+<span class="api-badge api-type">boolean</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>true</code></span>
+</p>
 
 Whether the client is active. When set to `false`, the resource is kept in etcd but Kubauth rejects every OIDC request that uses this `client_id`. The client appears in `OFF` status.
 
-**Example:**
 ```yaml
 enabled: false
 ```
 
------
+<hr class="api-field-separator">
+
 ### `secrets`
-[]secretRef - required if not `public`
+
+<p class="api-meta">
+<span class="api-badge api-type">[]secretRef</span>
+<span class="api-badge api-required">required if not <code>public</code></span>
+</p>
 
 A list of Kubernetes Secret references holding the `client_secret` value(s) accepted by the OIDC server.
 
 The referenced Secrets must live in the **same namespace** as the OidcClient resource. Supporting multiple entries enables seamless secret rotation.
 
 #### `secrets[].name`
-string - required
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 The name of the referenced Kubernetes Secret.
 
 #### `secrets[].key`
-string - required
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 The key within the Secret that holds the client secret value.
 
 #### `secrets[].hashed`
-boolean - optional - default: `false`
 
-Set to `true` if the secret value is stored as a bcrypt hash instead of clear-text.
+<p class="api-meta">
+<span class="api-badge api-type">boolean</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
-Use the `kc hash <value> -r | base64` command to generate the hash from a plain-text secret.
+Set to `true` if the secret value is stored as a bcrypt hash instead of clear-text. Use the `kc hash <value> -r | base64` command to generate the hash from a plain-text secret.
 
-**Example:**
 ```yaml
 secrets:
   - name: oidc-my-app-client-secret-current
@@ -104,77 +125,93 @@ secrets:
     hashed: true
 ```
 
------
+<hr class="api-field-separator">
+
 ### `redirectURIs`
-[]string - required
+
+<p class="api-meta">
+<span class="api-badge api-type">[]string</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 List of allowed redirect URIs for the OAuth2 authorization flow. After successful authentication, the authorization server will redirect the user back to one of these URIs.
 
 For ROPC-only clients, this list may be empty but the field must be declared as `redirectURIs: []`.
 
-**Example:**
 ```yaml
 redirectURIs:
   - "https://myapp.example.com/callback"
   - "http://localhost:8080/callback"  # For local development
 ```
 
------
+<hr class="api-field-separator">
+
 ### `grantTypes`
-[]string - required
+
+<p class="api-meta">
+<span class="api-badge api-type">[]string</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 List of OAuth2 grant types that this client is allowed to use.
 
 **Common values:**
 
-- `authorization_code` - Standard OAuth2 authorization code flow
-- `refresh_token` - Allows using refresh tokens to obtain new access tokens
-- `client_credentials` - Machine-to-machine flow
-- `password` - Resource Owner Password Credentials (ROPC) flow (must also be allowed globally with `oidc.allowPasswordGrant: true`)
+- `authorization_code` — Standard OAuth2 authorization code flow
+- `refresh_token` — Allows using refresh tokens to obtain new access tokens
+- `client_credentials` — Machine-to-machine flow
+- `password` — Resource Owner Password Credentials (ROPC) flow (must also be allowed globally with `oidc.allowPasswordGrant: true`)
 
-**Example:**
 ```yaml
 grantTypes:
   - "authorization_code"
   - "refresh_token"
 ```
 
------
+<hr class="api-field-separator">
+
 ### `responseTypes`
-[]string - required
+
+<p class="api-meta">
+<span class="api-badge api-type">[]string</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 List of response types the client can expect from the authorization endpoint.
 
 **Common values:**
 
-- `code` - Authorization code
-- `token` - Access token (implicit flow)
-- `id_token` - ID token
-- `id_token token` - Both ID token and access token
-- `code id_token` - Both code and ID token
-- `code token` - Both code and access token
-- `code id_token token` - All three
+- `code` — Authorization code
+- `token` — Access token (implicit flow)
+- `id_token` — ID token
+- `id_token token` — Both ID token and access token
+- `code id_token` — Both code and ID token
+- `code token` — Both code and access token
+- `code id_token token` — All three
 
-**Example:**
 ```yaml
 responseTypes: [ "id_token", "code", "token", "id_token token", "code id_token", "code token", "code id_token token" ]
 ```
 
------
+<hr class="api-field-separator">
+
 ### `scopes`
-[]string - required
+
+<p class="api-meta">
+<span class="api-badge api-type">[]string</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 List of OAuth2 scopes that this client can request.
 
 **Standard OIDC scopes:**
 
-- `openid` - Required for OIDC authentication
-- `profile` - Access to user profile information
-- `email` - Access to user email
-- `offline` / `offline_access` - Request refresh tokens
-- `groups` - Access to user group membership
+- `openid` — Required for OIDC authentication
+- `profile` — Access to user profile information
+- `email` — Access to user email
+- `offline` / `offline_access` — Request refresh tokens
+- `groups` — Access to user group membership
 
-**Example:**
 ```yaml
 scopes:
   - "openid"
@@ -184,51 +221,78 @@ scopes:
   - "offline_access"
 ```
 
------
+<hr class="api-field-separator">
+
 ### `public`
-boolean - optional - default: `false`
+
+<p class="api-meta">
+<span class="api-badge api-type">boolean</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 Indicates whether this is a public client. Public clients do not require a client secret.
 
 **Use for:** Browser-based applications, native mobile apps, CLI tools.
 
-**Example:**
 ```yaml
 public: true
 ```
 
------
+<hr class="api-field-separator">
+
 ### `audiences`
-[]string - optional
+
+<p class="api-meta">
+<span class="api-badge api-type">[]string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
 Additional audiences (`aud` claim values) accepted for this client. The `client_id` is always implicitly included as an audience.
 
-**Example:**
 ```yaml
 audiences:
   - https://api.myapp.example.com
 ```
 
------
+<hr class="api-field-separator">
+
 ### `forceOpenIdScope`
-boolean - optional - default: `false`
+
+<p class="api-meta">
+<span class="api-badge api-type">boolean</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 Force the `openid` scope even if the client application did not explicitly request it. Useful for clients that perform OAuth 2.0 flows but still expect an ID token.
 
------
+<hr class="api-field-separator">
+
 ### `style`
-string - optional - default: value of `oidc.defaultStyle` (Helm chart, defaults to `dark`)
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>oidc.defaultStyle</code></span>
+</p>
 
 Name of the CSS theme to apply to the login, index and logout pages displayed during this client's flow. Allows per-client visual branding.
 
-**Example:**
+When omitted, the Helm value `oidc.defaultStyle` is used (`dark` by default).
+
 ```yaml
 style: light
 ```
 
------
+<hr class="api-field-separator">
+
 ### `upstreamProviders`
-[]string - optional
+
+<p class="api-meta">
+<span class="api-badge api-type">[]string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
 Names of the `UpstreamProvider` resources that should be offered to the user when signing in through this client.
 
@@ -241,27 +305,35 @@ Behavior:
 
 See the [Upstream Providers](../30-user-guide/200-upstream-providers.md) chapter for the full picture.
 
-**Example:**
 ```yaml
 upstreamProviders:
   - internal
   - corp-okta
 ```
 
------
+<hr class="api-field-separator">
+
 ### `postLogoutURL`
-string - optional
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
 Where to redirect the user after logout. Takes precedence over the global `oidc.postLogoutURL` Helm value. May still be overridden by a `post_logout_redirect_uri` query parameter on the logout URL.
 
-**Example:**
 ```yaml
 postLogoutURL: "https://myapp.example.com/logged-out"
 ```
 
------
+<hr class="api-field-separator">
+
 ### `clientId`
-string - optional
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
 Explicit value of the OIDC `client_id`. When omitted, Kubauth derives a value automatically:
 
@@ -274,79 +346,103 @@ Explicit value of the OIDC `client_id`. When omitted, Kubauth derives a value au
 
 The **effective** client_id is always exposed in `.status.clientId`.
 
-**Example:**
 ```yaml
 clientId: prj32-public
 ```
 
------
+<hr class="api-field-separator">
+
 ### `displayName`
-string - optional
 
-A user-friendly name for the application. This is displayed on the Kubauth index page and logout page.
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
-**Example:**
+A user-friendly name for the application. Displayed on the Kubauth index page and logout page.
+
 ```yaml
 displayName: "Employee Portal"
 ```
 
------
+<hr class="api-field-separator">
+
 ### `description`
-string - optional
 
-A short description of the client application. This is displayed on the Kubauth index page and logout page.
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
-**Example:**
+A short description of the client application. Displayed on the Kubauth index page and logout page.
+
 ```yaml
 description: "Corporate application for employee management"
 ```
 
------
+<hr class="api-field-separator">
+
 ### `entryURL`
-string - optional
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
 The main entry URL for the application. Used to provide a link to the application on the Kubauth index page and logout page.
 
 !!! note
 
-    Requires `displayName` and `description` to be set for the application to appear in the application list.
+    Requires `displayName` and `description` to also be set for the application to appear in the application list.
 
-**Example:**
 ```yaml
 entryURL: "https://portal.example.com"
 ```
 
------
+<hr class="api-field-separator">
+
 ### `accessTokenLifespan`
-duration - optional - default: 1 hour
 
-The lifespan of access tokens issued to this client.
+<p class="api-meta">
+<span class="api-badge api-type">duration</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>1h</code></span>
+</p>
 
-**Format:** Duration string (e.g. `1m0s`, `1h`, `30m`).
+The lifespan of access tokens issued to this client. Format: Go duration string (e.g. `1m0s`, `1h`, `30m`).
 
-**Example:**
 ```yaml
 accessTokenLifespan: 15m
 ```
 
------
+<hr class="api-field-separator">
+
 ### `idTokenLifespan`
-duration - optional - default: 1 hour
+
+<p class="api-meta">
+<span class="api-badge api-type">duration</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>1h</code></span>
+</p>
 
 The lifespan of ID tokens issued to this client.
 
-**Example:**
 ```yaml
 idTokenLifespan: 1h
 ```
 
------
+<hr class="api-field-separator">
+
 ### `refreshTokenLifespan`
-duration - optional - default: 30 days
+
+<p class="api-meta">
+<span class="api-badge api-type">duration</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>30d</code></span>
+</p>
 
 The lifespan of refresh tokens issued to this client.
 
-**Example:**
 ```yaml
 refreshTokenLifespan: 8h
 ```
@@ -356,7 +452,10 @@ refreshTokenLifespan: 8h
 The controller maintains a small status block on every OidcClient resource. These fields are also surfaced as columns in `kubectl get oidcclients`.
 
 ### `phase`
-string
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+</p>
 
 Lifecycle phase of the client. One of:
 
@@ -366,13 +465,23 @@ Lifecycle phase of the client. One of:
 | `OFF`   | The client is disabled (`spec.enabled: false`) and Kubauth will reject any request using it.    |
 | `ERROR` | The client could not be loaded (e.g. missing client secret, invalid configuration).             |
 
+<hr class="api-field-separator">
+
 ### `clientId`
-string
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+</p>
 
 The effective `client_id`, as derived from `spec.clientId`, the resource name and the privileged namespace rules described above. This is the value client applications must use.
 
+<hr class="api-field-separator">
+
 ### `message`
-string
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+</p>
 
 Human-readable explanation for the current phase. Set to `OK` when the client is ready, otherwise contains an error description (e.g. `unable to fetch secret 'kubauth:oidc-client-secret'`).
 

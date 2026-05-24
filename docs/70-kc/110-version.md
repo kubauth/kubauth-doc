@@ -12,11 +12,16 @@ kc version [--extended]
 
 ## Flags
 
-### `-e`, `--extended`
+### `--extended`, `-e` { #extended }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 Append the build timestamp to the version string.
 
-**Example:**
+## Example
 
 ```
 $ kc version

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `kc token` command obtains OIDC tokens using the **Authorization Code** flow. It starts a local HTTP server, opens a browser to the Kubauth login page, exchanges the resulting authorization code for tokens, and prints them on the terminal. The browser then displays a success page with the decoded tokens (formatted as JSON, with copy buttons).
+The `kc token` command obtains OIDC tokens using the **Authorization Code** flow. It starts a local HTTP server, opens a browser on the Kubauth login page, exchanges the resulting authorization code for tokens, and prints them on the terminal. The browser then displays a success page with the decoded tokens (formatted as JSON, with copy buttons).
 
 After issuance, `kc token` always verifies the returned tokens:
 
@@ -20,82 +20,172 @@ kc token [--issuerURL <url>] [--clientId <id>] [options]
 
 When `--issuerURL` and/or `--clientId` are omitted, `kc` falls back to the corresponding `KC_*` environment variable, then to the current kubeconfig (see [Kubeconfig integration](100-overview.md#kubeconfig-integration)).
 
-## Connection flags
+## Connection Flags
 
-See [Common Options](100-overview.md#common-options) for the full description of these flags, which are shared with `kc token-nui` and `kc client`:
+These flags are shared with `kc token-nui` and `kc client`. See [Common Options](100-overview.md#common-options) for the full description.
 
-- `-i, --issuerURL` (string) — Kubauth OIDC issuer URL (env `KC_ISSUER_URL`)
-- `-c, --clientId` (string) — OIDC client ID (env `KC_CLIENT_ID`)
-- `-s, --clientSecret` (string) — Client secret, for confidential clients (env `KC_CLIENT_SECRET`)
-- `--insecureSkipVerify` — Skip TLS verification of the issuer URL
-- `--caFile <path>` (repeatable) — Trusted CA certificate(s) for the issuer URL
-- `--kubeconfig <path>` — kubeconfig file used to look up the issuer URL / CA when not provided explicitly (default: `$KUBECONFIG` or `$HOME/.kube/config`)
-- `--context <name>` — Override the kubeconfig context
-- `--scope <name>` (repeatable) — Requested scope(s). **Default:** `openid`, `profile`, `groups` (`offline_access` is added automatically when `--ttl` is used)
-- `--logMode <text|json>`, `-l, --logLevel <DEBUG|INFO|WARN|ERROR>` — Logging
-- `--dumpClientExchanges` — Dump every HTTP request/response made by the `kc` HTTP client
+| Flag                                   | Type   | Default                               | Env var             |
+|----------------------------------------|--------|---------------------------------------|---------------------|
+| `--issuerURL`, `-i`                    | string | —                                     | `KC_ISSUER_URL`     |
+| `--clientId`, `-c`                     | string | —                                     | `KC_CLIENT_ID`      |
+| `--clientSecret`, `-s`                 | string | —                                     | `KC_CLIENT_SECRET`  |
+| `--insecureSkipVerify`                 | bool   | `false`                               | —                   |
+| `--caFile` <small>(repeatable)</small> | string | —                                     | —                   |
+| `--kubeconfig`                         | string | `$KUBECONFIG` or `$HOME/.kube/config` | —                   |
+| `--context`                            | string | kubeconfig `current-context`          | —                   |
+| `--scope` <small>(repeatable)</small>  | string | `openid`, `profile`, `groups`         | —                   |
+| `--logMode`                            | string | `text`                                | —                   |
+| `--logLevel`, `-l`                     | string | `INFO`                                | —                   |
+| `--dumpClientExchanges`                | bool   | `false`                               | —                   |
 
-## Output flags
+!!! info "About `--scope`"
 
-- `--onlyIdToken` — Print only the ID token on stdout
-- `--onlyAccessToken` — Print only the access token on stdout
-- `-d, --detailIdToken` — In addition to the regular output, print the decoded ID token (header + payload)
-- `-a, --detailAccessToken` — In addition to the regular output, print the decoded access token (or a notice if the access token is opaque)
-- `--userInfo` — Call the provider `userinfo` endpoint with the obtained access token and print the result
+    `offline_access` is appended automatically when [`--ttl`](#ttl) is used, so the server returns a refresh token.
 
-> The browser success page **always** shows the decoded tokens regardless of `-d` and `-a`; these two flags only affect what is printed on the terminal.
+## Output Flags
 
-## Flow-specific flags
+### `--onlyIdToken` { #onlyidtoken }
 
-### `-p`, `--bindPort` (int)
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+Print only the ID token on stdout. Convenient for piping into another command.
+
+<hr class="api-field-separator">
+
+### `--onlyAccessToken` { #onlyaccesstoken }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+Print only the access token on stdout.
+
+<hr class="api-field-separator">
+
+### `--detailIdToken`, `-d` { #detailidtoken }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+In addition to the regular output, print the decoded ID token (header + payload).
+
+<hr class="api-field-separator">
+
+### `--detailAccessToken`, `-a` { #detailaccesstoken }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+In addition to the regular output, print the decoded access token (or a notice when the access token is opaque).
+
+<hr class="api-field-separator">
+
+### `--userInfo` { #userinfo }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+Call the provider `userinfo` endpoint with the obtained access token and print the result.
+
+!!! note
+
+    The browser success page **always** shows the decoded tokens regardless of `-d` and `-a`. These two flags only affect what is printed on the terminal.
+
+## Flow-Specific Flags
+
+### `--bindPort`, `-p` { #bindport }
+
+<p class="api-meta">
+<span class="api-badge api-type">int</span>
+<span class="api-badge api-default">default: <code>9921</code></span>
+</p>
 
 Port of the local HTTP server used to receive the authorization callback.
 
-**Default:** `9921`
-
 The server listens on `127.0.0.1` and the redirect URI is computed as `http://127.0.0.1:<bindPort>/callback`. This redirect URI must be allowed by the OIDC client (Kubauth ships with a sensible default for `localhost`).
 
-### `--pkce`
+<hr class="api-field-separator">
+
+### `--pkce` { #pkce }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 Enable [PKCE](https://datatracker.ietf.org/doc/html/rfc7636) (Proof Key for Code Exchange, `S256`). Recommended for public clients.
 
-### `--prompt` (string)
+<hr class="api-field-separator">
+
+### `--prompt` { #prompt }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+</p>
 
 Value forwarded as the OAuth2 `prompt` parameter in the authorization request. Valid OIDC values are `none`, `login`, `consent`, `select_account` (space-separated for several).
 
 When the flag is omitted (default), `kc` does not include any `prompt` parameter in the request. Use `--prompt=login` to force the user to re-authenticate even when an SSO session is active, or `--prompt=none` to require silent re-authentication.
 
-### `--browser` (string)
+<hr class="api-field-separator">
+
+### `--browser` { #browser }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: OS-level default browser</span>
+</p>
 
 Pick a specific browser to open. Possible values: `chrome`, `firefox`, `safari`.
 
-Defaults to the OS-level default browser.
+<hr class="api-field-separator">
 
-### `--dumpServerExchanges` (int)
+### `--dumpServerExchanges` { #dumpserverexchanges }
 
-Dump HTTP requests/responses received by the local callback HTTP server.
+<p class="api-meta">
+<span class="api-badge api-type">int</span>
+<span class="api-badge api-default">default: <code>0</code></span>
+</p>
 
-**Values:** `0` (off, default), `1`, `2`, `3` (increasing verbosity).
+Dump HTTP requests/responses received by the local callback HTTP server. One of `0` (off), `1`, `2`, `3` (increasing verbosity).
 
-## Token renewal
+## Token Renewal
 
-### `-t, --ttl` (duration)
+### `--ttl`, `-t` { #ttl }
+
+<p class="api-meta">
+<span class="api-badge api-type">duration</span>
+<span class="api-badge api-default">default: <code>0</code> (disabled)</span>
+</p>
 
 Instead of exiting immediately after retrieving tokens, enter a renewal loop that ends after this duration. During this period, `kc` exercises the OIDC refresh-token flow.
 
 When `--ttl` is non-zero, `offline_access` is automatically added to the requested scopes (so the server returns a refresh token).
 
-**Default:** `0` (disabled)
-
 **Example:** `--ttl 30m`
 
-### `--renewAt` (int)
+<hr class="api-field-separator">
+
+### `--renewAt` { #renewat }
+
+<p class="api-meta">
+<span class="api-badge api-type">int</span>
+<span class="api-badge api-default">default: <code>60</code></span>
+</p>
 
 Percentage of the access token's lifetime after which a renewal is triggered.
 
-**Default:** `60`
-
-**Example:** `--renewAt 50` — renewal halfway through the access token's lifespan.
+**Example:** `--renewAt 50` triggers a renewal halfway through the access token's lifespan.
 
 ## Examples
 
@@ -105,7 +195,7 @@ Percentage of the access token's lifetime after which a renewal is triggered.
 kc token --issuerURL https://kubauth.example.com --clientId public
 ```
 
-**Output:** (after successful login in the browser)
+Output (after successful login in the browser):
 
 ```
 If browser doesn't open automatically, visit: http://127.0.0.1:9921
@@ -144,25 +234,25 @@ IdToken: JWT Payload:
 }
 ```
 
-### Only the ID token (for piping)
+### Only the ID Token (for piping)
 
 ```bash
 kc token --issuerURL https://kubauth.example.com --clientId public --onlyIdToken
 ```
 
-**Output:**
+Output:
 
 ```
 eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiaGNBY2dtdmdBekJlSGgyODlkWHF3USIsImF1ZCI6WyJwdWJsaWMiXSwi...
 ```
 
-### Pipe to the JWT decoder
+### Pipe to the JWT Decoder
 
 ```bash
 kc token --issuerURL https://kubauth.example.com --clientId public --onlyIdToken | kc jwt
 ```
 
-### Force re-authentication (no SSO short-circuit)
+### Force Re-Authentication (no SSO short-circuit)
 
 ```bash
 kc token --issuerURL https://kubauth.example.com --clientId public --prompt login
@@ -182,7 +272,7 @@ The OIDC client is configured with `accessTokenLifespan: 30s` and `refreshTokenL
 kc token --issuerURL https://kubauth.example.com --clientId kc-test --ttl 1m10s
 ```
 
-**Output:**
+Output:
 
 ```
 If browser doesn't open automatically, visit: http://127.0.0.1:9921
@@ -249,7 +339,7 @@ If the browser doesn't open automatically:
 2. Copy/paste it into your browser.
 3. Or use [`kc token-nui`](140-token-nui.md) when no browser is available.
 
-**Example:**
+Example:
 
 ```
 If browser doesn't open automatically, visit: http://127.0.0.1:9921
@@ -257,13 +347,13 @@ If browser doesn't open automatically, visit: http://127.0.0.1:9921
 
 ### TLS Certificate Errors
 
-**Error:**
+Error:
 
 ```
 Error: x509: certificate signed by unknown authority
 ```
 
-**Solutions:**
+Solutions:
 
 - Use `--insecureSkipVerify` for testing (not recommended for production).
 - Provide a CA: `--caFile ./ca.crt`. To extract the issuer CA from the cluster:

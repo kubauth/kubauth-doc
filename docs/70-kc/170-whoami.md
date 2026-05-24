@@ -14,33 +14,69 @@ kc whoami [options]
 
 ## Flags
 
-### `-d`, `--detailed`
+### `--detailed`, `-d` { #detailed }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 Display the full decoded JWT payload (all claims) in addition to the username.
 
-### `--kubeconfig` (string)
+<hr class="api-field-separator">
+
+### `--kubeconfig` { #kubeconfig }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>$KUBECONFIG</code> or <code>$HOME/.kube/config</code></span>
+</p>
 
 Path to the kubeconfig file to read from.
 
-**Default:** `$KUBECONFIG`, then `$HOME/.kube/config`.
+<hr class="api-field-separator">
 
-### `--context` (string)
+### `--context` { #context }
 
-Override the kubeconfig context. Defaults to the file's `current-context`.
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: kubeconfig <code>current-context</code></span>
+</p>
 
-### `--logMode` (string), `-l`, `--logLevel` (string)
+Override the kubeconfig context.
 
-Logging configuration. Same semantics as the other commands.
+<hr class="api-field-separator">
+
+### `--logMode` { #logmode }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>text</code></span>
+</p>
+
+Logging output mode. One of `text`, `json`.
+
+<hr class="api-field-separator">
+
+### `--logLevel`, `-l` { #loglevel }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>INFO</code></span>
+</p>
+
+Logging verbosity. One of `DEBUG`, `INFO`, `WARN`, `ERROR`.
 
 ## Examples
 
 ### Basic Usage
 
-``` { .bash .copy }
+```bash
 kc whoami
 ```
 
-**Output:**
+Output:
+
 ```
 john
 ```
@@ -53,11 +89,12 @@ john  (expired)
 
 ### With Token Decoding
 
-``` { .bash .copy }
+```bash
 kc whoami -d
 ```
 
-**Output:**
+Output:
+
 ```
 john
 JWT Payload:
@@ -91,13 +128,13 @@ JWT Payload:
 
 The `kc whoami` command requires:
 
-1. **kubectl configured** - With valid kubeconfig
-2. **OIDC authentication** - Configured via `kc config`
-3. **Active session** - You must have authenticated at least once
+1. **kubectl configured** — with valid kubeconfig.
+2. **OIDC authentication** — configured via `kc config`.
+3. **Active session** — you must have authenticated at least once.
 
 ### Setup
 
-``` { .bash .copy }
+```bash
 # Configure kubectl for OIDC
 kc config https://kubeconfig.example.com/kubeconfig
 # (or equivalently: kc init https://kubeconfig.example.com/kubeconfig)
@@ -111,21 +148,20 @@ kc whoami
 
 ## Comparison with kubectl
 
-| Command | Purpose | Output |
-|---------|---------|--------|
-| `kc whoami` | Show OIDC username | `john` |
-| `kc whoami -d` | Show full token | Username + all claims |
-| `kubectl auth whoami` | Show Kubernetes identity | Full auth info including groups |
+| Command               | Purpose                  | Output                                       |
+|-----------------------|--------------------------|----------------------------------------------|
+| `kc whoami`           | Show OIDC username       | `john`                                       |
+| `kc whoami -d`        | Show full token          | Username + all claims                        |
+| `kubectl auth whoami` | Show Kubernetes identity | Full auth info including groups              |
 
 ## Related Commands
 
-- [`kc config`](190-config.md) - Configure kubectl for OIDC
-- [`kc logout`](180-logout.md) - Clear authentication session
-- [`kc token`](130-token.md) - Get OIDC tokens
-- [`kc jwt`](160-jwt.md) - Decode JWT tokens
+- [`kc config`](190-config.md) — Configure kubectl for OIDC
+- [`kc logout`](180-logout.md) — Clear authentication session
+- [`kc token`](130-token.md) — Get OIDC tokens
+- [`kc jwt`](160-jwt.md) — Decode JWT tokens
 
 ## See Also
 
 - [Workstation Setup](../50-kubernetes-integration/140-workstation-setup.md)
 - [Kubernetes Integration](../50-kubernetes-integration/110-overview.md)
-

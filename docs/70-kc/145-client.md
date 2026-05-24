@@ -26,26 +26,49 @@ The OIDC client used here must:
 
 Most Kubauth deployments do not allow Client Credentials for end-user clients; configure a dedicated machine client instead.
 
-## Connection flags
+## Connection Flags
 
-These flags are shared with the other OIDC subcommands — see [Common Options](100-overview.md#common-options):
+These flags are shared with the other OIDC subcommands. See [Common Options](100-overview.md#common-options) for the full description.
 
-- `-i, --issuerURL` (string) — Kubauth OIDC issuer URL (env `KC_ISSUER_URL`)
-- `-c, --clientId` (string) — OIDC client ID (env `KC_CLIENT_ID`)
-- `-s, --clientSecret` (string) — Client secret (env `KC_CLIENT_SECRET`)
-- `--insecureSkipVerify` — Skip TLS verification of the issuer URL
-- `--caFile <path>` (repeatable) — Trusted CA certificate(s) for the issuer URL
-- `--kubeconfig <path>` / `--context <name>` — Look up the issuer URL/CA from a kubeconfig
-- `--scope <name>` (repeatable) — Requested scope(s). **Default:** `openid`, `profile`, `groups`
-- `--logMode <text|json>`, `-l, --logLevel <DEBUG|INFO|WARN|ERROR>` — Logging
-- `--dumpClientExchanges` — Dump every HTTP request/response made by `kc`
+| Flag                                   | Type   | Default                               | Env var             |
+|----------------------------------------|--------|---------------------------------------|---------------------|
+| `--issuerURL`, `-i`                    | string | —                                     | `KC_ISSUER_URL`     |
+| `--clientId`, `-c`                     | string | —                                     | `KC_CLIENT_ID`      |
+| `--clientSecret`, `-s`                 | string | —                                     | `KC_CLIENT_SECRET`  |
+| `--insecureSkipVerify`                 | bool   | `false`                               | —                   |
+| `--caFile` <small>(repeatable)</small> | string | —                                     | —                   |
+| `--kubeconfig`                         | string | `$KUBECONFIG` or `$HOME/.kube/config` | —                   |
+| `--context`                            | string | kubeconfig `current-context`          | —                   |
+| `--scope` <small>(repeatable)</small>  | string | `openid`, `profile`, `groups`         | —                   |
+| `--logMode`                            | string | `text`                                | —                   |
+| `--logLevel`, `-l`                     | string | `INFO`                                | —                   |
+| `--dumpClientExchanges`                | bool   | `false`                               | —                   |
 
-## Output flags
+## Output Flags
 
-- `--onlyAccessToken` — Print only the access token on stdout (useful for piping)
-- `-a, --detailAccessToken` — Print the decoded access token after the regular output (or a notice if the token is opaque)
+### `--onlyAccessToken` { #onlyaccesstoken }
 
-> ID-token-related flags (`--onlyIdToken`, `-d`/`--detailIdToken`) are accepted but have no effect, because the Client Credentials flow does not return an ID token.
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+Print only the access token on stdout. Convenient for piping into another command.
+
+<hr class="api-field-separator">
+
+### `--detailAccessToken`, `-a` { #detailaccesstoken }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
+
+In addition to the regular output, print the decoded access token (or a notice when the access token is opaque).
+
+!!! note
+
+    ID-token-related flags (`--onlyIdToken`, `-d`/`--detailIdToken`) are accepted but have no effect, because the Client Credentials flow does not return an ID token.
 
 ## Examples
 
@@ -55,7 +78,7 @@ These flags are shared with the other OIDC subcommands — see [Common Options](
 kc client --issuerURL https://kubauth.example.com --clientId=private --clientSecret=private-secret
 ```
 
-**Output:**
+Output:
 
 ```
 Access token: ory_at_Jr45qPvItBKA8TRy-kYcrfE96ayosKwSmkTp1kVctAk.A1Asl0v_Qb9vXHaYDx8QlAhHT301QiY4xl8zdfHjXyw
@@ -70,7 +93,7 @@ Expire in: 4m59s
 kc client --issuerURL https://kubauth.example.com --clientId=private --clientSecret=private-secret -a
 ```
 
-**Output:**
+Output:
 
 ```
 Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg4MDdjNzUzLTU3MTYtNDIzYi1hZWFmLTNiODRiYTIxOWY2NyIs...
@@ -90,7 +113,7 @@ AccessToken: JWT Payload:
 }
 ```
 
-### Pipe into another command
+### Pipe into Another Command
 
 ```bash
 TOKEN=$(kc client --issuerURL https://kubauth.example.com \

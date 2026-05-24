@@ -4,13 +4,13 @@
 
 A `User` represents a user account in Kubauth. Users are stored as Kubernetes Custom Resources, providing a cloud-native, scalable authentication solution.
 
-**API Group:** `kubauth.kubotal.io/v1alpha1`
-
-**Kind:** `User`
-
-**Namespaced:** Yes (typically `kubauth-users`)
-
-**Aliases:** `kuser` (for easier kubectl access)
+| Property      | Value                                                          |
+|---------------|----------------------------------------------------------------|
+| API Group     | `kubauth.kubotal.io`                                           |
+| API Version   | `v1alpha1`                                                     |
+| Kind          | `User`                                                         |
+| Scope         | Namespaced (typically `kubauth-users`)                         |
+| Short names   | `kuser`, `kusers`                                              |
 
 ## Example
 
@@ -37,15 +37,20 @@ spec:
 ## Spec Fields
 
 ### `name`
-string - optional
 
-The full name of the user. This appears in the `name` claim in OIDC ID tokens.
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
-**Example:**
+The full name of the user. This appears as the `name` claim in OIDC ID tokens.
+
 ```yaml
 name: "John DOE"
 ```
-**Resulting JWT Token Claim:**
+
+Resulting JWT token claim:
+
 ```json
 {
   "name": "John DOE",
@@ -53,24 +58,30 @@ name: "John DOE"
 }
 ```
 
------
+<hr class="api-field-separator">
+
 ### `emails`
-[]string - optional
+
+<p class="api-meta">
+<span class="api-badge api-type">[]string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
 List of email addresses associated with the user.
 
-**Behavior:**
-- The `emails` claim in the ID token contains the complete list
-- The `email` claim contains the first email in the list
+Behavior:
 
-**Example:**
+- The `emails` claim in the ID token contains the complete list.
+- The `email` claim contains the first email in the list.
+
 ```yaml
 emails:
   - john.doe@example.com
   - j.doe@example.com
 ```
 
-**JWT Token Claims:**
+Resulting JWT token claims:
+
 ```json
 {
   "email": "john.doe@example.com",
@@ -79,45 +90,52 @@ emails:
 }
 ```
 
----
+<hr class="api-field-separator">
+
 ### `passwordHash`
-string - optional
 
-The bcrypt hash of the user's password. 
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
-**Generation:** Use the `kc hash <password>` command to generate the hash from a plain-text password.
+The bcrypt hash of the user's password.
 
-**Security:** Passwords are stored as bcrypt hashes (never in plain text), providing strong protection against password database compromise.
+- **Generation:** use the `kc hash <password>` command to generate the hash from a plain-text password.
+- **Security:** passwords are stored as bcrypt hashes (never in plain text), providing strong protection against password database compromise.
+- **Behavior:** a user definition without a password is useful in case of multiple identity providers.
 
-**Behavior:** A user definition without password is useful on case of multiple Identity Providers.
-
-**Example:**
 ```yaml
 passwordHash: "$2a$12$yJEo9EoYn/ylGS4PCamfNe8PReYH9IPumsw7rMTDi3glZjuA7dXMm"
 ```
 
-**Generating a hash:**
+Generating a hash:
+
 ```bash
 $ kc hash mypassword123
 Secret: mypassword123
 Hash: $2a$12$yJEo9EoYn/ylGS4PCamfNe8PReYH9IPumsw7rMTDi3glZjuA7dXMm
 ```
 
-Use this hash in your User 'passwordHash' field
+Use this hash in your User's `passwordHash` field.
 
----
-### `claims` 
-map[string]any - required
+<hr class="api-field-separator">
+
+### `claims`
+
+<p class="api-meta">
+<span class="api-badge api-type">map[string]any</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 Custom OIDC claims to include in ID tokens for this user. Can contain any valid JSON values.
 
-**Use Cases:**
+**Use cases:**
 
 - Application-specific user attributes
 - Custom authorization data
 - Integration with downstream systems
 
-**Example:**
 ```yaml
 claims:
   office: "208G"
@@ -126,7 +144,8 @@ claims:
   minio_policies: "consoleAdmin"
 ```
 
-**JWT Token Claims:**
+Resulting JWT token claims:
+
 ```json
 {
   "office": "208G",
@@ -137,38 +156,49 @@ claims:
 }
 ```
 
------
+<hr class="api-field-separator">
+
 ### `uid`
-integer - optional
 
-A user numerical ID. May be useful in some Linux context
+<p class="api-meta">
+<span class="api-badge api-type">integer</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
------
+A user numerical ID. May be useful in some Linux contexts.
+
+<hr class="api-field-separator">
+
 ### `comment`
-string - optional
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-optional">optional</span>
+</p>
 
 Administrative comment or description for the user. Not included in OIDC tokens.
 
-**Example:**
 ```yaml
 comment: "External consultant - expires 2025-12-31"
 ```
 
----
+<hr class="api-field-separator">
+
 ### `disabled`
-boolean - optional default false
+
+<p class="api-meta">
+<span class="api-badge api-type">boolean</span>
+<span class="api-badge api-optional">optional</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 Whether the user account is disabled. Disabled users cannot authenticate.
 
-**Default:** `false`
-
-**Example:**
 ```yaml
 disabled: true
 ```
 
 ## Status Fields
-
 
 The `User` resource does not currently expose status fields. The resource is ready to use immediately after creation.
 
@@ -179,13 +209,13 @@ The user login is the resource name in the metadata section. This becomes:
 - The `sub` (subject) claim in OIDC tokens
 - The login for authentication
 
-**Example:**
 ```yaml
 metadata:
   name: john  # This is the login username
 ```
 
-**JWT Token:**
+Resulting JWT token:
+
 ```json
 {
   "sub": "john",
@@ -232,9 +262,9 @@ kubectl patch user john -n kubauth-users --type merge -p '{"spec":{"passwordHash
 
 When using external identity providers (like LDAP), user properties can be merged:
 
-- Password validation may come from LDAP
-- Additional attributes (claims, group memberships) can be defined in the User CRD
-- See [Identity Merging](../30-user-guide/190-identity-merging.md) for details
+- Password validation may come from LDAP.
+- Additional attributes (claims, group memberships) can be defined in the User CRD.
+- See [Identity Merging](../30-user-guide/190-identity-merging.md) for details.
 
 ## Examples
 
@@ -312,6 +342,5 @@ spec:
 
 ## Related Resources
 
-- [Group](./130-group.md) - Define groups with shared claims
-- [GroupBinding](./140-groupbinding.md) - Associate users with groups
-
+- [Group](./130-group.md) — Define groups with shared claims
+- [GroupBinding](./140-groupbinding.md) — Associate users with groups

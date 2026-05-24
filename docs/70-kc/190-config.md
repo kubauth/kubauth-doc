@@ -17,7 +17,12 @@ kc init   <kubeconfig-service-url> [options]
 
 ## Arguments
 
-### `<kubeconfig-service-url>` (string, required)
+### `<kubeconfig-service-url>` { #kubeconfig-service-url }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-required">required</span>
+</p>
 
 URL of the Kubauth kubeconfig service endpoint. If the scheme is omitted, `https://` is assumed.
 
@@ -25,57 +30,108 @@ URL of the Kubauth kubeconfig service endpoint. If the scheme is omitted, `https
 
 **Example:** `https://kubeconfig.example.com/kubeconfig`
 
-## Flags
+## Output / Context Flags
 
-### Output / context
+### `--force` { #force }
 
-#### `--force`
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 Overwrite any existing cluster, user or context in the kubeconfig with the same names. Without this flag, the command fails if the target entries already exist.
 
-#### `--noContextSwitch`
+<hr class="api-field-separator">
+
+### `--noContextSwitch` { #nocontextswitch }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 Do not change the `current-context`. Without this flag, the newly created context is set as the default context (unless the kubeconfig already had one — in which case it is replaced).
 
-#### `--kubeconfig` (string)
+<hr class="api-field-separator">
 
-Path to the kubeconfig file to update. Overrides `$KUBECONFIG` and the default `$HOME/.kube/config`.
+### `--kubeconfig` { #kubeconfig }
 
-### Override flags
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>$KUBECONFIG</code> or <code>$HOME/.kube/config</code></span>
+</p>
 
-These flags override the corresponding fields returned by the kubeconfig service:
+Path to the kubeconfig file to update.
 
-#### `--contextNameOverride` (string)
+## Override Flags
+
+These flags override the corresponding fields returned by the kubeconfig service.
+
+### `--contextNameOverride` { #contextnameoverride }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+</p>
 
 Use this name for the new context. It is also used as the base for the cluster name (`<name>-cluster`) and user name (`<name>-user`).
 
-#### `--apiServerURLOverride` (string)
+<hr class="api-field-separator">
+
+### `--apiServerURLOverride` { #apiserverurloverride }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+</p>
 
 Override the Kubernetes API server URL.
 
-#### `--issuerURLOverride` (string)
+<hr class="api-field-separator">
+
+### `--issuerURLOverride` { #issuerurloverride }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+</p>
 
 Override the OIDC issuer URL.
 
-#### `--namespaceOverride` (string)
+<hr class="api-field-separator">
+
+### `--namespaceOverride` { #namespaceoverride }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+</p>
 
 Override the default namespace stored in the context.
 
-### Authentication mode
+## Authentication Mode Flags
 
-#### `--standalone`
+### `--standalone` { #standalone }
+
+<p class="api-meta">
+<span class="api-badge api-type">bool</span>
+<span class="api-badge api-default">default: <code>false</code></span>
+</p>
 
 Configure kubectl to use the **built-in `oidc` auth provider** instead of the `kubelogin` exec-plugin. In this mode the tokens are stored in the kubeconfig itself (under the `oidc` auth provider entry) and renewed in-place. Use this when you cannot install the `kubelogin` plugin on the workstation.
 
-> Note: the standalone `oidc` auth provider in `client-go` does not support PKCE.
+!!! note
 
-#### `--grantType` (string)
+    The standalone `oidc` auth provider in `client-go` does not support PKCE.
 
-OAuth2 grant type used by `kubelogin` (or ignored when `--standalone` is set).
+<hr class="api-field-separator">
 
-**Default:** `auto`
+### `--grantType` { #granttype }
 
-**Accepted values:**
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>auto</code></span>
+</p>
+
+OAuth2 grant type used by `kubelogin` (ignored when `--standalone` is set).
+
+Accepted values:
 
 - `auto` — Authorization Code flow (browser-based) with a sensible fallback
 - `authcode` — Authorization Code flow only
@@ -84,33 +140,41 @@ OAuth2 grant type used by `kubelogin` (or ignored when `--standalone` is set).
 - `device-code` — OAuth2 Device Authorization Grant
 - `client-credentials` — Client Credentials flow
 
-#### `--pkce` (string)
+<hr class="api-field-separator">
 
-PKCE strategy passed to `kubelogin`.
+### `--pkce` { #pkce }
 
-**Default:** `auto`
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-default">default: <code>auto</code></span>
+</p>
 
-**Accepted values:** `auto`, `no`, `S256`
+PKCE strategy passed to `kubelogin`. One of `auto`, `no`, `S256`.
 
-#### `--scope` (string, repeatable)
+<hr class="api-field-separator">
+
+### `--scope` { #scope }
+
+<p class="api-meta">
+<span class="api-badge api-type">string</span>
+<span class="api-badge api-repeatable">repeatable</span>
+</p>
 
 Extra OAuth2 scopes appended to the request. `openid` and `offline_access` are always added by `kubelogin`/`kc`.
 
-### Connection flags
+## Connection Flags
 
-#### `--insecureSkipVerify`
+| Flag                                   | Type   | Default                               |
+|----------------------------------------|--------|---------------------------------------|
+| `--insecureSkipVerify`                 | bool   | `false`                               |
+| `--caFile` <small>(repeatable)</small> | string | —                                     |
+| `--logMode`                            | string | `text`                                |
+| `--logLevel`, `-l`                     | string | `INFO`                                |
+| `--dumpExchanges`                      | bool   | `false`                               |
 
-Skip TLS certificate verification when calling the kubeconfig service.
+!!! info
 
-#### `--caFile <path>` (repeatable)
-
-Root CA path(s) used to validate the kubeconfig service URL.
-
-### Logging
-
-- `--logMode <text|json>`
-- `-l`, `--logLevel <DEBUG|INFO|WARN|ERROR>`
-- `--dumpExchanges` — Dump HTTP requests/responses against the kubeconfig service
+    `--insecureSkipVerify` and `--caFile` apply to the call against the **kubeconfig service** URL.
 
 ## Examples
 
@@ -120,7 +184,7 @@ Root CA path(s) used to validate the kubeconfig service URL.
 kc config https://kubeconfig.example.com/kubeconfig
 ```
 
-**Output:**
+Output:
 
 ```
 Setup new context 'oidc-cluster1' in kubeconfig file '/Users/john/.kube/config'
@@ -152,7 +216,7 @@ kc config https://kubeconfig.example.com/kubeconfig --grantType password
 
 Useful for remote servers without browser access.
 
-### Override the context name
+### Override the Context Name
 
 ```bash
 kc config https://kubeconfig.example.com/kubeconfig --contextNameOverride staging-cluster
@@ -260,13 +324,13 @@ The Kubauth kubeconfig service must be deployed and accessible. See [Kubeconfig 
 
 ### Context Already Exists
 
-**Error:**
+Error:
 
 ```
 context 'oidc-cluster1' already exists in this config file (...). Use --force to override
 ```
 
-**Solution:** Re-run with `--force`:
+Solution: re-run with `--force`:
 
 ```bash
 kc config https://kubeconfig.example.com/kubeconfig --force
@@ -274,13 +338,13 @@ kc config https://kubeconfig.example.com/kubeconfig --force
 
 ### Cannot Reach Service
 
-**Error:**
+Error:
 
 ```
 Error: failed to fetch Kubeconfig configuration: Get "https://kubeconfig.example.com/kubeconfig": dial tcp: lookup kubeconfig.example.com: no such host
 ```
 
-**Solutions:**
+Solutions:
 
 - Verify the URL is correct.
 - Check network connectivity.
@@ -292,13 +356,13 @@ Error: failed to fetch Kubeconfig configuration: Get "https://kubeconfig.example
 
 ### TLS Certificate Error
 
-**Error:**
+Error:
 
 ```
 Error: x509: certificate signed by unknown authority
 ```
 
-**Solutions:**
+Solutions:
 
 - Use `--insecureSkipVerify` for testing (not recommended for production).
 - Provide a CA: `--caFile ./ca.crt`. To extract it:
@@ -310,13 +374,13 @@ Error: x509: certificate signed by unknown authority
 
 ### kubelogin Not Found
 
-**Error:**
+Error:
 
 ```
 Error: exec plugin: invalid apiVersion "client.authentication.k8s.io/v1"
 ```
 
-**Solution:** Install the `kubelogin` plugin (see Prerequisites above), or re-run `kc config` with `--standalone` to use the built-in `oidc` auth provider instead.
+Solution: install the `kubelogin` plugin (see Prerequisites above), or re-run `kc config` with `--standalone` to use the built-in `oidc` auth provider instead.
 
 ## Security Considerations
 
