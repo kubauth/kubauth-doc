@@ -2,134 +2,100 @@
 
 ## Overview
 
-The `kc token` command obtains OIDC tokens using the authorization code flow. It opens a browser for user authentication and returns access, refresh, and ID tokens.
+The `kc token` command obtains OIDC tokens using the **Authorization Code** flow. It starts a local HTTP server, opens a browser to the Kubauth login page, exchanges the resulting authorization code for tokens, and prints them on the terminal. The browser then displays a success page with the decoded tokens (formatted as JSON, with copy buttons).
 
-- The ID token signature is checked against the server key.
-- If Access Token is in JWT form, its signature is checked against the server key.
-- If Access Token is in opaque form, it is checked against server introspection endpoint.
+After issuance, `kc token` always verifies the returned tokens:
+
+- The ID token signature is verified against the server's signing keys (JWKS).
+- A JWT access token is verified the same way (with the audience check relaxed).
+- An opaque access token is verified via the OAuth2 introspection endpoint.
+
+A warning is printed on stderr if any of these verifications fail.
 
 ## Syntax
 
 ```bash
-kc token --issuerURL <url> --clientId <id> [options]
+kc token [--issuerURL <url>] [--clientId <id>] [options]
 ```
 
-## Flags
+When `--issuerURL` and/or `--clientId` are omitted, `kc` falls back to the corresponding `KC_*` environment variable, then to the current kubeconfig (see [Kubeconfig integration](100-overview.md#kubeconfig-integration)).
 
-### `--issuerURL`
+## Connection flags
 
-The Kubauth OIDC issuer URL.
+See [Common Options](100-overview.md#common-options) for the full description of these flags, which are shared with `kc token-nui` and `kc client`:
 
-**Example:** `--issuerURL https://kubauth.example.com`
+- `-i, --issuerURL` (string) — Kubauth OIDC issuer URL (env `KC_ISSUER_URL`)
+- `-c, --clientId` (string) — OIDC client ID (env `KC_CLIENT_ID`)
+- `-s, --clientSecret` (string) — Client secret, for confidential clients (env `KC_CLIENT_SECRET`)
+- `--insecureSkipVerify` — Skip TLS verification of the issuer URL
+- `--caFile <path>` (repeatable) — Trusted CA certificate(s) for the issuer URL
+- `--kubeconfig <path>` — kubeconfig file used to look up the issuer URL / CA when not provided explicitly (default: `$KUBECONFIG` or `$HOME/.kube/config`)
+- `--context <name>` — Override the kubeconfig context
+- `--scope <name>` (repeatable) — Requested scope(s). **Default:** `openid`, `profile`, `groups` (`offline_access` is added automatically when `--ttl` is used)
+- `--logMode <text|json>`, `-l, --logLevel <DEBUG|INFO|WARN|ERROR>` — Logging
+- `--dumpClientExchanges` — Dump every HTTP request/response made by the `kc` HTTP client
 
-Value may also be fetched from `KC_ISSUER_URL` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
+## Output flags
 
------
-### `--clientId`
+- `--onlyIdToken` — Print only the ID token on stdout
+- `--onlyAccessToken` — Print only the access token on stdout
+- `-d, --detailIdToken` — In addition to the regular output, print the decoded ID token (header + payload)
+- `-a, --detailAccessToken` — In addition to the regular output, print the decoded access token (or a notice if the access token is opaque)
+- `--userInfo` — Call the provider `userinfo` endpoint with the obtained access token and print the result
 
-The OIDC client ID to use for authentication.
+> The browser success page **always** shows the decoded tokens regardless of `-d` and `-a`; these two flags only affect what is printed on the terminal.
 
-**Example:** `--clientId public`
+## Flow-specific flags
 
-Value may also be fetched from `KC_CLIENT_ID` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
+### `-p`, `--bindPort` (int)
 
------
-### `--clientSecret`
+Port of the local HTTP server used to receive the authorization callback.
 
-The client secret (for confidential clients).
+**Default:** `9921`
 
-**Example:** `--clientSecret mysecret123`
+The server listens on `127.0.0.1` and the redirect URI is computed as `http://127.0.0.1:<bindPort>/callback`. This redirect URI must be allowed by the OIDC client (Kubauth ships with a sensible default for `localhost`).
 
-Value may also be fetched from `KC_CLIENT_SECRET` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
-
------
-### `--insecureSkipVerify`
-Skip TLS certificate verification. Use only for testing with self-signed certificates.
-
-**Example:** `--insecureSkipVerify`
-
------
-### `--caFile`
-Provide a CA file for TLS certificate verification of ìssuerURL
-
-**Example:** `--caFile ./CA.crt`
-
------
-### `--onlyIdToken`
-Output only the ID token (base64-encoded JWT). Useful for piping to other commands or scripts.
-
-**Example:** `--onlyIdToken`
-
------
-### `--onlyAccessToken`
-Output only the access token (base64-encoded). Useful for piping to other commands or scripts.
-
-**Example:** `--onlyAccessToken`
-
------
-### `-d`, `--detailIdToken`
-Decode and display the JWT OIDC token payload. This is equivalent to `kc token .... --onlyIdToken | kc jwt`.
-
-**Example:** `-d`
-
------
-### `-a`, `--detailAccessToken`
-Decode and display the JWT Access token payload. This is equivalent to `kc token .... --onlyAccessToken | kc jwt`.
-
-**Example:** `-a`
-
-> The Kubauth server must be configured to generate AccessToken in JWT form.
-
------
-### `--scope`
-List of OAuth2 scopes to request.
-
-**Default:** `openid profile groups offline`
-
-**Example:** `--scope "openid" --scope "profile" --scope "email" --scope "groups"`
-
-!!! warning
-
-    In its current version, Kubauth does not manage scopes. All claims are included in the JWT token.
-
------
-### `-p`, `bindPort`
-
-Local web server bind port.
-
-**Default:** 9921
-
------
 ### `--pkce`
 
-Use PKCE (Proof Key for Code Exchange) for enhanced security.
+Enable [PKCE](https://datatracker.ietf.org/doc/html/rfc7636) (Proof Key for Code Exchange, `S256`). Recommended for public clients.
 
-----
-### `--browser`
+### `--prompt` (string)
 
-Override default browser. Possible values: 
+Value forwarded as the OAuth2 `prompt` parameter in the authorization request. Valid OIDC values are `none`, `login`, `consent`, `select_account` (space-separated for several).
 
-- `chrome`
-- `firefox`
-- `safari`
+When the flag is omitted (default), `kc` does not include any `prompt` parameter in the request. Use `--prompt=login` to force the user to re-authenticate even when an SSO session is active, or `--prompt=none` to require silent re-authentication.
 
----
-### `--ttl` 
+### `--browser` (string)
 
-Instead of ending immediately, the command enter a loop ending after this duration value. 
+Pick a specific browser to open. Possible values: `chrome`, `firefox`, `safari`.
 
-During this period, it will exercise the renewal of the Access Token
+Defaults to the OS-level default browser.
 
-**Default:** 0
+### `--dumpServerExchanges` (int)
 
-**Example**: `--ttl 30m`
+Dump HTTP requests/responses received by the local callback HTTP server.
 
----
-### `--renewAt`
+**Values:** `0` (off, default), `1`, `2`, `3` (increasing verbosity).
 
-The threshold percentage of the token's life before renewal is initiated.
+## Token renewal
 
-**Example**: `--renewAt 50`  # Renewal will be triggered halfway through the access token's lifespan.
+### `-t, --ttl` (duration)
+
+Instead of exiting immediately after retrieving tokens, enter a renewal loop that ends after this duration. During this period, `kc` exercises the OIDC refresh-token flow.
+
+When `--ttl` is non-zero, `offline_access` is automatically added to the requested scopes (so the server returns a refresh token).
+
+**Default:** `0` (disabled)
+
+**Example:** `--ttl 30m`
+
+### `--renewAt` (int)
+
+Percentage of the access token's lifetime after which a renewal is triggered.
+
+**Default:** `60`
+
+**Example:** `--renewAt 50` — renewal halfway through the access token's lifespan.
 
 ## Examples
 
@@ -139,32 +105,27 @@ The threshold percentage of the token's life before renewal is initiated.
 kc token --issuerURL https://kubauth.example.com --clientId public
 ```
 
-**output:**
-```
-if browser doesn't open automatically, visit: http://127.0.0.1:9921
-```
+**Output:** (after successful login in the browser)
 
-**Output:** (After successful login)
 ```
+If browser doesn't open automatically, visit: http://127.0.0.1:9921
 Access token: ory_at_xLUfAhEGpFVWpMLdNEDZAj94hHFrHWjgOYB5g0Leh_k...
-Refresh token: ory_rt_nU9NBZs4NtKTxVYVko1aqlJkAMF5MLBYjfiZbhVt9aE...
+Refresh token: null
 ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY...
 Expire in: 59m59s
 ```
 
-### With Decoded Token
+### Decoded ID Token
 
 ```bash
 kc token --issuerURL https://kubauth.example.com --clientId public -d
 ```
 
-**Output:**
+The decoded payload is printed after the regular output:
+
 ```
-Access token: ory_at_...
-Refresh token: ory_rt_...
-ID token: eyJhbG...
-Expire in: 59m59s
-JWT Payload:
+...
+IdToken: JWT Payload:
 {
   "aud": ["public"],
   "auth_time": 1763573723,
@@ -183,40 +144,50 @@ JWT Payload:
 }
 ```
 
-### Only ID Token (for Piping)
+### Only the ID token (for piping)
 
 ```bash
 kc token --issuerURL https://kubauth.example.com --clientId public --onlyIdToken
 ```
 
 **Output:**
+
 ```
 eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY3ZmY5MzUxMzZiMSIsInR5cCI6IkpXVCJ9.eyJhdF9oYXNoIjoiaGNBY2dtdmdBekJlSGgyODlkWHF3USIsImF1ZCI6WyJwdWJsaWMiXSwi...
 ```
 
-### Pipe to JWT Decoder
+### Pipe to the JWT decoder
 
 ```bash
 kc token --issuerURL https://kubauth.example.com --clientId public --onlyIdToken | kc jwt
 ```
 
-### Renewal
+### Force re-authentication (no SSO short-circuit)
 
-The OIDC client is configured with:
+```bash
+kc token --issuerURL https://kubauth.example.com --clientId public --prompt login
+```
 
-- `accessTokenLifespan: 30s`
-- `refreshTokenLifespan: 30s`
+### PKCE (recommended for public clients)
+
+```bash
+kc token --issuerURL https://kubauth.example.com --clientId public --pkce
+```
+
+### Renewal Loop
+
+The OIDC client is configured with `accessTokenLifespan: 30s` and `refreshTokenLifespan: 30s`:
 
 ```bash
 kc token --issuerURL https://kubauth.example.com --clientId kc-test --ttl 1m10s
 ```
 
-**output:**
+**Output:**
 
-```bash
+```
 If browser doesn't open automatically, visit: http://127.0.0.1:9921
 Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1N.............
-Refresh token: ory_rt_L5R5G3kTb5sEZOTCxz_J121GA59ogeYoe1xJXJXSyAM.YCfxq0uc4YVQ566WPPEwaXh-_YL5pAiy6xa7a79GHFw
+Refresh token: ory_rt_L5R5G3kTb5sEZOTCxz_J121GA59ogeYoe1xJXJXSyAM...
 ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3.............
 Expire in: 29s
 
@@ -227,7 +198,7 @@ Waiting 17s before next renewal...
 --- Renewal #1 at 2026-03-31T17:35:22+02:00 ---
 Renewal #1 successful
 Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1N.............
-Refresh token: ory_rt_oQybFhJPQO-eI0xuu77kdCS9rpY8xAcoExFJODMyNvo.Fydp0sV5beCqLwG1MA11FN2yzi2PtRAWhFoPO6BB0Vw
+Refresh token: ory_rt_oQybFhJPQO-eI0xuu77kdCS9rpY8xAcoExFJODMyNvo...
 ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M..............
 Expire in: 30s
 Token lifetime: 30s, renewal in: 18s (at 17:35:40), expires at: 17:35:52
@@ -235,57 +206,38 @@ Waiting 18s before next renewal...
 
 --- Renewal #2 at 2026-03-31T17:35:40+02:00 ---
 Renewal #2 successful
-Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1L.............
-Refresh token: ory_rt_qcpmGnDVMU8NvLEzjOl24xzGRx3MUca87QAjLHzDBnM.LPb0LDWuLNPxQrquv2dqrRq1onnBY4wE_IXGMAN55Hg
-ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1LTU4Z.............
-Expire in: 30s
-Token lifetime: 30s, renewal in: 18s (at 17:35:58), expires at: 17:36:10
-Waiting 18s before next renewal...
-
---- Renewal #3 at 2026-03-31T17:35:58+02:00 ---
-Renewal #3 successful
-Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3.............
-Refresh token: ory_rt_m3OcpGHUkBf651qUFCzuqm-7y7Q17852QQzHOl3fOZE.vD7m3vu13p_TKf9VK5c5iekB3CZUxkhzMv82Nilhrdw
-ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M.............
-Expire in: 30s
-Token lifetime: 30s, renewal in: 18s (at 17:36:16), expires at: 17:36:28
+...
 Next renewal would be past deadline, waiting 16s for TTL to expire...
 TTL reached, exiting renewal loop
 ```
-
 
 ## Behavior
 
 ### Browser Flow
 
-1. **Local Server Started** - `kc` starts a local HTTP server on a localhost port
-2. **Browser Opens** - Your default browser opens to the Kubauth login page
-3. **User Authenticates** - You log in with your credentials
-4. **Callback Received** - Kubauth redirects back to the local server with an authorization code
-5. **Token Exchange** - `kc` exchanges the code for tokens
-6. **Display Results** - Tokens are displayed in the terminal
+1. **Local server started** — `kc` starts an HTTP server on `127.0.0.1:<bindPort>`.
+2. **Browser opens** — Your default browser is launched on the authorization URL.
+3. **User authenticates** — You log in with your credentials in Kubauth.
+4. **Callback received** — Kubauth redirects to `http://127.0.0.1:<bindPort>/callback` with an authorization code.
+5. **Token exchange** — `kc` exchanges the code for tokens.
+6. **Success page** — A success page is rendered in the browser, with the decoded tokens (and optionally userinfo) formatted as JSON.
+7. **Terminal output** — Tokens are printed in the terminal according to `--onlyIdToken` / `--onlyAccessToken` / `-d` / `-a` / `--userInfo`.
 
 ### Token Storage
 
-Tokens are displayed but not automatically stored. If you need to save them:
+Tokens are displayed but never written to disk by `kc token`. To save them:
 
 ```bash
-# Save ID token to variable
+# Save the ID token to a variable
 ID_TOKEN=$(kc token --issuerURL https://kubauth.example.com --clientId public --onlyIdToken)
 
-# Save to file
+# Save to a file
 kc token --issuerURL https://kubauth.example.com --clientId public --onlyIdToken > token.txt
 ```
 
 ### SSO Session
 
-If you previously checked "Remember me" on the login page, subsequent `kc token` commands will complete automatically without requiring you to log in again (SSO session active).
-
-To clear the SSO session:
-
-```bash
-kc logout --issuerURL https://kubauth.example.com
-```
+If you previously checked "Remember me" on the Kubauth login page, subsequent `kc token` calls complete without prompting (SSO session active). Use `--prompt login` to force re-authentication, or `kc logout --sso` to drop the SSO cookie entirely.
 
 ## Troubleshooting
 
@@ -293,11 +245,12 @@ kc logout --issuerURL https://kubauth.example.com
 
 If the browser doesn't open automatically:
 
-1. Check the terminal output for the URL
-2. Manually copy and paste it into your browser
-3. Or use [`kc token-nui`](140-token-nui.md) for terminal-based authentication
+1. Read the terminal output for the URL.
+2. Copy/paste it into your browser.
+3. Or use [`kc token-nui`](140-token-nui.md) when no browser is available.
 
 **Example:**
+
 ```
 If browser doesn't open automatically, visit: http://127.0.0.1:9921
 ```
@@ -305,37 +258,38 @@ If browser doesn't open automatically, visit: http://127.0.0.1:9921
 ### TLS Certificate Errors
 
 **Error:**
+
 ```
 Error: x509: certificate signed by unknown authority
 ```
 
 **Solutions:**
 
-- Use `--insecureSkipVerify` for testing (not recommended for production)
-- Use `--caFile ./ca.crt`. To extract the CA:
+- Use `--insecureSkipVerify` for testing (not recommended for production).
+- Provide a CA: `--caFile ./ca.crt`. To extract the issuer CA from the cluster:
    ```bash
    kubectl -n kubauth get secret kubauth-oidc-server-cert \
      -o=jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt
    ```
-- Add this CA certificate to system trust store.
+- Or add this CA certificate to the system trust store.
 
 ## Security Considerations
 
-1. **Don't Expose Tokens** - Be careful when displaying or logging tokens
-2. **Use HTTPS** - Always use HTTPS for the issuer URL in production
-3. **Verify Certificates** - Only use `--insecureSkipVerify` for testing
-4. **Token Lifetime** - Tokens expire quickly by design; request new ones as needed
-5. **Client Secrets** - Never commit client secrets to version control
+1. **Don't expose tokens** — be careful when displaying or logging tokens.
+2. **Use HTTPS** — always use HTTPS for the issuer URL in production.
+3. **Verify certificates** — only use `--insecureSkipVerify` for testing.
+4. **Use PKCE** — pass `--pkce` for public clients.
+5. **Client secrets** — never commit client secrets to version control.
 
 ## Related Commands
 
-- [`kc token-nui`](140-token-nui.md) - Non-interactive authentication (no browser)
-- [`kc jwt`](160-jwt.md) - Decode JWT tokens
-- [`kc logout`](180-logout.md) - Clear SSO session
-- [`kc whoami`](170-whoami.md) - Display current user information
+- [`kc token-nui`](140-token-nui.md) — Non-interactive authentication (no browser)
+- [`kc client`](145-client.md) — Client Credentials flow
+- [`kc jwt`](160-jwt.md) — Decode arbitrary JWTs
+- [`kc logout`](180-logout.md) — Clear SSO session and/or local kubectl OIDC cache
+- [`kc whoami`](170-whoami.md) — Display current user
 
 ## See Also
 
 - [Tokens and Claims](../30-user-guide/120-tokens-and-claims.md)
 - [OidcClient Reference](../60-references/110-oidcclient.md)
-

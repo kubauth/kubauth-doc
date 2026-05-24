@@ -4,22 +4,37 @@
 
 The `kc audit` command queries Kubauth authentication audit logs. It provides two subcommands to view login attempts and detailed user authentication information.
 
-## flags
-### `--namespace`
-string
+## Common flags
 
-The namespace storing the audit logs
+### `-n`, `--namespace` (string)
+
+The namespace storing the audit logs.
 
 **Default:** `kubauth-audit`
 
+This flag applies to both `kc audit logins` and `kc audit detail`.
+
 ## kc audit logins
+
 Display all login attempts with status, user information, and authentication source.
 
 ### Syntax
 
 ```bash
-kc audit logins [options]
+kc audit logins [<login>] [options]
 ```
+
+### Arguments
+
+#### `<login>` (string, optional)
+
+If provided, only show attempts for that specific login.
+
+### Flags
+
+#### `-l`, `--byLogin`
+
+Sort the output by login name. By default attempts are sorted chronologically.
 
 ### Examples
 
@@ -37,6 +52,18 @@ Mon 12:58:29   john    passwordChecked   -     John DOE     []                 {
 Mon 15:34:59   john    passwordChecked   -     John DOE     []                 {"office":"208G"}                           [johnd@mycompany.com]   
 Tue 18:59:16   fred    passwordChecked   -     Fred ASTER   [staff,managers]   {}                                          [fred@mycompany.com]    ldap
 Tue 19:02:20   jim     userNotFound      -                  []                 {}                                          []                    
+```
+
+#### Filter by Login
+
+``` { .bash .copy }
+kc audit logins john
+```
+
+#### Sort by Login
+
+``` { .bash .copy }
+kc audit logins -l
 ```
 
 ### Output Fields

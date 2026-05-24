@@ -39,6 +39,6 @@ Kubauth consists of several subprojects:
 | COMPONENT          | VERSION         |
 |--------------------|-----------------|
 | kubauth            | v0.3.0-snapshot |
-| kc                 | v0.2.1-snapshot |
+| kc                 | v0.2.1          |
 | kubauth-apiserver  | v0.2.0          |
 | kubauth-kubeconfig | v0.2.0          |

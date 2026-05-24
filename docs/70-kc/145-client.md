@@ -2,11 +2,14 @@
 
 ## Overview
 
-The `kc client` command obtains an Access Token using the Client Credentials flow. 
+The `kc client` command obtains an access token using the **Client Credentials** flow. It is intended for machine-to-machine scenarios where no end-user is involved — a confidential client authenticates with its `client_id` / `client_secret` and receives an access token directly.
 
-- If Access Token is in JWT form, its signature is checked against the server key.
-- If Access Token is in opaque form, it is checked against server introspection endpoint.
+After issuance, the token is verified:
 
+- A JWT access token is verified against the server's signing keys.
+- An opaque access token is verified via the OAuth2 introspection endpoint.
+
+The flow returns only an access token: there is no ID token and (in this version) no refresh token, so renewal-related flags (`--ttl`, `--renewAt`) do not apply.
 
 ## Syntax
 
@@ -14,78 +17,42 @@ The `kc client` command obtains an Access Token using the Client Credentials flo
 kc client --issuerURL <url> --clientId <id> --clientSecret <secret> [options]
 ```
 
-## Flags
+## Prerequisites
 
-### `--issuerURL`
+The OIDC client used here must:
 
-The Kubauth OIDC issuer URL.
+- Have `"client_credentials"` in its `grantTypes`.
+- Be configured as a confidential client (i.e. have a registered secret).
 
-**Example:** `--issuerURL https://kubauth.example.com`
+Most Kubauth deployments do not allow Client Credentials for end-user clients; configure a dedicated machine client instead.
 
-Value may also be fetched from `KC_ISSUER_URL` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
+## Connection flags
 
------
-### `--clientId`
+These flags are shared with the other OIDC subcommands — see [Common Options](100-overview.md#common-options):
 
-The OIDC client ID to use for authentication.
+- `-i, --issuerURL` (string) — Kubauth OIDC issuer URL (env `KC_ISSUER_URL`)
+- `-c, --clientId` (string) — OIDC client ID (env `KC_CLIENT_ID`)
+- `-s, --clientSecret` (string) — Client secret (env `KC_CLIENT_SECRET`)
+- `--insecureSkipVerify` — Skip TLS verification of the issuer URL
+- `--caFile <path>` (repeatable) — Trusted CA certificate(s) for the issuer URL
+- `--kubeconfig <path>` / `--context <name>` — Look up the issuer URL/CA from a kubeconfig
+- `--scope <name>` (repeatable) — Requested scope(s). **Default:** `openid`, `profile`, `groups`
+- `--logMode <text|json>`, `-l, --logLevel <DEBUG|INFO|WARN|ERROR>` — Logging
+- `--dumpClientExchanges` — Dump every HTTP request/response made by `kc`
 
-**Example:** `--clientId private`
+## Output flags
 
-Value may also be fetched from `KC_CLIENT_ID` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
+- `--onlyAccessToken` — Print only the access token on stdout (useful for piping)
+- `-a, --detailAccessToken` — Print the decoded access token after the regular output (or a notice if the token is opaque)
 
------
-### `--clientSecret`
-
-The client secret.
-
-**Example:** `--clientSecret mysecret123`
-
-Value may also be fetched from `KC_CLIENT_SECRET` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
-
------
-### `--insecureSkipVerify`
-Skip TLS certificate verification. Use only for testing with self-signed certificates.
-
-**Example:** `--insecureSkipVerify`
-
------
-### `--caFile`
-Provide a CA file for TLS certificate verification of the issuer URL.
-
-**Example:** `--caFile ./CA.crt`
-
------
-### `--onlyAccessToken`
-Output only the access token (base64-encoded). Useful for piping to other commands or scripts.
-
-**Example:** `--onlyAccessToken`
-
------
-### `-a`, `--detailAccessToken`
-Decode and display the JWT Access token payload. This is equivalent to `kc token .... --onlyAccessToken | kc jwt`.
-
-**Example:** `-a`
-
-> The Kubauth server must be configured to generate AccessToken in JWT form.
-
------
-### `--scope`
-List of OAuth2 scopes to request.
-
-**Default:** `openid profile groups offline`
-
-**Example:** `--scope "openid" --scope "profile" --scope "email" --scope "groups"`
-
-!!! warning
-
-    In its current version, Kubauth does not enforce scope restrictions for the Client Credentials flow.
+> ID-token-related flags (`--onlyIdToken`, `-d`/`--detailIdToken`) are accepted but have no effect, because the Client Credentials flow does not return an ID token.
 
 ## Examples
 
 ### Opaque Access Token
 
 ```bash
-kc client --issuerURL https://kubauth.example.com  --clientId=private --clientSecret=private-secret
+kc client --issuerURL https://kubauth.example.com --clientId=private --clientSecret=private-secret
 ```
 
 **Output:**
@@ -97,17 +64,16 @@ ID token: null
 Expire in: 4m59s
 ```
 
-
-### JWT Access Token
+### JWT Access Token (decoded)
 
 ```bash
-kc client --issuerURL https://kubauth.example.com  --clientId=private --clientSecret=private-secret -a
+kc client --issuerURL https://kubauth.example.com --clientId=private --clientSecret=private-secret -a
 ```
 
 **Output:**
 
 ```
-Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg4MDdjNzUzLTU3MTYtNDIzYi1hZWFmLTNiODRiYTIxOWY2NyIsInR5cCI6IkpXVCJ9.eyJhdWQiOltdLCJleHAiOjE3NzIwMTgzMDEsImlhdCI6MTc3MjAxODAwMSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo2ODAxIiwianRpIjoiYjEyYTdiMWItZjk3Ni00MjIwLWE4MjYtNDljMjVlOGE4ZWM0Iiwic2NwIjpbIm9wZW5pZCIsInByb2ZpbGUiLCJvZmZsaW5lIiwiZ3JvdXBzIl19.Wl2nFhxXKzeABPSNIwaNPPJ9qhQUDffY340kfh_3vGaHrXeRQEPG_UWs9dx_4e0B2uGvRkDzp3-R5pM7c9_C_yzmypgt3jLPKxtgAP2sSxuNkk7iMTJXTee-BRCI43a8vR7LqucHCT2rnl_Yw4Y137YUWpUtXkemm1HXwbyOR9dz8oWw96RJN23TsvNFpS6IA-W71RINmph97wccxMV7PrjLaq_X4FryHqon4TU_7wBQGT_2w5sTY972p0lbhEjDtm3dhIJXoBP4u7XPReIDVRjCcKhJZrHT_7EanubfFPpOF3zoOheMnRLpKOmzcU-Vl7CjFL944JRvJtS0zVrh-Q
+Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg4MDdjNzUzLTU3MTYtNDIzYi1hZWFmLTNiODRiYTIxOWY2NyIs...
 Refresh token: null
 ID token: null
 Expire in: 4m59s
@@ -120,11 +86,27 @@ AccessToken: JWT Payload:
   "iat_human": "2026-02-25 11:13:21 UTC",
   "iss": "http://localhost:6801",
   "jti": "b12a7b1b-f976-4220-a826-49c25e8a8ec4",
-  "scp": [
-    "openid",
-    "profile",
-    "offline",
-    "groups"
-  ]
+  "scp": ["openid", "profile", "groups"]
 }
 ```
+
+### Pipe into another command
+
+```bash
+TOKEN=$(kc client --issuerURL https://kubauth.example.com \
+  --clientId=private --clientSecret=private-secret \
+  --onlyAccessToken)
+
+curl -H "Authorization: Bearer $TOKEN" https://api.example.com/v1/whatever
+```
+
+## Related Commands
+
+- [`kc token`](130-token.md) — Authorization Code flow (for end users)
+- [`kc token-nui`](140-token-nui.md) — ROPC flow (for end users without a browser)
+- [`kc jwt`](160-jwt.md) — Decode arbitrary JWT tokens
+
+## See Also
+
+- [OidcClient Reference](../60-references/110-oidcclient.md)
+- [Tokens and Claims](../30-user-guide/120-tokens-and-claims.md)

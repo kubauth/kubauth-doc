@@ -2,137 +2,78 @@
 
 ## Overview
 
-The `kc token-nui` command obtains OIDC tokens using the Resource Owner Password Credentials (ROPC) flow. It prompts for username and password in the terminal without requiring a browser, making it suitable for headless environments, SSH sessions, and automation.
- 
-- The ID token signature is checked against the server key.
-- If Access Token is in JWT form, its signature is checked against the server key.
-- If Access Token is in opaque form, it is checked against server introspection endpoint.
+The `kc token-nui` command obtains OIDC tokens using the **Resource Owner Password Credentials** (ROPC) flow. It accepts the username and password on the command line (or interactively in the terminal) and returns tokens — no browser is involved. This makes it suitable for SSH sessions, headless environments and automation.
+
+After issuance, `kc token-nui` verifies the returned tokens, exactly like [`kc token`](130-token.md):
+
+- The ID token signature is verified against the server's signing keys (JWKS).
+- A JWT access token is verified the same way.
+- An opaque access token is verified via the OAuth2 introspection endpoint.
 
 > **NUI** stands for "No User Interface" (no browser).
 
 ## Syntax
 
 ```bash
-kc token-nui --issuerURL <url> --clientId <id> [options]
+kc token-nui [--issuerURL <url>] [--clientId <id>] [--login <user>] [--password <pwd>] [options]
 ```
 
 ## Prerequisites
 
 The ROPC/Password Grant must be enabled in Kubauth:
 
-1. **Global configuration:** Set `allowPasswordGrant: true` in Kubauth Helm values
-2. **Client configuration:** Add `"password"` to the client's `grantTypes` list
+1. **Global configuration:** Set `allowPasswordGrant: true` in Kubauth Helm values.
+2. **Client configuration:** Add `"password"` to the client's `grantTypes` list.
 
 See [Password Grant Configuration](../30-user-guide/160-password-grant.md#configuration) for details.
 
-## Flags
+## Connection flags
 
-### `--issuerURL`
+These flags are shared with [`kc token`](130-token.md) — see [Common Options](100-overview.md#common-options):
 
-The Kubauth OIDC issuer URL.
+- `-i, --issuerURL` (string) — Kubauth OIDC issuer URL (env `KC_ISSUER_URL`)
+- `-c, --clientId` (string) — OIDC client ID (env `KC_CLIENT_ID`)
+- `-s, --clientSecret` (string) — Client secret, for confidential clients (env `KC_CLIENT_SECRET`)
+- `--insecureSkipVerify` — Skip TLS verification of the issuer URL
+- `--caFile <path>` (repeatable) — Trusted CA certificate(s) for the issuer URL
+- `--kubeconfig <path>` / `--context <name>` — Look up the issuer URL/CA from a kubeconfig
+- `--scope <name>` (repeatable) — Requested scope(s). **Default:** `openid`, `profile`, `groups` (`offline_access` is added automatically when `--ttl` is used)
+- `--logMode <text|json>`, `-l, --logLevel <DEBUG|INFO|WARN|ERROR>` — Logging
+- `--dumpClientExchanges` — Dump every HTTP request/response made by `kc`
 
-**Example:** `--issuerURL https://kubauth.example.com`
+## Output flags
 
-Value may also be fetched from `KC_ISSUER_URL` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
+- `--onlyIdToken` — Print only the ID token on stdout
+- `--onlyAccessToken` — Print only the access token on stdout
+- `-d, --detailIdToken` — Print the decoded ID token after the regular output
+- `-a, --detailAccessToken` — Print the decoded access token (or a notice if opaque)
+- `--userInfo` — Call the provider `userinfo` endpoint and print the response
 
------
-### `--clientId`
+## ROPC-specific flags
 
-The OIDC client ID to use for authentication.
+### `-u, --login` (string)
 
-**Example:** `--clientId public`
+Username. If not provided, `kc` reads `KC_USER_LOGIN`; if still empty, it prompts on stderr.
 
-Value may also be fetched from `KC_CLIENT_ID` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
+### `-p, --password` (string)
 
------
-### `--clientSecret`
+Password. If not provided, `kc` reads `KC_USER_PASSWORD`; if still empty, it prompts on stderr with hidden input.
 
-The client secret (for confidential clients).
+## Token renewal
 
-**Example:** `--clientSecret mysecret123`
+### `-t, --ttl` (duration)
 
-Value may also be fetched from `KC_CLIENT_SECRET` environment variable, or Kubernetes kubeconfig if `kc init ....` has been used.
+Instead of exiting immediately after retrieving tokens, enter a renewal loop that ends after this duration. During this period, `kc` exercises the OIDC refresh-token flow.
 
------
-### `--insecureSkipVerify`
-Skip TLS certificate verification. Use only for testing with self-signed certificates.
+When `--ttl` is non-zero, `offline_access` is automatically added to the requested scopes (so the server returns a refresh token).
 
-**Example:** `--insecureSkipVerify`
+**Default:** `0` (disabled)
 
------
-### `--caFile`
-Provide a CA file for TLS certificate verification of ìssuerURL
+### `--renewAt` (int)
 
-**Example:** `--caFile ./CA.crt`
+Percentage of the access token's lifetime after which a renewal is triggered.
 
------
-### `--onlyIdToken`
-Output only the ID token (base64-encoded JWT). Useful for piping to other commands or scripts.
-
-**Example:** `--onlyIdToken`
-
------
-### `--onlyAccessToken`
-Output only the access token (base64-encoded). Useful for piping to other commands or scripts.
-
-**Example:** `--onlyAccessToken`
-
------
-### `-d`, `--detailIdToken`
-Decode and display the JWT OIDC token payload. This is equivalent to `kc token .... --onlyIdToken | kc jwt`.
-
-**Example:** `-d`
-
------
-### `-a`, `--detailAccessToken`
-Decode and display the JWT Access token payload. This is equivalent to `kc token .... --onlyAccessToken | kc jwt`.
-
-**Example:** `-a`
-
-> The Kubauth server must be configured to generate AccessToken in JWT form.
-
------
-### `--scope`
-List of OAuth2 scopes to request.
-
-**Default:** `openid profile groups offline`
-
-**Example:** `--scope "openid" --scope "profile" --scope "email" --scope "groups"`
-
-!!! warning
-
-    In its current version, Kubauth does not manage scopes. All claims are included in the JWT token.
-
------
-### `--login` (string)
-Username for authentication. If not provided, you'll be prompted.
-
-Value may also be fetched from `KC_USER_LOGIN` environment variable.
-
-----
-### `--password` (string)
-Password for authentication. If not provided, you'll be prompted (input hidden).
-
-Value may also be fetched from `KC_USER_PASSWORD` environment variable.
-
----
-### `--ttl`
-
-Instead of ending immediately, the command enter a loop ending after this duration value.
-
-During this period, it will exercise the renewal of the Access Token
-
-**Default:** 0
-
-**Example**: `--ttl 30m`
-
----
-### `--renewAt`
-
-The threshold percentage of the token's life before renewal is initiated.
-
-**Example**: `--renewAt 50`  # Renewal will be triggered halfway through the access token's lifespan.
-
+**Default:** `60`
 
 ## Examples
 
@@ -146,14 +87,14 @@ kc token-nui --issuerURL https://kubauth.example.com --clientId public
 
 ```
 Login: john
-Password: 
+Password:
 ```
 
 **Output:**
 
 ```
 Access token: ory_at_LAhtO0e8T8-V2wLZ72V0G98jKMJEpYQLH6tm6Aeg_Lw...
-Refresh token: ory_rt_kP1rTr6eF_AgdVvUtzfEKywhIddEK2cjDRC9EmkT0Hw...
+Refresh token: null
 ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0Y2NkNDU0LWYzYTgtNDQ3Zi1hN2MzLTY...
 Expire in: 1h0m0s
 ```
@@ -167,13 +108,23 @@ kc token-nui --issuerURL https://kubauth.example.com \
   --password john123
 ```
 
+Or via environment:
+
+```bash
+export KC_ISSUER_URL=https://kubauth.example.com
+export KC_CLIENT_ID=public
+export KC_USER_LOGIN=john
+export KC_USER_PASSWORD=john123
+
+kc token-nui
+```
+
 ### With Token Decoding
 
 ```bash
 kc token-nui --issuerURL https://kubauth.example.com \
   --clientId public \
-  --login john \
-  --password john123 \
+  --login john --password john123 \
   -d
 ```
 
@@ -182,8 +133,7 @@ kc token-nui --issuerURL https://kubauth.example.com \
 ```bash
 kc token-nui --issuerURL https://kubauth.example.com \
   --clientId public \
-  --login john \
-  --password john123 \
+  --login john --password john123 \
   --onlyIdToken
 ```
 
@@ -195,31 +145,27 @@ TOKEN=$(kc token-nui \
   --issuerURL https://kubauth.example.com \
   --clientId automation \
   --login serviceaccount \
-  --password $SERVICE_PASSWORD \
+  --password "$SERVICE_PASSWORD" \
   --onlyIdToken)
 
 curl -H "Authorization: Bearer $TOKEN" https://api.example.com/deploy
 ```
 
-
 ### Renewal
 
-The OIDC client is configured with:
-
-- `accessTokenLifespan: 30s`
-- `refreshTokenLifespan: 30s`
+The OIDC client is configured with `accessTokenLifespan: 30s` and `refreshTokenLifespan: 30s`:
 
 ```bash
-kc token-nui  --issuerURL https://kubauth.example.com --clientId kc-test --ttl 1m
+kc token-nui --issuerURL https://kubauth.example.com --clientId kc-test --ttl 1m
 ```
 
-**output:**
+**Output:**
 
-```bash
+```
 Login:admin
 Password:
 Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1LTU4ZWUtNDhlNS1hZDJiLW.................
-Refresh token: ory_rt_smAzQrY5dtkxfSVdYTXf8HA42yOeXHsubruhT4TMiy8.GVAqyR78s12adQIQvw4rq8zFiakoyrk_gwzUHINCpCQ
+Refresh token: ory_rt_smAzQrY5dtkxfSVdYTXf8HA42yOeXHsubruhT4TMiy8...
 ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1LTU4ZWUtNDhlNS1hZDJiLWU5NDI.................
 Expire in: 30s
 
@@ -229,29 +175,7 @@ Waiting 18s before next renewal...
 
 --- Renewal #1 at 2026-03-31T17:46:26+02:00 ---
 Renewal #1 successful
-Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1LTU4ZWUtNDhlNS1hZDJiLWU5ND.................
-Refresh token: ory_rt_44D98GD_NsQGcHEOrLEx7ydT8CcaL5nm3VkPQHK8tBg.boRkDPffu_vkn0s0hULXx7BgNoT6bRcMo6ff7QyJykc
-ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1LTU4ZWUtNDhlNS1hZDJiLWU5NDI3Y.................
-Expire in: 30s
-Token lifetime: 30s, renewal in: 18s (at 17:46:44), expires at: 17:46:56
-Waiting 18s before next renewal...
-
---- Renewal #2 at 2026-03-31T17:46:44+02:00 ---
-Renewal #2 successful
-Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1LTU4ZWUtNDhlNS1hZDJiLWU5.................
-Refresh token: ory_rt_uftfqVe1JtCvL35wOZrdh2L1Q8ZZTxrSdcr7bl4a6hQ.6RSZz6-WV5C7uVxJJiSPTuo3_nb-fczIwTHYlE2N3e8
-ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1LTU4ZWUtNDhlNS1hZDJiLWU5NDI3YW.................
-Expire in: 30s
-Token lifetime: 30s, renewal in: 18s (at 17:47:02), expires at: 17:47:14
-Waiting 18s before next renewal...
-
---- Renewal #3 at 2026-03-31T17:47:02+02:00 ---
-Renewal #3 successful
-Access token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1LTU4ZWUtNDhlNS1hZDJiLWU5NDI3YWI3YjdlMCI.................
-Refresh token: ory_rt_2I7g7UGrhVGh-p37licpl8G4Hb0M-owJV5rFwa1n4Mk.gXg8IopCJPlqhtnRyDDk_puU4NlhBK6N-srZ-AGDD_c
-ID token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1NTk3M2Y1LTU4ZWUtNDhlNS1hZDJiLWU5NDI3YWI3YjdlMCIsInR5cCI.................
-Expire in: 30s
-Token lifetime: 30s, renewal in: 18s (at 17:47:20), expires at: 17:47:32
+...
 Next renewal would be past deadline, waiting 5s for TTL to expire...
 TTL reached, exiting renewal loop
 ```
@@ -260,11 +184,11 @@ TTL reached, exiting renewal loop
 
 !!! warning "Password Grant Security"
     The password grant flow is deprecated in OAuth 2.1 due to security concerns:
-    
+
     - Credentials are exposed to the client application
     - Cannot support phishing-resistant MFA
-    - Users may be trained to enter passwords in applications
-    
+    - Users may be trained to enter passwords in third-party applications
+
     Use only when browser-based flows are impossible.
 
 ## Troubleshooting
@@ -272,64 +196,66 @@ TTL reached, exiting renewal loop
 ### Password Grant Not Allowed
 
 **Error:**
+
 ```
 token request failed with status 403: {"error":"request_forbidden","error_description":"The request is not allowed. This server does not allow to use authorization grant 'password'. Check server configuration"}
 ```
 
-**Solution:** Enable password grant in both Kubauth configuration and the OidcClient. See [Password Grant Configuration](../30-user-guide/160-password-grant.md#configuration).
-
+**Solution:** Enable password grant in both the Kubauth Helm configuration and the OidcClient. See [Password Grant Configuration](../30-user-guide/160-password-grant.md#configuration).
 
 ### TLS Certificate Errors
 
 **Error:**
+
 ```
 Error: x509: certificate signed by unknown authority
 ```
 
 **Solutions:**
 
-- Use `--insecureSkipVerify` for testing (not recommended for production)
-- Use `--caFile ./ca.crt`. To extract the CA:
+- Use `--insecureSkipVerify` for testing (not recommended for production).
+- Provide a CA: `--caFile ./ca.crt`. To extract it:
    ```bash
    kubectl -n kubauth get secret kubauth-oidc-server-cert \
      -o=jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt
    ```
-- Add this CA certificate to system trust store.
+- Or add the CA to the system trust store.
 
 ### Authentication Failed
 
 **Error:**
+
 ```
 token request failed with status 400: {"error":"invalid_grant","error_description":"...Unable to authenticate the provided username and password credentials."}
 ```
 
 **Solutions:**
 
-- Verify username and password are correct
-- Check user is not disabled: `kubectl -n kubauth-users get user <username>`
-- Review audit logs: `kc audit logins`
+- Verify the username and password.
+- Check the user is not disabled: `kubectl -n kubauth-users get user <username>`.
+- Review audit logs: `kc audit logins`.
 
-## Comparison with kc token
+## Comparison with `kc token`
 
-| Feature | `kc token` | `kc token-nui` |
-|---------|-----------|----------------|
-| Browser required | Yes | No |
-| OAuth flow | Authorization Code + PKCE | Password Grant (ROPC) |
-| SSH-friendly | No | Yes |
-| Automation-friendly | Limited | Yes |
-| MFA support | Yes | Limited |
-| Security | Better | Acceptable for specific cases |
-| Setup required | Standard OIDC | Must enable password grant |
+| Feature             | `kc token`                | `kc token-nui`                |
+|---------------------|---------------------------|-------------------------------|
+| Browser required    | Yes                       | No                            |
+| OAuth flow          | Authorization Code (+PKCE)| Password Grant (ROPC)         |
+| SSH-friendly        | No                        | Yes                           |
+| Automation-friendly | Limited                   | Yes                           |
+| MFA support         | Yes                       | Limited                       |
+| Security            | Better                    | Acceptable for specific cases |
+| Setup required      | Standard OIDC             | Password grant must be enabled|
 
 ## Related Commands
 
-- [`kc token`](130-token.md) - Browser-based authentication (preferred)
-- [`kc config`](190-config.md) - Configure kubectl with password grant
-- [`kc jwt`](160-jwt.md) - Decode JWT tokens
-- [`kc audit`](150-audit.md) - View authentication attempts
+- [`kc token`](130-token.md) — Browser-based authentication (preferred)
+- [`kc client`](145-client.md) — Client Credentials flow
+- [`kc config`](190-config.md) — Configure kubectl with password grant
+- [`kc jwt`](160-jwt.md) — Decode JWT tokens
+- [`kc audit`](150-audit.md) — Inspect login attempts
 
 ## See Also
 
 - [Password Grant (ROPC)](../30-user-guide/160-password-grant.md)
 - [Workstation Setup](../50-kubernetes-integration/140-workstation-setup.md#no-ui-mode)
-

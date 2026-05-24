@@ -2,7 +2,9 @@
 
 ## Overview
 
-The `kc whoami` command displays the currently authenticated user information from your kubectl configuration. It extracts and shows the username and optionally the full JWT token payload.
+The `kc whoami` command displays the currently authenticated user, as recorded in your kubectl configuration. It reads the cached ID token (either from the `kubelogin` cache or from the `oidc` auth provider entry when using standalone mode) and shows the `sub` claim — and, optionally, the full decoded JWT payload.
+
+If no OIDC configuration is found, the command prints `unknown`.
 
 ## Syntax
 
@@ -10,10 +12,25 @@ The `kc whoami` command displays the currently authenticated user information fr
 kc whoami [options]
 ```
 
-## Optional Flags
+## Flags
 
-### `-d, --detailed`
-Display the full decoded JWT token payload with all claims.
+### `-d`, `--detailed`
+
+Display the full decoded JWT payload (all claims) in addition to the username.
+
+### `--kubeconfig` (string)
+
+Path to the kubeconfig file to read from.
+
+**Default:** `$KUBECONFIG`, then `$HOME/.kube/config`.
+
+### `--context` (string)
+
+Override the kubeconfig context. Defaults to the file's `current-context`.
+
+### `--logMode` (string), `-l`, `--logLevel` (string)
+
+Logging configuration. Same semantics as the other commands.
 
 ## Examples
 
@@ -26,6 +43,12 @@ kc whoami
 **Output:**
 ```
 john
+```
+
+If the cached ID token is expired, the username is suffixed with `  (expired)`:
+
+```
+john  (expired)
 ```
 
 ### With Token Decoding
@@ -77,6 +100,7 @@ The `kc whoami` command requires:
 ``` { .bash .copy }
 # Configure kubectl for OIDC
 kc config https://kubeconfig.example.com/kubeconfig
+# (or equivalently: kc init https://kubeconfig.example.com/kubeconfig)
 
 # Trigger initial authentication
 kubectl get nodes

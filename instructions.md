@@ -38,3 +38,11 @@ Built with mkdocs with some extension, in docs folder
 It has been written in poor globish by a French native.
 It has been rewritten by AI in a previous version
 Could you check and rewrite all modification since tag v0.1.2
+
+
+This is a technical documentation about an OIDC server named Kubauth (https://github.com/kubauth/kubauth)
+Built with mkdocs with some extension, in docs folder
+There is also a companion CLI tool named 'kc' (https://github.com/kubauth/kc), described in this doc.
+This tool has evolved in version/branch v0.2.1. Update the doc accordingly
+
+
