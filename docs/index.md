@@ -1,24 +1,25 @@
 # Kubauth
 
-A Kubernetes-native OpenID Connect (OIDC) Identity Provider.
+A Kubernetes-native OpenID Connect (OIDC) Identity Provider and Gateway.
 
 ## Overview
 
 Kubauth is a fully-featured OIDC identity provider designed for Kubernetes environments.
 
-It stores users, groups, clients, and sessions as native Kubernetes resources, providing a scalable and cloud-native authentication solution.
+It can operate autonomously with its own user database or act as a federation gateway for external identity providers such as LDAP or other OIDC server such as Keycloak.
 
-Kubauth can operate autonomously with its own user database or act as a federation gateway for external identity providers such as LDAP.
+Kubauth may store users, groups, clients, and sessions as native Kubernetes resources, providing a scalable and cloud-native authentication solution.
 
 ## Key Features
 
 - **OIDC Compliance**: Supports standard OIDC flows including ***Authorization Code***, ***Client Credentials*** and ***Resource Owner Password Credentials*** (ROPC).
 - **PKCE Support**: Complete Proof Key for Code Exchange (PKCE) implementation with configurable enforcement.
-- **Kubernetes-Native Storage**: All data stored as Kubernetes Custom Resources (CRDs) — no external database required.
+- **Kubernetes-Native Storage**: All data stored as Kubernetes Custom Resources (CRDs) — no database.
 - **SSO Capabilities**: Cross-application Single Sign-On with persistent sessions.
 - **User & Group Management**: Fine-grained user authentication and group-based authorization.
     - Claims can be defined at user or group level.
     - User profiles can be built from multiple identity sources.
+- **Upstream OIDC**: May Delegate authentication to another (upstream) OIDC server.
 - **LDAP Integration**: Support for one or more LDAP servers, with on-the-fly user and group enrichment.
 - **Security First**: bcrypt password hashing, JWT signing with persistent keys, secure session management.
 - **Production Ready**: Health checks, admission webhooks, and Helm chart deployment.
@@ -35,9 +36,9 @@ Kubauth consists of several subprojects:
 
 ## Current versions
 
-| COMPONENT          | VERSION |
-|--------------------|---------|
-| kubauth            | v0.2.1  |
-| kc                 | v0.2.1  |
-| kubauth-apiserver  | v0.2.0  |
-| kubauth-kubeconfig | v0.2.0  |
+| COMPONENT          | VERSION         |
+|--------------------|-----------------|
+| kubauth            | v0.3.0-snapshot |
+| kc                 | v0.2.1-snapshot |
+| kubauth-apiserver  | v0.2.0          |
+| kubauth-kubeconfig | v0.2.0          |
