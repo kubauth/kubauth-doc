@@ -76,6 +76,11 @@ theme:
 extra_css:
   - assets/styles/extra.css
 
+extra:
+  version:
+    provider: mike
+
+
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true

@@ -8,7 +8,13 @@ help: ## Display this help.
 serve: ## Setup local server
 	. ./setup/activate.sh && mkdocs serve
 
+#.PHONY: publish
+#publish: ## Publish documentation
+#	. ./setup/activate.sh && mkdocs gh-deploy --clean --force
+
 .PHONY: publish
 publish: ## Publish documentation
-	. ./setup/activate.sh && mkdocs gh-deploy --clean --force
+	. ./setup/activate.sh && mike deploy --push v0.3.0-snapshot
+
+
 
